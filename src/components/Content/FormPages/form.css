@@ -1,0 +1,73 @@
+.form__container {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 2rem;
+    border-radius: 10px;
+    height: 100vh;
+    gap: 30px;
+}
+
+.horizontal__line {
+    width: 100%;
+    height: 1px;
+}
+
+.form__container__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__container__top h1 {
+    font-size: 2rem;
+}
+
+.form__container__middle {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    flex-direction: column;
+}
+
+.form__row {
+    display: flex;
+}
+
+.form__row__left {
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.form__row__left p {
+    color: black;
+    margin: 0;
+}
+
+.form__row__right {
+    width: 100%;
+}
+
+.form__row__bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.form__row .upload {
+    display: flex;
+    width: 100%;
+}
+
+.form__row .upload .form-label {
+    color: black;
+}
+
+.form__row .upload .form__row__left {
+    width: 200px;
+}
+
+.form__row .upload .form__row__right {
+    width: 100%;
+}

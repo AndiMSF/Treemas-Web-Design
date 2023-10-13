@@ -1,0 +1,8 @@
+.information__container {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
