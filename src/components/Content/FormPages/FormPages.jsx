@@ -4,6 +4,7 @@ import BoxInput from "../../Elements/BoxInput/BoxInput.jsx"
 import TextArea from "../../Elements/TextArea/TextArea"
 import Button from "../../Elements/Buttons/Button.jsx"
 import Form from 'react-bootstrap/Form';
+import { Link } from "react-router-dom";
 
 const FormPages = (props) => {
   return (
@@ -50,7 +51,7 @@ const FormPages = (props) => {
             
         </div>
         <div className="form__row__bottom">
-            <Button className="cancel__button" text="Cancel" />
+            <Link to={props.to} className="cancel__button" text="Cancel">Cancel</Link>
             <Button className="submit__button" text="Submit"/>
         </div>
     </div>

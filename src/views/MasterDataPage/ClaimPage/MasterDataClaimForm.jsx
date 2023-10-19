@@ -6,7 +6,7 @@ const MasterDataClaimForm = () => {
     const textArea = ["Keterangan"]
     return <div className="claimform__container">
         <div className="content__container">
-            <FormPages formTitle="Claim Form" boxInput={boxInput} textArea={textArea} showUpload={false} />
+            <FormPages formTitle="Claim Form" boxInput={boxInput} textArea={textArea}  to="/master-data/claim-view" showUpload={false} />
         </div>
     </div>     
 }

@@ -1,8 +1,13 @@
 import "./permissionform.css"
-import Content from "../../../components/Content/Content"
+import FormPages from "../../../components/Content/FormPages/FormPages"
+
 const MasterDataPermissionForm = () => {
+    const boxInput = ["Nama Permission"]
+
     return <div className="permissionform__container">
-        <Content navbarText="Master Data / Permission Form" informationText="Permission Add"/>
+        <div className="content__container">
+            <FormPages formTitle="Form Permission" boxInput={boxInput} to="/master-data/permission-view" showUpload={false}/>
+        </div>
     </div>
 }
 

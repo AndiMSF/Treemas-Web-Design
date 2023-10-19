@@ -7,7 +7,7 @@ const MasterDataAnnouncementForm = () => {
     const image = ["Gambar"]
   return <div className="announcementform__container">
       <div className="content__container">
-            <FormPages formTitle="Announcement Form" boxInput={boxInput} textArea={textArea} image={image} showUpload={true} />
+            <FormPages formTitle="Announcement Form" boxInput={boxInput} textArea={textArea} image={image} to="/master-data/announcement-view" showUpload={true} />
         </div>
     </div>
 };

@@ -1,9 +1,12 @@
 import "./jabatanform.css"
-import Content from "../../../components/Content/Content"
+import FormPages from "../../../components/Content/FormPages/FormPages"
 
 const MasterDataJabatanForm = () => {
+    const boxInput = ["ID","Nama Jabatan"]
     return <div className="jabatanform__container">
-        <Content navbarText="Master Data / Jabatan Form" informationText="Jabatan Add"/>
+        <div className="content__container">
+            <FormPages formTitle="Form Jabatan" boxInput={boxInput} to="/master-data/jabatan-view" showUpload={false} />
+        </div>
     </div>
 }
 
