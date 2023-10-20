@@ -6,7 +6,10 @@
     border-radius: 10px;
     height: 100vh;
     gap: 30px;
+    overflow-y: scroll;
 }
+
+
 
 .horizontal__line {
     width: 100%;
@@ -21,13 +24,6 @@
 
 .form__container__top h1 {
     font-size: 2rem;
-}
-
-.form__container__middle {
-    display: flex;
-    gap: 10px;
-    flex: 1;
-    flex-direction: column;
 }
 
 .form__row {
@@ -70,4 +66,35 @@
 
 .form__row .upload .form__row__right {
     width: 100%;
+}
+
+.form__flex__section {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+
+.form__container__middle {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    flex-direction: column;
+}
+
+.middle__left, .middle__right {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.middle__left {
+    width: 45%;
+}
+
+.middle__right {
+    width: 45%;
 }

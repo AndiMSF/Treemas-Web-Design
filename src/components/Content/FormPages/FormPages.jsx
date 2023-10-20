@@ -19,7 +19,7 @@ const FormPages = (props) => {
             <h1>{props.formTitle}</h1>
             <div className="horizontal__line"></div>
         </div>
-        <div className="form__container__middle">
+        <div className={`${!(props.showDataProfile || props.showDataKaryawan || props.showTambahFoto || props.showDataAlamat) ? 'form__container__middle' : 'form__flex__section'}`}>
             {props.boxInput && props.boxInput.map((boxInput, index) => (
                 <div className="form__row" key={index}>
                     <div className="form__row__left">
@@ -55,17 +55,22 @@ const FormPages = (props) => {
                 </div>
             ))}
 
-            {/* Kalau Show Data Profile true */}
-            {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClick={props.onClick}/>}
+            <div className="middle__left">
+                {/* Kalau Show Data Profile true */}
+                {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClick={props.onClick}/>}
                 
-            {/* Kalau Show Data Karyawan true */}
-            {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={true} />}
+                {/* Kalau Show Data Tambah Foto true */}
+                {props.showTambahFoto && <TambahFoto showChildrenFoto={true} />}
+            </div>
+            
+            <div className="middle__right">
+                {/* Kalau Show Data Karyawan true */}
+                {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={true} />}
 
-            {/* Kalau Show Data Tambah Foto true */}
-            {props.showTambahFoto && <TambahFoto showChildrenFoto={true} />}
-
-            {/* Kalau Show Data Data Alamat true */}
-            {props.showDataAlamat && <DataAlamat showChildrenAlamat={true} />}
+                {/* Kalau Show Data Data Alamat true */}
+                {props.showDataAlamat && <DataAlamat showChildrenAlamat={true} />}
+            </div>
+            
         </div>
         <div className="form__row__bottom">
             <Link to={props.to} className="cancel__button" text="Cancel">Cancel</Link>

@@ -1,0 +1,19 @@
+.tambah__foto__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
+}
+
+.tambah__foto__container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.tambah__foto__children{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}   
