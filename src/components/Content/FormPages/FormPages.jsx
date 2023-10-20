@@ -48,7 +48,14 @@ const FormPages = (props) => {
                     </Form.Group>
                 </div>
             ))}
-            
+
+            {/* Kalau Show Data Profile true */}
+                
+            {/* Kalau Show Data Karyawan true */}
+
+            {/* Kalau Show Data Tambah Foto true */}
+
+            {/* Kalau Show Data Data Alamat true */}
         </div>
         <div className="form__row__bottom">
             <Link to={props.to} className="cancel__button" text="Cancel">Cancel</Link>

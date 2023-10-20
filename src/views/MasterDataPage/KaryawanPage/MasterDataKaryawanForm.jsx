@@ -1,9 +1,12 @@
 import  "./karyawanform.css"
-import Content from "../../../components/Content/Content"
+import FormPages from "../../../components/Content/FormPages/FormPages"
 
 const MasterDataKaryawanForm = () => {
+
     return <div className="karyawanform__container">
-        <Content navbarText="Master Data / Karyawan Form" informationText="Karyawan Add"/>
+        <div className="content__container">
+            <FormPages formTitle="Add Karyawan" to="/master-data/karyawan-view" showDataProfile={true} showDataKaryawan={true} showTambahFoto={true} showDataAlamat={true}/>
+        </div>
     </div>
 }
 
