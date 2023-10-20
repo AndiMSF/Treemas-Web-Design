@@ -11,6 +11,8 @@ import TambahFoto from "../../Elements/FormSection/TambahFoto/TambahFoto";
 import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
 
 const FormPages = (props) => {
+       
+
   return (
     <div className="form__container">
         <div className="form__container__top">
@@ -54,16 +56,16 @@ const FormPages = (props) => {
             ))}
 
             {/* Kalau Show Data Profile true */}
-            {props.showDataProfile && <DataProfile/>}
+            {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClick={props.onClick}/>}
                 
             {/* Kalau Show Data Karyawan true */}
-            {props.showDataKaryawan && <DataKaryawan />}
+            {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={true} />}
 
             {/* Kalau Show Data Tambah Foto true */}
-            {props.showTambahFoto && <TambahFoto />}
+            {props.showTambahFoto && <TambahFoto showChildrenFoto={true} />}
 
             {/* Kalau Show Data Data Alamat true */}
-            {props.showDataAlamat && <DataAlamat />}
+            {props.showDataAlamat && <DataAlamat showChildrenAlamat={true} />}
         </div>
         <div className="form__row__bottom">
             <Link to={props.to} className="cancel__button" text="Cancel">Cancel</Link>
