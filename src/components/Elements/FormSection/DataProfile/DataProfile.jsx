@@ -6,15 +6,14 @@ const DataProfile = (props) => {
 
   return (
     <div className="data__profile__container" >
-        <div onClick={props.onClick} className="data_profile__header">
-            <div className="data__profile__header__top">
+        <div onClick={props.onClickProfile} className="section__header">
+            <div className="section__header__top">
                 <h1>Data Profile</h1>
                 <i className={props.showChildrenProfile ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
             </div>
-            <div className="data__profile__header__bottom">
+            <div className="section__bottom">
                 <div className="horizontal__line"></div>
             </div>
-            
         </div>
 
 

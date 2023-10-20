@@ -53,3 +53,17 @@ div .dropdown {
   height: 40px;
 }
 
+.section__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__header__top {
+  display: flex;
+  padding: 0.375rem 0;
+  justify-content: space-between;
+}
+
+.section__header__top h1 {
+  margin: 0;
+}

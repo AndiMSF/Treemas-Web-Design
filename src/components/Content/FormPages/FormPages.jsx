@@ -57,18 +57,18 @@ const FormPages = (props) => {
 
             <div className="middle__left">
                 {/* Kalau Show Data Profile true */}
-                {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClick={props.onClick}/>}
+                {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} />}
                 
                 {/* Kalau Show Data Tambah Foto true */}
-                {props.showTambahFoto && <TambahFoto showChildrenFoto={true} />}
+                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}
             </div>
             
             <div className="middle__right">
                 {/* Kalau Show Data Karyawan true */}
-                {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={true} />}
+                {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} />}
 
                 {/* Kalau Show Data Data Alamat true */}
-                {props.showDataAlamat && <DataAlamat showChildrenAlamat={true} />}
+                {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
             </div>
             
         </div>
