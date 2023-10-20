@@ -6,10 +6,8 @@
     border-radius: 10px;
     height: 100vh;
     gap: 30px;
-    overflow-y: scroll;
+
 }
-
-
 
 .horizontal__line {
     width: 100%;
@@ -86,7 +84,7 @@
 }
 
 .middle__left, .middle__right {
-    gap: 20px;
+    gap: 40px;
     display: flex;
     flex-direction: column;
 }

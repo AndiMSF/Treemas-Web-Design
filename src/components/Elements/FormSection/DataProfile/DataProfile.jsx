@@ -6,8 +6,17 @@ const DataProfile = (props) => {
 
   return (
     <div className="data__profile__container" >
-        <h1 onClick={props.onClick}>Data Profile</h1>
-        <div className="horizontal__line"></div>
+        <div onClick={props.onClick} className="data_profile__header">
+            <div className="data__profile__header__top">
+                <h1>Data Profile</h1>
+                <i className={props.showChildrenProfile ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
+            </div>
+            <div className="data__profile__header__bottom">
+                <div className="horizontal__line"></div>
+            </div>
+            
+        </div>
+
 
         {props.showChildrenProfile && (
             <div className="data__profile__children">
@@ -71,27 +80,83 @@ const DataProfile = (props) => {
                     </div>
                     <div className="form__row__right__label">
                         {['checkbox'].map((type) => (
-                            <div key={`default-${type}`}>
+                            <div key={`L`}>
                                 <Form.Check // prettier-ignore
                                     type={type}
-                                    id={`default-${type}`}
-                                    label={`default ${type}`}
+                                    id={`L`}
+                                    label={`L`}
                                 />
 
                             </div>
                         ))}
 
                         {['checkbox'].map((type) => (
-                            <div key={`default-${type}`}>
+                            <div key={`P`}>
                                 <Form.Check // prettier-ignore
                                     type={type}
-                                    id={`default-${type}`}
-                                    label={`default ${type}`}
+                                    id={`P`}
+                                    label={`P`}
                                 />
 
                             </div>
                         ))}
                     </div>
+
+                    
+                    
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Golongan Darah</p>
+                    </div>
+                    <div className="form__row__right__label">
+                        {['checkbox'].map((type) => (
+                            <div key={`A`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`A`}
+                                    label={`A`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`B`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`B`}
+                                    label={`B`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`AB`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`AB`}
+                                    label={`AB`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`O`}>
+                                <Form.Check className="form__check" // prettier-ignore
+                                    type={type}
+                                    id={`O`}
+                                    label={`O`}
+                                />
+
+                            </div>
+                        ))}
+                    </div>
+
+                    
                     
                 </div>
                 
