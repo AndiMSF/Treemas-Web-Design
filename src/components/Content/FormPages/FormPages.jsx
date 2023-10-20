@@ -5,6 +5,10 @@ import TextArea from "../../Elements/TextArea/TextArea"
 import Button from "../../Elements/Buttons/Button.jsx"
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
+import DataProfile from "../../Elements/FormSection/DataProfile/DataProfile";
+import DataKaryawan from "../../Elements/FormSection/DataKaryawan/DataKaryawan";
+import TambahFoto from "../../Elements/FormSection/TambahFoto/TambahFoto";
+import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
 
 const FormPages = (props) => {
   return (
@@ -50,12 +54,16 @@ const FormPages = (props) => {
             ))}
 
             {/* Kalau Show Data Profile true */}
+            {props.showDataProfile && <DataProfile/>}
                 
             {/* Kalau Show Data Karyawan true */}
+            {props.showDataKaryawan && <DataKaryawan />}
 
             {/* Kalau Show Data Tambah Foto true */}
+            {props.showTambahFoto && <TambahFoto />}
 
             {/* Kalau Show Data Data Alamat true */}
+            {props.showDataAlamat && <DataAlamat />}
         </div>
         <div className="form__row__bottom">
             <Link to={props.to} className="cancel__button" text="Cancel">Cancel</Link>
