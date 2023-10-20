@@ -1,9 +1,16 @@
 import "./dataprofile.css"
 import BoxInput from "../../BoxInput/BoxInput"
 import { Form } from "react-bootstrap"
+import DropdownMenu from "../../../Elements/DropdownMenu/DropdownMenu.jsx"
+import { useState } from "react"
 
 const DataProfile = (props) => {
+    const itemsAgama = ["Islam","Kristen","Buddha","Hindu","Konghucu"]
+    const [agama, setAgama] = useState("Pilih Agama")
 
+    const handleAgama = (selectedItem) => {
+        setAgama(selectedItem)
+    }
   return (
     <div className="data__profile__container" >
         <div onClick={props.onClickProfile} className="section__header">
@@ -15,7 +22,6 @@ const DataProfile = (props) => {
                 <div className="horizontal__line"></div>
             </div>
         </div>
-
 
         {props.showChildrenProfile && (
             <div className="data__profile__children">
@@ -153,10 +159,54 @@ const DataProfile = (props) => {
 
                             </div>
                         ))}
+
+                        
                     </div>
 
                     
                     
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Status Perkawinan</p>
+                    </div>
+                    <div className="form__row__right__label">
+                        {['checkbox'].map((type) => (
+                            <div key={`Menikah`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`Menikah`}
+                                    label={`Menikah`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`Belum Menikah`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`Belum Menikah`}
+                                    label={`Belum Menikah`}
+                                />
+
+                            </div>
+                        ))}
+                        
+                    </div>
+
+                    
+                    
+                </div>
+                
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Tanggal Lahir</p>
+                    </div>          
+                    <div className="form__row__right">
+                        <DropdownMenu title={agama} onDropdownChange={handleAgama} items={itemsAgama} />    
+                    </div>
                 </div>
                 
             </div>

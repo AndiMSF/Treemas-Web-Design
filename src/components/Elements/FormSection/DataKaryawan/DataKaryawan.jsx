@@ -16,7 +16,7 @@ const DataKaryawan = (props) => {
 
         {props.showChildrenKaryawan && (
             <div className="data__karyawan__children">
-
+                
             </div>
         )}
     </div>
