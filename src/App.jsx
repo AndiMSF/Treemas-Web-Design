@@ -44,6 +44,7 @@ import ReportDataDetail from './views/ReportDataPage/DetailPage/ReportDataDetail
 import ReportDataSummary from './views/ReportDataPage/SummaryPage/ReportDataSummary'
 import UploadAbsen from './views/UploadPage/AbsenPage/UploadAbsen'
 import UploadApk from './views/UploadPage/ApkPage/UploadApk'
+import ProfilePage from "./views/ProfilePage/ProfilePage"
 // 
 import "./App.css"
 import { useEffect, useState } from "react"
@@ -102,11 +103,12 @@ function App() {
           <Route path="/parameter/general-form/edit" element={<ParameterGeneralForm />} />
           <Route path="/parameter/reimburse-view" element={<ParameterReimburse />} />
           <Route path="/parameter/reimburse-form/edit" element={<ParameterReimburseForm />} />
-          <Route path="/ReportData/claim" element={<ReportDataClaim />} />
-          <Route path="/ReportData/detail" element={<ReportDataDetail />} />
-          <Route path="/ReportData/summary" element={<ReportDataSummary />} />
-          <Route path="/Upload/absen" element={<UploadAbsen />} />
-          <Route path="/Upload/apk" element={<UploadApk />} />
+          <Route path="/report-data/claim" element={<ReportDataClaim />} />
+          <Route path="/report-data/detail" element={<ReportDataDetail />} />
+          <Route path="/report-data/summary" element={<ReportDataSummary />} />
+          <Route path="/upload/absen" element={<UploadAbsen />} />
+          <Route path="/upload/apk" element={<UploadApk />} />
+          <Route path="/users/profile" element={<ProfilePage />} />
         </Routes>
       </Sidebar>
       )}

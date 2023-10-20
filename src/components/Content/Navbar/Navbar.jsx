@@ -27,7 +27,7 @@ const Navbar = (props) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu style={{backgroundColor: "black"}}>
-                    <Dropdown.Item id="dropdown__item__navbar" href="#/action-1">Profile</Dropdown.Item>
+                    <Dropdown.Item id="dropdown__item__navbar" href="/users/profile">Profile</Dropdown.Item>
                     <Dropdown.Item id="dropdown__item__navbar" href="#/action-2">Logout</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
