@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import DataProfile from "../../Elements/FormSection/DataProfile/DataProfile";
 import DataKaryawan from "../../Elements/FormSection/DataKaryawan/DataKaryawan";
 import TambahFoto from "../../Elements/FormSection/TambahFoto/TambahFoto";
+import DataLain from "../../Elements/FormSection/DataLainlain/DataLain";
 import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
 
 const FormPages = (props) => {
@@ -59,16 +60,19 @@ const FormPages = (props) => {
                 {/* Kalau Show Data Profile true */}
                 {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} />}
                 
-                {/* Kalau Show Data Tambah Foto true */}
-                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}
+                {/* Kalau Show Data Data Alamat true */}
+                {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
+                
+                 {/* Kalau Show Data Lain-Lain true */}
+                {props.showDataLain && <DataLain showChildrenLain={props.showChildrenLain} onClickLain={props.onClickLain} />}
             </div>
             
             <div className="middle__right">
                 {/* Kalau Show Data Karyawan true */}
                 {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} />}
 
-                {/* Kalau Show Data Data Alamat true */}
-                {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
+               {/* Kalau Show Data Tambah Foto true */}
+               {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}
             </div>
             
         </div>

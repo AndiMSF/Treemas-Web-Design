@@ -1,6 +1,10 @@
+/* eslint-disable react/prop-types */
 import "./dataalamat.css"
+import TextArea from "../../TextArea/TextArea"
+import BoxInput from "../../BoxInput/BoxInput"
 
 const DataAlamat = (props) => {
+    
   return (
     <div className="data__alamat__container">
         <div onClick={props.onClickAlamat} className="section__header">
@@ -15,7 +19,33 @@ const DataAlamat = (props) => {
 
         {props.showChildrenAlamat && (
             <div className="data__alamat__container">
-                
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Alamat KTP</p>
+                    </div>          
+                    <div className="form__row__right">
+                        <TextArea placeholder="Alamat KTP" />    
+                    </div>
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Alamat Sekarang</p>
+                    </div>          
+                    <div className="form__row__right">
+                        <TextArea placeholder="Alamat Sekarang" />    
+                    </div>
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Kode Pos</p>
+                    </div>          
+                    <div className="form__row__right">
+                        <BoxInput placeholder="Kode Pos" />    
+                    </div>
+                </div>
+
             </div>
         )}
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./dataprofile.css"
 import BoxInput from "../../BoxInput/BoxInput"
 import { Form } from "react-bootstrap"
@@ -5,8 +6,8 @@ import DropdownMenu from "../../../Elements/DropdownMenu/DropdownMenu.jsx"
 import { useState } from "react"
 
 const DataProfile = (props) => {
-    const itemsAgama = ["Islam","Kristen","Buddha","Hindu","Konghucu"]
-    const [agama, setAgama] = useState("Pilih Agama")
+    const itemsAgama = ["Islam","Kristen","Katolik","Buddha","Hindu","Konghucu"]
+    const [agama, setAgama] = useState("Pilih")
 
     const handleAgama = (selectedItem) => {
         setAgama(selectedItem)
@@ -78,7 +79,7 @@ const DataProfile = (props) => {
                         <BoxInput placeholder="Tanggal Lahir" />    
                     </div>
                 </div>
-
+                
                 <div className="form__row">
                     <div className="form__row__left">
                         <p>Jenis Kelamin</p>
@@ -202,15 +203,155 @@ const DataProfile = (props) => {
                 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Tanggal Lahir</p>
-                    </div>          
+                        <p>Agama</p>
+                    </div>         
                     <div className="form__row__right">
                         <DropdownMenu title={agama} onDropdownChange={handleAgama} items={itemsAgama} />    
                     </div>
                 </div>
-                
-            </div>
-            
+
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Jenjang Pendidikan</p>
+                    </div>
+                    <div className="form__row__right__label">
+                        {['checkbox'].map((type) => (
+                            <div key={`SMK`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`SMK`}
+                                    label={`SMK`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`SMA`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`SMA`}
+                                    label={`SMA`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`D-1`}>
+                                <Form.Check className="form__check" // prettier-ignore
+                                    type={type}
+                                    id={`D-1`}
+                                    label={`D-1`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`D-2`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`D-2`}
+                                    label={`D-2`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`D-3`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`D-3`}
+                                    label={`D-3`}
+                                />
+
+                            </div>
+                        ))}
+
+                    {['checkbox'].map((type) => (
+                            <div key={`S-1`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`S-1`}
+                                    label={`S-1`}
+                                />
+
+                            </div>
+                        ))}
+
+                    {['checkbox'].map((type) => (
+                            <div key={`S-2`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`S-2`}
+                                    label={`S-2`}
+                                />
+
+                            </div>
+                        ))}
+
+                    {['checkbox'].map((type) => (
+                            <div key={`S-3`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`S-3`}
+                                    label={`S-3`}
+                                />
+
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>No Rekening</p>
+                    </div>          
+                    <div className="form__row__right">
+                        <BoxInput placeholder="No. Rekening" />    
+                    </div>
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
+                        <p>Kewarganegaraan</p>
+                    </div>
+                    <div className="form__row__right__label">
+                        {['checkbox'].map((type) => (
+                            <div key={`WNA`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`WNA`}
+                                    label={`WNA`}
+                                />
+
+                            </div>
+                        ))}
+
+                        {['checkbox'].map((type) => (
+                            <div key={`WNI`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`WNI`}
+                                    label={`WNI`}
+                                />
+
+                            </div>
+                        ))}
+                    </div>
+
+                    
+                    
+                </div>
+
+            </div> // end children
+              
+                        
+              
         )}
     </div>
 

@@ -1,0 +1,19 @@
+.data__lain__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
+}
+
+.data__lain__container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.data__lain__children{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}   

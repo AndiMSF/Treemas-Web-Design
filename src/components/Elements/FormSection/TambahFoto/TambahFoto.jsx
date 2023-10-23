@@ -1,5 +1,7 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
 import "./tambahfoto.css"
+import Form from 'react-bootstrap/Form';
+
 
 const TambahFoto = (props) => {
   return (
@@ -16,6 +18,30 @@ const TambahFoto = (props) => {
 
         {props.showChildrenFoto && (
             <div className="tambah__foto__children">
+                <Form.Group controlId="formFile">
+                    <Form.Label>Foto</Form.Label>
+                    <Form.Control type="file" />
+                </Form.Group>
+
+                <Form.Group controlId="formFile">
+                    <Form.Label>Foto KTP</Form.Label>
+                    <Form.Control type="file" />
+                </Form.Group>
+
+                <Form.Group controlId="formFile">
+                    <Form.Label>Foto NPWP </Form.Label>
+                    <Form.Control type="file" />
+                </Form.Group>
+
+                <Form.Group controlId="formFile">
+                    <Form.Label>Foto KK</Form.Label>
+                    <Form.Control type="file" />
+                </Form.Group>
+
+                <Form.Group controlId="formFile">
+                    <Form.Label>Foto asuransi</Form.Label>
+                    <Form.Control type="file" />
+                </Form.Group>
                 
             </div>
         )}
