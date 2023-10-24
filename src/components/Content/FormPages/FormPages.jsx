@@ -10,6 +10,7 @@ import DataKaryawan from "../../Elements/FormSection/DataKaryawan/DataKaryawan";
 import TambahFoto from "../../Elements/FormSection/TambahFoto/TambahFoto";
 import DataLain from "../../Elements/FormSection/DataLainlain/DataLain";
 import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
+import Password from "../../Elements/FormSection/Password/Password";
 
 const FormPages = (props) => {
        
@@ -60,7 +61,7 @@ const FormPages = (props) => {
                 {/* Kalau Show Data Profile true */}
                 {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} />}
                 
-                {/* Kalau Show Data Data Alamat true */}
+                {/* Kalau Show Data Alamat true */}
                 {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
                 
                  {/* Kalau Show Data Lain-Lain true */}
@@ -73,6 +74,9 @@ const FormPages = (props) => {
 
                {/* Kalau Show Data Tambah Foto true */}
                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}
+
+               {/* Kalau Show Data Password true */}
+               {props.showPassword && <Password showChildrenPassword={props.showChildrenPassword} onClickPassword={props.onClickPassword} />}
             </div>
             
         </div>

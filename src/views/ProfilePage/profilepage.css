@@ -1,0 +1,16 @@
+.profilepage__container {
+    display: flex;
+    width: 100%;
+    height: 150%;
+    background-color: #925FE2;
+    justify-content: space-between  ;
+    overflow-y: scroll;
+}
+
+.form__container{
+    height: auto;
+}
+
+.nav {
+    height:100%;
+}
