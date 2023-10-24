@@ -28,6 +28,7 @@ import MasterDataCutiForm from './views/MasterDataPage/CutiPage/MasterDataCutiFo
 import MasterDataJabatan from './views/MasterDataPage/JabatanPage/MasterDataJabatan'
 import MasterDataJabatanForm from './views/MasterDataPage/JabatanPage/MasterDataJabatanForm'
 import MasterDataKaryawan from './views/MasterDataPage/KaryawanPage/MasterDataKaryawan'
+import MasterDataKaryawanEdit from './views/MasterDataPage/KaryawanPage/MasterDataKaryawanEdit'
 import MasterDataKaryawanForm from './views/MasterDataPage/KaryawanPage/MasterDataKaryawanForm'
 import MasterDataLibur from './views/MasterDataPage/LiburPage/MasterDataLibur'
 import MasterDataLiburForm from './views/MasterDataPage/LiburPage/MasterDataLiburForm'
@@ -92,6 +93,7 @@ function App() {
           <Route path="/master-data/jabatan-view" element={<MasterDataJabatan />} />
           <Route path="/master-data/jabatan-form/add" element={<MasterDataJabatanForm />} />
           <Route path="/master-data/karyawan-view" element={<MasterDataKaryawan />} />
+          <Route path="/master-data/karyawan-form/edit" element={<MasterDataKaryawanEdit />}/>
           <Route path="/master-data/karyawan-form/add" element={<MasterDataKaryawanForm />} />
           <Route path="/master-data/libur-view" element={<MasterDataLibur />} />
           <Route path="/master-data/libur-form/add" element={<MasterDataLiburForm />} />
