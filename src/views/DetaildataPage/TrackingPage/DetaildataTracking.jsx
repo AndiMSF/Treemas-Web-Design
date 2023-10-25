@@ -51,5 +51,5 @@ const DetaildataTracking = (props) => {
 }
 
 export default GoogleApiWrapper({
-    apiKey: ("AIzaSyByMFGn8i353SjJL_H0_hEfTmpUPx3_lC8")
+    apiKey: ("v=3.exp&libraries=places,geometry,drawing&key=AIzaSyAsfpH3XCMlOmS0B4y8PYRnRS_i0QfG_hA")
   })( DetaildataTracking);
