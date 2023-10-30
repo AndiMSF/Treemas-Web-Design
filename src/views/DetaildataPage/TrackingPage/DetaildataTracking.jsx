@@ -7,21 +7,11 @@ import Information from "../../../components/Content/Information/Information"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import Button from "../../../components/Elements/Buttons/Button"
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-import { useState } from "react"
 
 const DetaildataTracking = (props) => {
-    const [selectedPlace, setSelectedPlace] = useState(null);
+   
 
-    const onMarkerClick = (props, marker, e) => {
-        setSelectedPlace(props);
-    };
-
-    const onInfoWindowClose = () => {
-        setSelectedPlace(null);
-    };
-
-    return <div className="tracking__container">
+    return ( <div className="tracking__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Tracking" />
                 <div className="input__container">
@@ -35,21 +25,10 @@ const DetaildataTracking = (props) => {
                     </div>
                 </div>
 
-                {/* Google Maps */}
-                <Map google={props.google} zoom={14}>
-                    <Marker onClick={onMarkerClick} name={'Current location'} />
-
-                    <InfoWindow onClose={onInfoWindowClose}>
-                        <div>
-                        {selectedPlace && <h1>{selectedPlace.name}</h1>}
-                        </div>
-                    </InfoWindow>
-                </Map>
-            <Information informationText="Tracking" showDropdown={false}/>
+                
+            <Information informationText="Tracking" showDropdown={false} showMaps={true} showInformationBottom={false}/>
         </div>
-    </div>
+    </div>)
 }
 
-export default GoogleApiWrapper({
-    apiKey: ("v=3.exp&libraries=places,geometry,drawing&key=AIzaSyAsfpH3XCMlOmS0B4y8PYRnRS_i0QfG_hA")
-  })( DetaildataTracking);
+export default DetaildataTracking
