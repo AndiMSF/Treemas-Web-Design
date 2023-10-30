@@ -35,11 +35,11 @@
     margin-top: 5rem;
     text-decoration: none;
 }
-
+/* 
 .add__button:hover {
     background-color: transparent;
-    transition: 200ms all ease-in
-}
+    transition: 200ms all ease-out
+} */
 
 .cancel__button {
     display: flex;
@@ -58,7 +58,7 @@
 
 .cancel__button:hover {
     background-color: var(--almost-black);
-    transition: 200ms all ease-in;
+    transition: 100ms all ease-in;
     color: #FFF;
 }
 

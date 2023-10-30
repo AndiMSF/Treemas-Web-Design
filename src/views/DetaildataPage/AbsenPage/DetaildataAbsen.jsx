@@ -22,7 +22,7 @@ const DetaildataAbsen = () => {
     }
 
 
-    return <div className="absen__container">
+    return (<div className="absen__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
                 <div className="input__container">
@@ -41,7 +41,7 @@ const DetaildataAbsen = () => {
             <Information informationText="Absen" showDropdown={false} fields={infoTopFields}/>
         </div>
     </div>
-
+    )
 }
 
 export default DetaildataAbsen

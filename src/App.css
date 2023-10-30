@@ -36,8 +36,13 @@
     flex-direction: column;
     padding: 3rem 2rem;
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
     background-color: var(--purple);
+    display: flex;
+    height: 100%;
+    overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
 }
 
 .left__container__input {
