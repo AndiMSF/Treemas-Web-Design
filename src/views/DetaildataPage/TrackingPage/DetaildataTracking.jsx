@@ -26,7 +26,7 @@ const DetaildataTracking = (props) => {
                 </div>
 
                 
-            <Information informationText="Tracking" showDropdown={false} showMaps={true} showInformationBottom={false}/>
+            <Information informationText="Tracking" showDropdown={false} showMaps={true} hideInformationBottom={true}/>
         </div>
     </div>)
 }

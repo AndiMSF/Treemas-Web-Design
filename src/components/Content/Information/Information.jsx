@@ -10,8 +10,8 @@ const Information = (props) => {
         <InformationTop fields={props.fields} informationText={props.informationText} dropdownTitle={props.dropdownTitle} showDropdown={props.showDropdown} items={props.items} onDropdownChange={props.onDropdownChange}/>
         <InformationMiddle showMaps={props.showMaps}/>
 
-        {props.showInformationBottom && (
-        <InformationBottom/>
+        {props.hideInformationBottom ? "" : (
+             <InformationBottom/>
         )}
     </div>
 }
