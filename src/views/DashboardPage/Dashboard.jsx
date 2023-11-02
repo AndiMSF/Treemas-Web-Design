@@ -5,6 +5,8 @@ import "./dashboard.css"
 import Navbar from "../../components/Content/Navbar/Navbar.jsx"
 import Information from "../../components/Content/Information/Information"
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
+import { useEffect, useState } from "react";
+import { Route } from "react-router-dom";
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 
@@ -12,7 +14,7 @@ const Dashboard = () => {
 
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const infoTopFields = ["NIK", "Nama Karyawan", "Masuk", "Terlambat", "Absen", "Cuti", "Sakit"]
-
+    const [isToken, setIstoken] = useState('')
     const date = new Date();
     let currentDay= String(date.getDate()).padStart(2, '0');
     let currentMonth = String(date.getMonth()+1).padStart(2,"0");
@@ -20,6 +22,16 @@ const Dashboard = () => {
     let getDay = weekday[date.getDay()]
     // we will display the date as DD-MM-YYYY 
     let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
+    console.log(isToken);
+    useEffect(() => {
+      const token = localStorage.getItem("authToken")
+      if (token) {
+        setIstoken(token)
+        console.log('login sukses');
+      }else{
+        <Route path="/login" element={<LoginPage />} />
+      }
+    }, [])
 
     const data = [
       {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 import Container from "react-bootstrap/Container"
@@ -5,11 +6,12 @@ import "./auth.css"
 import Treemas from "../../images/logo-treemas.png"
 import { useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // State untuk nilai NIK
     const [password, setPassword] = useState(''); // State untuk nilai password
-
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         const loginData = {
@@ -24,11 +26,15 @@ const LoginPage = () => {
             },
           });
             
-          
           if (response.status === 200) {
-            // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
-            console.log('Berhasil masuk:', response);
-          } else {
+              
+              // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
+              console.log('Berhasil masuk:', response);
+              const bearerToken = response.data.token;
+              localStorage.setItem("authToken", bearerToken);
+              navigate('/dashboard');
+            
+        } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
             console.error('Gagal masuk:', response);
           }
