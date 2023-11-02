@@ -1,10 +1,47 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 import Container from "react-bootstrap/Container"
 import "./auth.css"
 import Treemas from "../../images/logo-treemas.png"
+import { useState } from "react"
+import axios from "axios"
 
 const LoginPage = () => {
-    return <Container fluid>
+    const [username, setUsername] = useState(''); // State untuk nilai NIK
+    const [password, setPassword] = useState(''); // State untuk nilai password
+
+
+    const handleLogin = async () => {
+        const loginData = {
+          nik: username,
+          password: password,
+        };
+    
+        try {
+          const response = await axios.post('https://treemas-api-403500.et.r.appspot.com/api/auth/login', loginData,{
+            headers : {
+                'Content-Type' : 'application/json',
+            },
+          });
+            
+          
+          if (response.status === 200) {
+            // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
+            console.log('Berhasil masuk:', response);
+          } else {
+            // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
+            console.error('Gagal masuk:', response);
+          }
+        } catch (error) {
+          // Tangani kesalahan jaringan atau kesalahan server
+          console.error('Terjadi kesalahan:', error);
+        }
+      };
+    
+      // ... (kode lainnya seperti render input dan tombol login)
+
+
+    return ( <Container fluid>
         <div className="login__container row">
             <div className="left__container col-sm-12 col-md-12 col-lg-6">
                 <div className="logo">
@@ -15,12 +52,25 @@ const LoginPage = () => {
                         <h1>Login</h1>
                         <p>Enter your account details</p>
                     </div>
-                    <form action="/auth/login" method="POST">
-                        <input type="text" name="nik" placeholder="NIK"/>
-                        <input type="password" name="password" placeholder="Password"/>
+                    <form>
+                        <input
+                        type="text"
+                        name="nik"
+                        placeholder="NIK"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)} 
+                        />
+                       <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)} // Update state saat nilai berubah
+                    />
                         <p><a href="/reset-password">Forgot Password?</a></p>
-
-                        <button className="login__button" type="submit">Login</button>
+                        <button className="login__button" type="button" onClick={handleLogin}>
+                            Login
+                        </button>                        
                     </form>
                 </div>
             </div>
@@ -44,8 +94,9 @@ const LoginPage = () => {
                 </svg> 
             </div>
         </div>
+        
     </Container>
-    
+    );
 }
 
 export default LoginPage

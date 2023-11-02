@@ -53,6 +53,7 @@ import { useEffect, useState } from "react"
 
 function App() {
   const [isPath, setIsPath] = useState("")
+  
 
   useEffect(() => {
     const currentPath = window.location.pathname;
@@ -65,7 +66,7 @@ function App() {
     <>
     <BrowserRouter >
     
-
+      
       {isPath === '/login' || isPath === '/logout' || isPath === '/change-password' ? (
         <Routes>
           <Route path="/login" element={<LoginPage />} />

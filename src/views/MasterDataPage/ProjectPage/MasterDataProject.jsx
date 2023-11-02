@@ -3,6 +3,7 @@ import Information from "../../../components/Content/Information/Information"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Button from "../../../components/Elements/Buttons/Button"
+import { Link } from "react-router-dom"
 
 const MasterDataProject = () => {
     const infoTopFields = ["ID", "Nama Project", "Alamat", "No. Telepon", "Reimburse", "Jarak", "Action"]
@@ -16,7 +17,7 @@ const MasterDataProject = () => {
                         <Button text="Pencarian" className="search__button" />
                     </div>
                     <div className="right__container__input">
-                        <Button text="Tambah" className="add__button" />
+                    <Link to="/master-data/project-form/add" text="Tambah" className="add__button">Tambah</Link>
                     </div>
                 </div>
             <Information informationText="Project" showDropdown={false} fields={infoTopFields}/>

@@ -56,7 +56,7 @@ const FormPages = (props) => {
                     </Form.Group>
                 </div>
             ))}
-
+        
             <div className="middle__left">
                 {/* Kalau Show Data Profile true */}
                 {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} />}
