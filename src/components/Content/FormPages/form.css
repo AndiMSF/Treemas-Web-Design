@@ -96,3 +96,7 @@
 .middle__right {
     width: 45%;
 }
+
+form {
+    flex: 2;
+}

@@ -70,7 +70,6 @@ function App() {
       {isPath === '/login' || isPath === '/logout' || isPath === '/change-password' ? (
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/logout" element={<LoginPage />} />
           <Route path="/change-password" element={<ChangePassword />} />  
         </Routes>
       ):(

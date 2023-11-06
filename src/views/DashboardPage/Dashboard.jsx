@@ -6,7 +6,7 @@ import Navbar from "../../components/Content/Navbar/Navbar.jsx"
 import Information from "../../components/Content/Information/Information"
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 
@@ -22,16 +22,16 @@ const Dashboard = () => {
     let getDay = weekday[date.getDay()]
     // we will display the date as DD-MM-YYYY 
     let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
-    console.log(isToken);
+    const navigate = useNavigate();
     useEffect(() => {
       const token = localStorage.getItem("authToken")
       if (token) {
         setIstoken(token)
         console.log('login sukses');
       }else{
-        <Route path="/login" element={<LoginPage />} />
+        navigate("/login");
       }
-    }, [])
+    }, [navigate])
 
     const data = [
       {

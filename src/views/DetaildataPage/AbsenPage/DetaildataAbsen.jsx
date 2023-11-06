@@ -5,12 +5,13 @@ import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import Button from "../../../components/Elements/Buttons/Button"
 import DropdownMenu from "../../../components/Elements/DropdownMenu/DropdownMenu"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const DetaildataAbsen = () => {
     const [status, setStatus] = useState("Pilih Status")
     const [jam, setJam] = useState("Pilih Total Jam")
     const infoTopFields = ["NIK", "Nama Karyawan", "Tanggal", "Project", "Lokasi Masuk", "Jam Masuk", "Lokasi Pulang", "Jam Pulang", "Catatan Terlambat", "Total Jam Kerja"]
+    const [isToken, setIstoken] = useState('')
 
 
     const handleStatus = (selectedItem) => {
@@ -20,6 +21,16 @@ const DetaildataAbsen = () => {
     const handleJam = (selectedItem) => {
         setJam(selectedItem)
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem("authToken")
+        if (token) {
+          setIstoken(token)
+          console.log('login sukses');
+        }else{
+          window.location.href = '/login';
+        }
+      }, [])
 
 
     return (<div className="absen__container">

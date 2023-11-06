@@ -20,7 +20,9 @@ const LoginPage = () => {
         };
     
         try {
-          const response = await axios.post('https://treemas-api-403500.et.r.appspot.com/api/auth/login', loginData,{
+          const response = await axios.post('https://treemas-api-403500.et.r.appspot.com/api/auth/login', 
+          loginData,
+          {
             headers : {
                 'Content-Type' : 'application/json',
             },
@@ -30,10 +32,11 @@ const LoginPage = () => {
               
               // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
               console.log('Berhasil masuk:', response);
-              const bearerToken = response.data.token;
+              const bearerToken = response.data.data.token;
+              console.log(bearerToken);
               localStorage.setItem("authToken", bearerToken);
               window.location.href = '/dashboard'; 
-            
+
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
             console.error('Gagal masuk:', response);

@@ -8,6 +8,14 @@ import DropdownMenu from "./DropdownMenu/DropdownMenu"
 
 const Sidebar = ({children}) => {
 
+  const handleLogout = () => {
+    // Hapus token dari localStorage atau melakukan tindakan logout yang diperlukan
+    localStorage.removeItem("authToken");
+
+    // Redirect ke halaman login setelah logout
+    window.location.href = '/login';
+  };
+
     const [itemsState, setItemsState] = useState({
         detailData:{
         // 
@@ -217,7 +225,7 @@ const Sidebar = ({children}) => {
                     )}
 
                     <div className="line"></div>
-                    <DropdownMenu onClick={() => handleDropdown("upload", "apk")} link="/logout" text="Logout" isActive={itemsState.logout}/>
+                    <DropdownMenu onClick={handleLogout} link="/logout" text="Logout" isActive={itemsState.logout}/>
                 </ul>
             </nav>
 
