@@ -1,14 +1,14 @@
-import "./liburform.css"
-import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
-import { useEffect, useState } from "react"
+import "./jabatanedit.css"
+import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 
-const MasterDataLiburForm = () => {
+const MasterDataJabatanEdit = () => {
     const [formData, setFormData] = useState({
-        tanggalLibur: '',
-        keterangan: ''
+        id: '',
+        namaJabatan: ''
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -34,8 +34,8 @@ const MasterDataLiburForm = () => {
     
         try {
           const requestData = {
-            tanggalLibur: formData.tanggalLibur,
-            keterangan: formData.keterangan
+            id: formData.id,
+            namaJabatan: formData.namaJabatan
           }
     
           const response = await axios.post(
@@ -59,28 +59,28 @@ const MasterDataLiburForm = () => {
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
-                        <h1>Libur Form</h1>
+                        <h1>Jabatan Form</h1>
                         <div className="horizontal__line"></div>
                     </div>
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Tanggal Libur</p>
+                <p>ID</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Tanggal Libur" value={formData.tanggalLibur} onChange={(e) => handleInputChange(e, 'title')}/>
+                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
               </div>
             </div>
             <div className="form__row">
               <div className="form__row__left">
-                <p>Keterangan</p>
+                <p>Nama Jabatan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'header')}/>
+                <BoxInput placeholder="Nama Jabatan " value={formData.namaJabatan} onChange={(e) => handleInputChange(e, 'namaJabatan')}/>
               </div>
             </div>
             <div className="form__row__bottom">
-                <Link to="/master-data/claim-view" className="cancel__button" text="Cancel">Cancel</Link>
+                <Link to="/master-data/jabatan-view" className="cancel__button" text="Cancel">Cancel</Link>
                 <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
             </div>
                     </form>
@@ -91,4 +91,4 @@ const MasterDataLiburForm = () => {
 
 }
 
-export default MasterDataLiburForm
+export default MasterDataJabatanEdit

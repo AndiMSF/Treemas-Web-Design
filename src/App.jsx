@@ -21,19 +21,25 @@ import ManagementUserMember from './views/ManagementPage/UserMember/ManagementUs
 import ManualService from './views/ManualServicePage/ManualService'
 import MasterDataAnnouncement from './views/MasterDataPage/AnnouncementPage/MasterDataAnnouncement'
 import MasterDataAnnouncementForm from './views/MasterDataPage/AnnouncementPage/MasterDataAnnouncementForm'
+import MasterDataAnnouncementEdit from './views/MasterDataPage/AnnouncementPage/MasterDataAnnouncementEdit'
 import MasterDataClaim from './views/MasterDataPage/ClaimPage/MasterDataClaim'
 import MasterDataClaimForm from './views/MasterDataPage/ClaimPage/MasterDataClaimForm'
+import MasterDataClaimEdit from "./views/MasterDataPage/ClaimPage/MasterDataClaimEdit"
 import MasterDataCuti from './views/MasterDataPage/CutiPage/MasterDataCuti'
 import MasterDataCutiForm from './views/MasterDataPage/CutiPage/MasterDataCutiForm'
+import MasterDataCutiEdit from './views/MasterDataPage/CutiPage/MasterDataCutiEdit'
 import MasterDataJabatan from './views/MasterDataPage/JabatanPage/MasterDataJabatan'
 import MasterDataJabatanForm from './views/MasterDataPage/JabatanPage/MasterDataJabatanForm'
+import MasterDataJabatanEdit from './views/MasterDataPage/JabatanPage/MasterDataJabatanEdit'
 import MasterDataKaryawan from './views/MasterDataPage/KaryawanPage/MasterDataKaryawan'
 import MasterDataKaryawanEdit from './views/MasterDataPage/KaryawanPage/MasterDataKaryawanEdit'
 import MasterDataKaryawanForm from './views/MasterDataPage/KaryawanPage/MasterDataKaryawanForm'
 import MasterDataLibur from './views/MasterDataPage/LiburPage/MasterDataLibur'
 import MasterDataLiburForm from './views/MasterDataPage/LiburPage/MasterDataLiburForm'
+import MasterDataLiburEdit from './views/MasterDataPage/LiburPage/MasterDataLiburEdit'
 import MasterDataPermission from './views/MasterDataPage/PermissionPage/MasterDataPermission'
 import MasterDataPermissionForm from './views/MasterDataPage/PermissionPage/MasterDataPermissionForm'
+import MasterDataPermissionEdit from './views/MasterDataPage/PermissionPage/MasterDataPermissionEdit'
 import MasterDataProject from './views/MasterDataPage/ProjectPage/MasterDataProject'
 import MasterDataProjectForm from './views/MasterDataPage/ProjectPage/MasterDataProjectForm'
 import ParameterGeneral from './views/ParameterPage/GeneralPage/ParameterGeneral'
@@ -88,19 +94,25 @@ function App() {
           <Route path="/manual-service" element={<ManualService />} />
           <Route path="/master-data/announcement-view" element={<MasterDataAnnouncement />} />
           <Route path="/master-data/announcement-form/add" element={<MasterDataAnnouncementForm />} />
+          <Route path="/master-data/announcement-edit" element={<MasterDataAnnouncementEdit />} />
           <Route path="/master-data/claim-view" element={<MasterDataClaim />} />
           <Route path="/master-data/claim-form/add" element={<MasterDataClaimForm />} />
+          <Route path="/master-data/claim-edit" element={<MasterDataClaimEdit/>}/>
           <Route path="/master-data/cuti-view" element={<MasterDataCuti />} />
           <Route path="/master-data/cuti-form/add" element={<MasterDataCutiForm />} />
+          <Route path="/master-data/cuti-edit" element={<MasterDataCutiEdit />} />
           <Route path="/master-data/jabatan-view" element={<MasterDataJabatan />} />
           <Route path="/master-data/jabatan-form/add" element={<MasterDataJabatanForm />} />
+          <Route path="/master-data/jabatan-edit" element={<MasterDataJabatanEdit />} />
           <Route path="/master-data/karyawan-view" element={<MasterDataKaryawan />} />
           <Route path="/master-data/karyawan-form/edit" element={<MasterDataKaryawanEdit />}/>
           <Route path="/master-data/karyawan-form/add" element={<MasterDataKaryawanForm />} />
           <Route path="/master-data/libur-view" element={<MasterDataLibur />} />
           <Route path="/master-data/libur-form/add" element={<MasterDataLiburForm />} />
+          <Route path="/master-data/libur-edit" element={<MasterDataLiburEdit />} />
           <Route path="/master-data/permission-view" element={<MasterDataPermission />} />
           <Route path="/master-data/permission-form/add" element={<MasterDataPermissionForm />} />
+          <Route path="/master-data/permission-edit" element={<MasterDataPermissionEdit />} />
           <Route path="/master-data/project-view" element={<MasterDataProject/>} />
           <Route path="/master-data/project-form/add" element={<MasterDataProjectForm />} />
           <Route path="/parameter/general-view" element={<ParameterGeneral />} />

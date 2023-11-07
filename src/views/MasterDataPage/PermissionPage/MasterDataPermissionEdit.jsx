@@ -1,14 +1,13 @@
-import "./liburform.css"
-import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
-import { useEffect, useState } from "react"
+import "./permissionedit.css"
+import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 
-const MasterDataLiburForm = () => {
+const MasterDataPermissionEdit = () => {
     const [formData, setFormData] = useState({
-        tanggalLibur: '',
-        keterangan: ''
+        namaPermission: ''
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -34,8 +33,7 @@ const MasterDataLiburForm = () => {
     
         try {
           const requestData = {
-            tanggalLibur: formData.tanggalLibur,
-            keterangan: formData.keterangan
+            namaPermission: formData.namaPermission
           }
     
           const response = await axios.post(
@@ -59,28 +57,20 @@ const MasterDataLiburForm = () => {
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
-                        <h1>Libur Form</h1>
+                        <h1>Permission Form</h1>
                         <div className="horizontal__line"></div>
                     </div>
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Tanggal Libur</p>
+                <p>Nama Permission</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Tanggal Libur" value={formData.tanggalLibur} onChange={(e) => handleInputChange(e, 'title')}/>
-              </div>
-            </div>
-            <div className="form__row">
-              <div className="form__row__left">
-                <p>Keterangan</p>
-              </div>
-              <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'header')}/>
+                <BoxInput placeholder="Nama Permission" value={formData.namaPermission} onChange={(e) => handleInputChange(e, 'namaPermission')}/>
               </div>
             </div>
             <div className="form__row__bottom">
-                <Link to="/master-data/claim-view" className="cancel__button" text="Cancel">Cancel</Link>
+                <Link to="/master-data/permission-view" className="cancel__button" text="Cancel">Cancel</Link>
                 <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
             </div>
                     </form>
@@ -91,4 +81,5 @@ const MasterDataLiburForm = () => {
 
 }
 
-export default MasterDataLiburForm
+
+export default MasterDataPermissionEdit

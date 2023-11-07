@@ -1,11 +1,11 @@
-import "./liburform.css"
+import "./liburedit.css"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 
-const MasterDataLiburForm = () => {
+const MasterDataLiburEdit = () => {
     const [formData, setFormData] = useState({
         tanggalLibur: '',
         keterangan: ''
@@ -91,4 +91,4 @@ const MasterDataLiburForm = () => {
 
 }
 
-export default MasterDataLiburForm
+export default MasterDataLiburEdit
