@@ -41,7 +41,7 @@ const MasterDataAnnouncementEdit = () => {
           }
     
           const response = await axios.post(
-            '',
+            ' https://treemas-api-403500.et.r.appspot.com/api/master-data/announcement-form/edit/%7Bid%7D',
             requestData,
             {
               headers: {

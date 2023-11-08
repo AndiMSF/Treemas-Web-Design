@@ -63,7 +63,7 @@ const MasterDataPermissionForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Nama Permission</p>
+                <p>Nama Permission <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="Nama Permission" value={formData.namaPermission} onChange={(e) => handleInputChange(e, 'namaPermission')}/>

@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-no-undef */
 import "./cutiform.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import { InputGroup } from 'react-bootstrap';
 
 const MasterDataCutiForm = () => {
     const [formData, setFormData] = useState({
@@ -67,7 +69,7 @@ const MasterDataCutiForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>ID</p>
+                <p>ID <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
@@ -75,10 +77,11 @@ const MasterDataCutiForm = () => {
             </div>
             <div className="form__row">
               <div className="form__row__left">
-                <p>Jumlah</p>
+                <p>Jumlah <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Jumlah" value={formData.jumlah} onChange={(e) => handleInputChange(e, 'jumlah')}/>
+                  <BoxInput placeholder="Jumlah" value={formData.jumlah} onChange={(e) => handleInputChange(e, 'jumlah')}/>
+                  <InputGroup.Text id="basic-addon2">hari</InputGroup.Text>
               </div>
             </div>
             <div className="form__row">

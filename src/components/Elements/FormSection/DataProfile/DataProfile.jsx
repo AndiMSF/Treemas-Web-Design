@@ -28,7 +28,7 @@ const DataProfile = (props) => {
             <div className="data__profile__children">
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Nama Lengkap</p>
+                        <p>Nama Lengkap <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="Nama" />    
@@ -37,7 +37,7 @@ const DataProfile = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>No. KTP</p>
+                        <p>No. KTP <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="No. KTP" />    
@@ -46,7 +46,7 @@ const DataProfile = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>No NPWP</p>
+                        <p>No NPWP </p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="No. NPWP" />    
@@ -55,7 +55,7 @@ const DataProfile = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Email</p>
+                        <p>Email <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="Email" />    
@@ -73,7 +73,7 @@ const DataProfile = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Tanggal Lahir</p>
+                        <p>Tanggal Lahir <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="Tanggal Lahir" />    
@@ -82,7 +82,7 @@ const DataProfile = (props) => {
                 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Jenis Kelamin</p>
+                        <p>Jenis Kelamin <span style={{ color: 'red' }}>*</span></p>
                     </div>
                     <div className="form__row__right__label">
                         {['checkbox'].map((type) => (

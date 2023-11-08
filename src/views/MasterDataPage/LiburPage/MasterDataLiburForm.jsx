@@ -10,6 +10,9 @@ const MasterDataLiburForm = () => {
         tanggalLibur: '',
         keterangan: ''
       })
+      const [cutiBersama, setCutiBersama] = useState(false); // State untuk checkbox Cuti Bersama
+
+
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
     
@@ -65,7 +68,7 @@ const MasterDataLiburForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Tanggal Libur</p>
+                <p>Tanggal Libur <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="Tanggal Libur" value={formData.tanggalLibur} onChange={(e) => handleInputChange(e, 'title')}/>
@@ -77,6 +80,18 @@ const MasterDataLiburForm = () => {
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'header')}/>
+              </div>
+            </div>
+            <div className="form__row">
+              <div className="form__row__left">
+                <p>Cuti Bersama</p>
+              </div>
+              <div className="form__row__right">
+                <input
+                  type="checkbox"
+                  checked={cutiBersama}
+                  onChange={(e) => setCutiBersama(e.target.checked)}
+                />
               </div>
             </div>
             <div className="form__row__bottom">

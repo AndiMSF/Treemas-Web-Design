@@ -65,7 +65,7 @@ const MasterDataJabatanForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>ID</p>
+                <p>ID <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>

@@ -36,7 +36,7 @@ const DataKaryawan = (props) => {
             <div className="data__karyawan__children">
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>NIK</p>
+                        <p>NIK <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="NIK" />    
@@ -54,7 +54,7 @@ const DataKaryawan = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Jabatan</p>
+                        <p>Jabatan <span style={{ color: 'red' }}>*</span></p>
                     </div>         
                     <div className="form__row__right">
                         <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} items={itemsJabatan} />    
@@ -72,7 +72,7 @@ const DataKaryawan = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Tanggal Bergabung</p>
+                        <p>Tanggal Bergabung <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="Tanggal Bergabung" />    
@@ -81,7 +81,7 @@ const DataKaryawan = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Hak Cuti</p>
+                        <p>Hak Cuti <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
                         <BoxInput placeholder="Hak Cuti" />    
@@ -90,7 +90,7 @@ const DataKaryawan = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Leader</p>
+                        <p>Leader <span style={{ color: 'red' }}>*</span></p>
                     </div>
                     <div className="form__row__right__label">
                         {['checkbox'].map((type) => (
@@ -122,7 +122,7 @@ const DataKaryawan = (props) => {
                 
                 <div className="form__row">
                     <div className="form__row__left">
-                        <p>Karyawan</p>
+                        <p>Karyawan <span style={{ color: 'red' }}>*</span></p>
                     </div>
                     <div className="form__row__right__label">
                         {['checkbox'].map((type) => (

@@ -9,8 +9,8 @@ import Button from "../../../components/Elements/Buttons/Button";
 
 const MasterDataClaimForm = () => {
     const [formData, setFormData] = useState({
-        id: '',
-        nominal: '',
+        namaClaim: '',
+        valueClaim: '',
         keterangan: ''
       })
       const navigate = useNavigate();
@@ -37,13 +37,13 @@ const MasterDataClaimForm = () => {
     
         try {
           const requestData = {
-            id: formData.id,
-            nominal: formData.nominal,
+            namaClaim: formData.namaClaim,
+            valueClaim: formData.valueClaim,
             keterangan: formData.keterangan
           }
     
           const response = await axios.post(
-            '',
+            'https://treemas-api-403500.et.r.appspot.com/api/master-data/claim-form/add',
             requestData,
             {
               headers: {
@@ -69,18 +69,18 @@ const MasterDataClaimForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>ID</p>
+              <p>ID <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
+                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'namaClaim')}/>
               </div>
             </div>
             <div className="form__row">
               <div className="form__row__left">
-                <p>Nominal</p>
+                <p>Nominal <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Nominal" value={formData.nominal} onChange={(e) => handleInputChange(e, 'nominal')}/>
+                <BoxInput placeholder="Nominal" value={formData.nominal} onChange={(e) => handleInputChange(e, 'valueClaim')}/>
               </div>
             </div>
             <div className="form__row">
