@@ -7,7 +7,7 @@ import Button from "../../../components/Elements/Buttons/Button";
 
 const MasterDataJabatanForm = () => {
     const [formData, setFormData] = useState({
-        id: '',
+        jabatanId: '',
         namaJabatan: ''
       })
       const navigate = useNavigate();
@@ -34,12 +34,12 @@ const MasterDataJabatanForm = () => {
     
         try {
           const requestData = {
-            id: formData.id,
+            jabatanId: formData.jabatanId,
             namaJabatan: formData.namaJabatan
           }
     
           const response = await axios.post(
-            '',
+            'https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-form/add',
             requestData,
             {
               headers: {
@@ -68,7 +68,7 @@ const MasterDataJabatanForm = () => {
                 <p>ID <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
+                <BoxInput placeholder="ID" value={formData.jabatanId} onChange={(e) => handleInputChange(e, 'jabatanId')}/>
               </div>
             </div>
             <div className="form__row">

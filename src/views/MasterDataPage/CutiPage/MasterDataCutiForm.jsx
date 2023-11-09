@@ -10,8 +10,8 @@ import { InputGroup } from 'react-bootstrap';
 const MasterDataCutiForm = () => {
     const [formData, setFormData] = useState({
         id: '',
-        jumlah: '',
-        keterangan: ''
+        value: '',
+        cutiDesc: ''
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -38,12 +38,12 @@ const MasterDataCutiForm = () => {
         try {
           const requestData = {
             id: formData.id,
-            jumlah: formData.jumlah,
-            keterangan: formData.keterangan
+            value: formData.value,
+            cutiDesc: formData.cutiDesc
           }
     
           const response = await axios.post(
-            '',
+            'https://treemas-api-403500.et.r.appspot.com/api/master-data/cuti-form/add',
             requestData,
             {
               headers: {
@@ -80,7 +80,7 @@ const MasterDataCutiForm = () => {
                 <p>Jumlah <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                  <BoxInput placeholder="Jumlah" value={formData.jumlah} onChange={(e) => handleInputChange(e, 'jumlah')}/>
+                  <BoxInput placeholder="Jumlah" value={formData.value} onChange={(e) => handleInputChange(e, 'value')}/>
                   <InputGroup.Text id="basic-addon2">hari</InputGroup.Text>
               </div>
             </div>
@@ -89,7 +89,7 @@ const MasterDataCutiForm = () => {
                 <p>Keterangan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
+                <BoxInput placeholder="Keterangan" value={formData.cutiDesc} onChange={(e) => handleInputChange(e, 'cutiDesc')}/>
               </div>
             </div> 
             <div className="form__row__bottom">
