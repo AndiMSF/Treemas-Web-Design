@@ -53,6 +53,7 @@ const MasterDataCutiForm = () => {
             }
           )
           console.log('Response from API:', response.data);
+          navigate("/master-data/cuti-view");
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }

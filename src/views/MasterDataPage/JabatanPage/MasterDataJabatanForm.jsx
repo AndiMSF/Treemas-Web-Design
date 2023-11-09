@@ -49,6 +49,7 @@ const MasterDataJabatanForm = () => {
             }
           )
           console.log('Response from API:', response.data);
+          navigate("/master-data/jabatan-view");
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
