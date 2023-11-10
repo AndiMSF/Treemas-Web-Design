@@ -5,8 +5,10 @@ import Form from 'react-bootstrap/Form';
 import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import Alert from 'react-bootstrap/Alert';
 
 const MasterDataAnnouncementForm = () => {
+  const [showAlert, setShowAlert] = useState(false); 
   const [formData, setFormData] = useState({
     title: '',
     header: '',
@@ -70,6 +72,15 @@ const MasterDataAnnouncementForm = () => {
         }
       )
       console.log('Response from API:', response.data);
+      setShowAlert(true);
+
+      // Hide the alert after a few seconds (adjust the timeout as needed)
+      setTimeout(() => {
+        setShowAlert(false);
+        navigate("/master-data/announcement-view", { state: { showAlert } });
+
+      }, 3000);
+
     } catch (error) {
       console.log("Failed To Create Announcement "+error);
     }
@@ -78,6 +89,12 @@ const MasterDataAnnouncementForm = () => {
   return (
     <div className="announcementform__container">
       <div className="content__container">
+       {/* Display the alert if showAlert is true */}
+       {showAlert && (
+         <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+         <Alert.Heading>Announcement Created</Alert.Heading>
+       </Alert>
+     )}  
         <div className="form__container">
           {/* Form Container Top */}
           <div className="form__container__top">
@@ -107,7 +124,7 @@ const MasterDataAnnouncementForm = () => {
                 <p>Footer</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Footer" value={formData.note} onChange={(e) => handleInputChange(e, 'note')}/>
+                <BoxInput placeholder="Footer" value={formData.footer} onChange={(e) => handleInputChange(e, 'footer')}/>
               </div>
             </div>
             <div className="form__row">
@@ -115,7 +132,7 @@ const MasterDataAnnouncementForm = () => {
                 <p>Body</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Body" value={formData.footer} onChange={(e) => handleInputChange(e, 'footer')}/>
+                <BoxInput placeholder="Body" value={formData.note} onChange={(e) => handleInputChange(e, 'note')}/>
               </div>
             </div>
             <div className="form__row">

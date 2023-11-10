@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-undef */
 import "./claimform.css"
@@ -6,8 +7,10 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import Alert from 'react-bootstrap/Alert';
 
 const MasterDataClaimForm = () => {
+  const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
     const [formData, setFormData] = useState({
         namaClaim: '',
         valueClaim: '',
@@ -21,7 +24,7 @@ const MasterDataClaimForm = () => {
         const token = localStorage.getItem("authToken")
         if (token) {
           setIstoken(token)
-          console.log('Token: '+token);
+          
         }else{
           navigate("/login");
         }
@@ -53,6 +56,16 @@ const MasterDataClaimForm = () => {
             }
           )
           console.log('Response from API:', response.data);
+          // Display the alert
+          setShowAlert(true);
+
+          // Hide the alert after a few seconds (adjust the timeout as needed)
+          setTimeout(() => {
+            setShowAlert(false);
+            navigate("/master-data/claim-view", { state: { showAlert } });
+
+          }, 3000);
+          
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
@@ -61,6 +74,12 @@ const MasterDataClaimForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
+               {/* Display the alert if showAlert is true */}
+               {showAlert && (
+                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                        <Alert.Heading>Claim Created</Alert.Heading>
+                      </Alert>
+                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Claim Form</h1>
@@ -96,6 +115,7 @@ const MasterDataClaimForm = () => {
                 <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
             </div>
                     </form>
+
                 </div>
             </div>
         </div>

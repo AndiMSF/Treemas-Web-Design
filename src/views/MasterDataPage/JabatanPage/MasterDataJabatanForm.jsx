@@ -1,11 +1,14 @@
+/* eslint-disable react/jsx-no-undef */
 import "./jabatanform.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import Alert from 'react-bootstrap/Alert';
 
 const MasterDataJabatanForm = () => {
+  const [showAlert, setShowAlert] = useState(false); 
     const [formData, setFormData] = useState({
         jabatanId: '',
         namaJabatan: ''
@@ -49,7 +52,14 @@ const MasterDataJabatanForm = () => {
             }
           )
           console.log('Response from API:', response.data);
-          navigate("/master-data/jabatan-view");
+          setShowAlert(true);
+          
+          setTimeout(() => {
+            setShowAlert(false);
+            navigate("/master-data/jabatan-view",{ state: { showAlert } });
+
+          },3000);
+         
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
@@ -58,6 +68,12 @@ const MasterDataJabatanForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
+              {/* Display the alert if showAlert is true */}
+              {showAlert && (
+                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                        <Alert.Heading>Jabatan Created</Alert.Heading>
+                      </Alert>
+                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Jabatan Form</h1>

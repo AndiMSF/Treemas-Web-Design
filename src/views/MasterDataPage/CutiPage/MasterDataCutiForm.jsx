@@ -6,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import { InputGroup } from 'react-bootstrap';
+import { Alert } from "react-bootstrap";
 
 const MasterDataCutiForm = () => {
+  const [showAlert, setShowAlert] = useState(false)
     const [formData, setFormData] = useState({
         id: '',
         value: '',
@@ -15,7 +17,8 @@ const MasterDataCutiForm = () => {
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
-    
+
+
       // Check siapa yang akses
       useEffect(() => {
         const token = localStorage.getItem("authToken")
@@ -53,7 +56,13 @@ const MasterDataCutiForm = () => {
             }
           )
           console.log('Response from API:', response.data);
-          navigate("/master-data/cuti-view");
+          setShowAlert(true);
+
+          setTimeout(() => {
+            setShowAlert(false);
+            navigate("/master-data/cuti-view", { state: { showAlert } });
+          },3000);
+
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
@@ -62,6 +71,12 @@ const MasterDataCutiForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
+               {/* Display the alert if showAlert is true */}
+               {showAlert && (
+                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                        <Alert.Heading>Cuti Created</Alert.Heading>
+                      </Alert>
+                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Cuti Form</h1>

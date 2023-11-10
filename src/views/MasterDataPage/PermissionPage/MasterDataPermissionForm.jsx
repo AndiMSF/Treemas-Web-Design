@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import  Alert from 'react-bootstrap/Alert';
 
 const MasterDataPermissionForm = () => {
+  const [showAlert, setShowAlert] = useState(false);
     const [formData, setFormData] = useState({
         namaPermission: ''
       })
@@ -37,7 +39,7 @@ const MasterDataPermissionForm = () => {
           }
     
           const response = await axios.post(
-            '',
+            'https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-form/add',
             requestData,
             {
               headers: {
@@ -47,6 +49,14 @@ const MasterDataPermissionForm = () => {
             }
           )
           console.log('Response from API:', response.data);
+          setShowAlert(true);        
+          setTimeout(() => {
+            setShowAlert(false);
+            navigate("/master-data/permission-view", { state: { showAlert } });
+
+          }, 3000);
+
+
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
@@ -55,6 +65,12 @@ const MasterDataPermissionForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
+              {/* Display the alert if showAlert is true */}
+              {showAlert && (
+                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                        <Alert.Heading>Permission Created</Alert.Heading>
+                      </Alert>
+                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Permission Form</h1>

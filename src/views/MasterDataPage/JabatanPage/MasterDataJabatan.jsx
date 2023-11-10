@@ -1,9 +1,11 @@
+/* eslint-disable no-undef */
 import "./jabatan.css"
 import Information from "../../../components/Content/Information/Information"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Button from "../../../components/Elements/Buttons/Button"
 import { Link } from "react-router-dom"
+
 
 const MasterDataJabatan = () => {
     const infoTopFields = ["ID", "Nama Jabatan", "Action"]
@@ -20,6 +22,7 @@ const MasterDataJabatan = () => {
                     <Link to="/master-data/jabatan-form/add" text="Tambah" className="add__button">Tambah</Link>
                     </div>
                 </div>
+            
             <Information informationText="Jabatan" showDropdown={false} fields={infoTopFields}/>
         </div>
         </div>

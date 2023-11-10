@@ -4,10 +4,12 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import Alert from 'react-bootstrap/Alert';
 
 const MasterDataLiburForm = () => {
+  const [showAlert, setShowAlert] = useState(false);
     const [formData, setFormData] = useState({
-        tanggalLibur: '',
+        tglLibur: '',
         keterangan: ''
       })
       const [cutiBersama, setCutiBersama] = useState(false); // State untuk checkbox Cuti Bersama
@@ -37,12 +39,12 @@ const MasterDataLiburForm = () => {
     
         try {
           const requestData = {
-            tanggalLibur: formData.tanggalLibur,
+            tglLibur: formData.tanggalLibur,
             keterangan: formData.keterangan
           }
     
           const response = await axios.post(
-            '',
+            'https://treemas-api-403500.et.r.appspot.com/api/master-data/libur-form/add',
             requestData,
             {
               headers: {
@@ -52,6 +54,13 @@ const MasterDataLiburForm = () => {
             }
           )
           console.log('Response from API:', response.data);
+          setShowAlert(true);
+          setTimeout(() => {
+            setShowAlert(false);
+            navigate("/master-data/libur-view", { state: { showAlert } });
+
+          }, 3000);
+
         } catch (error) {
           console.log("Failed To Create Announcement "+error);
         }
@@ -60,6 +69,12 @@ const MasterDataLiburForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
+               {/* Display the alert if showAlert is true */}
+               {showAlert && (
+                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                        <Alert.Heading>Libur Created</Alert.Heading>
+                      </Alert>
+                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Libur Form</h1>
@@ -71,7 +86,7 @@ const MasterDataLiburForm = () => {
                 <p>Tanggal Libur <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Tanggal Libur" value={formData.tanggalLibur} onChange={(e) => handleInputChange(e, 'title')}/>
+                <BoxInput placeholder="Tanggal Libur" value={formData.tglLibur} onChange={(e) => handleInputChange(e, 'tglLibur')}/>
               </div>
             </div>
             <div className="form__row">
@@ -79,7 +94,7 @@ const MasterDataLiburForm = () => {
                 <p>Keterangan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'header')}/>
+                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
               </div>
             </div>
             <div className="form__row">
