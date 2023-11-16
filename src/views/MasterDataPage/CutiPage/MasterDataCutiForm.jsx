@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
-import { InputGroup } from 'react-bootstrap';
 import { Alert } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const MasterDataCutiForm = () => {
   const [showAlert, setShowAlert] = useState(false)
@@ -96,8 +97,14 @@ const MasterDataCutiForm = () => {
                 <p>Jumlah <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                  <BoxInput placeholder="Jumlah" value={formData.value} onChange={(e) => handleInputChange(e, 'value')}/>
-                  <InputGroup.Text id="basic-addon2">hari</InputGroup.Text>
+              <InputGroup className="mb-3">
+              <Form.Control
+                placeholder="Jumlah"
+                aria-label="Jumlah"
+                aria-describedby="basic-addon2"
+              />
+              <InputGroup.Text id="basic-addon2">Hari</InputGroup.Text>
+            </InputGroup>
               </div>
             </div>
             <div className="form__row">

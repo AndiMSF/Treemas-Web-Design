@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const MasterDataClaimForm = () => {
   const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
@@ -99,7 +101,14 @@ const MasterDataClaimForm = () => {
                 <p>Nominal <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Nominal" value={formData.nominal} onChange={(e) => handleInputChange(e, 'valueClaim')}/>
+              <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Rp</InputGroup.Text>
+              <Form.Control
+                placeholder="Jumlah"
+                aria-label="Jumlah"
+                aria-describedby="basic-addon1"
+              />
+            </InputGroup>
               </div>
             </div>
             <div className="form__row">

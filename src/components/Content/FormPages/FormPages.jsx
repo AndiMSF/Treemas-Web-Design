@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "./form.css"
 import BoxInput from "../../Elements/BoxInput/BoxInput.jsx"
@@ -12,6 +14,7 @@ import DataLain from "../../Elements/FormSection/DataLainlain/DataLain";
 import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
 import Password from "../../Elements/FormSection/Password/Password";
 
+
 const FormPages = (props) => {
        
     const handleImageUpload = (e) => {
@@ -22,6 +25,7 @@ const FormPages = (props) => {
       const handleSubmit = () => {
         props.handleAnnouncement();
       };
+      
   return (
     <div className="form__container">
         <div className="form__container__top">
@@ -51,7 +55,8 @@ const FormPages = (props) => {
                         </div>
                     </div>
                 ))}
-                
+
+          
                 {props.showUpload && props.image.map((image, index) => (
                     <div className="form__row" key={index}>
                         <Form.Group class="upload" controlId="formFile">

@@ -6,6 +6,8 @@ import "./auth.css"
 import Treemas from "../../images/logo-treemas.png"
 import { useState } from "react"
 import axios from "axios"
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 
 const LoginPage = () => {
@@ -62,20 +64,29 @@ const LoginPage = () => {
                         <p>Enter your account details</p>
                     </div>
                     <form>
-                        <input
-                        type="text"
-                        name="nik"
-                        placeholder="NIK"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)} 
-                        />
-                       <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)} // Update state saat nilai berubah
+                    <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon1"><i className="fas fa-user"></i></InputGroup.Text>
+                    <Form.Control
+                    placeholder="NIK"
+                    aria-label="NIK"
+                    aria-describedby="basic-addon1"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     />
+                    </InputGroup>
+
+                    <InputGroup className="mb-3">
+                    <InputGroup.Text id="basic-addon2"><i className="fas fa-lock"></i></InputGroup.Text>
+                    <Form.Control
+                    type="Password"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon2"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
+                    </InputGroup>
+
                         <p><a href="/reset-password">Forgot Password?</a></p>
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Login
