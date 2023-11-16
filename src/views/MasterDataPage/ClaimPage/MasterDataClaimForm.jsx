@@ -102,7 +102,7 @@ const MasterDataClaimForm = () => {
               </div>
               <div className="form__row__right">
               <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Rp</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
               <Form.Control
                 placeholder="Jumlah"
                 aria-label="Jumlah"
