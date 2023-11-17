@@ -3,6 +3,7 @@ import Information from "../../../components/Content/Information/Information"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Button from "../../../components/Elements/Buttons/Button"
+import { Link } from "react-router-dom"
 
 const ParameterGeneral = () => {
     const infoTopFields = ["ID", "Keterangan", "Tipe Data", "Value", "Action"]
@@ -16,6 +17,7 @@ const ParameterGeneral = () => {
                         <Button text="Pencarian" className="search__button" />
                     </div>
                     <div className="right__container__input">
+                    <Link to="/parameter/general-form/edit" text="Tambah" className="add__button">Tambah</Link>
                     </div>
                 </div>
             <Information informationText="General" showDropdown={false} fields={infoTopFields}/>
