@@ -7,6 +7,7 @@ import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
 
+
 const MasterDataJabatanForm = () => {
   const [showAlert, setShowAlert] = useState(false); 
     const [formData, setFormData] = useState({

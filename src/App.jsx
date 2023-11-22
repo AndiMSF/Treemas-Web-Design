@@ -124,8 +124,8 @@ function App() {
           <Route path="/report-data/summary" element={<ReportDataSummary />} />
           <Route path="/upload/absen" element={<UploadAbsen />} />
           <Route path="/upload/apk" element={<UploadApk />} />
-          <Route path="/users/profile" element={<ProfilePage />} />
-          
+          <Route path="/users/profile" element={<ProfilePage />} />          
+
         </Routes>
       </Sidebar>
       )}

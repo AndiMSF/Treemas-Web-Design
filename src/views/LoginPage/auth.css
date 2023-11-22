@@ -16,6 +16,7 @@
     overflow: hidden;
 }
 
+
 p {
     color: rgba(255, 255, 255, 0.70);
 }
@@ -117,8 +118,8 @@ input {
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    background-color: var(--purple);
-    border: 1px solid var(--purple);
+    background-color: #53a8b6;
+    border: 1px solid #53a8b6 ;
     height: 3em;
 }
 
@@ -135,7 +136,7 @@ input {
 .right__container {
     width: 60%;
     border-radius: 0px 8px 8px 0px;
-    background-color: var(--purple);
+    background-color: #53a8b6;
     position: relative;
     display: flex;
     height: 100%;
@@ -143,6 +144,9 @@ input {
     flex-direction: column; /* Mengatur child menjadi kolom */
 }
 
+.right__container path {
+    fill: #53a8b6 ;
+}
 
 .login__image__description {
     display: flex;

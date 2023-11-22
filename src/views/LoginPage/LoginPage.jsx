@@ -37,7 +37,7 @@ const LoginPage = () => {
               const bearerToken = response.data.data.token;
               console.log(bearerToken);
               localStorage.setItem("authToken", bearerToken);
-              window.location.href = '/dashboard'; 
+              window.location.href = '/dashboard';    
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
@@ -73,8 +73,7 @@ const LoginPage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     />
-                    </InputGroup>
-
+                    </InputGroup>                                        
                     <InputGroup className="mb-3">
                     <InputGroup.Text id="basic-addon2"><i className="fas fa-lock"></i></InputGroup.Text>
                     <Form.Control
@@ -85,8 +84,7 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                    </InputGroup>
-
+                    </InputGroup>                   
                         <p><a href="/reset-password">Forgot Password?</a></p>
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Login

@@ -3,10 +3,9 @@
     font-family: 'Poppins', sans-serif;
   }
   
-  
   :root {
     --almost-black: #1C1D21; 
-    --purple: #925FE2;
+    --teal: #53a8b6;
     --button-purple:#9C6FE4; 
     --selected-icon: #DDE2FF;
     --selected-text: #DDE2FF;

@@ -17,7 +17,6 @@ const Navbar = (props) => {
         </div>
 
         <div className="right__container__navbar">
-            <Search />
             <div className="vertikal__line"></div>
             <p>Jones Ferdinand</p>
             
