@@ -7,65 +7,165 @@ import DataTable from "react-data-table-component";
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
-
-
+import { Link, useNavigate } from "react-router-dom/dist";
+import { useEffect, useState } from "react"
+// SweetAlert
+import Swal from 'sweetalert2'
 
 
 const MasterDataJabatan = () => {
 
-  const data =  [
-    {
-      id: 1,
-      idJabatan: "EMPL",
-      nJabatan: ["Karyawan"],      
-    },
+  const navigate = useNavigate();
+  const [isToken, setIstoken] = useState('');
+  const [apiData, setApiData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-view', {
+        method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Sertakan token di sini
+        },
+      });
+        const data = await response.json();
+        if (data.status === 'Success') {
+          setApiData(data.data);
+        } else {
+          setError('Failed to fetch data');
+        }
+      } catch (error) {
+        setError(`Error fetching data: ${error.message}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    {
-      id: 2,
-      idJabatan: "HEAD",      
-      nJabatan: ["Header"]
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      setIstoken(token);
+      fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+      console.log('Token: ' + token);
+    } else {
+      navigate("/login");
     }
-  ]
+  }, [navigate, apiData]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const columns = [
     {
       name: "ID",
-      selector: "idJabatan",
+      selector: "jabatanId",
       sortable: true
     },
-    
     {
       name: "Nama Jabatan",
-      selector: "nJabatan",
-      sortable: true,
-      cell: (d) => <span>{d.nJabatan.join(", ")}</span>
+      selector: (row) => row.namaJabatan,
+      sortable: true
     },
     {
       name: "Action",
       sortable: false,
-      selector: "null",
-      cell: (d) => [
-        <i
-        key={`edit-${d.id}`} // Gunakan ID atau kunci unik lainnya dari data
-        onClick={handleClick.bind(this, d.title)}
-        className="first fas fa-pen"
-        ></i>,
-        <i
-        key={`delete-${d.id}`} // Gunakan ID atau kunci unik lainnya dari data
-        onClick={handleClick.bind(this, d.title)}
-        className="fas fa-trash-alt"
-        ></i>
-      ]
+      cell: (d) => (
+        <>
+          <i
+            key={`edit-${d.jabatanId}`}
+            onClick={() => handleClick(d.jabatanId)}
+            className="first fas fa-pen"
+          ></i>
+          <i
+            key={`delete-${d.jabatanId}`}
+            onClick={() => handleDelete(d.jabatanId)}
+            className="fas fa-trash-alt"
+          ></i>
+        </>
+      )
     }
   ];
 
   const dataTable = {
     columns,
-    data
+    data: apiData
   };
 
-  const handleClick = (title) => {
-    console.log(`You clicked me! ${title}`);
+
+  const handleClick = (id) => {
+    console.log(`Edit button clicked for ID: ${id}`);
+  };
+
+  const handleDelete = (id) => {
+      console.log(`Delete button clicked for ID: ${id}`);
+      // Tambahkan logika penghapusan data di sini, atau panggil API delete jika diperlukan
+      Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          // Jika yes akan
+          const token = localStorage.getItem("authToken");
+      if (!token) {
+        console.error('Token is not available');
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-form/delete/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          // Berhasil dihapus
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          // Refresh data setelah penghapusan jika diperlukan
+          fetchData();
+        } else {
+          // Gagal dihapus
+          Swal.fire({
+            title: "Error!",
+            text: data.message, // Tampilkan pesan error dari server
+            icon: "error"
+          });
+        }
+      } catch (error) {
+        // Error selama proses penghapusan
+        console.error('Error deleting data:', error);
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred while deleting the data.",
+          icon: "error"
+        });
+      }
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+    });
   };
 
  
@@ -74,19 +174,20 @@ const MasterDataJabatan = () => {
     <div className="jabatan__container">
       <div className="content__container">
         <Navbar navbarText="Master Data / Jabatan" />
-        <div className="table__container">       
-        <DataTableExtensions {...dataTable}>
-        <DataTable
-          columns={columns}
-          data={data}
-          noHeader
-          defaultSortField="id"
-          sortIcon={<SortIcon />}
-          defaultSortAsc={true}
-          pagination
-          highlightOnHover
-          dense/>
-        </DataTableExtensions>
+        <div className="table__container">
+          <DataTableExtensions {...dataTable}>
+            <DataTable
+              columns={columns}
+              data={apiData}
+              noHeader
+              defaultSortField="jabatanId"
+              sortIcon={<SortIcon />}
+              defaultSortAsc={true}
+              pagination
+              highlightOnHover
+              dense
+            />
+          </DataTableExtensions>
         </div>
 
       </div>
