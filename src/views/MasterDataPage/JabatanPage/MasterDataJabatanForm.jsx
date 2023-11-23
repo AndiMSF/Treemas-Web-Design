@@ -6,7 +6,8 @@ import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
-
+// SweetAlert
+import Swal from 'sweetalert2'
 
 const MasterDataJabatanForm = () => {
   const [showAlert, setShowAlert] = useState(false); 
@@ -35,6 +36,12 @@ const MasterDataJabatanForm = () => {
     
       const handleSubmit = async (e) => {
         e.preventDefault()
+        const token = localStorage.getItem("authToken");
+    
+          if (!token) {
+            console.error('Token is not available');
+            return navigate("/login");
+          }
     
         try {
           const requestData = {
@@ -48,21 +55,24 @@ const MasterDataJabatanForm = () => {
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
-              }
-            }
-          )
+                'Authorization': `Bearer ${token}`
+              },
+            });
+          Swal.fire({
+            title: "Success!",
+            text: "Jabatan Added.",
+            icon: "success"
+          });
+          navigate("/master-data/jabatan-view");
           console.log('Response from API:', response.data);
-          setShowAlert(true);
-          
-          setTimeout(() => {
-            setShowAlert(false);
-            navigate("/master-data/jabatan-view",{ state: { showAlert } });
-
-          },3000);
-         
         } catch (error) {
-          console.log("Failed To Create Announcement "+error);
+          // Jika tidak berhasil, tampilkan pesan error
+          console.error('Failed to fetch data:', data.message);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to add jabatan.",
+            icon: "error"
+          });
         }
       }
 

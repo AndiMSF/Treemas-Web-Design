@@ -80,7 +80,7 @@ const MasterDataLiburEdit = () => {
               </div>
             </div>
             <div className="form__row__bottom">
-                <Link to="/master-data/claim-view" className="cancel__button" text="Cancel">Cancel</Link>
+                <Link to="/master-data/libur-view" className="cancel__button" text="Cancel">Cancel</Link>
                 <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
             </div>
                     </form>
