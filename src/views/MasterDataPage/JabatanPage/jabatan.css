@@ -8,6 +8,7 @@
   background-color: #FFF;
   border-radius: 10px;
   padding: 0.7rem;
+  position: relative;
 }
 
 .dlink {
@@ -44,3 +45,4 @@ input.filter-text {
 .cxFtRn {
   height: 0;
 }
+

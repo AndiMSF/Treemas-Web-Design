@@ -1,17 +1,22 @@
 import "./jabatanedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom/dist";
+import { Link, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+// SweetAlert
+import Swal from 'sweetalert2'
 
 const MasterDataJabatanEdit = () => {
     const [formData, setFormData] = useState({
-        id: '',
+      jabatanId: '',
         namaJabatan: ''
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
+
+      // Data dari params
+      const { id } = useParams();
     
       // Check siapa yang akses
       useEffect(() => {
@@ -32,26 +37,44 @@ const MasterDataJabatanEdit = () => {
       const handleSubmit = async (e) => {
         e.preventDefault()
     
-        try {
-          const requestData = {
-            id: formData.id,
-            namaJabatan: formData.namaJabatan
+          const token = localStorage.getItem("authToken");
+    
+          if (!token) {
+            console.error('Token is not available');
+            return navigate("/login");
           }
     
-          const response = await axios.post(
-            '',
+          try {
+            const requestData = {
+              jabatanId: formData.jabatanId,
+              namaJabatan: formData.namaJabatan
+            }
+
+            const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-form/edit/${id}`, 
             requestData,
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
-              }
-            }
-          )
-          console.log('Response from API:', response.data);
-        } catch (error) {
-          console.log("Failed To Create Announcement "+error);
-        }
+                'Authorization': `Bearer ${token}`
+              },
+            });
+    
+            Swal.fire({
+              title: "Success!",
+              text: "Jabatan Updated.",
+              icon: "success"
+            });
+            navigate("/master-data/jabatan-view");
+            console.log('Response from API:', response.data);
+          } catch (error) {
+            // Jika tidak berhasil, tampilkan pesan error
+            console.error('Failed to fetch data:');
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to update jabatan.",
+              icon: "error"
+            });
+          }
       }
 
       return (
@@ -59,7 +82,7 @@ const MasterDataJabatanEdit = () => {
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
-                        <h1>Jabatan Form</h1>
+                        <h1>Jabatan Edit</h1>
                         <div className="horizontal__line"></div>
                     </div>
                     <form>
@@ -68,7 +91,7 @@ const MasterDataJabatanEdit = () => {
                 <p>ID</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
+                <BoxInput placeholder="ID" value={formData.jabatanId} onChange={(e) => handleInputChange(e, 'jabatanId')}/>
               </div>
             </div>
             <div className="form__row">
@@ -79,10 +102,10 @@ const MasterDataJabatanEdit = () => {
                 <BoxInput placeholder="Nama Jabatan " value={formData.namaJabatan} onChange={(e) => handleInputChange(e, 'namaJabatan')}/>
               </div>
             </div>
-            <div className="form__row__bottom">
-                <Link to="/master-data/jabatan-view" className="cancel__button" text="Cancel">Cancel</Link>
-                <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
-            </div>
+              <div className="form__row__bottom">
+                  <Link to="/master-data/jabatan-view" className="cancel__button" text="Cancel">Cancel</Link>
+                  <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
+              </div>
                     </form>
                 </div>
             </div>

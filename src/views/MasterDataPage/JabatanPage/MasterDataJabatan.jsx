@@ -7,8 +7,10 @@ import DataTable from "react-data-table-component";
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
-import { Link, useNavigate } from "react-router-dom/dist";
+import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
+
 // SweetAlert
 import Swal from 'sweetalert2'
 
@@ -34,6 +36,7 @@ const MasterDataJabatan = () => {
         const data = await response.json();
         if (data.status === 'Success') {
           setApiData(data.data);
+          
         } else {
           setError('Failed to fetch data');
         }
@@ -52,7 +55,8 @@ const MasterDataJabatan = () => {
     } else {
       navigate("/login");
     }
-  }, [navigate, apiData]);
+  }, [navigate]);
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -65,7 +69,7 @@ const MasterDataJabatan = () => {
   const columns = [
     {
       name: "ID",
-      selector: "jabatanId",
+      selector: (row) => row.jabatanId,
       sortable: true
     },
     {
@@ -101,6 +105,7 @@ const MasterDataJabatan = () => {
 
   const handleClick = (id) => {
     console.log(`Edit button clicked for ID: ${id}`);
+    navigate(`/master-data/jabatan-edit/${id}`);
   };
 
   const handleDelete = (id) => {
@@ -140,8 +145,8 @@ const MasterDataJabatan = () => {
             text: "Your file has been deleted.",
             icon: "success"
           });
-          // Refresh data setelah penghapusan jika diperlukan
-          fetchData();
+          // Perbarui state lokal setelah penghapusan
+          setApiData((prevData) => prevData.filter(item => item.jabatanId !== id));
         } else {
           // Gagal dihapus
           Swal.fire({
@@ -168,12 +173,11 @@ const MasterDataJabatan = () => {
     });
   };
 
- 
-
   return (
     <div className="jabatan__container">
       <div className="content__container">
         <Navbar navbarText="Master Data / Jabatan" />
+        <Link to="/master-data/jabatan-form/add" className="add__button">Tambah</Link>
         <div className="table__container">
           <DataTableExtensions {...dataTable}>
             <DataTable
@@ -188,6 +192,7 @@ const MasterDataJabatan = () => {
               dense
             />
           </DataTableExtensions>
+
         </div>
 
       </div>
