@@ -51,7 +51,6 @@ const MasterDataJabatan = () => {
     if (token) {
       setIstoken(token);
       fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
-      console.log('Token: ' + token);
     } else {
       navigate("/login");
     }
@@ -142,7 +141,7 @@ const MasterDataJabatan = () => {
           // Berhasil dihapus
           Swal.fire({
             title: "Deleted!",
-            text: "Your file has been deleted.",
+            text: "Your Data has been deleted.",
             icon: "success"
           });
           // Perbarui state lokal setelah penghapusan
@@ -164,11 +163,6 @@ const MasterDataJabatan = () => {
           icon: "error"
         });
       }
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success"
-          });
         }
     });
   };

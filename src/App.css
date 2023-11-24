@@ -42,6 +42,7 @@
     overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+    
 }
 
 .left__container__input {

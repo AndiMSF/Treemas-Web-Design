@@ -105,7 +105,7 @@ function App() {
           <Route path="/master-data/jabatan-form/add" element={<MasterDataJabatanForm />} />
           <Route path="/master-data/jabatan-edit/:id" element={<MasterDataJabatanEdit />} />
           <Route path="/master-data/karyawan-view" element={<MasterDataKaryawan />} />
-          <Route path="/master-data/karyawan-form/edit" element={<MasterDataKaryawanEdit />}/>
+          <Route path="/master-data/karyawan-form/edit/:id" element={<MasterDataKaryawanEdit />}/>
           <Route path="/master-data/karyawan-form/add" element={<MasterDataKaryawanForm />} />
           <Route path="/master-data/libur-view" element={<MasterDataLibur />} />
           <Route path="/master-data/libur-form/add" element={<MasterDataLiburForm />} />
