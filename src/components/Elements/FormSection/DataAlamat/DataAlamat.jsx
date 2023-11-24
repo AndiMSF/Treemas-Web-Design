@@ -18,7 +18,7 @@ const DataAlamat = (props) => {
         </div>
 
         {props.showChildrenAlamat && (
-            <div className="data__alamat__container">
+            <div className="data__alamat__children">
                 <div className="form__row">
                     <div className="form__row__left">
                         <p>Alamat KTP</p>

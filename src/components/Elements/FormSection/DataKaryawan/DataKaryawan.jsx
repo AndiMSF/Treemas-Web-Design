@@ -4,7 +4,7 @@
 import "./datakaryawan.css"
 import BoxInput from "../../BoxInput/BoxInput"
 import DropdownMenu from "../../../Elements/DropdownMenu/DropdownMenu.jsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 
 const DataKaryawan = (props) => {
@@ -19,6 +19,23 @@ const DataKaryawan = (props) => {
     const handleProject = (selectedItem) => {
         setProject(selectedItem)    
     }
+
+    // DataKaryawan component
+    const createJabatanItems = (jabatanData) => {
+        return jabatanData.map((jabatan) => ({
+            label: jabatan.namaJabatan,
+            value: jabatan.jabatanId,
+        }));
+    };
+
+    const createProjectItems = (projectData) => {
+        return projectData.map((project) => ({
+            label: project.namaProject,
+            value: project.projectId,
+        }));
+    };
+
+    
 
   return (
     <div className="data__karyawan__container">
@@ -57,7 +74,7 @@ const DataKaryawan = (props) => {
                         <p>Jabatan <span style={{ color: 'red' }}>*</span></p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} items={itemsJabatan} />    
+                        <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} itemsJabatan={createJabatanItems(props.dataJabatan)}/>    
                     </div>
                 </div>
 
@@ -66,7 +83,7 @@ const DataKaryawan = (props) => {
                         <p>Project</p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={project} onDropdownChange={handleProject} items={itemsProject} />    
+                        <DropdownMenu title={project} onDropdownChange={handleProject} items={itemsProject}  itemsProject={createProjectItems(props.dataProject)}/>    
                     </div>
                 </div>
 

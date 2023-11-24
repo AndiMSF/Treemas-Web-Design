@@ -8,6 +8,7 @@ const MasterDataKaryawanForm = () => {
     const [isEnabledKaryawan, setIsEnabledKaryawan] = useState(false);
     const [isEnabledAlamat, setIsEnabledAlamat] = useState(false);
     const [isEnabledLain, setIsEnabledLain] = useState(false);
+    const [api, setApi] = useState("https://treemas-api-403500.et.r.appspot.com/api/master-data/karyawan-form/add");
 
     const handleChildrenProfile = () => {
         setIsEnabledProfile(!isEnabledProfile);
@@ -31,9 +32,7 @@ const MasterDataKaryawanForm = () => {
 
 
     return <div className="karyawanform__container">
-        <div className="content__container">
-            <FormPages formTitle="Add Karyawan" to="/master-data/karyawan-view" showDataProfile={true} showDataKaryawan={true} showTambahFoto={true} showDataAlamat={true} showDataLain={true} showChildrenFoto={isEnabledFoto} showChildrenProfile={isEnabledProfile} showChildrenAlamat={isEnabledAlamat} showChildrenKaryawan={isEnabledKaryawan} showChildrenLain={isEnabledLain} onClickFoto={handleChildrenFoto} onClickProfile={handleChildrenProfile} onClickAlamat={handleChildrenAlamat} onClickKaryawan={handleChildrenKaryawan} onClickLain={handleChildrenLain}/>
-        </div>
+            <FormPages formTitle="Add Karyawan" to="/master-data/karyawan-view" showDataProfile={true} showDataKaryawan={true} showTambahFoto={true} showDataAlamat={true} showDataLain={true} showChildrenFoto={isEnabledFoto} showChildrenProfile={isEnabledProfile} showChildrenAlamat={isEnabledAlamat} showChildrenKaryawan={isEnabledKaryawan} showChildrenLain={isEnabledLain} onClickFoto={handleChildrenFoto} onClickProfile={handleChildrenProfile} onClickAlamat={handleChildrenAlamat} onClickKaryawan={handleChildrenKaryawan} onClickLain={handleChildrenLain} api={api}/>
     </div>
 }
 
