@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import './announcementform.css';
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
@@ -6,6 +8,8 @@ import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
+// SweetAlert
+import Swal from 'sweetalert2'
 
 const MasterDataAnnouncementForm = () => {
   const [showAlert, setShowAlert] = useState(false); 
@@ -51,6 +55,12 @@ const MasterDataAnnouncementForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const token = localStorage.getItem("authToken");
+    
+      if (!token) {
+        console.error('Token is not available');
+        return navigate("/login");
+      }
 
     try {
       const requestData = {
@@ -67,34 +77,31 @@ const MasterDataAnnouncementForm = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer '+isToken
+            'Authorization': `Bearer ${token}`
           }
         }
       )
+      Swal.fire({
+        title: "Success!",
+        text: "Announcement Added.",
+        icon: "success"
+      });
+      navigate("/master-data/announcement-view");
       console.log('Response from API:', response.data);
-      setShowAlert(true);
-
-      // Hide the alert after a few seconds (adjust the timeout as needed)
-      setTimeout(() => {
-        setShowAlert(false);
-        navigate("/master-data/announcement-view", { state: { showAlert } });
-
-      }, 3000);
-
     } catch (error) {
-      console.log("Failed To Create Announcement "+error);
+      // Jika tidak berhasil, tampilkan pesan error
+      console.error('Failed to fetch data:', data.message);
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to add announcement.",
+        icon: "error"
+      });
     }
   }
 
   return (
     <div className="announcementform__container">
-      <div className="content__container">
-       {/* Display the alert if showAlert is true */}
-       {showAlert && (
-         <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-         <Alert.Heading>Announcement Created</Alert.Heading>
-       </Alert>
-     )}  
+      <div className="content__container"> 
         <div className="form__container">
           {/* Form Container Top */}
           <div className="form__container__top">

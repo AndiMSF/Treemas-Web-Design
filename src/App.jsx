@@ -94,25 +94,25 @@ function App() {
           <Route path="/manual-service" element={<ManualService />} />
           <Route path="/master-data/announcement-view" element={<MasterDataAnnouncement />} />
           <Route path="/master-data/announcement-form/add" element={<MasterDataAnnouncementForm />} />
-          <Route path="/master-data/announcement-edit" element={<MasterDataAnnouncementEdit />} />
+          <Route path="/master-data/announcement-edit/:id" element={<MasterDataAnnouncementEdit />} />
           <Route path="/master-data/claim-view" element={<MasterDataClaim />} />
           <Route path="/master-data/claim-form/add" element={<MasterDataClaimForm />} />
-          <Route path="/master-data/claim-edit" element={<MasterDataClaimEdit/>}/>
+          <Route path="/master-data/claim-edit/:id" element={<MasterDataClaimEdit/>}/>
           <Route path="/master-data/cuti-view" element={<MasterDataCuti />} />
           <Route path="/master-data/cuti-form/add" element={<MasterDataCutiForm />} />
-          <Route path="/master-data/cuti-edit" element={<MasterDataCutiEdit />} />
+          <Route path="/master-data/cuti-edit/:id" element={<MasterDataCutiEdit />} />
           <Route path="/master-data/jabatan-view" element={<MasterDataJabatan />} />
           <Route path="/master-data/jabatan-form/add" element={<MasterDataJabatanForm />} />
           <Route path="/master-data/jabatan-edit/:id" element={<MasterDataJabatanEdit />} />
           <Route path="/master-data/karyawan-view" element={<MasterDataKaryawan />} />
-          <Route path="/master-data/karyawan-form/edit" element={<MasterDataKaryawanEdit />}/>
+          <Route path="/master-data/karyawan-form/edit/:id" element={<MasterDataKaryawanEdit />}/>
           <Route path="/master-data/karyawan-form/add" element={<MasterDataKaryawanForm />} />
           <Route path="/master-data/libur-view" element={<MasterDataLibur />} />
           <Route path="/master-data/libur-form/add" element={<MasterDataLiburForm />} />
-          <Route path="/master-data/libur-edit" element={<MasterDataLiburEdit />} />
+          <Route path="/master-data/libur-edit/:id" element={<MasterDataLiburEdit />} />
           <Route path="/master-data/permission-view" element={<MasterDataPermission />} />
           <Route path="/master-data/permission-form/add" element={<MasterDataPermissionForm />} />
-          <Route path="/master-data/permission-edit" element={<MasterDataPermissionEdit />} />
+          <Route path="/master-data/permission-edit/:id" element={<MasterDataPermissionEdit />} />
           <Route path="/master-data/project-view" element={<MasterDataProject/>} />
           <Route path="/master-data/project-form/add" element={<MasterDataProjectForm />} />
           <Route path="/parameter/general-view" element={<ParameterGeneral />} />

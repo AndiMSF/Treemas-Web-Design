@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-undef */
 import "./jabatanform.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';

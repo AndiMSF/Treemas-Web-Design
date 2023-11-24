@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import "./permissionedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom/dist";
+import { Link, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+// SweetAlert
+import Swal from 'sweetalert2'
 
 const MasterDataPermissionEdit = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +15,9 @@ const MasterDataPermissionEdit = () => {
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
     
+      // Data dari params
+      const { id } = useParams();
+
       // Check siapa yang akses
       useEffect(() => {
         const token = localStorage.getItem("authToken")
@@ -31,26 +37,45 @@ const MasterDataPermissionEdit = () => {
       const handleSubmit = async (e) => {
         e.preventDefault()
     
+        const token = localStorage.getItem("authToken");
+    
+        if (!token) {
+          console.error('Token is not available');
+          return navigate("/login");
+        }
+
         try {
           const requestData = {
             namaPermission: formData.namaPermission
           }
     
-          const response = await axios.post(
-            '',
+          const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-form/edit/${id}`, 
             requestData,
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
-              }
-            }
-          )
-          console.log('Response from API:', response.data);
-        } catch (error) {
-          console.log("Failed To Create Announcement "+error);
-        }
+                'Authorization': `Bearer ${token}`
+              },
+            });
+
+            Swal.fire({
+              title: "Success!",
+              text: "Jabatan Updated.",
+              icon: "success"
+            });
+            navigate("/master-data/permission-view");
+            console.log('Response from API:', response.data);
+          } catch (error) {
+            // Jika tidak berhasil, tampilkan pesan error
+            console.error('Failed to fetch data:');
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to update permission.",
+              icon: "error"
+            });
+          }
       }
+
 
       return (
         <div className="claim__container">
@@ -63,7 +88,7 @@ const MasterDataPermissionEdit = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Nama Permission</p>
+                <p>Nama Permission </p>
               </div>
               <div className="form__row__right">
                 <BoxInput placeholder="Nama Permission" value={formData.namaPermission} onChange={(e) => handleInputChange(e, 'namaPermission')}/>

@@ -2,13 +2,13 @@
 /* eslint-disable no-undef */
 import "./claim.css"
 import Navbar from "../../../components/Content/Navbar/Navbar"
-import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
-import { Link,useNavigate } from "react-router-dom"
 import DataTable from "react-data-table-component"
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
+import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 // SweetAlert
 import Swal from 'sweetalert2'
 
@@ -32,6 +32,7 @@ const MasterDataClaim = () => {
             const data = await response.json();
             if (data.status === 'Success') {
               setApiData(data.data);
+
             } else {
               setError('Failed to fetch data');
             }
@@ -50,7 +51,7 @@ const MasterDataClaim = () => {
         } else {
           navigate("/login");
         }
-      }, [navigate, apiData]);
+      }, [navigate]);
     
       if (isLoading) {
         return <div>Loading...</div>;
@@ -87,7 +88,7 @@ const MasterDataClaim = () => {
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.cutiId}`}
+                key={`delete-${d.claimiId}`}
                 onClick={() => handleDelete(d.claimId)}
                 className="fas fa-trash-alt"
               ></i>
@@ -104,6 +105,7 @@ const MasterDataClaim = () => {
     
       const handleClick = (id) => {
         console.log(`Edit button clicked for ID: ${id}`);
+        navigate(`/master-data/jabatan-edit/${id}`);
       };
     
       const handleDelete = (id) => {
@@ -172,16 +174,17 @@ const MasterDataClaim = () => {
       };
 
     return (
-        <div className="cuti__container">
+        <div className="claim__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Claim" />
+            <Link to="/master-data/claim-form/add" className="add__button">Tambah</Link>
             <div className="table__container">
                 <DataTableExtensions {...dataTable}>
                 <DataTable
                 columns={columns}
                 data={apiData}
                 noHeader
-                defaultSortField="cutiId"
+                defaultSortField="claimId"
                 sortIcon={<SortIcon />}
                 defaultSortAsc={true}
                 pagination

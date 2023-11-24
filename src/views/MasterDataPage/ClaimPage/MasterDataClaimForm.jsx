@@ -10,6 +10,8 @@ import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+// SweetAlert
+import Swal from 'sweetalert2'
 
 const MasterDataClaimForm = () => {
   const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
@@ -26,7 +28,7 @@ const MasterDataClaimForm = () => {
         const token = localStorage.getItem("authToken")
         if (token) {
           setIstoken(token)
-          
+          console.log('Token: '+token);
         }else{
           navigate("/login");
         }
@@ -39,7 +41,9 @@ const MasterDataClaimForm = () => {
     
       const handleSubmit = async (e) => {
         e.preventDefault()
-    
+        const token = localStorage.getItem("authToken");
+
+
         try {
           const requestData = {
             namaClaim: formData.namaClaim,
@@ -53,23 +57,25 @@ const MasterDataClaimForm = () => {
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
+                'Authorization': `Bearer ${token}`
               }
             }
           )
+          Swal.fire({
+            title: "Success!",
+            text: "Claim Added.",
+            icon: "success"
+          });
+          navigate("/master-data/claim-view");
           console.log('Response from API:', response.data);
-          // Display the alert
-          setShowAlert(true);
-
-          // Hide the alert after a few seconds (adjust the timeout as needed)
-          setTimeout(() => {
-            setShowAlert(false);
-            navigate("/master-data/claim-view", { state: { showAlert } });
-
-          }, 3000);
-          
         } catch (error) {
-          console.log("Failed To Create Announcement "+error);
+          // Jika tidak berhasil, tampilkan pesan error
+          console.error('Failed to fetch data:', data.message);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to add claim.",
+            icon: "error"
+          });
         }
       }
 

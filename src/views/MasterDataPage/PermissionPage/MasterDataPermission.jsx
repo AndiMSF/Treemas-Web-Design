@@ -32,6 +32,7 @@ const MasterDataPermission = () =>{
             const data = await response.json();
             if (data.status === 'Success') {
               setApiData(data.data);
+
             } else {
               setError('Failed to fetch data');
             }
@@ -50,7 +51,7 @@ const MasterDataPermission = () =>{
         } else {
           navigate("/login");
         }
-      }, [navigate, apiData]);
+      }, [navigate]);
     
       if (isLoading) {
         return <div>Loading...</div>;
@@ -99,6 +100,7 @@ const MasterDataPermission = () =>{
     
       const handleClick = (id) => {
         console.log(`Edit button clicked for ID: ${id}`);
+        navigate(`/master-data/permission-edit/${id}`);
       };
     
       const handleDelete = (id) => {
@@ -138,9 +140,9 @@ const MasterDataPermission = () =>{
                 text: "Your file has been deleted.",
                 icon: "success"
               });
-              // Refresh data setelah penghapusan jika diperlukan
-              fetchData();
-            } else {
+
+              setApiData((prevData) => prevData.filter(item => item.id !== id));
+            } else {            
               // Gagal dihapus
               Swal.fire({
                 title: "Error!",
@@ -171,6 +173,7 @@ const MasterDataPermission = () =>{
         <div className="permission__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Permission" />
+            <Link to="/master-data/permission-form/add" className="add__button">Tambah</Link>
             <div className="table__container">
                 <DataTableExtensions {...dataTable}>
                 <DataTable

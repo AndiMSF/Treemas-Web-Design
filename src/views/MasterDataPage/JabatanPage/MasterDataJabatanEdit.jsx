@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./jabatanedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
@@ -78,7 +79,7 @@ const MasterDataJabatanEdit = () => {
       }
 
       return (
-        <div className="claim__container">
+        <div className="jabatan__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
