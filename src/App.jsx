@@ -82,6 +82,7 @@ function App() {
         <Sidebar>
 
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/detail-data/absen-view" element={<DetaildataAbsen />} />
           <Route path="/detail-data/cutisakit-view" element={<DetaildataCutiSakit />} />

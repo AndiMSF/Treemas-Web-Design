@@ -12,7 +12,6 @@ import Alert from 'react-bootstrap/Alert';
 import Swal from 'sweetalert2'
 
 const MasterDataAnnouncementForm = () => {
-  const [showAlert, setShowAlert] = useState(false); 
   const [formData, setFormData] = useState({
     title: '',
     header: '',

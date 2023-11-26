@@ -64,7 +64,7 @@ const MasterDataClaim = () => {
       const columns = [
         {
           name: "ID",
-          selector: "namaClaim",
+          selector: (row) => row.namaClaim,
           sortable: true
         },
         {
@@ -74,7 +74,7 @@ const MasterDataClaim = () => {
         },
         {
             name: "Nominal",
-            selector: "valueClaim",
+            selector: (row) => row.valueClaim,
             sortable: true
         },
         {
@@ -83,13 +83,13 @@ const MasterDataClaim = () => {
           cell: (d) => (
             <>
               <i
-                key={`edit-${d.claimId}`}
-                onClick={() => handleClick(d.claimId)}
+                key={`edit-${d.idClaim}`}
+                onClick={() => handleClick(d.idClaim)}
                 className="first fas fa-pen"
               ></i>
               <i
                 key={`delete-${d.claimiId}`}
-                onClick={() => handleDelete(d.claimId)}
+                onClick={() => handleDelete(d.idClaim)}
                 className="fas fa-trash-alt"
               ></i>
             </>
@@ -105,7 +105,7 @@ const MasterDataClaim = () => {
     
       const handleClick = (id) => {
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/jabatan-edit/${id}`);
+        navigate(`/master-data/claim-edit/${id}`);
       };
     
       const handleDelete = (id) => {
@@ -145,8 +145,7 @@ const MasterDataClaim = () => {
                 text: "Your file has been deleted.",
                 icon: "success"
               });
-              // Refresh data setelah penghapusan jika diperlukan
-              fetchData();
+              setApiData((prevData) => prevData.filter(item => item.idClaim !== id));
             } else {
               // Gagal dihapus
               Swal.fire({
@@ -164,11 +163,6 @@ const MasterDataClaim = () => {
               icon: "error"
             });
           }
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
             }
         });
       };
@@ -184,7 +178,7 @@ const MasterDataClaim = () => {
                 columns={columns}
                 data={apiData}
                 noHeader
-                defaultSortField="claimId"
+                defaultSortField="idClaim"
                 sortIcon={<SortIcon />}
                 defaultSortAsc={true}
                 pagination

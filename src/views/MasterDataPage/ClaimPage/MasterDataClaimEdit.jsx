@@ -7,11 +7,12 @@ import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 // SweetAlert
 import Swal from 'sweetalert2'
+import { Form, InputGroup } from "react-bootstrap";
 
 const MasterDataClaimEdit = () => {
     const [formData, setFormData] = useState({
-        id: '',
-        nominal: '',
+        namaClaim: '',
+        valueClaim: '',
         keterangan: ''
       })
       const navigate = useNavigate();
@@ -48,8 +49,8 @@ const MasterDataClaimEdit = () => {
 
         try {
           const requestData = {
-            id: formData.id,
-            nominal: formData.nominal,
+            namaClaim: formData.namaClaim,
+            valueClaim: formData.valueClaim,
             keterangan: formData.keterangan
           }
     
@@ -94,7 +95,7 @@ const MasterDataClaimEdit = () => {
                 <p>ID</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'id')}/>
+                <BoxInput placeholder="ID" value={formData.namaClaim} onChange={(e) => handleInputChange(e, 'namaClaim')}/>
               </div>
             </div>
             <div className="form__row">
@@ -102,7 +103,16 @@ const MasterDataClaimEdit = () => {
                 <p>Nominal</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Nominal" value={formData.nominal} onChange={(e) => handleInputChange(e, 'nominal')}/>
+                <InputGroup>
+                <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
+                <Form.Control
+                  placeholder="Nominal"
+                  aria-label="Jumlah"
+                  aria-describedby="basic-addon1"
+                  value={formData.valueClaim} 
+                  onChange={(e) => handleInputChange(e, 'valueClaim')}
+                />
+                </InputGroup>
               </div>
             </div>
             <div className="form__row">

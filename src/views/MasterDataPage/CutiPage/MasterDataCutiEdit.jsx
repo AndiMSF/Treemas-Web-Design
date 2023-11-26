@@ -1,18 +1,22 @@
+/* eslint-disable no-unused-vars */
 import "./cutiedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom/dist";
+import { Link, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
+import Swal from "sweetalert2";
 
 const MasterDataCutiEdit = () => {
     const [formData, setFormData] = useState({
         id: '',
-        jumlah: '',
-        keterangan: ''
+        value: '',
+        cutiDesc: ''
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
+
+      const { id } = useParams();
     
       // Check siapa yang akses
       useEffect(() => {
@@ -32,28 +36,46 @@ const MasterDataCutiEdit = () => {
     
       const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const token = localStorage.getItem("authToken");
+
+          if (!token) {
+            console.error('Token is not available');
+            return navigate("/login");
+          }
     
         try {
           const requestData = {
             id: formData.id,
-            jumlah: formData.jumlah,
-            keterangan: formData.keterangan
+            value: formData.value,
+            cutiDesc: formData.cutiDesc
           }
     
-          const response = await axios.post(
-            '',
+          const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/cuti-form/edit/${id}`, 
             requestData,
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
-              }
-            }
-          )
-          console.log('Response from API:', response.data);
-        } catch (error) {
-          console.log("Failed To Create Announcement "+error);
-        }
+                'Authorization': `Bearer ${token}`
+              },
+            });
+    
+            Swal.fire({
+              title: "Success!",
+              text: "Cuti Updated.",
+              icon: "success"
+            });
+            navigate("/master-data/cuti-view");
+            console.log('Response from API:', response.data);
+          } catch (error) {
+            // Jika tidak berhasil, tampilkan pesan error
+            console.error('Failed to fetch data:');
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to update cuti.",
+              icon: "error"
+            });
+          }
       }
 
       return (
@@ -78,7 +100,7 @@ const MasterDataCutiEdit = () => {
                 <p>Jumlah</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Jumlah" value={formData.jumlah} onChange={(e) => handleInputChange(e, 'jumlah')}/>
+                <BoxInput placeholder="Jumlah" value={formData.value} onChange={(e) => handleInputChange(e, 'value')}/>
               </div>
             </div>
             <div className="form__row">
@@ -86,7 +108,7 @@ const MasterDataCutiEdit = () => {
                 <p>Keterangan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
+                <BoxInput placeholder="Keterangan" value={formData.cutiDesc} onChange={(e) => handleInputChange(e, 'cutiDesc')}/>
               </div>
             </div> 
             <div className="form__row__bottom">

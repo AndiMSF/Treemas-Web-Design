@@ -14,7 +14,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Swal from 'sweetalert2'
 
 const MasterDataClaimForm = () => {
-  const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
     const [formData, setFormData] = useState({
         namaClaim: '',
         valueClaim: '',
@@ -82,12 +81,6 @@ const MasterDataClaimForm = () => {
       return (
         <div className="claim__container">
             <div className="content__container">
-               {/* Display the alert if showAlert is true */}
-               {showAlert && (
-                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-                        <Alert.Heading>Claim Created</Alert.Heading>
-                      </Alert>
-                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Claim Form</h1>
@@ -107,14 +100,16 @@ const MasterDataClaimForm = () => {
                 <p>Nominal <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-              <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
-              <Form.Control
-                placeholder="Jumlah"
-                aria-label="Jumlah"
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
+              <InputGroup>
+                <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
+                <Form.Control
+                  placeholder="Nominal"
+                  aria-label="Jumlah"
+                  aria-describedby="basic-addon1"
+                  value={formData.valueClaim} 
+                  onChange={(e) => handleInputChange(e, 'valueClaim')}
+                />
+                </InputGroup>
               </div>
             </div>
             <div className="form__row">

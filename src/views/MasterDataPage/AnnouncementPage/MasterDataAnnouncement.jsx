@@ -151,7 +151,7 @@ const MasterDataAnnouncement = () => {
                 icon: "success"
               });
               // Perbarui state lokal setelah penghapusan
-              setApiData((prevData) => prevData.filter(item => item.title !== id));
+              setApiData((prevData) => prevData.filter(item => item.id !== id));
             } else {
               // Gagal dihapus
               Swal.fire({
@@ -169,11 +169,6 @@ const MasterDataAnnouncement = () => {
               icon: "error"
             });
           }
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
             }
         });
       };

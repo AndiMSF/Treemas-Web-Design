@@ -51,7 +51,7 @@ const MasterDataCuti = () => {
         } else {
           navigate("/login");
         }
-      }, [navigate, apiData]);
+      }, [navigate]);
     
       if (isLoading) {
         return <div>Loading...</div>;
@@ -64,7 +64,7 @@ const MasterDataCuti = () => {
       const columns = [
         {
           name: "ID",
-          selector: "id",
+          selector: (row) => row.id,
           sortable: true
         },
         {
@@ -74,7 +74,7 @@ const MasterDataCuti = () => {
         },
         {
             name: "Jumlah",
-            selector: "value",
+            selector: (row) => row.value,
             sortable: true
         },
         {
@@ -83,13 +83,13 @@ const MasterDataCuti = () => {
           cell: (d) => (
             <>
               <i
-                key={`edit-${d.cutiId}`}
-                onClick={() => handleClick(d.cutiId)}
+                key={`edit-${d.id}`}
+                onClick={() => handleClick(d.id)}
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.cutiId}`}
-                onClick={() => handleDelete(d.cutiId)}
+                key={`delete-${d.id}`}
+                onClick={() => handleDelete(d.id)}
                 className="fas fa-trash-alt"
               ></i>
             </>
@@ -105,6 +105,7 @@ const MasterDataCuti = () => {
     
       const handleClick = (id) => {
         console.log(`Edit button clicked for ID: ${id}`);
+        navigate(`/master-data/cuti-edit/${id}`);
       };
     
       const handleDelete = (id) => {
@@ -144,8 +145,7 @@ const MasterDataCuti = () => {
                 text: "Your file has been deleted.",
                 icon: "success"
               });
-              // Refresh data setelah penghapusan jika diperlukan
-              fetchData();
+              setApiData((prevData) => prevData.filter(item => item.id !== id));
             } else {
               // Gagal dihapus
               Swal.fire({
@@ -163,11 +163,6 @@ const MasterDataCuti = () => {
               icon: "error"
             });
           }
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
             }
         });
       };
@@ -176,13 +171,14 @@ const MasterDataCuti = () => {
       <div className="cuti__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Cuti" />
+            <Link to="/master-data/cuti-form/add" className="add__button">Tambah</Link>
             <div className="table__container">
                 <DataTableExtensions {...dataTable}>
                 <DataTable
                 columns={columns}
                 data={apiData}
                 noHeader
-                defaultSortField="cutiId"
+                defaultSortField="id"
                 sortIcon={<SortIcon />}
                 defaultSortAsc={true}
                 pagination

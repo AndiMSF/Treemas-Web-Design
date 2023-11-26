@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./karyawan.css"
 import Information from "../../../components/Content/Information/Information"
 import Navbar from "../../../components/Content/Navbar/Navbar"

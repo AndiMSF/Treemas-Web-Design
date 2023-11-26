@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-undef */
 import "./cutiform.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
@@ -5,12 +7,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
-import { Alert } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Swal from "sweetalert2";
 
 const MasterDataCutiForm = () => {
-  const [showAlert, setShowAlert] = useState(false)
     const [formData, setFormData] = useState({
         id: '',
         value: '',
@@ -38,7 +39,9 @@ const MasterDataCutiForm = () => {
     
       const handleSubmit = async (e) => {
         e.preventDefault()
-    
+        const token = localStorage.getItem("authToken");
+
+
         try {
           const requestData = {
             id: formData.id,
@@ -52,32 +55,31 @@ const MasterDataCutiForm = () => {
             {
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer '+isToken
+                'Authorization': `Bearer ${token}`
               }
             }
           )
+          Swal.fire({
+            title: "Success!",
+            text: "Cuti Added.",
+            icon: "success"
+          });
+          navigate("/master-data/cuti-view");
           console.log('Response from API:', response.data);
-          setShowAlert(true);
-
-          setTimeout(() => {
-            setShowAlert(false);
-            navigate("/master-data/cuti-view", { state: { showAlert } });
-          },3000);
-
         } catch (error) {
-          console.log("Failed To Create Announcement "+error);
+          // Jika tidak berhasil, tampilkan pesan error
+          console.error('Failed to fetch data:', data.message);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to add claim.",
+            icon: "error"
+          });
         }
       }
 
       return (
         <div className="claim__container">
             <div className="content__container">
-               {/* Display the alert if showAlert is true */}
-               {showAlert && (
-                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-                        <Alert.Heading>Cuti Created</Alert.Heading>
-                      </Alert>
-                    )}
                 <div className="form__container">
                     <div className="form__container__top">
                         <h1>Cuti Form</h1>
@@ -97,11 +99,13 @@ const MasterDataCutiForm = () => {
                 <p>Jumlah <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-              <InputGroup className="mb-3">
+              <InputGroup>
               <Form.Control
                 placeholder="Jumlah"
                 aria-label="Jumlah"
                 aria-describedby="basic-addon2"
+                value={formData.value} 
+                onChange={(e) => handleInputChange(e, 'value')}
               />
               <InputGroup.Text id="basic-addon2">Hari</InputGroup.Text>
             </InputGroup>
