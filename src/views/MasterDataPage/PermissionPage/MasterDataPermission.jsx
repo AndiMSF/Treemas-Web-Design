@@ -64,7 +64,7 @@ const MasterDataPermission = () =>{
       const columns = [
         {
           name: "ID",
-          selector: "id",
+          selector: (row) => row.id,
           sortable: true
         },
         {
@@ -99,8 +99,9 @@ const MasterDataPermission = () =>{
     
     
       const handleClick = (id) => {
+        const selectedPermission = apiData.find((permission) => permission.id === id);
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/permission-edit/${id}`);
+        navigate(`/master-data/permission-edit/${id}`, {state: {selectedPermission}});
       };
     
       const handleDelete = (id) => {

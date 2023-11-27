@@ -169,7 +169,7 @@ const MasterDataClaim = () => {
       };
 
     return (
-        <div className="claim__container">
+      <div className="claim__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Claim" />
             <Link to="/master-data/claim-form/add" className="add__button">Tambah</Link>
@@ -189,7 +189,7 @@ const MasterDataClaim = () => {
                 </DataTableExtensions>
             </div>
 
-            </div>
+          </div>
     </div>
     )
 }

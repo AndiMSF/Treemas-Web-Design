@@ -33,6 +33,7 @@ const MasterDataCuti = () => {
             const data = await response.json();
             if (data.status === 'Success') {
               setApiData(data.data);
+
             } else {
               setError('Failed to fetch data');
             }
@@ -104,8 +105,9 @@ const MasterDataCuti = () => {
     
     
       const handleClick = (id) => {
+        const selectedCuti = apiData.find((cuti) => cuti.id === id);
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/cuti-edit/${id}`);
+        navigate(`/master-data/cuti-edit/${id}`, {state: {selectedCuti}});
       };
     
       const handleDelete = (id) => {

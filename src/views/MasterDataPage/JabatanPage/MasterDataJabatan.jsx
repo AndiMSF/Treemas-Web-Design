@@ -101,8 +101,9 @@ const MasterDataJabatan = () => {
 
 
   const handleClick = (id) => {
+    const selectedJabatan = apiData.find((jabatan) => jabatan.jabatanId === id);
     console.log(`Edit button clicked for ID: ${id}`);
-    navigate(`/master-data/jabatan-edit/${id}`);
+    navigate(`/master-data/jabatan-edit/${id}`, {state: {selectedJabatan}});
   };
 
   const handleDelete = (id) => {

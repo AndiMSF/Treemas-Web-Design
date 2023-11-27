@@ -1,17 +1,14 @@
 /* eslint-disable no-unused-vars */
 import "./permissionedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom/dist";
+import { useEffect,  useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 // SweetAlert
 import Swal from 'sweetalert2'
 
 const MasterDataPermissionEdit = () => {
-    const [formData, setFormData] = useState({
-        namaPermission: ''
-      })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
     
@@ -76,9 +73,12 @@ const MasterDataPermissionEdit = () => {
           }
       }
 
+      const { state: { selectedPermission } } = useLocation();
+      const initialFormData = selectedPermission || { namaPermission: ''};
+      const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="claim__container">
+        <div className="permission__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">

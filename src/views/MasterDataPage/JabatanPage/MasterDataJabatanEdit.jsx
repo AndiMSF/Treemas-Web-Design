@@ -2,17 +2,14 @@
 import "./jabatanedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom/dist";
+import { Link,useLocation, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 // SweetAlert
 import Swal from 'sweetalert2'
 
+
 const MasterDataJabatanEdit = () => {
-    const [formData, setFormData] = useState({
-      jabatanId: '',
-        namaJabatan: ''
-      })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
 
@@ -21,7 +18,7 @@ const MasterDataJabatanEdit = () => {
     
       // Check siapa yang akses
       useEffect(() => {
-        const token = localStorage.getItem("authToken")
+        const token = localStorage.getItem("authToken")        
         if (token) {
           setIstoken(token)
           console.log('Token: '+token);
@@ -77,6 +74,10 @@ const MasterDataJabatanEdit = () => {
             });
           }
       }
+
+      const { state: { selectedJabatan } } = useLocation();
+      const initialFormData = selectedJabatan || { jabatanId: '', namaJabatan: '' };
+      const [formData, setFormData] = useState(initialFormData);
 
       return (
         <div className="jabatan__container">

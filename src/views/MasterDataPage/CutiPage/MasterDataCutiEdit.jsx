@@ -2,17 +2,13 @@
 import "./cutiedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom/dist";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Swal from "sweetalert2";
+import {Form, InputGroup} from "react-bootstrap";
 
 const MasterDataCutiEdit = () => {
-    const [formData, setFormData] = useState({
-        id: '',
-        value: '',
-        cutiDesc: ''
-      })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
 
@@ -78,8 +74,12 @@ const MasterDataCutiEdit = () => {
           }
       }
 
+      const { state: { selectedCuti } } = useLocation();
+      const initialFormData = selectedCuti || { id: '', cutiDesc: '', value: '' };
+      const [formData, setFormData] = useState(initialFormData);
+
       return (
-        <div className="claim__container">
+        <div className="cuti__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -100,7 +100,16 @@ const MasterDataCutiEdit = () => {
                 <p>Jumlah</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Jumlah" value={formData.value} onChange={(e) => handleInputChange(e, 'value')}/>
+              <InputGroup>
+              <Form.Control
+                placeholder="Jumlah"
+                aria-label="Jumlah"
+                aria-describedby="basic-addon2"
+                value={formData.value} 
+                onChange={(e) => handleInputChange(e, 'value')}
+              />
+              <InputGroup.Text id="basic-addon2">Hari</InputGroup.Text>
+            </InputGroup>
               </div>
             </div>
             <div className="form__row">
