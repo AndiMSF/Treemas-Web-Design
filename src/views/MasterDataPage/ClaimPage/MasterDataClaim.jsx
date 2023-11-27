@@ -104,8 +104,9 @@ const MasterDataClaim = () => {
     
     
       const handleClick = (id) => {
+        const selectedClaim = apiData.find((claim) => claim.idClaim === id);
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/claim-edit/${id}`);
+        navigate(`/master-data/claim-edit/${id}`, {state: {selectedClaim}});
       };
     
       const handleDelete = (id) => {

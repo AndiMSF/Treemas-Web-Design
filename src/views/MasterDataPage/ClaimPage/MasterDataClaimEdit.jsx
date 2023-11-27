@@ -2,7 +2,7 @@
 import "./claimedit.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom/dist";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 // SweetAlert
@@ -10,11 +10,6 @@ import Swal from 'sweetalert2'
 import { Form, InputGroup } from "react-bootstrap";
 
 const MasterDataClaimEdit = () => {
-    const [formData, setFormData] = useState({
-        namaClaim: '',
-        valueClaim: '',
-        keterangan: ''
-      })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
   
@@ -80,6 +75,12 @@ const MasterDataClaimEdit = () => {
             });
           }
       }
+
+      // Data sebelumnya
+      const { state: { selectedClaim } } = useLocation();
+      const initialFormData = selectedClaim || { namaClaim: '', keterangan: '', valueClaim: '' };
+      const [formData, setFormData] = useState(initialFormData);
+
 
       return (
         <div className="claim__container">
