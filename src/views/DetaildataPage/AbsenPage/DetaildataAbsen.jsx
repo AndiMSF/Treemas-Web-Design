@@ -6,13 +6,20 @@ import Navbar from "../../../components/Content/Navbar/Navbar"
 import Button from "../../../components/Elements/Buttons/Button"
 import DropdownMenu from "../../../components/Elements/DropdownMenu/DropdownMenu"
 import { useState, useEffect } from "react"
+import DataTable from "react-data-table-component";
+import SortIcon from "@material-ui/icons/ArrowDownward";
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
+import { useNavigate } from "react-router-dom/dist";
 
 const DetaildataAbsen = () => {
+    const navigate = useNavigate();
     const [status, setStatus] = useState("Pilih Status")
     const [jam, setJam] = useState("Pilih Total Jam")
-    const infoTopFields = ["NIK", "Nama Karyawan", "Tanggal", "Project", "Lokasi Masuk", "Jam Masuk", "Lokasi Pulang", "Jam Pulang", "Catatan Terlambat", "Total Jam Kerja"]
     const [isToken, setIstoken] = useState('')
-
+    const [apiData, setApiData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleStatus = (selectedItem) => {
         setStatus(selectedItem)
@@ -23,14 +30,106 @@ const DetaildataAbsen = () => {
     }
 
     useEffect(() => {
-        const token = localStorage.getItem("authToken")
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/absen-view', {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              setApiData(data.data);
+              
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          } finally {
+            setIsLoading(false);
+          }
+        };
+    
+        const token = localStorage.getItem("authToken");
         if (token) {
-          setIstoken(token)
-          console.log('login sukses');
-        }else{
-          window.location.href = '/login';
+          setIstoken(token);
+          fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+          console.log('Token: ' + token);
+        } else {
+          navigate("/login");
         }
-      }, [])
+      }, [navigate]);
+
+      if (isLoading) {
+        return <div>Loading...</div>;
+      }
+    
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+    
+      const columns = [
+        {
+          name: "NIK",
+          selector: (row) => row.nik,
+          sortable: true
+        },
+        {
+            name: "Nama Karyawan",
+            selector: (row) => row.namaKaryawan,
+            sortable: true
+          },
+          {
+            name: "Tanggal",
+            selector: (row) => row.tanggal,
+            sortable: true
+          },
+        {
+          name: "Project",
+          selector: (row) => row.projectId,
+          sortable: true
+        },
+        {
+            name: "Lokasi Masuk",
+            selector: (row) => row.lokasiMasuk,
+            sortable: true
+        },
+        {
+            name: "Jam Masuk",
+            selector: (row) => row.jamMasuk,
+            sortable: true
+        },
+        {
+            name: "Lokasi Pulang",
+            selector: (row) => row.lokasiPulang,
+            sortable: true
+        },
+        {
+            name: "Jam Pulang",
+            selector: (row) => row.jamPulang,
+            sortable: true
+        },
+        {
+            name: "Catatan Terlambat",
+            selector: (row) => row.catatanTerlambat,
+            sortable: true
+        },
+        {
+            name: "Total Jam Kerja",
+            selector: (row) => row.totalJamKerja,
+            sortable: true
+        }
+      ];
+    
+      const dataTable = {
+        columns,
+        data: apiData
+      };
+    
+    
 
 
     return (<div className="absen__container">
@@ -49,7 +148,21 @@ const DetaildataAbsen = () => {
                         <Button text="Tambah" className="add__button" />
                     </div>
                 </div>
-            <Information informationText="Absen" showDropdown={false} fields={infoTopFields}/>
+                <div className="table__container">
+                    <DataTableExtensions {...dataTable}>
+                        <DataTable
+                        columns={columns}
+                        data={apiData}
+                        noHeader
+                        defaultSortField="NIK"
+                        sortIcon={<SortIcon />}
+                        defaultSortAsc={true}
+                        pagination
+                        highlightOnHover
+                        dense
+                        />
+                    </DataTableExtensions>
+                </div>
         </div>
     </div>
     )

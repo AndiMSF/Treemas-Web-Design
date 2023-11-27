@@ -173,7 +173,6 @@ const MasterDataAnnouncement = () => {
         });
       };
     
-
       return (
         <div className="announcement__container">
           <div className="content__container">
