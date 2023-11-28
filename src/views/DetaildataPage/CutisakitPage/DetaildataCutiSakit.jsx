@@ -61,10 +61,29 @@ const DetaildataCutiSakit = (props) => {
         }
         const data = await response.json();
         if (data.status === 'Success') {
+          // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
             if (dropdownItems === "Cuti") {
-                setApiData(data.data.setujuAtauTolak);
+               // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
+                let combinedData = data.data.setujuAtauTolak.concat(data.data.menunggu);
+                console.log(combinedData);
+                // Mengganti nilai isApproved menjadi string yang sesuai
+                combinedData = combinedData.map(item => ({
+                    ...item,
+                    status: item.isApproved === "1" ? "Disetujui" : item.isApproved === "0" ? "Ditolak" : "Menunggu",
+                }));
+
+                setApiData(combinedData);
               } else if (dropdownItems === "Sakit") {
-                setApiData(data.data.menunggu);
+              // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
+              let combinedData = data.data.setujuAtauTolak.concat(data.data.menunggu);
+                console.log(combinedData);              
+              // Mengganti nilai isApproved menjadi string yang sesuai
+              combinedData = combinedData.map(item => ({
+                  ...item,
+                  status: item.isApproved === "1" ? "Disetujui" : item.isApproved === "0" ? "Ditolak" : "Menunggu",
+              }));
+
+              setApiData(combinedData);
               }
             } else {
               setError("Failed to fetch data");
