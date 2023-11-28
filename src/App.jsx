@@ -43,7 +43,7 @@ import MasterDataPermissionEdit from './views/MasterDataPage/PermissionPage/Mast
 import MasterDataProject from './views/MasterDataPage/ProjectPage/MasterDataProject'
 import MasterDataProjectForm from './views/MasterDataPage/ProjectPage/MasterDataProjectForm'
 import ParameterGeneral from './views/ParameterPage/GeneralPage/ParameterGeneral'
-import ParameterGeneralForm from './views/ParameterPage/GeneralPage/ParameterGeneralForm'
+import ParameterGeneralEdit from './views/ParameterPage/GeneralPage/ParameterGeneralEdit'
 import ParameterReimburse from './views/ParameterPage/ReimbursePage/ParameterReimburse'
 import ParameterReimburseForm from './views/ParameterPage/ReimbursePage/ParameterReimburseForm'
 import ReportDataClaim from './views/ReportDataPage/ClaimPage/ReportDataClaim'
@@ -117,7 +117,7 @@ function App() {
           <Route path="/master-data/project-view" element={<MasterDataProject/>} />
           <Route path="/master-data/project-form/add" element={<MasterDataProjectForm />} />
           <Route path="/parameter/general-view" element={<ParameterGeneral />} />
-          <Route path="/parameter/general-form/edit" element={<ParameterGeneralForm />} />
+          <Route path="/parameter/general-form/edit/:id" element={<ParameterGeneralEdit />} />
           <Route path="/parameter/reimburse-view" element={<ParameterReimburse />} />
           <Route path="/parameter/reimburse-form/edit" element={<ParameterReimburseForm />} />
           <Route path="/report-data/claim" element={<ReportDataClaim />} />
