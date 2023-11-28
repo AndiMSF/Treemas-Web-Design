@@ -65,7 +65,7 @@ function App() {
     const currentPath = window.location.pathname;
     setIsPath(currentPath)
     console.log(isPath);
-  }, [setIsPath, isPath])
+  }, [setIsPath])
 
 
   return (

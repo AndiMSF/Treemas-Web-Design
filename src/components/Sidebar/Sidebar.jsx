@@ -210,9 +210,9 @@ const Sidebar = ({children}) => {
                     <li className={isParent.reportData ? "color" : "non_color"} onClick={() => handleDropdown("reportData")}><div className={isParent.reportData ? "active" : "non_active"}></div><p>Report Data</p><i className={isParent.reportData? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/></li>
                     {isParent.reportData && (
                         <>
-                            <DropdownMenu onClick={() => handleClick("reportData","claimR")} link="/ReportData/claim" text="Claim" isActive={itemsState.reportData.claimR}/>
-                            <DropdownMenu onClick={() => handleClick("reportData","detail")} link="/ReportData/detail" text="Detail" isActive={itemsState.reportData.detail}/>
-                            <DropdownMenu onClick={() => handleClick("reportData","summary")} link="/ReportData/summary" text="Summary" isActive={itemsState.reportData.summary}/>
+                            <DropdownMenu onClick={() => handleClick("reportData","claimR")} link="/report-data/claim" text="Claim" isActive={itemsState.reportData.claimR}/>
+                            <DropdownMenu onClick={() => handleClick("reportData","detail")} link="/report-data/detail" text="Detail" isActive={itemsState.reportData.detail}/>
+                            <DropdownMenu onClick={() => handleClick("reportData","summary")} link="/report-data/summary" text="Summary" isActive={itemsState.reportData.summary}/>
                         </>
                     )}
 

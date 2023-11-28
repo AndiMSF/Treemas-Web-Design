@@ -18,7 +18,6 @@ const DetaildataAbsen = () => {
     const [jam, setJam] = useState("Pilih Total Jam")
     const [isToken, setIstoken] = useState('')
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const handleStatus = (selectedItem) => {
@@ -39,7 +38,12 @@ const DetaildataAbsen = () => {
               'Authorization': `Bearer ${token}`, // Sertakan token di sini
             },
           });
+          // Tambahkan penanganan kesalahan di sini
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
             const data = await response.json();
+            console.log(data);
             if (data.status === 'Success') {
               setApiData(data.data);
               
@@ -47,9 +51,22 @@ const DetaildataAbsen = () => {
               setError('Failed to fetch data');
             }
           } catch (error) {
-            setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
+            if (error.message.includes('HTTP error!')) {
+              const statusCode = parseInt(error.message.split(' ').pop());
+              console.log("Status Code:", statusCode);
+          
+              if (statusCode === 401) {
+                console.log("Masuk 401");
+                // Token expired, remove token from local storage and redirect to login
+                localStorage.removeItem("authToken");
+              } else {
+                console.log("Gak Masuk 401");
+                setError(`Error fetching data: ${error.message}`);
+              }
+            } else {
+              console.log("Gak Masuk 401");
+              setError(`Error fetching data: ${error.message}`);
+            }
           }
         };
     
@@ -63,10 +80,6 @@ const DetaildataAbsen = () => {
         }
       }, [navigate]);
 
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
-    
       if (error) {
         return <div>Error: {error}</div>;
       }
@@ -137,9 +150,6 @@ const DetaildataAbsen = () => {
             <Navbar navbarText="Detail Data / Absen" />
                 <div className="input__container">
                     <div className="left__container__input">
-                        <BoxInput placeholder="Tanggal"/>
-                        <BoxInput placeholder="NIK"/>
-                        <BoxInput placeholder="Nama"/>
                         <DropdownMenu onDropdownChange={handleStatus} items={["Cuti", "Other", "Sakit", "WFH"]} title={status} />
                         <DropdownMenu onDropdownChange={handleJam} items={["Lembur", "Tidak Lembur"]} title={jam}/>
                         <DropdownMenu title="Pilih Project"/>
