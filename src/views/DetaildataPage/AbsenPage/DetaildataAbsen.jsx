@@ -19,14 +19,37 @@ const DetaildataAbsen = () => {
     const [isToken, setIstoken] = useState('')
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
+    const [filteredData, setFilteredData] = useState([]);
 
     const handleStatus = (selectedItem) => {
         setStatus(selectedItem)
+        filterData(selectedItem, jam);
     }
 
     const handleJam = (selectedItem) => {
         setJam(selectedItem)
+        filterData(status, selectedItem);
     }
+
+    const filterData = (status, jam) => {
+      const filtered = apiData.filter(item => {
+        return (
+          // Filter berdasarkan kondisi status
+          (status === "Pilih Status" || 
+            (status === "Cuti" && item.isCuti === "1") ||
+            (status === "Other" && item.isOther === "1") ||
+            (status === "Sakit" && item.isSakit === "1") ||
+            (status === "WFH" && item.isWfh === "1")
+          ) &&
+          // Filter berdasarkan kondisi jam
+          (jam === "Pilih Total Jam" || (jam === "Lembur" && item.isLembur === "1") || (jam === "Tidak Lembur" && (item.isLembur === null || item.isLembur === "0")))
+          // Tambahkan kondisi lain jika diperlukan
+        );
+      });
+    
+      setFilteredData(filtered);
+    }
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,7 +69,7 @@ const DetaildataAbsen = () => {
             console.log(data);
             if (data.status === 'Success') {
               setApiData(data.data);
-              
+              setFilteredData(data.data);
             } else {
               setError('Failed to fetch data');
             }
@@ -139,7 +162,7 @@ const DetaildataAbsen = () => {
     
       const dataTable = {
         columns,
-        data: apiData
+        data: filteredData
       };
     
     
@@ -162,7 +185,7 @@ const DetaildataAbsen = () => {
                     <DataTableExtensions {...dataTable}>
                         <DataTable
                         columns={columns}
-                        data={apiData}
+                        data={filteredData}
                         noHeader
                         defaultSortField="NIK"
                         sortIcon={<SortIcon />}
