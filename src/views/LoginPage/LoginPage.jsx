@@ -8,6 +8,7 @@ import { useState } from "react"
 import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Swal from "sweetalert2"
 
 
 const LoginPage = () => {
@@ -29,7 +30,7 @@ const LoginPage = () => {
                 'Content-Type' : 'application/json',
             },
           });
-
+          
           if (response.status === 200) {
               
               // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
@@ -41,11 +42,23 @@ const LoginPage = () => {
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
-            console.error('Gagal masuk:', response);
+            // Jika tidak berhasil, tampilkan pesan error
+
+            Swal.fire({
+              title: "Error!",
+              text: "Failed to login.",
+              icon: "error"
+            });
           }
         } catch (error) {
           // Tangani kesalahan jaringan atau kesalahan server
-          console.error('Terjadi kesalahan:', error);
+          // Jika tidak berhasil, tampilkan pesan error
+          console.error('Failed to fetch data:');
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to login.",
+            icon: "error"
+          });
         }
       };
     

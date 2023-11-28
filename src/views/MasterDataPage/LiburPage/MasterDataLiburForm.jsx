@@ -6,14 +6,14 @@ import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
 
+        
 const MasterDataLiburForm = () => {
   const [showAlert, setShowAlert] = useState(false);
     const [formData, setFormData] = useState({
         tglLibur: '',
         keterangan: ''
       })
-      const [cutiBersama, setCutiBersama] = useState(false); // State untuk checkbox Cuti Bersama
-
+      const [cutiBersama, setCutiBersama] = useState(false); // State untuk checkbox Cuti Bersama  
 
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -67,7 +67,7 @@ const MasterDataLiburForm = () => {
       }
 
       return (
-        <div className="claim__container">
+        <div className="libur__container">
             <div className="content__container">
                {/* Display the alert if showAlert is true */}
                {showAlert && (
@@ -83,10 +83,10 @@ const MasterDataLiburForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Tanggal Libur <span style={{ color: 'red' }}>*</span></p>
+                <p>Tanggal Libur<span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Tanggal Libur" value={formData.tglLibur} onChange={(e) => handleInputChange(e, 'tglLibur')}/>
+              <BoxInput placeholder="Tanggal Libur" value={formData.idLibur} onChange={(e) => handleInputChange(e, 'idLibur')}/>
               </div>
             </div>
             <div className="form__row">
