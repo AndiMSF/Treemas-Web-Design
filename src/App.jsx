@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import {
   BrowserRouter,
@@ -45,7 +46,7 @@ import MasterDataProjectForm from './views/MasterDataPage/ProjectPage/MasterData
 import ParameterGeneral from './views/ParameterPage/GeneralPage/ParameterGeneral'
 import ParameterGeneralEdit from './views/ParameterPage/GeneralPage/ParameterGeneralEdit'
 import ParameterReimburse from './views/ParameterPage/ReimbursePage/ParameterReimburse'
-import ParameterReimburseForm from './views/ParameterPage/ReimbursePage/ParameterReimburseForm'
+import ParameterReimburseEdit from './views/ParameterPage/ReimbursePage/ParameterReimburseEdit'
 import ReportDataClaim from './views/ReportDataPage/ClaimPage/ReportDataClaim'
 import ReportDataDetail from './views/ReportDataPage/DetailPage/ReportDataDetail'
 import ReportDataSummary from './views/ReportDataPage/SummaryPage/ReportDataSummary'
@@ -119,7 +120,7 @@ function App() {
           <Route path="/parameter/general-view" element={<ParameterGeneral />} />
           <Route path="/parameter/general-form/edit/:id" element={<ParameterGeneralEdit />} />
           <Route path="/parameter/reimburse-view" element={<ParameterReimburse />} />
-          <Route path="/parameter/reimburse-form/edit" element={<ParameterReimburseForm />} />
+          <Route path="/parameter/reimburse-form/edit/:id" element={<ParameterReimburseEdit />} />
           <Route path="/report-data/claim" element={<ReportDataClaim />} />
           <Route path="/report-data/detail" element={<ReportDataDetail />} />
           <Route path="/report-data/summary" element={<ReportDataSummary />} />

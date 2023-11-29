@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import "./generalform.css"
+import "./generaledit.css"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import TextArea from "../../../components/Elements/TextArea/TextArea"
 import Button from "../../../components/Elements/Buttons/Button"
