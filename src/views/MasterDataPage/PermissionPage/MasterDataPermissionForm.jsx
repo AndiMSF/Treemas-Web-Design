@@ -49,7 +49,7 @@ const MasterDataPermissionForm = () => {
           }
     
           const response = await axios.post(
-            'https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-form/add',
+            'https://treemas-api-405402.et.r.appspot.com/api/master-data/permission-form/add',
             requestData,
             {
               headers: {

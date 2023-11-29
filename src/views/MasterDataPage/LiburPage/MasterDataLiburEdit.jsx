@@ -42,7 +42,7 @@ const MasterDataLiburEdit = () => {
             keterangan: formData.keterangan
           }
     
-          const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/libur-form/edit/${id}`, 
+          const response = await axios.put(`https://treemas-api-405402.et.r.appspot.com/api/master-data/libur-form/edit/${id}`, 
             requestData,
             {
               headers: {

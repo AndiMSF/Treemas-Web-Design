@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import './announcementform.css';
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
+import TextArea from '../../../components/Elements/TextArea/TextArea';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate  } from "react-router-dom";
 import axios from "axios";
@@ -71,7 +72,7 @@ const MasterDataAnnouncementForm = () => {
       }
 
       const response = await axios.post(
-        'https://treemas-api-403500.et.r.appspot.com/api/master-data/announcement-form/add',
+        'https://treemas-api-405402.et.r.appspot.com/api/master-data/announcement-form/add',
         requestData,
         {
           headers: {
@@ -138,7 +139,7 @@ const MasterDataAnnouncementForm = () => {
                 <p>Body</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Body" value={formData.note} onChange={(e) => handleInputChange(e, 'note')}/>
+                <TextArea placeholder="Body" value={formData.note} onChange={(e) => handleInputChange(e, 'note')}/>
               </div>
             </div>
             <div className="form__row">

@@ -22,7 +22,7 @@ const MasterDataPermission = () =>{
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/permission-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const MasterDataPermission = () =>{
           }
     
           try {
-            const response = await fetch(`https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-form/delete/${id}`, {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/permission-form/delete/${id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

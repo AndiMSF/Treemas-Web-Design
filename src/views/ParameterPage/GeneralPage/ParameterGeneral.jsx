@@ -19,7 +19,7 @@ const ParameterGeneral = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/parameter/general-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/parameter/general-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ const ParameterGeneral = () => {
           }
     
           try {
-            const response = await fetch(`https://treemas-api-403500.et.r.appspot.com/parameter/general-form/edit/${id}`, {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/parameter/general-form/edit/${id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

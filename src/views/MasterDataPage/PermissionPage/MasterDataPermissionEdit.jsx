@@ -46,7 +46,7 @@ const MasterDataPermissionEdit = () => {
             namaPermission: formData.namaPermission
           }
     
-          const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/permission-form/edit/${id}`, 
+          const response = await axios.put(`https://treemas-api-405402.et.r.appspot.com/api/master-data/permission-form/edit/${id}`, 
             requestData,
             {
               headers: {

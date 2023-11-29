@@ -20,7 +20,7 @@ const MasterDataAnnouncement = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/announcement-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/announcement-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ const MasterDataAnnouncement = () => {
           }
     
           try {
-            const response = await fetch(`https://treemas-api-403500.et.r.appspot.com/api/master-data/announcement-form/delete/${id}`, {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/announcement-form/delete/${id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

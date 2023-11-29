@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import  "./karyawanform.css"
 import FormPages from "../../../components/Content/FormPages/FormPages"
 import { useState } from "react";
@@ -8,7 +9,7 @@ const MasterDataKaryawanForm = () => {
     const [isEnabledKaryawan, setIsEnabledKaryawan] = useState(false);
     const [isEnabledAlamat, setIsEnabledAlamat] = useState(false);
     const [isEnabledLain, setIsEnabledLain] = useState(false);
-    const [api, setApi] = useState("https://treemas-api-403500.et.r.appspot.com/api/master-data/karyawan-form/add");
+    const [api, setApi] = useState("https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-form/add");
 
     const handleChildrenProfile = () => {
         setIsEnabledProfile(!isEnabledProfile);

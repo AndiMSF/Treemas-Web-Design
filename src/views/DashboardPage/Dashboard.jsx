@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
@@ -11,10 +12,9 @@ const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 
 const Dashboard = () => {
-
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const infoTopFields = ["NIK", "Nama Karyawan", "Masuk", "Terlambat", "Absen", "Cuti", "Sakit"]
-    const [isToken, setIstoken] = useState('')
+
     const date = new Date();
     let currentDay= String(date.getDate()).padStart(2, '0');
     let currentMonth = String(date.getMonth()+1).padStart(2,"0");
@@ -23,38 +23,77 @@ const Dashboard = () => {
     // we will display the date as DD-MM-YYYY 
     let currentDate = `${currentDay}-${currentMonth}-${currentYear}`;
     const navigate = useNavigate();
+    const [isToken, setIstoken] = useState('');
+    const [apiData, setApiData] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
-      const token = localStorage.getItem("authToken")
-      if (token) {
-        setIstoken(token)
-        console.log('login sukses');
-      }else{
-        navigate("/login");
+      const fetchData = async () => {
+        try {
+          const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/data-kehadiran', {
+          method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Sertakan token di sini
+          },
+        });
+          const data = await response.json();
+          if (data.status === 'Success') {
+            setApiData(data.data);
+            
+          } else {
+            setError('Failed to fetch data');
+          }
+        } catch (error) {
+          setError(`Error fetching data: ${error.message}`);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      
+        const token = localStorage.getItem("authToken")
+        if (token) {
+          setIstoken(token)
+          fetchData();
+          console.log('login sukses');
+        }else{
+          navigate("/login");
+        }
+      }, [navigate])
+
+      if (isLoading) {
+        return <div>Loading...</div>;
       }
-    }, [navigate])
+    
+      if (error) {
+        return <div>Error: {error}</div>;
+      }
+    
 
     const data = [
       {
         name: 'Masuk',
-        uv: 80,
+        uv: apiData.totalMasuk,
       },
       {
         name: 'Terlambat',
-        uv: 5,
+        uv: apiData.totalTelatMasuk,
       },
       {
         name: 'Absen',
-        uv: 2,
+        uv: apiData.totalTidakMasuk,
       },
       {
         name: 'Cuti',
-        uv: 6,
+        uv: apiData.totalCuti,
       },
       {
         name: 'Sakit',
-        uv: 1,
+        uv: apiData.totalSakit,
       },
     ];
+
     const getPath = (x, y, width, height) => {
       return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3}
       ${x + width / 2}, ${y}

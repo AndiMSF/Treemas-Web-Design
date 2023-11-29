@@ -52,7 +52,7 @@ const MasterDataJabatanForm = () => {
           }
     
           const response = await axios.post(
-            'https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-form/add',
+            'https://treemas-api-405402.et.r.appspot.com/api/master-data/jabatan-form/add',
             requestData,
             {
               headers: {

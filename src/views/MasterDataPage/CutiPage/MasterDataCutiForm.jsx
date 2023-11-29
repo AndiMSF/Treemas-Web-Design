@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-no-undef */
 import "./cutiform.css"
 import BoxInput from '../../../components/Elements/BoxInput/BoxInput';
+import TextArea from '../../../components/Elements/TextArea/TextArea';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
@@ -50,7 +51,7 @@ const MasterDataCutiForm = () => {
           }
     
           const response = await axios.post(
-            'https://treemas-api-403500.et.r.appspot.com/api/master-data/cuti-form/add',
+            'https://treemas-api-405402.et.r.appspot.com/api/master-data/cuti-form/add',
             requestData,
             {
               headers: {
@@ -116,7 +117,7 @@ const MasterDataCutiForm = () => {
                 <p>Keterangan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.cutiDesc} onChange={(e) => handleInputChange(e, 'cutiDesc')}/>
+                <TextArea placeholder="Keterangan" value={formData.cutiDesc} onChange={(e) => handleInputChange(e, 'cutiDesc')}/>
               </div>
             </div> 
             <div className="form__row__bottom">

@@ -73,7 +73,7 @@ const MasterDataAnnouncementEdit = () => {
             image: formData.image,
           }
     
-          const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/master-data/announcement-form/edit/${id}`, 
+          const response = await axios.put(`https://treemas-api-405402.et.r.appspot.com/api/master-data/announcement-form/edit/${id}`, 
             requestData,
             {
               headers: {

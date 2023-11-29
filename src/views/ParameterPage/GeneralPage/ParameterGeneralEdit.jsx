@@ -45,7 +45,7 @@ const ParameterGeneralEdit = () => {
             val: formData.val
         }
   
-        const response = await axios.put(`https://treemas-api-403500.et.r.appspot.com/api/parameter/general-form/edit/${id}`, 
+        const response = await axios.put(`https://treemas-api-405402.et.r.appspot.com/api/parameter/general-form/edit/${id}`, 
           requestData,
           {
             headers: {
@@ -99,25 +99,23 @@ const ParameterGeneralEdit = () => {
                     <p>Tipe Data <span style={{ color: 'red' }}>*</span></p>
                 </div>
               <div className="form__row__right__label">
-                        {['checkbox'].map((type) => (
-                            <div key={`character`}>
-                                <Form.Check // prettier-ignore
+                        {['checkbox '].map((type) => ( 
+                            <div key={`Character`}>
+                                <Form.Check
                                     type={type}
                                     id={`Character`}
-                                    label={`character`}
+                                    label={`Character`}                                                
                                 />
-
                             </div>
                         ))}
 
                         {['checkbox'].map((type) => (
                             <div key={`Numeric`}>
-                                <Form.Check // prettier-ignore
-                                    type={type}
+                                <Form.Check
+                                    type={type }
                                     id={`Numeric`}
-                                    label={`Numeric`}
+                                    label={`Numeric`}                                   
                                 />
-
                             </div>
                         ))}
                     </div>                                    
@@ -128,7 +126,7 @@ const ParameterGeneralEdit = () => {
                     <p>Value</p>
                 </div>
                 <div className="form__row__right">
-                    <BoxInput placeholder="Value" value={formData.value} onChange={(e) => handleInputChange(e, 'value')}/>
+                    <BoxInput placeholder="Value" value={formData.val} onChange={(e) => handleInputChange(e, 'val')}/>
                 </div>
                 </div> 
 
@@ -137,12 +135,12 @@ const ParameterGeneralEdit = () => {
                         <p>Keterangan</p>
                     </div>
                 <div className="form__row__right">
-                    <TextArea placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
+                    <TextArea placeholder="Keterangan" value={formData.paramDesc} onChange={(e) => handleInputChange(e, 'paramDesc')}/>
                 </div>
             </div>
 
                 <div className="form__row__bottom">
-                    <Link to="/parameter/general-form/edit" className="cancel__button" text="Cancel">Cancel</Link>
+                    <Link to="/parameter/general-view" className="cancel__button" text="Cancel">Cancel</Link>
                     <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
                 </div>
                         </form>

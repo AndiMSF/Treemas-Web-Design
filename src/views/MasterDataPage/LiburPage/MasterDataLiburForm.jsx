@@ -1,5 +1,6 @@
 import "./liburform.css"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
+import TextArea from "../../../components/Elements/TextArea/TextArea"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
@@ -44,7 +45,7 @@ const MasterDataLiburForm = () => {
           }
     
           const response = await axios.post(
-            'https://treemas-api-403500.et.r.appspot.com/api/master-data/libur-form/add',
+            'https://treemas-api-405402.et.r.appspot.com/api/master-data/libur-form/add',
             requestData,
             {
               headers: {
@@ -94,7 +95,7 @@ const MasterDataLiburForm = () => {
                 <p>Keterangan</p>
               </div>
               <div className="form__row__right">
-                <BoxInput placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
+                <TextArea placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
               </div>
             </div>
             <div className="form__row">

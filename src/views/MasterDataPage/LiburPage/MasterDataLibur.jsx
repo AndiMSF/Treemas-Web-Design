@@ -22,7 +22,7 @@ const MasterDataLibur = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/libur-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/libur-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const MasterDataLibur = () => {
           }
     
           try {
-            const response = await fetch(`https://treemas-api-403500.et.r.appspot.com/api/master-data/libur-form/delete/${id}`, {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/libur-form/delete/${id}`, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

@@ -6,7 +6,7 @@ import "./textarea.css"
 const TextArea = (props) => {
   return (
     <InputGroup>
-        <Form.Control as="textarea" aria-label="With textarea" placeholder={props.placeholder}/>
+        <Form.Control value={props.value} onChange={props.onChange} as="textarea" aria-label="With textarea" placeholder={props.placeholder}/>
     </InputGroup>
   )
 }
