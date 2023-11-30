@@ -114,11 +114,11 @@ const Dashboard = () => {
             {/* yg atas */}
             <h1>Grafik Data Kehadiran / Tahun / {currentYear}</h1>
             <div className="keterangan">
-                <div className="box"><h1>Masuk</h1><h2>1</h2></div>
-                <div className="box"><h1>Terlambat</h1><h2>2</h2></div>
-                <div className="box"><h1>Absen</h1><h2>3</h2></div>
-                <div className="box"><h1>Cuti</h1><h2>4</h2></div>
-                <div className="box"><h1>Sakit</h1><h2>5</h2></div>
+                <div className="box"><h1>Masuk</h1><h2>{apiData.totalMasuk}</h2></div>
+                <div className="box"><h1>Terlambat</h1><h2>{apiData.totalTelatMasuk}</h2></div>
+                <div className="box"><h1>Absen</h1><h2>{apiData.totalTidakMasuk}</h2></div>
+                <div className="box"><h1>Cuti</h1><h2>{apiData.cuti}</h2></div>
+                <div className="box"><h1>Sakit</h1><h2>{apiData.sakit}</h2></div>
 
             </div>
                 
