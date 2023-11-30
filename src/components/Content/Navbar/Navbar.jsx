@@ -18,7 +18,7 @@ const Navbar = (props) => {
 
         <div className="right__container__navbar">
             <div className="vertikal__line"></div>
-            <p>Jones Ferdinand</p>
+            <p>{(props.nama)}</p>
             
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">

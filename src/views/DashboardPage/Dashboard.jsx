@@ -108,7 +108,7 @@ const Dashboard = () => {
     };
 
     return <div className="dashboard__container">
-        <Navbar navbarText="Overview" />
+        <Navbar navbarText="Overview" nama = {apiData.nama}/>
                
         <div className="grafik__data__kehadiran">
             {/* yg atas */}
