@@ -10,7 +10,6 @@ import Button from "../../../components/Elements/Buttons/Button"
 
 const DetaildataTracking = (props) => {
    
-
     return ( <div className="tracking__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Tracking" />
@@ -19,13 +18,10 @@ const DetaildataTracking = (props) => {
                         <BoxInput placeholder="Tanggal"/>
                         <BoxInput placeholder="NIK"/>
                         <Button text="Pencarian" className="search__button" />
-
                     </div>
                     <div className="right__container__input">
                     </div>
-                </div>
-
-                
+                </div>               
             <Information informationText="Tracking" showDropdown={false} showMaps={true} hideInformationBottom={true}/>
         </div>
     </div>)

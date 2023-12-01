@@ -10,11 +10,10 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Swal from "sweetalert2"
 
-
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // State untuk nilai NIK
     const [password, setPassword] = useState(''); // State untuk nilai password
-
+    const [passwordError, setPasswordError] = useState(''); // State for password error
 
     const handleLogin = async () => {
         const loginData = {
@@ -22,6 +21,13 @@ const LoginPage = () => {
           password: password,
         };
     
+        if (password.length < 6) {
+            setPasswordError('Password must be at least 6 characters');
+            return; // Prevent further execution if there's an error
+          } else {
+            setPasswordError('');
+          }
+
         try {
           const response = await axios.post('https://treemas-api-405402.et.r.appspot.com/api/auth/login', 
           loginData,
@@ -64,9 +70,8 @@ const LoginPage = () => {
     
       // ... (kode lainnya seperti render input dan tombol login)
 
-
     return ( <Container fluid>
-        <div className="login__container row">
+        <div className={`login__container row ${passwordError ? 'error' : ''}`}>    
             <div className="left__container col-sm-12 col-md-12 col-lg-6">
                 <div className="logo">
                     <img src={Treemas} alt="logo" />
@@ -77,7 +82,7 @@ const LoginPage = () => {
                         <p>Enter your account details</p>
                     </div>
                     <form>
-                    <InputGroup className="mb-3">
+                    <InputGroup className={`mb-3 ${passwordError ? 'error-border' : ''}`}>
                     <InputGroup.Text id="basic-addon1"><i className="fas fa-user"></i></InputGroup.Text>
                     <Form.Control
                     placeholder="NIK"
@@ -97,7 +102,8 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     />
-                    </InputGroup>                   
+                    </InputGroup>               
+                    {passwordError && <div className="error-message">{passwordError}</div>}    
                         <p><a href="/reset-password">Forgot Password?</a></p>
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Login
@@ -124,8 +130,7 @@ const LoginPage = () => {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M105.811 4.5008C134.858 5.34946 166.738 -2.11863 188.758 16.8444C211.719 36.6192 219.208 69.6126 216.458 99.7907C213.923 127.614 195.618 150.135 174.904 168.883C155.442 186.498 132.001 198.163 105.811 199.94C77.5003 201.86 47.1208 198.603 26.6614 178.941C5.91888 159.006 3.1149 128.52 1.6037 99.7907C-0.0241652 68.8436 -4.99758 32.7644 17.8723 11.8517C40.439 -8.78384 75.2452 3.60776 105.811 4.5008Z" fill="#9C6FE4" fill-opacity="0.6"/>
                 </svg> 
             </div>
-        </div>
-        
+        </div>       
     </Container>
     );
 }

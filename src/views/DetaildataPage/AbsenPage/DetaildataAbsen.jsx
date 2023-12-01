@@ -50,7 +50,6 @@ const DetaildataAbsen = () => {
       setFilteredData(filtered);
     }
 
-
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -109,9 +108,9 @@ const DetaildataAbsen = () => {
     
       const columns = [
         {
-          name: "NIK",
-          selector: (row) => row.nik,
-          sortable: true
+            name: "NIK",
+            selector: (row) => row.nik,
+            sortable: true
         },
         {
             name: "Nama Karyawan",
@@ -124,9 +123,9 @@ const DetaildataAbsen = () => {
             sortable: true
           },
         {
-          name: "Project",
-          selector: (row) => row.projectId,
-          sortable: true
+            name: "Project",
+            selector: (row) => row.projectId,
+            sortable: true
         },
         {
             name: "Lokasi Masuk",
@@ -164,10 +163,7 @@ const DetaildataAbsen = () => {
         columns,
         data: filteredData
       };
-    
-    
-
-
+       
     return (<div className="absen__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
@@ -196,8 +192,8 @@ const DetaildataAbsen = () => {
                         />
                     </DataTableExtensions>
                 </div>
-        </div>
-    </div>
+          </div>
+      </div>
     )
 }
 

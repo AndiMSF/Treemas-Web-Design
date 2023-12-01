@@ -29,12 +29,12 @@ const DetaildataTimesheet = () => {
         <div className="left__container__input">
             <BoxInput placeholder="Tanggal"/>
             <Button text="Pencarian" className="search__button" />
-
         </div>
         <div className="right__container__input">
         <Button text="Unduh" className="add__button" />
         </div>
     </div>)
+
     } else if ( informationText === "Data Member") {
         boxInputComponent = (
             <div className="input__container">
@@ -44,13 +44,11 @@ const DetaildataTimesheet = () => {
                         <BoxInput placeholder="Nama Karyawan"/>
                         <DropdownMenu title={totalJamText} items={["Lembur", "Tidak Lembur"]} onDropdownChange={handleTotalJam}/>
                         <DropdownMenu title="Pilih Project" />
-
                         <Button text="Pencarian" className="search__button" />
-
                     </div>
                     <div className="right__container__input">
                     </div>
-                </div>
+            </div>
         )
     }
     return <div className="timesheet__container">

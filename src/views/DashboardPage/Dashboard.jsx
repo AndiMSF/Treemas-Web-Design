@@ -117,24 +117,19 @@ const Dashboard = () => {
                 <div className="box"><h1>Masuk</h1><h2>{apiData.totalMasuk}</h2></div>
                 <div className="box"><h1>Terlambat</h1><h2>{apiData.totalTelatMasuk}</h2></div>
                 <div className="box"><h1>Absen</h1><h2>{apiData.totalTidakMasuk}</h2></div>
-                <div className="box"><h1>Cuti</h1><h2>{apiData.cuti}</h2></div>
-                <div className="box"><h1>Sakit</h1><h2>{apiData.sakit}</h2></div>
-
-            </div>
-                
+                <div className="box"><h1>Cuti</h1><h2>{apiData.totalCuti}</h2></div>
+                <div className="box"><h1>Sakit</h1><h2>{apiData.totalSakit}</h2></div>
+            </div>                
         </div>
         
-        <div className="grafik__data__member">
-        
-
+        <div className="grafik__data__member">        
             <div className="left__container__dashboard">
             <h1>Grafik Data Member / Hari</h1>
                 <div className="hari">
                     <h2>{getDay}</h2>
                         <div className="right">
                             <div><h2>{currentDate}</h2></div>
-                        </div>   
-                                
+                        </div>                                   
                 </div>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -163,9 +158,8 @@ const Dashboard = () => {
             </div>
 
 
-            <div className="right__container__dashboard">
-                
-                <div className="box1"><h1>Masuk</h1><h2>1</h2></div>
+            <div className="right__container__dashboard">                
+                <div className="box1"><h1>Masuk</h1><h2></h2></div>
                 <div className="horizontal_line"></div>
                 <div className="box1"><h1>Terlambat</h1><h2>2</h2></div>
                 <div className="horizontal_line"></div>
@@ -173,14 +167,11 @@ const Dashboard = () => {
                 <div className="horizontal_line"></div>
                 <div className="box1"><h1>Cuti</h1><h2>4</h2></div>
                 <div className="horizontal_line"></div>
-                <div className="box1"><h1>Sakit</h1><h2>5</h2></div>
-                
+                <div className="box1"><h1>Sakit</h1><h2>5</h2></div>                
             </div>
-
         </div>
 
-        <Information informationText="Data Member" fields={infoTopFields}/>
-        
+        <Information informationText="Data Member" fields={infoTopFields}/>       
     </div> 
 }
 

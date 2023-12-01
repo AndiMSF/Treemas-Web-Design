@@ -21,6 +21,14 @@ p {
     color: rgba(255, 255, 255, 0.70);
 }
 
+.error-message{
+    color: red
+}
+
+.login__container.error-border {
+    border: red;
+  }  
+
 /* Left Container */
 .left__container {
     background-color: var(--almost-black);

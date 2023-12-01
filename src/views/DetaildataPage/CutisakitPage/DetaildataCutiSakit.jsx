@@ -24,7 +24,7 @@ const DetaildataCutiSakit = (props) => {
     setDropdownItems(selectedItem);
   };
 
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -72,7 +72,7 @@ const DetaildataCutiSakit = (props) => {
                     status: item.isApproved === "1" ? "Disetujui" : item.isApproved === "0" ? "Ditolak" : "Menunggu",
                 }));
 
-                setApiData(combinedData);
+              setApiData(combinedData);
               } else if (dropdownItems === "Sakit") {
               // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
               let combinedData = data.data.setujuAtauTolak.concat(data.data.menunggu);

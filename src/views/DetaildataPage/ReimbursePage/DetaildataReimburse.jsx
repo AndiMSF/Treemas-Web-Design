@@ -29,7 +29,6 @@ const DetaildataReimburse = () => {
         <div className="left__container__input">
             <BoxInput placeholder="Tanggal Reimburse"/>
             <Button text="Pencarian" className="search__button" />
-
         </div>
         <div className="right__container__input">
         <Button text="Unduh" className="add__button" />
@@ -46,12 +45,11 @@ const DetaildataReimburse = () => {
                         <DropdownMenu title="Pilih Project" />
 
                         <Button text="Pencarian" className="search__button" />
-
                     </div>
                     <div className="right__container__input">
                     <Button text="Unduh" className="add__button" />
                     </div>
-                </div>
+            </div>
         )
     }
 

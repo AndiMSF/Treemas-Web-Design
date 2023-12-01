@@ -103,8 +103,7 @@ const ParameterGeneral = () => {
         columns,
         data: apiData
       };
-    
-    
+        
       const handleClick = (id) => {
         const selectedGeneral = apiData.find((general) => general.id === id);
         console.log(`Edit button clicked for ID: ${id}`);
@@ -188,10 +187,9 @@ const ParameterGeneral = () => {
                 dense
                 />
             </DataTableExtensions>
-
-        </div>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 }
 
 export default ParameterGeneral
