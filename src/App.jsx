@@ -54,6 +54,7 @@ import UploadAbsen from './views/UploadPage/AbsenPage/UploadAbsen'
 import UploadApk from './views/UploadPage/ApkPage/UploadApk'
 import ProfilePage from "./views/ProfilePage/ProfilePage"
 import ChangePassword from "./views/ChangePassword/ChangePassword"
+import ForgotPass from "./views/LoginPage/ForgetPass"
 // 
 import "./App.css"
 import { useEffect, useState } from "react"
@@ -74,10 +75,10 @@ function App() {
     <BrowserRouter >
     
       
-      {isPath === '/login' || isPath === '/logout' || isPath === '/change-password' ? (
+      {isPath === '/login' || isPath === '/logout' || isPath === '/forgot-password' ? (
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/change-password" element={<ChangePassword />} />  
+          <Route path="/forgot-password" element={<ForgotPass/>} />
         </Routes>
       ):(
         <Sidebar>

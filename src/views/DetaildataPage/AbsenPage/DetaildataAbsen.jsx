@@ -53,7 +53,7 @@ const DetaildataAbsen = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/absen-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/detail-data/absen-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -108,24 +108,24 @@ const DetaildataAbsen = () => {
     
       const columns = [
         {
-            name: "NIK",
-            selector: (row) => row.nik,
-            sortable: true
+          name: "NIK",
+          selector: (row) => row.nik,
+          sortable: true
         },
         {
-            name: "Nama Karyawan",
-            selector: (row) => row.namaKaryawan,
-            sortable: true
-          },
-          {
-            name: "Tanggal",
-            selector: (row) => row.tanggal,
-            sortable: true
-          },
+          name: "Nama Karyawan",
+          selector: (row) => row.namaKaryawan,
+          sortable: true
+        },
         {
-            name: "Project",
-            selector: (row) => row.projectId,
-            sortable: true
+          name: "Tanggal",
+          selector: (row) => row.tanggal,
+          sortable: true
+        },
+        {
+          name: "Project",
+          selector: (row) => row.projectId.projectId,
+          sortable: true
         },
         {
             name: "Lokasi Masuk",
@@ -163,7 +163,8 @@ const DetaildataAbsen = () => {
         columns,
         data: filteredData
       };
-       
+    
+    
     return (<div className="absen__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
@@ -172,11 +173,13 @@ const DetaildataAbsen = () => {
                         <DropdownMenu onDropdownChange={handleStatus} items={["Cuti", "Other", "Sakit", "WFH"]} title={status} />
                         <DropdownMenu onDropdownChange={handleJam} items={["Lembur", "Tidak Lembur"]} title={jam}/>
                         <DropdownMenu title="Pilih Project"/>
+                        
                     </div>
-                    <div className="right__container__input">
+                    
+                   <div className="right__container__input">
                         <Button text="Tambah" className="add__button" />
                     </div>
-                </div>
+                  </div>
                 <div className="table__container">
                     <DataTableExtensions {...dataTable}>
                         <DataTable
@@ -189,11 +192,12 @@ const DetaildataAbsen = () => {
                         pagination
                         highlightOnHover
                         dense
-                        />
+                        />                        
                     </DataTableExtensions>
+
                 </div>
-          </div>
-      </div>
+            </div>
+        </div>
     )
 }
 
