@@ -114,15 +114,10 @@ const DetaildataAbsen = () => {
           sortable: true
         },
         {
-            name: "Nama Karyawan",
-            selector: (row) => row.namaKaryawan,
-            sortable: true
-          },
-          {
-            name: "Tanggal",
-            selector: (row) => row.tanggal,
-            sortable: true
-          },
+          name: "Nama Karyawan",
+          selector: (row) => row.namaKaryawan,
+          sortable: true
+        },
         {
           name: "Project",
           selector: (row) => row.projectId ? row.projectId.projectId : 'N/A',
@@ -176,11 +171,13 @@ const DetaildataAbsen = () => {
                         <DropdownMenu onDropdownChange={handleStatus} items={["Cuti", "Other", "Sakit", "WFH"]} title={status} />
                         <DropdownMenu onDropdownChange={handleJam} items={["Lembur", "Tidak Lembur"]} title={jam}/>
                         <DropdownMenu title="Pilih Project"/>
+                        
                     </div>
-                    <div className="right__container__input">
+                    
+                   <div className="right__container__input">
                         <Button text="Tambah" className="add__button" />
                     </div>
-                </div>
+                  </div>
                 <div className="table__container">
                     <DataTableExtensions {...dataTable}>
                         <DataTable
@@ -193,8 +190,9 @@ const DetaildataAbsen = () => {
                         pagination
                         highlightOnHover
                         dense
-                        />
+                        />                        
                     </DataTableExtensions>
+
                 </div>
         </div>
     </div>

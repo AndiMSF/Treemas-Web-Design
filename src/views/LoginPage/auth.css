@@ -21,14 +21,6 @@ p {
     color: rgba(255, 255, 255, 0.70);
 }
 
-.error-message{
-    color: red
-}
-
-.login__container.error-border {
-    border: red;
-  }  
-
 /* Left Container */
 .left__container {
     background-color: var(--almost-black);
@@ -42,6 +34,7 @@ p {
     z-index: 2;
     height: 100%;
     padding: 2rem;
+    
 }
 
 .logo {
@@ -97,6 +90,9 @@ input {
     color: #FFFFFF;
 }
 
+.error-message{
+    color: red;
+}
 p a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.50);
@@ -221,6 +217,15 @@ input {
     height: 12.526rem;
     flex-shrink: 0;
     transform: rotate(100.894deg);
+}
+
+.forgotpass__container{
+    display: flex;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 8px 8px 8px 8px;
+    overflow: hidden;
+    justify-content: center;
 }
 
 /* Media query untuk ukuran layar max hp (smartphone) */
