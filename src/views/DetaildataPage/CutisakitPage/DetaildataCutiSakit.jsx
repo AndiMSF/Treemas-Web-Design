@@ -31,7 +31,7 @@ const DetaildataCutiSakit = (props) => {
         const token = localStorage.getItem("authToken");
         let response;
         if (dropdownItems === "Cuti") {
-            response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/cuti-view', {
+            response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/detail-data/cuti-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
             'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const DetaildataCutiSakit = (props) => {
             },
         });
         }  else if (dropdownItems === "Sakit") {
-            response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/sakit-view', {
+            response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/detail-data/sakit-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
             'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const DetaildataCutiSakit = (props) => {
             },
         });
         } else {
-            response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/cuti-view', {
+            response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/detail-data/cuti-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
             'Content-Type': 'application/json',

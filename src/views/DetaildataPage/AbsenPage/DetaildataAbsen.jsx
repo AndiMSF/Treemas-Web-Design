@@ -50,10 +50,11 @@ const DetaildataAbsen = () => {
       setFilteredData(filtered);
     }
 
+
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/detail-data/absen-view', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/detail-data/absen-view', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -108,9 +109,9 @@ const DetaildataAbsen = () => {
     
       const columns = [
         {
-            name: "NIK",
-            selector: (row) => row.nik,
-            sortable: true
+          name: "NIK",
+          selector: (row) => row.nik,
+          sortable: true
         },
         {
             name: "Nama Karyawan",
@@ -123,9 +124,9 @@ const DetaildataAbsen = () => {
             sortable: true
           },
         {
-            name: "Project",
-            selector: (row) => row.projectId,
-            sortable: true
+          name: "Project",
+          selector: (row) => row.projectId ? row.projectId.projectId : 'N/A',
+          sortable: true
         },
         {
             name: "Lokasi Masuk",
@@ -163,7 +164,10 @@ const DetaildataAbsen = () => {
         columns,
         data: filteredData
       };
-       
+    
+    
+
+
     return (<div className="absen__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
@@ -192,8 +196,8 @@ const DetaildataAbsen = () => {
                         />
                     </DataTableExtensions>
                 </div>
-          </div>
-      </div>
+        </div>
+    </div>
     )
 }
 

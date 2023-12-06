@@ -45,8 +45,21 @@
     
 }
 
+.input__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
 .left__container__input {
-  flex-wrap: wrap;
+  display: flex;
+  gap: 20px;
+}
+
+.right__container__input {
+  display: flex;
+  gap: 20px;  
 }
 
 div .dropdown {
