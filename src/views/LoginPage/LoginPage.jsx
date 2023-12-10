@@ -9,17 +9,22 @@ import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Swal from "sweetalert2"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // State untuk nilai NIK
     const [password, setPassword] = useState(''); // State untuk nilai password
     const [passwordError, setPasswordError] = useState(''); // State for password error
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = async () => {
         const loginData = {
           nik: username,
           password: password,
+          isWebAccess: "1"
         };
     
         
@@ -98,16 +103,26 @@ const LoginPage = () => {
                     />
                     </InputGroup>                                        
                     <InputGroup className="mb-3">
-                    <InputGroup.Text id="basic-addon2"><i className="fas fa-lock"></i></InputGroup.Text>
-                    <Form.Control
-                    type="Password"
+                <InputGroup.Text id="basic-addon2">
+                    <i className="fas fa-lock"></i>
+                </InputGroup.Text>
+                <Form.Control
+                    type={showPassword ? 'text' : 'password'} // Toggle between text and password
                     placeholder="Password"
                     aria-label="Password"
                     aria-describedby="basic-addon2"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    />
-                    </InputGroup>   
+                />
+                {/* Add a button/icon to toggle password visibility */}
+                <InputGroup.Text
+                    id="toggle-password"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                </InputGroup.Text>
+                </InputGroup>            
                      {/* Display the error message if it exists */}
                         {passwordError && <div className="error-message">{passwordError}</div>}                
                         <p><a href="/forgot-password">Forgot Password?</a></p>

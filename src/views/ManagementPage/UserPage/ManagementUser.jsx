@@ -9,7 +9,7 @@ const ManagementUser = () => {
 
     return <div className="userpage__container">
         <div className="content__container">
-            <Navbar navbarText="Detail Data / Absen" />
+            <Navbar navbarText="Management / user " />
                 <div className="input__container">
                     <div className="left__container__input">
                         <BoxInput placeholder="ID" />

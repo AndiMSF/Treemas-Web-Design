@@ -163,9 +163,7 @@ const DataProfile = (props) => {
 
                         
                     </div>
-
-                    
-                    
+                                     
                 </div>
 
                 <div className="form__row">
@@ -197,8 +195,7 @@ const DataProfile = (props) => {
                         
                     </div>
 
-                    
-                    
+                                     
                 </div>
                 
                 <div className="form__row">
@@ -209,7 +206,6 @@ const DataProfile = (props) => {
                         <DropdownMenu title={agama} onDropdownChange={handleAgama} items={itemsAgama} />    
                     </div>
                 </div>
-
 
                 <div className="form__row">
                     <div className="form__row__left">
