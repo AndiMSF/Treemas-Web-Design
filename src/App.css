@@ -45,10 +45,21 @@
     
 }
 
-.left__container__input {
-  display:flex ;
-  flex-wrap: wrap;
+.input__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 20px;
+}
+
+.left__container__input {
+  display: flex;
+  gap: 20px;
+}
+
+.right__container__input {
+  display: flex;
+  gap: 20px;  
 }
 
 div .dropdown {
@@ -73,11 +84,4 @@ div .dropdown {
 
 .section__header__top h1 {
   margin: 0;
-}
-
-.input__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
 }

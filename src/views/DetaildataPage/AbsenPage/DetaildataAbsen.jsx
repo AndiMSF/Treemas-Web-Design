@@ -50,6 +50,7 @@ const DetaildataAbsen = () => {
       setFilteredData(filtered);
     }
 
+
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -118,11 +119,6 @@ const DetaildataAbsen = () => {
           sortable: true
         },
         {
-          name: "Tanggal",
-          selector: (row) => row.tanggal,
-          sortable: true
-        },
-        {
           name: "Project",
           selector: (row) => row.projectId ? row.projectId.projectId : 'N/A',
           sortable: true
@@ -165,6 +161,8 @@ const DetaildataAbsen = () => {
       };
     
     
+
+
     return (<div className="absen__container">
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
@@ -196,8 +194,8 @@ const DetaildataAbsen = () => {
                     </DataTableExtensions>
 
                 </div>
-            </div>
         </div>
+    </div>
     )
 }
 
