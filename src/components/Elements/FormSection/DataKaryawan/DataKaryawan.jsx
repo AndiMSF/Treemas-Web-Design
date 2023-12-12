@@ -20,7 +20,7 @@ const DataKaryawan = (props) => {
     const [isLeader, setIsLeader] = useState('')
     const [isKaryawan, setIsKaryawan] = useState('')
 
-    const handleJabatan = (selectedItem) => {
+    const handleJabatan = (selectedItem) => {   
         setJabatan(selectedItem)
         props.onJabatanChange(selectedItem)
     }
@@ -65,7 +65,7 @@ const DataKaryawan = (props) => {
                         <p>NIK <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="NIK" value={nik}
+                    <FormControl type="text" placeholder="NIK" value={props.onFormData.nik}
                     onChange={(e) => {
                         setNik(e.target.value)
                         props.onNikChange(e.target.value)
@@ -78,7 +78,7 @@ const DataKaryawan = (props) => {
                         <p>Android ID</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Android ID" value={androidId}
+                    <FormControl type="text" placeholder="Android ID" value={props.onFormData.androidId}
                     onChange={(e) => {
                         setAndroidId(e.target.value)
                         props.onAndroidIdChange(e.target.value)
@@ -91,7 +91,7 @@ const DataKaryawan = (props) => {
                         <p>Jabatan <span style={{ color: 'red' }}>*</span></p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} itemsJabatan={createJabatanItems(props.dataJabatan)}/>    
+                        <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} itemsJabatan={createJabatanItems(props.dataJabatan)} onFormData={props.onFormData}/>    
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ const DataKaryawan = (props) => {
                         <p>Project</p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={project} onDropdownChange={handleProject} items={itemsProject}  itemsProject={createProjectItems(props.dataProject)}/>    
+                        <DropdownMenu title={project} onDropdownChange={handleProject} items={itemsProject}  itemsProject={createProjectItems(props.dataProject)} onFormData={props.onFormData}/>    
                     </div>
                 </div>
 
@@ -109,7 +109,7 @@ const DataKaryawan = (props) => {
                         <p>Tanggal Bergabung <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Tanggal Bergabung" value={tanggalBergabung}
+                    <FormControl type="text" placeholder="Tanggal Bergabung" value={props.onFormData.tanggalBergabung}
                     onChange={(e) => {
                         setTanggalBergabung(e.target.value)
                         props.onTanggalBergabungChange(e.target.value)
@@ -122,7 +122,7 @@ const DataKaryawan = (props) => {
                         <p>Hak Cuti <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Hak Cuti" value={hakCuti}
+                    <FormControl type="text" placeholder="Hak Cuti" value={props.onFormData.hakCuti}
                     onChange={(e) => {
                         setHakCuti(e.target.value)
                         props.onHakCutiChange(e.target.value)
@@ -136,14 +136,14 @@ const DataKaryawan = (props) => {
                     </div>
                     <div className="form__row__right__label">
                     <input type="radio" name="isLeader" id="Ya" onChange={() => {
-                                        setIsLeader('Ya')
-                                        props.onIsLeaderChange('Ya')
-                                    } } />
+                                        setIsLeader('1')
+                                        props.onIsLeaderChange('1')
+                                    } } checked={props.onFormData.isLeader === '1'}/>
                             <label htmlFor="Ya">Ya</label>
                         <input type="radio" name="isLeader" id="Tidak" onChange={() => {
-                                        setIsLeader('Tidak')
-                                        props.onIsLeaderChange('Tidak')
-                                    } } />
+                                        setIsLeader('0')
+                                        props.onIsLeaderChange('0')
+                                    } } checked={props.onFormData.isLeader === '0'}/>
                             <label htmlFor="Tidak">Tidak</label>
                     </div>
 
@@ -157,14 +157,14 @@ const DataKaryawan = (props) => {
                     </div>
                     <div className="form__row__right__label">
                     <input type="radio" name="isKaryawan" id="Tetap" onChange={() => {
-                                        setIsKaryawan('Tetap')
-                                        props.onIsKaryawanChange('Tetap')
-                                    } } />
+                                        setIsKaryawan('1')
+                                        props.onIsKaryawanChange('1')
+                                    } } checked={props.onFormData.isKaryawan === '1'}/>
                             <label htmlFor="Tetap">Tetap</label>
                         <input type="radio" name="isKaryawan" id="Kontrak" onChange={() => {
-                                        setIsKaryawan('Kontrak')
-                                        props.onIsKaryawanChange('Kontrak')
-                                    } } />
+                                        setIsKaryawan('0')
+                                        props.onIsKaryawanChange('0')
+                                    } } checked={props.onFormData.isKaryawan === '0'}/>
                             <label htmlFor="Kontrak">Kontrak</label>
                     </div>
 

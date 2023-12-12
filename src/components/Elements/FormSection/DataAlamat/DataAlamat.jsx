@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 import "./dataalamat.css"
@@ -28,7 +29,7 @@ const DataAlamat = (props) => {
                     </div>          
                     <div className="form__row__right">
                     <Form.Control 
-                    value={alamatKtp} 
+                    value={props.onFormData.alamatKtp} 
                     onChange={(e) => {
                         setAlamatKtp(e.target.value)
                         props.onAlamatKtpChange(e.target.value)
@@ -46,7 +47,7 @@ const DataAlamat = (props) => {
                     </div>          
                     <div className="form__row__right">
                     <Form.Control 
-                    value={alamatSekarang} 
+                    value={props.onFormData.alamatSekarang} 
                     onChange={(e) => {
                         setAlamatSekarang(e.target.value)
                         props.onAlamatSekarangChange(e.target.value)
@@ -63,7 +64,7 @@ const DataAlamat = (props) => {
                         <p>Kode Pos</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="No KTP" value={kodePos}
+                    <FormControl type="text" placeholder="No KTP" value={props.onFormData.kodePos}
                     onChange={(e) => {
                         setKodePos(e.target.value)
                         props.onKodePosChange(e.target.value)

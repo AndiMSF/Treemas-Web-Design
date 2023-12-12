@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 import "./datalain.css"
@@ -28,7 +29,7 @@ const DataLainlain = (props) => {
                         <p>Kontak Darurat</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Kontak Darurat" value={emergencyContact}
+                    <FormControl type="text" placeholder="Kontak Darurat" value={props.onFormData.emergencyContact}
                     onChange={(e) => {
                         setEmergencyContact(e.target.value)
                         props.onEmergencyContactChange(e.target.value)
@@ -41,7 +42,7 @@ const DataLainlain = (props) => {
                         <p>Status Kontak</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Status Kontak" value={statusEmergency}
+                    <FormControl type="text" placeholder="Status Kontak" value={props.onFormData.statusEmergency}
                     onChange={(e) => {
                         setStatusEmergency(e.target.value)
                         props.onStatusEmergencyChange(e.target.value)
@@ -54,7 +55,7 @@ const DataLainlain = (props) => {
                         <p>Alamat Kontak</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Alamat Kontak" value={alamatEmergency}
+                    <FormControl type="text" placeholder="Alamat Kontak" value={props.onFormData.alamatEmergency}
                     onChange={(e) => {
                         setAlamatEmergency(e.target.value)
                         props.onAlamatEmergencyChange(e.target.value)
@@ -67,7 +68,7 @@ const DataLainlain = (props) => {
                         <p>Telp. Darurat</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Telepon Darurat" value={telpEmergency}
+                    <FormControl type="text" placeholder="Telepon Darurat" value={props.onFormData.telpEmergency}
                     onChange={(e) => {
                         setTelpEmergency(e.target.value)
                         props.onTelpEmergencyChange(e.target.value)

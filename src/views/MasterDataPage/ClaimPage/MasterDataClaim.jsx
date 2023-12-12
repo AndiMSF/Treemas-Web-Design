@@ -88,7 +88,7 @@ const MasterDataClaim = () => {
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.claimiId}`}
+                key={`delete-${d.idClaim}`}
                 onClick={() => handleDelete(d.idClaim)}
                 className="fas fa-trash-alt"
               ></i>

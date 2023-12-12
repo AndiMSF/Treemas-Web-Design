@@ -23,6 +23,7 @@ const DataProfile = (props) => {
     const [jenjangPendidikan, setJenjangPendidikan] = useState('');
     const [kewarganegaraan, setKewarganegaraan] = useState('');
     const [noRekening, setNoRekening] = useState('');
+    const [noHp, setNoHp] = useState('')
 
     const handleAgama = (selectedItem) => {
         setAgama(selectedItem)
@@ -48,7 +49,7 @@ const DataProfile = (props) => {
                         <p>Nama Lengkap <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Nama" value={namaLengkap}
+                    <FormControl type="text" placeholder="Nama" value={props.onFormData.nama}
                     onChange={(e) => {
                         setNamaLengkap(e.target.value)
                         props.onNamaLengkapChange(e.target.value)
@@ -61,7 +62,7 @@ const DataProfile = (props) => {
                         <p>No. KTP <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                        <FormControl type="text" placeholder="No KTP" value={noKtp}
+                        <FormControl type="text" placeholder="No KTP" value={props.onFormData.nomorKtp}
                     onChange={(e) => {
                         setNoKtp(e.target.value)
                         props.onNoKtpChange(e.target.value)
@@ -74,7 +75,7 @@ const DataProfile = (props) => {
                         <p>No NPWP </p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="No NPWP" value={noNpwp}
+                    <FormControl type="text" placeholder="No NPWP" value={props.onFormData.noNpwp}
                     onChange={(e) => {
                         setNoNpwp(e.target.value)
                         props.onNoNpwpChange(e.target.value)
@@ -84,10 +85,23 @@ const DataProfile = (props) => {
 
                 <div className="form__row">
                     <div className="form__row__left">
+                        <p>No HP </p>
+                    </div>          
+                    <div className="form__row__right">
+                    <FormControl type="text" placeholder="No HP" value={props.onFormData.noHp}
+                    onChange={(e) => {
+                        setNoHp(e.target.value)
+                        props.onNoHpChange(e.target.value)
+                    } }/>       
+                    </div>
+                </div>
+
+                <div className="form__row">
+                    <div className="form__row__left">
                         <p>Email <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Email" value={email}
+                    <FormControl type="text" placeholder="Email" value={props.onFormData.email}
                     onChange={(e) => {
                         setEmail(e.target.value)
                         props.onEmailChange(e.target.value)
@@ -100,7 +114,7 @@ const DataProfile = (props) => {
                         <p>Tempat Lahir</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Tempat Lahir" value={tempatLahir}
+                    <FormControl type="text" placeholder="Tempat Lahir" value={props.onFormData.tempatLahir}
                     onChange={(e) => {
                         setTempatLahir(e.target.value)
                         props.onTempatLahirChange(e.target.value)
@@ -113,7 +127,7 @@ const DataProfile = (props) => {
                         <p>Tanggal Lahir <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="YYYY-MM-DD" value={tanggalLahir}
+                    <FormControl type="text" placeholder="YYYY-MM-DD" value={props.onFormData.tanggalLahir}
                     onChange={(e) => {
                         setTanggalLahir(e.target.value)
                         props.onTanggalLahirChange(e.target.value)
@@ -129,12 +143,12 @@ const DataProfile = (props) => {
                         <input type="radio" name="jenis_kelamin" id="L" onChange={() => {
                                         setJenisKelamin('Laki-Laki')
                                         props.onJenisKelaminChange('Laki-Laki')
-                                    } } />
+                                    } } checked={props.onFormData.jenisKelamin === 'Laki-Laki'} />
                             <label htmlFor="L">L</label>
                         <input type="radio" name="jenis_kelamin" id="P" onChange={() => {
                                         setJenisKelamin('Perempuan')
                                         props.onJenisKelaminChange('Perempuan')
-                                    } } />
+                                    } } checked={props.onFormData.jenisKelamin === 'Perempuan'}/>
                             <label htmlFor="P">P</label>
                     </div>                  
                 </div>
@@ -147,22 +161,22 @@ const DataProfile = (props) => {
                         <input type="radio" name="golDarah" id="A" onChange={() => {
                                         setGolDarah('A')
                                         props.onGolDarahChange('A')
-                                    } } />
+                                    } } checked={props.onFormData.golonganDarah === 'A'}/>
                         <label htmlFor="A">A</label>
                         <input type="radio" name="golDarah" id="B" onChange={() => {
                                         setGolDarah('B')
                                         props.onGolDarahChange('B')
-                                    } } />
+                                    } } checked={props.onFormData.golonganDarah === 'B'}/>
                         <label htmlFor="B">B</label>
                         <input type="radio" name="golDarah" id="AB" onChange={() => {
                                         setGolDarah('AB')
                                         props.onGolDarahChange('AB')
-                                    } } />
+                                    } } checked={props.onFormData.golonganDarah === 'AB'}/>
                         <label htmlFor="AB">AB</label>
                         <input type="radio" name="golDarah" id="O" onChange={() => {
                                         setGolDarah('O')
                                         props.onGolDarahChange('O')
-                                    } } />
+                                    } } checked={props.onFormData.golonganDarah === 'O'}/>
                         <label htmlFor="O">O</label>
                     </div>                  
                 </div>
@@ -173,15 +187,15 @@ const DataProfile = (props) => {
                         <p>Status Perkawinan</p>
                     </div>
                     <div className="form__row__right__label">
-                    <input type="radio" name="kewarganegaraan" id="Menikah" onChange={() => {
+                    <input type="radio" name="statusPerkawinan" id="Menikah" onChange={() => {
                                         setStatusPerkawinan('Menikah')
                                         props.onStatusPerkawinanChange('Menikah')
-                                    } } />
+                                    } } checked={props.onFormData.statusPerkawinan === 'Menikah'}/>
                         <label htmlFor="Menikah">Menikah</label>
-                        <input type="radio" name="kewarganegaraan" id="Belum Menikah" onChange={() => {
+                        <input type="radio" name="statusPerkawinan" id="Belum Menikah" onChange={() => {
                                         setStatusPerkawinan('Belum Menikah')
                                         props.onStatusPerkawinanChange('Belum Menikah')
-                                    } } />
+                                    } } checked={props.onFormData.statusPerkawinan === 'Belum Menikah'}/>
                         <label htmlFor="Belum Menikah">Belum Menikah</label>            
                     </div>        
                 </div>
@@ -191,7 +205,7 @@ const DataProfile = (props) => {
                         <p>Agama</p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={agama} onDropdownChange={handleAgama} items={itemsAgama} />    
+                        <DropdownMenu title={agama} onDropdownChange={handleAgama} itemsAgama={itemsAgama} onFormData={props.onFormData}/>    
                     </div>
                 </div>
 
@@ -200,45 +214,45 @@ const DataProfile = (props) => {
                         <p>Jenjang Pendidikan</p>
                     </div>
                     <div className="form__row__right__label">
-                    <input type="radio" name="jenjang_pendidikan" id="SMK" onChange={() => {
+                    <input type="radio" name="jenjangPendidikan" id="SMK" onChange={() => {
                                         setJenjangPendidikan('SMK')
                                         props.onJenjangPendidikanChange('SMK')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'SMK'}/>
                         <label htmlFor="SMK">SMK</label>
-                        <input type="radio" name="jenjang_pendidikan" id="SMA" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="SMA" onChange={() => {
                                         setJenjangPendidikan('SMA')
                                         props.onJenjangPendidikanChange('SMA')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'SMA'}/>
                         <label htmlFor="SMA">SMA</label>
-                        <input type="radio" name="jenjang_pendidikan" id="D-1" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="D-1" onChange={() => {
                                         setJenjangPendidikan('D-1')
                                         props.onJenjangPendidikanChange('D-1')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'D-1'}/>
                         <label htmlFor="D-1">D-1</label>
-                        <input type="radio" name="jenjang_pendidikan" id="D-2" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="D-2" onChange={() => {
                                         setJenjangPendidikan('D-2')
                                         props.onJenjangPendidikanChange('D-2')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'D-2'}/>
                         <label htmlFor="D-2">D-2</label>
-                        <input type="radio" name="jenjang_pendidikan" id="D-3" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="D-3" onChange={() => {
                                         setJenjangPendidikan('D-3')
                                         props.onJenjangPendidikanChange('D-3')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'D-3'}/>
                         <label htmlFor="D-3">D-3</label>
-                        <input type="radio" name="jenjang_pendidikan" id="S-1" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="S-1" onChange={() => {
                                         setJenjangPendidikan('S-1')
                                         props.onJenjangPendidikanChange('S-1')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'S-1'}/>
                         <label htmlFor="S-1">S-1</label>    
-                        <input type="radio" name="jenjang_pendidikan" id="S-2" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="S-2" onChange={() => {
                                         setJenjangPendidikan('S-2')
                                         props.onJenjangPendidikanChange('S-2')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'S-2'}/>
                         <label htmlFor="S-2">S-2</label>   
-                        <input type="radio" name="jenjang_pendidikan" id="S-3" onChange={() => {
+                        <input type="radio" name="jenjangPendidikan" id="S-3" onChange={() => {
                                         setJenjangPendidikan('S-3')
                                         props.onJenjangPendidikanChange('S-3')
-                                    } } />
+                                    } } checked={props.onFormData.jenjangPendidikan === 'S-3'}/>
                         <label htmlFor="S-3">S-3</label>   
                     </div>
 
@@ -249,7 +263,7 @@ const DataProfile = (props) => {
                         <p>No Rekening</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="No Rekening" value={noRekening}
+                    <FormControl type="text" placeholder="No Rekening" value={props.onFormData.noRek}
                     onChange={(e) => {
                         setNoRekening(e.target.value)
                         props.onNoRekeningChange(e.target.value)
@@ -265,12 +279,12 @@ const DataProfile = (props) => {
                     <input type="radio" name="kewarganegaraan" id="WNA" onChange={() => {
                                         setKewarganegaraan('WNA')
                                         props.onKewarganegaraanChange('WNA')
-                                    } } />
+                                    } } checked={props.onFormData.kewarganegaraan === 'WNA'}/>
                         <label htmlFor="WNA">WNA</label>
                         <input type="radio" name="kewarganegaraan" id="WNI" onChange={() => {
                                         setKewarganegaraan('WNI')
                                         props.onKewarganegaraanChange('WNI')
-                                    } } />
+                                    } } checked={props.onFormData.kewarganegaraan === 'WNI'}/>
                         <label htmlFor="WNI">WNI</label>    
                     </div>
 

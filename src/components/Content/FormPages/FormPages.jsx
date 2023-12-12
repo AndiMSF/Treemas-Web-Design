@@ -7,7 +7,6 @@ import BoxInput from "../../Elements/BoxInput/BoxInput.jsx"
 import TextArea from "../../Elements/TextArea/TextArea"
 import Button from "../../Elements/Buttons/Button.jsx"
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
 import DataProfile from "../../Elements/FormSection/DataProfile/DataProfile";
 import DataKaryawan from "../../Elements/FormSection/DataKaryawan/DataKaryawan";
 import TambahFoto from "../../Elements/FormSection/TambahFoto/TambahFoto";
@@ -15,7 +14,7 @@ import DataLain from "../../Elements/FormSection/DataLainlain/DataLain";
 import DataAlamat from "../../Elements/FormSection/DataAlamat/DataAlamat";
 import Password from "../../Elements/FormSection/Password/Password";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom/dist";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom/dist";
 import axios from "axios";
 // SweetAlert
 import Swal from 'sweetalert2'
@@ -40,6 +39,13 @@ const FormPages = (props) => {
     setFormData(((prevFormData) => ({
       ...prevFormData,
       noNpwp: newNoNpwp
+    })))
+  };
+
+  const handleNoHpChange = (newNoHp) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      noHp: newNoHp
     })))
   };
 
@@ -109,14 +115,14 @@ const FormPages = (props) => {
   const handleJabatan = (newJabatan) => {
     setFormData(((prevFormData) => ({
       ...prevFormData,
-      jabatanId: newJabatan
+      selectedRole: newJabatan
     })))
   }
 
   const handleProject = (newProject) => {
     setFormData(((prevFormData) => ({
       ...prevFormData,
-      projectId: newProject
+      selectedProject: newProject
     })))
   }
 
@@ -218,54 +224,105 @@ const FormPages = (props) => {
     })))
   }
 
-    const [formData, setFormData] = useState({
-        nama: '',
-        noNpwp: '',
-        noHp: '',
-        email: '',
-        tempatLahir: '',
-        tanggalLahir: '',
-        jenisKelamin: '',
-        agama: '',
-        noRek: '',
-        kewarganegaraan: '',
-        nik: '',
-        kodePos: '',
-        alamatKtp: '',
-        jenjangPendidikan: '',
-        tanggalBergabung: '',
-        alamatSekarang: '',
-        statusPerkawinan: '',
-        golonganDarah: '',
-        nomorKtp: '',
-        emergencyContact: '',
-        statusEmergency: '',
-        alamatEmergency: '',
-        telpEmergency: '',
-        projectId: '', // get dari api project web
-        divisi: '',
-        isLeader: '',
-        handsetImei: '',
-        jabatanId: '',
-        isKaryawan: '',
-        foto:    '',
-        fotoPath: '',
-        fotoKtp: '',
-        fotoKtpPath: '',
-        fotoNpwp: '',
-        fotoNpwpPath: '',
-        fotoKk: '',
-        fotoKkPath: '',
-        fotoAsuransi: '',
-        fotoAsuransiPath: '',
-        hakCuti: ''     
-      })
+  const handleFoto = (newFoto, newFotoPath) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      foto: newFoto,
+      fotoPath: newFotoPath
+    })))
+  }
+
+  const handleFotoKtp = (newFotoKtp, newFotoKtpPath) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      fotoKtp: newFotoKtp,
+      fotoKtpPath: newFotoKtpPath
+    })))
+  }
+
+  const handleFotoNpwp = (newFotoNpwp, newFotoNpwpPath) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      fotoNpwp: newFotoNpwp,
+      fotoNpwpPath: newFotoNpwpPath
+    })))
+  }
+
+  const handleFotoKk = (newFotoKk, newFotoKkPath) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      fotoKk: newFotoKk,
+      fotoKkPath: newFotoKkPath
+    })))
+  }
+
+  const handleFotoAsuransi = (newFotoAsuransi, newFotoAsuransiPath) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      fotoAsuransi: newFotoAsuransi,
+      fotoAsuransiPath: newFotoAsuransiPath
+    })))
+  }
+
+  // Data sebelumnya
+  const location = useLocation();
+  const selectedNik = location.state ? location.state.selectedNik : null;
+  const initialFormData = selectedNik || { // Data Profile
+   nama: '',
+   nomorKtp: '',
+   noNpwp: '',
+   noHp: '',
+   email: '',
+   tempatLahir: '',
+   tanggalLahir: '',
+   jenisKelamin: '',
+   golonganDarah: '',
+   statusPerkawinan: '',
+   agama: '',
+   jenjangPendidikan: '',
+   noRek: '',
+   kewarganegaraan: '',
+
+   // Data Alamat
+   alamatKtp: '',
+   alamatSekarang: '',
+   kodePos: '',
+
+   // Data Lain-Lain
+   emergencyContact: '',
+   statusEmergency: '',
+   alamatEmergency: '',
+   telpEmergency: '',
+
+   // Data Karyawan
+   nik: '',
+   handsetImei: '',
+   selectedRole: '',
+   selectedProject: '',
+   tanggalBergabung: '',
+   hakCuti: '',
+   isLeader: '',
+   isKaryawan: '',
+   
+   // Tambah Foto
+   foto: '',
+   fotoPath: '',
+   fotoKtp: '',
+   fotoKtpPath: '',
+   fotoNpwp: '',
+   fotoNpwpPath: '',
+   fotoKk: '',
+   fotoKkPath: '',
+   fotoAsuransi: '',
+   fotoAsuransiPath: '', };
+  const [formData, setFormData] = useState(initialFormData);
+
+   
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
       const [apiDataJabatan, setApiDataJabatan] = useState([]);
       const [apiDataProject, setApiDataProject] = useState([]);
       const [error, setError] = useState(null);
-      const [isLoading, setIsLoading] = useState(true);
     // Handle API GET and POST
     useEffect(() => {
         const fetchData = async () => {
@@ -287,9 +344,7 @@ const FormPages = (props) => {
               }
             } catch (error) {
               setError(`Error fetching data: ${error.message}`);
-            } finally {
-              setIsLoading(false);
-            }
+            } 
           };
 
         const token = localStorage.getItem("authToken")
@@ -310,6 +365,8 @@ const FormPages = (props) => {
       }, [navigate])
 
       useEffect(() => {
+
+        console.log(formData);
         const fetchDataProject = async () => {
             try {
               const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view', {
@@ -329,8 +386,6 @@ const FormPages = (props) => {
               }
             } catch (error) {
               setError(`Error fetching data: ${error.message}`);
-            } finally {
-              setIsLoading(false);
             }
           };
 
@@ -354,7 +409,6 @@ const FormPages = (props) => {
 
       const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData);
         const token = localStorage.getItem("authToken");
     
           if (!token) {
@@ -364,36 +418,44 @@ const FormPages = (props) => {
     
         try {
             const requestData = {
-                jabatanId: formData.jabatanId,
-                namaJabatan: formData.namaJabatan,
+              // Data Profile
                 nama: formData.nama,
+                nomorKtp: formData.nomorKtp,
                 noNpwp: formData.noNpwp,
                 noHp: formData.noHp,
                 email: formData.email,
                 tempatLahir: formData.tempatLahir,
                 tanggalLahir: formData.tanggalLahir,
                 jenisKelamin: formData.jenisKelamin,
+                golonganDarah: formData.golonganDarah,
+                statusPerkawinan: formData.statusPerkawinan,
                 agama: formData.agama,
+                jenjangPendidikan: formData.jenjangPendidikan,
                 noRek: formData.noRek,
                 kewarganegaraan: formData.kewarganegaraan,
-                nik: formData.nik,
-                kodePos: formData.kodePos,
+
+                // Data Alamat
                 alamatKtp: formData.alamatKtp,
-                jenjangPendidikan: formData.jenjangPendidikan,
-                tanggalBergabung: formData.tanggalBergabung,
                 alamatSekarang: formData.alamatSekarang,
-                statusPerkawinan: formData.statusPerkawinan,
-                golonganDarah: formData.golonganDarah,
-                nomorKtp: formData.nomorKtp,
+                kodePos: formData.kodePos,
+
+                // Data Lain-Lain
                 emergencyContact: formData.emergencyContact,
                 statusEmergency: formData.statusEmergency,
                 alamatEmergency: formData.alamatEmergency,
                 telpEmergency: formData.telpEmergency,
-                projectId: formData.projectId,
-                divisi: formData.divisi,
-                isLeader: formData.isLeader,
+
+                // Data Karyawan
+                nik: formData.nik,
                 handsetImei: formData.handsetImei,
+                selectedRole: formData.selectedRole,
+                selectedProject: formData.selectedProject,
+                tanggalBergabung: formData.tanggalBergabung,
+                hakCuti: formData.hakCuti,
+                isLeader: formData.isLeader,
                 isKaryawan: formData.isKaryawan,
+                
+                // Tambah Foto
                 foto: formData.foto,
                 fotoPath: formData.fotoPath,
                 fotoKtp: formData.fotoKtp,
@@ -404,10 +466,10 @@ const FormPages = (props) => {
                 fotoKkPath: formData.fotoKkPath,
                 fotoAsuransi: formData.fotoAsuransi,
                 fotoAsuransiPath: formData.fotoAsuransiPath,
-                hakCuti: formData.hakCuti
+                
               };
               
-    
+              console.log(requestData);
           const response = await axios.post(
             props.api,
             requestData,
@@ -425,6 +487,7 @@ const FormPages = (props) => {
           navigate("/master-data/karyawan-view");
           console.log('Response from API:', response.data);
         } catch (error) {
+          console.log("ini error");
           // Jika tidak berhasil, tampilkan pesan error
           console.error('Failed to fetch data:', error);
           Swal.fire({
@@ -446,7 +509,8 @@ const FormPages = (props) => {
     //     props.handleAnnouncement();
     //   };
     
-    
+     
+
       
   return (
     <div className="form__container">
@@ -493,24 +557,24 @@ const FormPages = (props) => {
             
                 <div className="middle__left">
                     {/* Kalau Show Data Profile true */}
-                    {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} onNamaLengkapChange={handleNamaLengkapChange}  onNoKtpChange={handleNoKtpChange} onNoNpwpChange={handleNoNpwpChange} onEmailChange={handleEmailChange} onTempatLahirChange={handleTempatLahirChange} onTanggalLahirChange={handleTanggalLahirChange} onJenisKelaminChange={handleJenisKelaminChange} onGolDarahChange={handleGolDarahChange} onStatusPerkawinanChange={handleStatusPerkawinan} onJenjangPendidikanChange={handleJenjangPendidikan} onKewarganegaraanChange={handleKewarganegaraan} onAgamaChange={handleAgama} onNoRekeningChange={handleNoRekening}/>}
+                    {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} onNamaLengkapChange={handleNamaLengkapChange}  onNoKtpChange={handleNoKtpChange} onNoNpwpChange={handleNoNpwpChange} onNoHpChange={handleNoHpChange} onEmailChange={handleEmailChange} onTempatLahirChange={handleTempatLahirChange} onTanggalLahirChange={handleTanggalLahirChange} onJenisKelaminChange={handleJenisKelaminChange} onGolDarahChange={handleGolDarahChange} onStatusPerkawinanChange={handleStatusPerkawinan} onJenjangPendidikanChange={handleJenjangPendidikan} onKewarganegaraanChange={handleKewarganegaraan} onAgamaChange={handleAgama} onNoRekeningChange={handleNoRekening} onFormData={formData}/>}
                     
                     {/* Kalau Show Data Alamat true */}
-                    {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat} onAlamatKtpChange={handleAlamatKtp} onAlamatSekarangChange={handleAlamatSekarang} onKodePosChange={handleKodePos}/>}
+                    {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat} onAlamatKtpChange={handleAlamatKtp} onAlamatSekarangChange={handleAlamatSekarang} onKodePosChange={handleKodePos} onFormData={formData}/>}
                     
                     {/* Kalau Show Data Lain-Lain true */}
-                    {props.showDataLain && <DataLain showChildrenLain={props.showChildrenLain} onClickLain={props.onClickLain} onEmergencyContactChange={handleEmergencyContact} onStatusEmergencyChange={handleStatusEmergency} onAlamatEmergencyChange={handleAlamatEmergency} onTelpEmergencyChange={handleTelpEmergency} />}
+                    {props.showDataLain && <DataLain showChildrenLain={props.showChildrenLain} onClickLain={props.onClickLain} onEmergencyContactChange={handleEmergencyContact} onStatusEmergencyChange={handleStatusEmergency} onAlamatEmergencyChange={handleAlamatEmergency} onTelpEmergencyChange={handleTelpEmergency} onFormData={formData} />}
                 </div>
                 
                 <div className="middle__right">
                     {/* Kalau Show Data Karyawan true */}
-                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan}/>}
+                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan} onFormData={formData}/>}
 
                 {/* Kalau Show Data Tambah Foto true */}
-                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}
+                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} onFotoChange={handleFoto} onFotoKtpChange={handleFotoKtp} onFotoNpwpChange={handleFotoNpwp} onFotoKkChange={handleFotoKk} onFotoAsuransiChange={handleFotoAsuransi} onFormData={formData}/>}
 
                 {/* Kalau Show Data Password true */}
-                {props.showPassword && <Password showChildrenPassword={props.showChildrenPassword} onClickPassword={props.onClickPassword} />}
+                {props.showPassword && <Password showChildrenPassword={props.showChildrenPassword} onClickPassword={props.onClickPassword} onFormData={formData}/>}
                 </div>
                 
             </div>

@@ -22,7 +22,7 @@ const DropdownMenu = (props) => {
 
       <Dropdown.Menu>
         {props.itemsProject.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item.label}>
+          <Dropdown.Item key={index} eventKey={item.value}>
             {item.label}
           </Dropdown.Item>
         ))}
@@ -39,7 +39,7 @@ const DropdownMenu = (props) => {
 
       <Dropdown.Menu>
         {props.itemsJabatan.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item.label}>
+          <Dropdown.Item key={index} eventKey={item.value}>
             {item.label}
           </Dropdown.Item>
         ))}
@@ -51,11 +51,11 @@ const DropdownMenu = (props) => {
   {!props.itemsProject && !props.itemsJabatan && (
     <Dropdown onSelect={handleDropdownSelect}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        {props.title}
+        {props.onFormData.agama ? props.onFormData.agama : props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {props.items && props.items.map((item, index) => (
+        {props.itemsAgama && props.itemsAgama.map((item, index) => (
           <Dropdown.Item key={index} eventKey={item}>
             {item}
           </Dropdown.Item>

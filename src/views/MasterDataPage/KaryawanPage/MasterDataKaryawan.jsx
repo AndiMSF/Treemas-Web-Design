@@ -18,7 +18,6 @@ const MasterDataKaryawan = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -40,8 +39,6 @@ const MasterDataKaryawan = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -54,10 +51,6 @@ const MasterDataKaryawan = () => {
           navigate("/login");
         }
       }, [navigate]);
-
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -95,12 +88,12 @@ const MasterDataKaryawan = () => {
           cell: (d) => (
             <>
               <i
-                key={`edit-${d.jabatanId}`}
+                key={`edit-${d.nik}`}
                 onClick={() => handleClick(d.nik)}
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.jabatanId}`}
+                key={`delete-${d.nik}`}
                 onClick={() => handleDelete(d.nik)}
                 className="fas fa-trash-alt"
               ></i>
@@ -116,8 +109,9 @@ const MasterDataKaryawan = () => {
     
     
       const handleClick = (id) => {
-        console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/karyawan-form/edit/${id}`);
+        const selectedNik = apiData.find((nik) => nik.nik === id);
+        console.log(`Edit button clicked for NIK: ${id}`);
+        navigate(`/master-data/karyawan-form/edit/${id}`,{state: {selectedNik}});
       };
     
       const handleDelete = (id) => {
