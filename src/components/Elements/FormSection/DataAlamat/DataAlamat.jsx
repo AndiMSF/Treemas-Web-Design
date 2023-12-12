@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react"
 import "./dataalamat.css"
-import TextArea from "../../TextArea/TextArea"
-import BoxInput from "../../BoxInput/BoxInput"
+import { Form, FormControl } from "react-bootstrap"
 
 const DataAlamat = (props) => {
-    
+
+    const [alamatKtp, setAlamatKtp] = useState('');
+    const [alamatSekarang, setAlamatSekarang] = useState('');
+    const [kodePos, setKodePos] = useState('');    
   return (
     <div className="data__alamat__container">
         <div onClick={props.onClickAlamat} className="section__header">
@@ -24,7 +27,16 @@ const DataAlamat = (props) => {
                         <p>Alamat KTP</p>
                     </div>          
                     <div className="form__row__right">
-                        <TextArea placeholder="Alamat KTP" />    
+                    <Form.Control 
+                    value={alamatKtp} 
+                    onChange={(e) => {
+                        setAlamatKtp(e.target.value)
+                        props.onAlamatKtpChange(e.target.value)
+                    }} 
+                    as="textarea" 
+                    aria-label="With textarea" 
+                    placeholder="Alamat KTP"
+                    />    
                     </div>
                 </div>
 
@@ -33,7 +45,16 @@ const DataAlamat = (props) => {
                         <p>Alamat Sekarang</p>
                     </div>          
                     <div className="form__row__right">
-                        <TextArea placeholder="Alamat Sekarang" />    
+                    <Form.Control 
+                    value={alamatSekarang} 
+                    onChange={(e) => {
+                        setAlamatSekarang(e.target.value)
+                        props.onAlamatSekarangChange(e.target.value)
+                    }} 
+                    as="textarea" 
+                    aria-label="With textarea" 
+                    placeholder="Alamat Sekarang"
+                    />    
                     </div>
                 </div>
 
@@ -42,7 +63,11 @@ const DataAlamat = (props) => {
                         <p>Kode Pos</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Kode Pos" />    
+                    <FormControl type="text" placeholder="No KTP" value={kodePos}
+                    onChange={(e) => {
+                        setKodePos(e.target.value)
+                        props.onKodePosChange(e.target.value)
+                    } }/>       
                     </div>
                 </div>
 

@@ -106,12 +106,118 @@ const FormPages = (props) => {
     })))
   }
 
+  const handleJabatan = (newJabatan) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      jabatanId: newJabatan
+    })))
+  }
+
+  const handleProject = (newProject) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      projectId: newProject
+    })))
+  }
+
   const handleNoRekening = (newNoRekening) => {
     setFormData(((prevFormData) => ({
       ...prevFormData,
       noRek: newNoRekening
     })))
   }
+
+  const handleAlamatKtp = (newAlamatKtp) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      alamatKtp: newAlamatKtp
+    })))
+  }
+
+  const handleAlamatSekarang = (newAlamatSekarang) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      alamatSekarang: newAlamatSekarang
+    })))
+  }
+
+  const handleKodePos = (newKodePos) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      kodePos: newKodePos
+    })))
+  }
+
+  const handleEmergencyContact = (newEmergencyContact) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      emergencyContact: newEmergencyContact
+    })))
+  }
+
+  const handleStatusEmergency = (newStatusEmergency) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      statusEmergency: newStatusEmergency
+    })))
+  }
+
+  const handleAlamatEmergency = (newAlamatEmergency) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      alamatEmergency: newAlamatEmergency
+    })))
+  }
+
+  const handleTelpEmergency = (newTelpEmergency) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      telpEmergency: newTelpEmergency
+    })))
+  }
+
+  const handleNik = (newNik) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      nik: newNik
+    })))
+  }
+
+  const handleAndroidId = (newAndroidId) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      androidId: newAndroidId
+    })))
+  }
+
+  const handleTanggalBergabung = (newTanggalBergabung) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      tanggalBergabung: newTanggalBergabung
+    })))
+  }
+
+  const handleHakCuti = (newHakCuti) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      hakCuti: newHakCuti
+    })))
+  }
+
+  const handleIsKaryawan = (newIsKaryawan) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      isKaryawan: newIsKaryawan
+    })))
+  }
+
+  const handleIsLeader = (newIsLeader) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      isLeader: newIsLeader
+    })))
+  }
+
     const [formData, setFormData] = useState({
         nama: '',
         noNpwp: '',
@@ -139,7 +245,7 @@ const FormPages = (props) => {
         projectId: '', // get dari api project web
         divisi: '',
         isLeader: '',
-        androidId: '',
+        handsetImei: '',
         jabatanId: '',
         isKaryawan: '',
         foto:    '',
@@ -151,7 +257,8 @@ const FormPages = (props) => {
         fotoKk: '',
         fotoKkPath: '',
         fotoAsuransi: '',
-        fotoAsuransiPath: ''       
+        fotoAsuransiPath: '',
+        hakCuti: ''     
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -163,7 +270,7 @@ const FormPages = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/jabatan-view', {
+              const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/jabatan-view', {
               method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
                 'Content-Type': 'application/json',
@@ -205,7 +312,7 @@ const FormPages = (props) => {
       useEffect(() => {
         const fetchDataProject = async () => {
             try {
-              const response = await fetch('https://treemas-api-403500.et.r.appspot.com/api/master-data/project-view', {
+              const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view', {
               method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
                 'Content-Type': 'application/json',
@@ -285,7 +392,7 @@ const FormPages = (props) => {
                 projectId: formData.projectId,
                 divisi: formData.divisi,
                 isLeader: formData.isLeader,
-                androidId: formData.androidId,
+                handsetImei: formData.handsetImei,
                 isKaryawan: formData.isKaryawan,
                 foto: formData.foto,
                 fotoPath: formData.fotoPath,
@@ -297,6 +404,7 @@ const FormPages = (props) => {
                 fotoKkPath: formData.fotoKkPath,
                 fotoAsuransi: formData.fotoAsuransi,
                 fotoAsuransiPath: formData.fotoAsuransiPath,
+                hakCuti: formData.hakCuti
               };
               
     
@@ -388,15 +496,15 @@ const FormPages = (props) => {
                     {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} onNamaLengkapChange={handleNamaLengkapChange}  onNoKtpChange={handleNoKtpChange} onNoNpwpChange={handleNoNpwpChange} onEmailChange={handleEmailChange} onTempatLahirChange={handleTempatLahirChange} onTanggalLahirChange={handleTanggalLahirChange} onJenisKelaminChange={handleJenisKelaminChange} onGolDarahChange={handleGolDarahChange} onStatusPerkawinanChange={handleStatusPerkawinan} onJenjangPendidikanChange={handleJenjangPendidikan} onKewarganegaraanChange={handleKewarganegaraan} onAgamaChange={handleAgama} onNoRekeningChange={handleNoRekening}/>}
                     
                     {/* Kalau Show Data Alamat true */}
-                    {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
+                    {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat} onAlamatKtpChange={handleAlamatKtp} onAlamatSekarangChange={handleAlamatSekarang} onKodePosChange={handleKodePos}/>}
                     
                     {/* Kalau Show Data Lain-Lain true */}
-                    {props.showDataLain && <DataLain showChildrenLain={props.showChildrenLain} onClickLain={props.onClickLain} />}
+                    {props.showDataLain && <DataLain showChildrenLain={props.showChildrenLain} onClickLain={props.onClickLain} onEmergencyContactChange={handleEmergencyContact} onStatusEmergencyChange={handleStatusEmergency} onAlamatEmergencyChange={handleAlamatEmergency} onTelpEmergencyChange={handleTelpEmergency} />}
                 </div>
                 
                 <div className="middle__right">
                     {/* Kalau Show Data Karyawan true */}
-                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject}/>}
+                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan}/>}
 
                 {/* Kalau Show Data Tambah Foto true */}
                 {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}

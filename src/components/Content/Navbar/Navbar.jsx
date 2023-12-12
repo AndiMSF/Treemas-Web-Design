@@ -6,10 +6,50 @@ import Profile from "../../../images/m header.png"
 import Search from "../../Elements/Search/Search"
 import { Dropdown } from "react-bootstrap"
 import DropdownProfile from "../../Elements/DropdownProfile/DropdownProfile"
-import { useState } from "react"
+import { useEffect, useState } from "react";
+import { useNavigate  } from "react-router-dom";
 
 const Navbar = (props) => {
     // const [openProfile, setOpenProfile] = useState(false)
+    const navigate = useNavigate();
+    const [isToken, setIstoken] = useState('');
+    const [apiData, setApiData] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/data-kehadiran', {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              setApiData(data.data);
+              
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          } finally {
+            setIsLoading(false);
+          }
+        };
+        
+          const token = localStorage.getItem("authToken")
+          if (token) {
+            setIstoken(token)
+            fetchData();
+            console.log('login sukses');
+          }else{
+            navigate("/login");
+          }
+        }, [navigate])
 
     return <div className="navbar__container">
         <div className="left__container__navbar">
@@ -18,7 +58,7 @@ const Navbar = (props) => {
 
         <div className="right__container__navbar">
             <div className="vertikal__line"></div>
-            <p>{(props.nama)}</p>
+            <p>{apiData.nama}</p>
             
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">

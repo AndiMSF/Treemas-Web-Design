@@ -5,7 +5,7 @@ import "./datakaryawan.css"
 import BoxInput from "../../BoxInput/BoxInput"
 import DropdownMenu from "../../../Elements/DropdownMenu/DropdownMenu.jsx"
 import { useEffect, useState } from "react"
-import { Form } from "react-bootstrap"
+import { Form, FormControl } from "react-bootstrap"
 
 const DataKaryawan = (props) => {
     const itemsJabatan = ["-"]
@@ -13,11 +13,20 @@ const DataKaryawan = (props) => {
     const itemsProject = ["-"]
     const [project, setProject] = useState("Pilih")
 
+    const [nik, setNik] = useState('')
+    const [androidId, setAndroidId] = useState('')
+    const [tanggalBergabung, setTanggalBergabung] = useState('')
+    const [hakCuti, setHakCuti] = useState('')
+    const [isLeader, setIsLeader] = useState('')
+    const [isKaryawan, setIsKaryawan] = useState('')
+
     const handleJabatan = (selectedItem) => {
         setJabatan(selectedItem)
+        props.onJabatanChange(selectedItem)
     }
     const handleProject = (selectedItem) => {
         setProject(selectedItem)    
+        props.onProjectChange(selectedItem)
     }
 
     // DataKaryawan component
@@ -56,7 +65,11 @@ const DataKaryawan = (props) => {
                         <p>NIK <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="NIK" />    
+                    <FormControl type="text" placeholder="NIK" value={nik}
+                    onChange={(e) => {
+                        setNik(e.target.value)
+                        props.onNikChange(e.target.value)
+                    } }/>    
                     </div>
                 </div>
 
@@ -65,7 +78,11 @@ const DataKaryawan = (props) => {
                         <p>Android ID</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Android ID" />    
+                    <FormControl type="text" placeholder="Android ID" value={androidId}
+                    onChange={(e) => {
+                        setAndroidId(e.target.value)
+                        props.onAndroidIdChange(e.target.value)
+                    } }/>     
                     </div>
                 </div>
 
@@ -92,7 +109,11 @@ const DataKaryawan = (props) => {
                         <p>Tanggal Bergabung <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Tanggal Bergabung" />    
+                    <FormControl type="text" placeholder="Tanggal Bergabung" value={tanggalBergabung}
+                    onChange={(e) => {
+                        setTanggalBergabung(e.target.value)
+                        props.onTanggalBergabungChange(e.target.value)
+                    } }/>     
                     </div>
                 </div>
 
@@ -101,7 +122,11 @@ const DataKaryawan = (props) => {
                         <p>Hak Cuti <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Hak Cuti" />    
+                    <FormControl type="text" placeholder="Hak Cuti" value={hakCuti}
+                    onChange={(e) => {
+                        setHakCuti(e.target.value)
+                        props.onHakCutiChange(e.target.value)
+                    } }/>     
                     </div>
                 </div>
 
@@ -110,27 +135,16 @@ const DataKaryawan = (props) => {
                         <p>Leader <span style={{ color: 'red' }}>*</span></p>
                     </div>
                     <div className="form__row__right__label">
-                        {['checkbox'].map((type) => (
-                            <div key={`Ya`}>
-                                <Form.Check // prettier-ignore
-                                    type={type}
-                                    id={`Ya`}
-                                    label={`Ya`}
-                                />
-
-                            </div>
-                        ))}
-
-                        {['checkbox'].map((type) => (
-                            <div key={`Tidak`}>
-                                <Form.Check // prettier-ignore
-                                    type={type}
-                                    id={`Tidak`}
-                                    label={`Tidak`}
-                                />
-
-                            </div>
-                        ))}
+                    <input type="radio" name="isLeader" id="Ya" onChange={() => {
+                                        setIsLeader('Ya')
+                                        props.onIsLeaderChange('Ya')
+                                    } } />
+                            <label htmlFor="Ya">Ya</label>
+                        <input type="radio" name="isLeader" id="Tidak" onChange={() => {
+                                        setIsLeader('Tidak')
+                                        props.onIsLeaderChange('Tidak')
+                                    } } />
+                            <label htmlFor="Tidak">Tidak</label>
                     </div>
 
                     
@@ -142,27 +156,16 @@ const DataKaryawan = (props) => {
                         <p>Karyawan <span style={{ color: 'red' }}>*</span></p>
                     </div>
                     <div className="form__row__right__label">
-                        {['checkbox'].map((type) => (
-                            <div key={`Tetap`}>
-                                <Form.Check // prettier-ignore
-                                    type={type}
-                                    id={`Tetap`}
-                                    label={`Tetap`}
-                                />
-
-                            </div>
-                        ))}
-
-                        {['checkbox'].map((type) => (
-                            <div key={`Kontrak`}>
-                                <Form.Check // prettier-ignore
-                                    type={type}
-                                    id={`Kontrak`}
-                                    label={`Kontrak`}
-                                />
-
-                            </div>
-                        ))}
+                    <input type="radio" name="isKaryawan" id="Tetap" onChange={() => {
+                                        setIsKaryawan('Tetap')
+                                        props.onIsKaryawanChange('Tetap')
+                                    } } />
+                            <label htmlFor="Tetap">Tetap</label>
+                        <input type="radio" name="isKaryawan" id="Kontrak" onChange={() => {
+                                        setIsKaryawan('Kontrak')
+                                        props.onIsKaryawanChange('Kontrak')
+                                    } } />
+                            <label htmlFor="Kontrak">Kontrak</label>
                     </div>
 
                     

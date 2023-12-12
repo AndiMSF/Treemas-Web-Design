@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react"
 import "./datalain.css"
-import BoxInput from "../../BoxInput/BoxInput"
-import TextArea from "../../TextArea/TextArea"
+import { FormControl } from "react-bootstrap"
 
 const DataLainlain = (props) => {
+    const [emergencyContact, setEmergencyContact] = useState('')
+    const [statusEmergency, setStatusEmergency] = useState('')
+    const [alamatEmergency, setAlamatEmergency] = useState('')
+    const [telpEmergency, setTelpEmergency] = useState('')
     
   return (
     <div className="data__lain__container">
@@ -24,7 +28,11 @@ const DataLainlain = (props) => {
                         <p>Kontak Darurat</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Kontak Darurat" />    
+                    <FormControl type="text" placeholder="Kontak Darurat" value={emergencyContact}
+                    onChange={(e) => {
+                        setEmergencyContact(e.target.value)
+                        props.onEmergencyContactChange(e.target.value)
+                    } }/>    
                     </div>
                 </div>
 
@@ -33,7 +41,11 @@ const DataLainlain = (props) => {
                         <p>Status Kontak</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Status Kontak" />    
+                    <FormControl type="text" placeholder="Status Kontak" value={statusEmergency}
+                    onChange={(e) => {
+                        setStatusEmergency(e.target.value)
+                        props.onStatusEmergencyChange(e.target.value)
+                    } }/>     
                     </div>
                 </div>
 
@@ -42,7 +54,11 @@ const DataLainlain = (props) => {
                         <p>Alamat Kontak</p>
                     </div>          
                     <div className="form__row__right">
-                        <TextArea placeholder="Alamat Kontak" />    
+                    <FormControl type="text" placeholder="Alamat Kontak" value={alamatEmergency}
+                    onChange={(e) => {
+                        setAlamatEmergency(e.target.value)
+                        props.onAlamatEmergencyChange(e.target.value)
+                    } }/>    
                     </div>
                 </div>
 
@@ -51,7 +67,11 @@ const DataLainlain = (props) => {
                         <p>Telp. Darurat</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Telp. Darurat" />    
+                    <FormControl type="text" placeholder="Telepon Darurat" value={telpEmergency}
+                    onChange={(e) => {
+                        setTelpEmergency(e.target.value)
+                        props.onTelpEmergencyChange(e.target.value)
+                    } }/>    
                     </div>
                 </div>
 
