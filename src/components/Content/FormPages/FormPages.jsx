@@ -20,6 +20,97 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 
 const FormPages = (props) => {
+
+  const handleNamaLengkapChange = (newNamaLengkap) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      nama: newNamaLengkap
+    })))
+  };
+
+  const handleNoKtpChange = (newNoKtp) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      nomorKtp: newNoKtp
+    })))
+  };
+
+  const handleNoNpwpChange = (newNoNpwp) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      noNpwp: newNoNpwp
+    })))
+  };
+
+  const handleEmailChange = (newEmail) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      email: newEmail
+    })))
+  };
+
+  const handleTempatLahirChange = (newTempatLahir) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      tempatLahir: newTempatLahir
+    })))
+  };
+
+  const handleTanggalLahirChange = (newTanggalLahir) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      tanggalLahir: newTanggalLahir
+    })))
+  };
+
+  const handleJenisKelaminChange = (newJenisKelamin) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      jenisKelamin: newJenisKelamin
+    })))
+  }
+
+  const handleGolDarahChange = (newGolDarah) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      golonganDarah: newGolDarah
+    })))
+  }
+
+  const handleStatusPerkawinan = (newStatusPerkawinan) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      statusPerkawinan: newStatusPerkawinan
+    })))
+  }
+
+  const handleJenjangPendidikan = (newJenjangPendidikan) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      jenjangPendidikan: newJenjangPendidikan
+    })))
+  }
+
+  const handleKewarganegaraan = (newKewarganegaraan) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      kewarganegaraan: newKewarganegaraan
+    })))
+  }
+
+  const handleAgama = (newAgama) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      agama: newAgama
+    })))
+  }
+
+  const handleNoRekening = (newNoRekening) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      noRek: newNoRekening
+    })))
+  }
     const [formData, setFormData] = useState({
         nama: '',
         noNpwp: '',
@@ -152,8 +243,10 @@ const FormPages = (props) => {
         }
       }, [navigate])
 
+
       const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log(formData);
         const token = localStorage.getItem("authToken");
     
           if (!token) {
@@ -224,7 +317,7 @@ const FormPages = (props) => {
           console.log('Response from API:', response.data);
         } catch (error) {
           // Jika tidak berhasil, tampilkan pesan error
-          console.error('Failed to fetch data:', data.message);
+          console.error('Failed to fetch data:', error);
           Swal.fire({
             title: "Error!",
             text: "Failed to add Karyawan.",
@@ -243,17 +336,6 @@ const FormPages = (props) => {
     //   const handleSubmit = () => {
     //     props.handleAnnouncement();
     //   };
-
-    const [dataKaryawan, setDataKaryawan] = useState({
-        nik: '',
-        androidId: '',
-        jabatanId: '',
-        project: '',
-        tanggalBergabung: '',
-        hakCuti: '',
-        isLeader: null,
-        isKaryawan: '',
-      });
     
     
       
@@ -287,7 +369,6 @@ const FormPages = (props) => {
                     </div>
                 ))}
 
-          
                 {props.showUpload && props.image.map((image, index) => (
                     <div className="form__row" key={index}>
                         <Form.Group class="upload" controlId="formFile">
@@ -303,7 +384,7 @@ const FormPages = (props) => {
             
                 <div className="middle__left">
                     {/* Kalau Show Data Profile true */}
-                    {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} />}
+                    {props.showDataProfile && <DataProfile showChildrenProfile={props.showChildrenProfile} onClickProfile={props.onClickProfile} onNamaLengkapChange={handleNamaLengkapChange}  onNoKtpChange={handleNoKtpChange} onNoNpwpChange={handleNoNpwpChange} onEmailChange={handleEmailChange} onTempatLahirChange={handleTempatLahirChange} onTanggalLahirChange={handleTanggalLahirChange} onJenisKelaminChange={handleJenisKelaminChange} onGolDarahChange={handleGolDarahChange} onStatusPerkawinanChange={handleStatusPerkawinan} onJenjangPendidikanChange={handleJenjangPendidikan} onKewarganegaraanChange={handleKewarganegaraan} onAgamaChange={handleAgama} onNoRekeningChange={handleNoRekening}/>}
                     
                     {/* Kalau Show Data Alamat true */}
                     {props.showDataAlamat && <DataAlamat showChildrenAlamat={props.showChildrenAlamat} onClickAlamat={props.onClickAlamat}/>}
@@ -314,7 +395,7 @@ const FormPages = (props) => {
                 
                 <div className="middle__right">
                     {/* Kalau Show Data Karyawan true */}
-                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} setDataKaryawanChange={setDataKaryawan}/>}
+                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject}/>}
 
                 {/* Kalau Show Data Tambah Foto true */}
                 {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} />}

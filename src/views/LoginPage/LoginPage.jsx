@@ -4,7 +4,7 @@
 import Container from "react-bootstrap/Container"
 import "./auth.css"
 import Treemas from "../../images/logo-treemas.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
