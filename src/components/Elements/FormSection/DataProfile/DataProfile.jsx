@@ -194,7 +194,6 @@ const DataProfile = (props) => {
                     </div>
                 </div>
 
-
                 <div className="form__row">
                     <div className="form__row__left">
                         <p>Jenjang Pendidikan</p>

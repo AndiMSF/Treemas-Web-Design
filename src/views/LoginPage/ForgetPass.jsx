@@ -18,7 +18,7 @@ const ForgotPass = () => {
         };
             
         try {
-          const response = await axios.post('https://treemas-api-405402.et.r.appspot.com/api/auth/forgot-password', 
+          const response = await axios.put('https://treemas-api-405402.et.r.appspot.com/api/auth/forgot-password', 
           forgotData,
           {
             headers : {
@@ -41,6 +41,8 @@ const ForgotPass = () => {
               text: "Failed to change.",
               icon: "error"
             });
+
+            console.log(response.data.message);
           }
         } catch (error) {
           // Tangani kesalahan jaringan atau kesalahan server
