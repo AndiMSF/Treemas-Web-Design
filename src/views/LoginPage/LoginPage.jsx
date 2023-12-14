@@ -43,28 +43,40 @@ const LoginPage = () => {
               console.log('Berhasil masuk:', response);
               const bearerToken = response.data.data.token;
               console.log(bearerToken);
+             
               localStorage.setItem("authToken", bearerToken);
               window.location.href = '/dashboard';    
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
             // Jika tidak berhasil, tampilkan pesan error
-
+            console.log(response.data);
             Swal.fire({
               title: "Error!",
-              text: "Failed to login.",
+              text: "Failed to login." + response.data.message,
               icon: "error"
             });
           }
         } catch (error) {
           // Tangani kesalahan jaringan atau kesalahan server
           // Jika tidak berhasil, tampilkan pesan error
-          console.error('Failed to fetch data:');
-          Swal.fire({
-            title: "Error!",
-            text: "Failed to login.",
-            icon: "error"
-          });
+          console.error('Failed to fetch data:', error);
+           
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            console.error('Server responded with non-2xx status:', error.response.data);
+            Swal.fire({
+              title: 'Error!',
+              text:  error.response.data.message, // Display the backend error message
+              icon: 'error',
+            });
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.error('No response received:', error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error('Error during request setup:', error.message);
+          }
         }
 
         if (password.length < 6) {

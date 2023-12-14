@@ -125,15 +125,7 @@ const MasterDataAnnouncementForm = () => {
               <div className="form__row__right">
                 <BoxInput placeholder="Header" value={formData.header} onChange={(e) => handleInputChange(e, 'header')}/>
               </div>
-            </div>
-            <div className="form__row">
-              <div className="form__row__left">
-                <p>Footer</p>
-              </div>
-              <div className="form__row__right">
-                <BoxInput placeholder="Footer" value={formData.footer} onChange={(e) => handleInputChange(e, 'footer')}/>
-              </div>
-            </div>
+            </div>            
             <div className="form__row">
               <div className="form__row__left">
                 <p>Body</p>
@@ -143,16 +135,14 @@ const MasterDataAnnouncementForm = () => {
               </div>
             </div>
             <div className="form__row">
-              <Form.Group class="upload" controlId="formFile">
-                <div className="form__row__left">
-                  <Form.Label>Gambar</Form.Label>
-                </div>
-                <div className="form__row__right">
-                  <Form.Control type="file" onChange={handleImageUpload} />
-                </div>
-              </Form.Group>
+              <div className="form__row__left">
+                <p>Footer</p>
+              </div>
+              <div className="form__row__right">
+                <BoxInput placeholder="Footer" value={formData.footer} onChange={(e) => handleInputChange(e, 'footer')}/>
+              </div>
             </div>
-
+          
             {/* Form BOTTOM */}
             <div className="form__row__bottom">
                 <Link to="/master-data/announcement-view" className="cancel__button" text="Cancel">Cancel</Link>
