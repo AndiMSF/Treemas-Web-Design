@@ -316,13 +316,61 @@ const FormPages = (props) => {
    fotoAsuransi: '',
    fotoAsuransiPath: '', };
   const [formData, setFormData] = useState(initialFormData);
-
    
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
       const [apiDataJabatan, setApiDataJabatan] = useState([]);
       const [apiDataProject, setApiDataProject] = useState([]);
       const [error, setError] = useState(null);
+      const { id } = useParams();
+      const [apiDataSys, setApiDataSys] = useState([]);
+      const [apiDataImg, setApiDataImg] = useState([]);
+    // Edit Karyawan
+    useEffect(() => {
+      // Cek jika props.isEdit bernilai true
+      if (props.isEdit) {
+        // Lakukan logika untuk mode edit di sini
+        const fetchDataProject = async () => {
+          try {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${id}`, {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              console.log("Hai");
+              setApiDataSys(data.data.sysUser);
+              setApiDataImg(data.data.karyawanImage)
+              
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          }
+        };
+
+      const token = localStorage.getItem("authToken")
+      if (token) {
+        setIstoken(token)
+        fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
+        // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
+      //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
+
+      //   // Bersihkan interval saat komponen di-unmount
+      //   return () => {
+      //     clearInterval(intervalId);
+      //   };
+      }else{
+        navigate("/login");
+      }
+        // ...
+      }
+    }, [props.isEdit, navigate]); // Pastikan untuk menyertakan props.isEdit di dalam dependencies
+
     // Handle API GET and POST
     useEffect(() => {
         const fetchData = async () => {
@@ -365,8 +413,6 @@ const FormPages = (props) => {
       }, [navigate])
 
       useEffect(() => {
-
-        console.log(formData);
         const fetchDataProject = async () => {
             try {
               const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view', {
@@ -568,7 +614,7 @@ const FormPages = (props) => {
                 
                 <div className="middle__right">
                     {/* Kalau Show Data Karyawan true */}
-                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan} onFormData={formData}/>}
+                    {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan} onFormData={formData} onSys={apiDataSys} onKaryawanImage={apiDataImg}/>}
 
                 {/* Kalau Show Data Tambah Foto true */}
                 {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} onFotoChange={handleFoto} onFotoKtpChange={handleFotoKtp} onFotoNpwpChange={handleFotoNpwp} onFotoKkChange={handleFotoKk} onFotoAsuransiChange={handleFotoAsuransi} onFormData={formData}/>}

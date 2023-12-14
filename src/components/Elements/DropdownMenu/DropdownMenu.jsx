@@ -3,21 +3,44 @@
 /* eslint-disable react/prop-types */
 import { Dropdown } from 'react-bootstrap';
 import "./dropdownmenu.css"
+import { useEffect, useState } from 'react';
 
 const DropdownMenu = (props) => {
+
+  // State lokal untuk menyimpan nilai terpilih dari dropdown
+  const [selectedJabatan, setSelectedJabatan] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [selectedAgama, setSelectedAgama] = useState(null)
   const handleDropdownSelect = (selectedItem) => {
     if (props.onDropdownChange) {
       props.onDropdownChange(selectedItem)
     }
   }  
 
+  const handleDropdownJabatan = (selectedJabatan) => {
+    props.onJabatanChange(selectedJabatan)
+    setSelectedJabatan(selectedJabatan)
+  }
+
+  const handleDropdownProject = (selectedProject) => {
+    props.onProjectChange(selectedProject)
+    setSelectedProject(selectedProject)
+  }
+
+  const handleDropdownAgama = (selectedAgama) => {
+    props.onAgamaChange(selectedAgama)
+    setSelectedProject(selectedAgama)
+  }
+
+
+
   return (
     <div>
   {/* Project */}
   {props.itemsProject && (
-    <Dropdown onSelect={handleDropdownSelect}>
+    <Dropdown onSelect={handleDropdownProject}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        {props.title}
+      {(selectedProject !== null && selectedProject) || (props.onFormData.projectId.namaProject) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -32,9 +55,9 @@ const DropdownMenu = (props) => {
 
   {/* Jabatan */}
   {props.itemsJabatan && (
-    <Dropdown onSelect={handleDropdownSelect}>
+    <Dropdown onSelect={handleDropdownJabatan}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        {props.title}
+      {(selectedJabatan !== null && selectedJabatan) || (props.onSys?.role?.namaJabatan) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -47,15 +70,32 @@ const DropdownMenu = (props) => {
     </Dropdown>
   )}
 
-  {/* Default Dropdown */}
-  {!props.itemsProject && !props.itemsJabatan && (
-    <Dropdown onSelect={handleDropdownSelect}>
+  {/* Agama */}
+  {props.itemsAgama && (
+    <Dropdown onSelect={handleDropdownAgama}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-        {props.onFormData.agama ? props.onFormData.agama : props.title}
+      {(selectedAgama !== null && selectedAgama) || (props.onFormData.agama) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        {props.itemsAgama && props.itemsAgama.map((item, index) => (
+        {props.itemsAgama.map((item, index) => (
+          <Dropdown.Item key={index} eventKey={item.value}>
+            {item.label}
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
+  )}
+
+  {/* Default Dropdown */}
+  {!props.itemsProject && !props.itemsJabatan && !props.itemsAgama && (
+    <Dropdown onSelect={handleDropdownSelect}>
+      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+      {props.title}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        {props.items && props.items.map((item, index) => (
           <Dropdown.Item key={index} eventKey={item}>
             {item}
           </Dropdown.Item>

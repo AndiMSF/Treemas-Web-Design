@@ -213,16 +213,27 @@ const MasterDataProjectForm = () => {
                             <p>Jam Masuk</p>
                         </div>
                         <div className="form__row__right">
-                    
-                        </div>
+                    <Form.Control
+                        type="time"
+                        placeholder="Jam Masuk"
+                        value={formData.jamMasuk}
+                        onChange={(e) => handleInputChange(e, 'jamMasuk')}
+                    />
+                    </div>                        
                     </div> 
 
                     <div className="form__row">
                         <div className="form__row__left">
                             <p>Jam Keluar</p>
                         </div>
-                        <div className="form__row__right">                    
-                        </div>
+                        <div className="form__row__right">
+                    <Form.Control
+                        type="time"
+                        placeholder="Jam Keluar"
+                        value={formData.jamKeluar}
+                        onChange={(e) => handleInputChange(e, 'jamKeluar')}
+                    />
+                  </div>
                     </div>             
 
                         <div className="form__row__bottom">
