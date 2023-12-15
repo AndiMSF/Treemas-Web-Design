@@ -84,29 +84,38 @@ const ManagementUser = () => {
           sortable: true
         },
         {
-          name: "Terakhir Login",
-          selector: (row) => row.lastLogin || '-',
-        sortable: true
-        },
-        { 
-          name: "Login",
-          sortable: false,
-          cell: (d) => (
-            <>
-              {d.isLogin === '0' || d.isLogin === null ? (
-                <i
-                  key={`logged-in-${d.isLogin}`}
-                  className="first fas fa-toggle-off disabled text-danger"
-                ></i>
-              ) : (
-                <i
-                  key={`logged-in-${d.isLogin}`}
-                  className="first fas fa-toggle-on enabled text-success"
-                ></i>
-              )}
-            </>
-          )
-        }
+            name: "Terakhir Login",
+            selector: (row) => row.lastLogin || '-',
+            sortable: true,
+            cell: (row) => (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                {row.lastLogin || '-'}
+              </div>
+            )
+          },
+        {
+            name: "Login",
+            sortable: false,
+            cell: (d) => (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {d.isLogin === '0' || d.isLogin === null ? (
+                  <i
+                    key={`logged-in-${d.isLogin}`}
+                    className="fa-solid fa-circle-xmark"
+                    style={{  fontSize: '1.75em', textAlign: 'center' }}
+                  ></i>
+                ) : (
+                  <i
+                    key={`logged-in-${d.isLogin}`}
+                    className="fa-solid fa-circle-check"
+                    style={{ color: '#11ff00', fontSize: '1.75em', textAlign: 'center' }}
+                  ></i>
+                )}
+              </div>
+            )
+          }
+
+          
       ];
       
     
