@@ -142,6 +142,16 @@ const MasterDataAnnouncementForm = () => {
                 <BoxInput placeholder="Footer" value={formData.footer} onChange={(e) => handleInputChange(e, 'footer')}/>
               </div>
             </div>
+            <div className="form__row">
+                  <Form.Group class="upload" controlId="formFile">
+                    <div className="form__row__left">
+                      <Form.Label>Gambar</Form.Label>
+                    </div>
+                    <div className="form__row__right">
+                      <Form.Control type="file" onChange={handleImageUpload} />
+                    </div>
+                  </Form.Group>
+                </div>
           
             {/* Form BOTTOM */}
             <div className="form__row__bottom">

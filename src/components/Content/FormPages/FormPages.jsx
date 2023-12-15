@@ -21,6 +21,10 @@ import Swal from 'sweetalert2'
 
 const FormPages = (props) => {
 
+  const { id } = useParams();
+  const [apiDataSys, setApiDataSys] = useState([]);
+  const [apiDataImg, setApiDataImg] = useState([]);
+
   const handleNamaLengkapChange = (newNamaLengkap) => {
     setFormData(((prevFormData) => ({
       ...prevFormData,
@@ -322,11 +326,10 @@ const FormPages = (props) => {
       const [apiDataJabatan, setApiDataJabatan] = useState([]);
       const [apiDataProject, setApiDataProject] = useState([]);
       const [error, setError] = useState(null);
-      const { id } = useParams();
-      const [apiDataSys, setApiDataSys] = useState([]);
-      const [apiDataImg, setApiDataImg] = useState([]);
+      
     // Edit Karyawan
     useEffect(() => {
+      console.log("INI SELECTED NIK "+selectedNik.nama);
       // Cek jika props.isEdit bernilai true
       if (props.isEdit) {
         // Lakukan logika untuk mode edit di sini
@@ -516,29 +519,54 @@ const FormPages = (props) => {
               };
               
               console.log(requestData);
-          const response = await axios.post(
-            props.api,
-            requestData,
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-            });
-          Swal.fire({
-            title: "Success!",
-            text: "Karyawan Added.",
-            icon: "success"
-          });
-          navigate("/master-data/karyawan-view");
-          console.log('Response from API:', response.data);
+
+              if(props.isEdit) {
+                console.log("ini EDIT");
+                const response = await axios.put(
+                  props.apiEdit,
+                  requestData,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                    },
+                  });
+                Swal.fire({
+                  title: "Success!",
+                  text: "Karyawan Edited.",
+                  icon: "success"
+                });
+                navigate("/master-data/karyawan-view");
+                console.log('Response from API:', response.data);
+              } else {
+                console.log("ini Add");
+
+                const response = await axios.post(
+                  props.api,
+                  requestData,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                    },
+                  });
+                Swal.fire({
+                  title: "Success!",
+                  text: "Karyawan Added.",
+                  icon: "success"
+                });
+                navigate("/master-data/karyawan-view");
+                console.log('Response from API:', response.data);
+              }
+
+          
         } catch (error) {
           console.log("ini error");
           // Jika tidak berhasil, tampilkan pesan error
           console.error('Failed to fetch data:', error);
           Swal.fire({
             title: "Error!",
-            text: "Failed to add Karyawan.",
+            text: "Failed",
             icon: "error"
           });
         }

@@ -18,12 +18,19 @@ const DropdownMenu = (props) => {
   }  
 
   const handleDropdownJabatan = (selectedJabatan) => {
-    props.onJabatanChange(selectedJabatan)
+    const selectedItem = props.itemsJabatan.find(item => item.label === selectedJabatan);
+
+  // Send the value of the selected item (item.value) to the parent
+    props.onJabatanChange(selectedItem.value);
+    console.log(selectedItem.value);
     setSelectedJabatan(selectedJabatan)
   }
 
   const handleDropdownProject = (selectedProject) => {
-    props.onProjectChange(selectedProject)
+    const selectedItem = props.itemsProject.find(item => item.label === selectedProject);
+
+  // Send the value of the selected item (item.value) to the parent
+    props.onProjectChange(selectedItem.value);
     setSelectedProject(selectedProject)
   }
 
@@ -45,7 +52,7 @@ const DropdownMenu = (props) => {
 
       <Dropdown.Menu>
         {props.itemsProject.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item.value}>
+          <Dropdown.Item key={index} eventKey={item.label}>
             {item.label}
           </Dropdown.Item>
         ))}
@@ -62,7 +69,7 @@ const DropdownMenu = (props) => {
 
       <Dropdown.Menu>
         {props.itemsJabatan.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item.value}>
+          <Dropdown.Item key={index} eventKey={item.label}>
             {item.label}
           </Dropdown.Item>
         ))}
