@@ -320,7 +320,7 @@ const FormPages = (props) => {
    fotoAsuransi: '',
    fotoAsuransiPath: '', };
   const [formData, setFormData] = useState(initialFormData);
-   
+      
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
       const [apiDataJabatan, setApiDataJabatan] = useState([]);
@@ -346,6 +346,13 @@ const FormPages = (props) => {
               console.log("Hai");
               setApiDataSys(data.data.sysUser);
               setApiDataImg(data.data.karyawanImage)
+
+              // Update the initialFormData with the jabatanId
+            setFormData({
+              ...initialFormData,
+              selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
+              selectedProject: data.data.karyawan.projectId.projectId
+            });
               
             } else {
               setError('Failed to fetch data');
