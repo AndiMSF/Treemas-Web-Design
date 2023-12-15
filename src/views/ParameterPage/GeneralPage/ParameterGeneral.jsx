@@ -61,22 +61,22 @@ const ParameterGeneral = () => {
       const columns = [
         {
           name: "ID",
-          selector: (row) => row.id,
+          selector: (row) => row.id || '-',
           sortable: true
         },
         {
           name: "Keterangan",
-          selector: (row) => row.paramDesc,
+          selector: (row) => row.paramDesc || '-',
           sortable: true
         },
         {
           name: "Tipe Data",
-          selector: (row) => row.dataType,
+          selector: (row) => row.dataType || '-',
           sortable: true
         },
         {
           name: "Value",
-          selector: (row) => row.val,
+          selector: (row) => row.val || '-',
           sortable: true
         },
         {

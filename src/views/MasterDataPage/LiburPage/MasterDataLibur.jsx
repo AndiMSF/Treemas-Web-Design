@@ -64,12 +64,12 @@ const MasterDataLibur = () => {
       const columns = [
         {
           name: "Tanggal",
-          selector: (row) => row.tglLibur,
+          selector: (row) => row.tglLibur || '-',
           sortable: true
         },
         {
           name: "Keterangan",
-          selector: (row) => row.keterangan,
+          selector: (row) => row.keterangan || '-',
           sortable: true
         },    
         {

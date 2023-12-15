@@ -64,32 +64,32 @@ const MasterDataProject = () => {
       const columns = [
         {
             name: "ID",
-            selector: (row) => row.projectId,
+            selector: (row) => row.projectId || '-',
             sortable: true
         },
         {
             name: "Nama Project",
-            selector: (row) => row.namaProject,
+            selector: (row) => row.namaProject || '-',
             sortable: true
         },
         {
             name: "Alamat",
-            selector: (row) => row.lokasi,
+            selector: (row) => row.lokasi || '-',
             sortable: true
         },  
         {
             name: "No.Telepon",
-            selector: (row) => row.noTlpn,
+            selector: (row) => row.noTlpn || '-',
             sortable: true
         },  
         {
             name: "Reimburse",
-            selector: (row) => row.biayaReimburse,
+            selector: (row) => row.biayaReimburse || '-',
             sortable: true
         },  
         {
             name: "Jarak",
-            selector: (row) => row.jrkMax,
+            selector: (row) => row.jrkMax || '-',
             sortable: true
         },      
         {

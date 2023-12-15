@@ -64,12 +64,12 @@ const MasterDataPermission = () =>{
       const columns = [
         {
           name: "ID",
-          selector: (row) => row.id,
+          selector: (row) => row.id || '-',
           sortable: true
         },
         {
           name: "Nama Permission",
-          selector: (row) => row.namaPermission,
+          selector: (row) => row.namaPermission || '-',
           sortable: true
         },
         {

@@ -65,17 +65,17 @@ const MasterDataCuti = () => {
       const columns = [
         {
           name: "ID",
-          selector: (row) => row.id,
+          selector: (row) => row.id || '-',
           sortable: true
         },
         {
           name: "Keterangan",
-          selector: (row) => row.cutiDesc,
+          selector: (row) => row.cutiDesc || '-',
           sortable: true
         },
         {
             name: "Jumlah",
-            selector: (row) => row.value,
+            selector: (row) => row.value || '-',
             sortable: true
         },
         {

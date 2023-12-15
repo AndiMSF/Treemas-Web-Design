@@ -110,47 +110,47 @@ const DetaildataAbsen = () => {
       const columns = [
         {
           name: "NIK",
-          selector: (row) => row.nik,
+          selector: (row) => row.nik  || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
-          selector: (row) => row.namaKaryawan,
+          selector: (row) => row.namaKaryawan  || '-',
           sortable: true
         },
         {
           name: "Project",
-          selector: (row) => row.projectId ? row.projectId.projectId : 'N/A',
+          selector: (row) => row.projectId   || '-',
           sortable: true
         },
         {
             name: "Lokasi Masuk",
-            selector: (row) => row.lokasiMasuk,
+            selector: (row) => row.lokasiMasuk  || '-',
             sortable: true
         },
         {
             name: "Jam Masuk",
-            selector: (row) => row.jamMasuk,
+            selector: (row) => row.jamMasuk  || '-',
             sortable: true
         },
         {
             name: "Lokasi Pulang",
-            selector: (row) => row.lokasiPulang,
+            selector: (row) => row.lokasiPulang  || '-',
             sortable: true
         },
         {
             name: "Jam Pulang",
-            selector: (row) => row.jamPulang,
+            selector: (row) => row.jamPulang  || '-',
             sortable: true
         },
         {
             name: "Catatan Terlambat",
-            selector: (row) => row.catatanTerlambat,
+            selector: (row) => row.catatanTerlambat  || '-',
             sortable: true
         },
         {
             name: "Total Jam Kerja",
-            selector: (row) => row.totalJamKerja,
+            selector: (row) => row.totalJamKerja  || '-',
             sortable: true
         }
       ];

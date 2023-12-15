@@ -61,22 +61,22 @@ const ParameterReimburse = () => {
       const columns = [
         {
           name: "ID",
-          selector: (row) => row.reimburseId,
+          selector: (row) => row.reimburseId || '-',
           sortable: true
         },
         {
           name: "Nama",
-          selector: (row) => row.nama,
+          selector: (row) => row.nama || '-',
           sortable: true
         },
         {
           name: "Nominal",
-          selector: (row) => row.nominal,
+          selector: (row) => row.nominal || '-',
           sortable: true
         },
         {
           name: "Note",
-          selector: (row) => row.note,
+          selector: (row) => row.note || '-',
           sortable: true
         },
         {

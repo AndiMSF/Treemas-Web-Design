@@ -60,27 +60,27 @@ const MasterDataKaryawan = () => {
       const columns = [
         {
           name: "NIK",
-          selector: (row) => row.nik,
+          selector: (row) => row.nik || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
-          selector: (row) => row.nama,
+          selector: (row) => row.nama || '-',
           sortable: true
         },
         {
             name: "Email",
-            selector: (row) => row.email,
+            selector: (row) => row.email || '-',
             sortable: true
         },
         {
             name: "No. Hp.",
-            selector: (row) => row.noHp,
+            selector: (row) => row.noHp || '-',
             sortable: true
         },
         {
             name: "No. Rekening",
-            selector: (row) => row.noRek,
+            selector: (row) => row.noRek || '-',
             sortable: true
         },
         {

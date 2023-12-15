@@ -66,12 +66,12 @@ const MasterDataJabatan = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.jabatanId,
+      selector: (row) => row.jabatanId || '-',
       sortable: true
     },
     {
       name: "Nama Jabatan",
-      selector: (row) => row.namaJabatan,
+      selector: (row) => row.namaJabatan || '-',
       sortable: true
     },
     {

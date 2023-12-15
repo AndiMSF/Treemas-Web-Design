@@ -62,32 +62,32 @@ const ReportDataClaim = () => {
       const columns = [
         {
           name: "NIK",
-          selector: (row) => row.nik,
+          selector: (row) => row.nik || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
-          selector: (row) => row.nama,
+          selector: (row) => row.nama || '-',
           sortable: true
         },
         {
           name: "Tanggal",
-          selector: (row) => row.tanggal,
+          selector: (row) => row.tanggal || '-',
           sortable: true
         },
         {
           name: "Nominal",
-          selector: (row) => row.nominal,
+          selector: (row) => row.nominal || '-',
           sortable: true
         },
         {
           name: "Keterangan",
-          selector: (row) => row.keterangan,
+          selector: (row) => row.keterangan || '-',
           sortable: true
         },
         {
           name: "Tipe",
-          selector: (row) => row.tipeClaim,
+          selector: (row) => row.tipeClaim || '-',
           sortable: true
         },
       ];

@@ -125,52 +125,52 @@ const DetaildataCutiSakit = (props) => {
   const columns = [
     {
       name: "NIK",
-      selector: (row) => row.nik,
+      selector: (row) => row.nik  || '-',
       sortable: true,
     },
     {
       name: "Nama Karyawan",
-      selector: (row) => row.namaKaryawan,
+      selector: (row) => row.namaKaryawan || '-',
       sortable: true,
     },
     {
       name: "Tgl. Pengajuan",
-      selector: (row) => row.tglMulai,
+      selector: (row) => row.tglMulai  || '-',
       sortable: true,
     },
     {
       name: "Tgl. Selesai",
-      selector: (row) => row.tglSelesai,
+      selector: (row) => row.tglSelesai || '-',
       sortable: true,
     },
     {
       name: "Tgl. Masuk",
-      selector: (row) => row.tglMasuk,
+      selector: (row) => row.tglMasuk || '-',
       sortable: true,
     },
     {
       name: "Jml. Cuti",
-      selector: (row) => row.jmlCuti,
+      selector: (row) => row.jmlCuti  || '-',
       sortable: true,
     },
     {
       name: "Keperluan Cuti",
-      selector: (row) => row.keperluanCuti,
+      selector: (row) => row.keperluanCuti || '-',
       sortable: true,
     },
     {
       name: "Status",
-      selector: (row) => row.status,
+      selector: (row) => row.status || '-',
       sortable: true,
     },
     {
       name: "Status Oleh",
-      selector: (row) => row.usrapp,
+      selector: (row) => row.usrapp || '-',
       sortable: true,
     },
     {
       name: "Tgl. Status",
-      selector: (row) => row.dtmapp,
+      selector: (row) => row.dtmapp || '-',
       sortable: true,
     },
   ];

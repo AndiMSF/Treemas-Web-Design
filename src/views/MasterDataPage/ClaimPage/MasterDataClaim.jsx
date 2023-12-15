@@ -64,17 +64,17 @@ const MasterDataClaim = () => {
       const columns = [
         {
           name: "ID",
-          selector: (row) => row.namaClaim,
+          selector: (row) => row.namaClaim || '-',
           sortable: true
         },
         {
           name: "Keterangan",
-          selector: (row) => row.keterangan,
+          selector: (row) => row.keterangan || '-',
           sortable: true
         },
         {
             name: "Nominal",
-            selector: (row) => row.valueClaim,
+            selector: (row) => row.valueClaim || '-',
             sortable: true
         },
         {

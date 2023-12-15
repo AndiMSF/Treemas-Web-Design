@@ -75,22 +75,22 @@ const MasterDataAnnouncement = () => {
       const columns = [
         {
           name: "Title",
-          selector: (row) => row.title,
+          selector: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Header",
-            selector: (row) => row.header,
+            selector: (row) => row.header || '-',
             sortable: true
           },
           {
             name: "Body",
-            selector: (row) => row.note,
+            selector: (row) => row.note || '-',
             sortable: true
           },
         {
           name: "Footer",
-          selector: (row) => row.footer,
+          selector: (row) => row.footer || '-',
           sortable: true
         },
         {
