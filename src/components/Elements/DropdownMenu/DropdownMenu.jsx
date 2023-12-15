@@ -47,7 +47,7 @@ const DropdownMenu = (props) => {
   {props.itemsProject && (
     <Dropdown onSelect={handleDropdownProject}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-      {(selectedProject !== null && selectedProject) || (props.onFormData.projectId.namaProject) || props.title}
+      {(selectedProject !== null && selectedProject) || (props.onFormData?.projectId?.namaProject) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
@@ -81,13 +81,13 @@ const DropdownMenu = (props) => {
   {props.itemsAgama && (
     <Dropdown onSelect={handleDropdownAgama}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-      {(selectedAgama !== null && selectedAgama) || (props.onFormData.agama) || props.title}
+      {(selectedAgama !== null && selectedAgama) || (props.onFormData?.agama) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         {props.itemsAgama.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={item.value}>
-            {item.label}
+          <Dropdown.Item key={index} eventKey={item}>
+            {item}
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>
