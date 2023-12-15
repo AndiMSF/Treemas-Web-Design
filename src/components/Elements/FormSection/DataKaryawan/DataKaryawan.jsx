@@ -7,7 +7,7 @@ import DropdownMenu from "../../../Elements/DropdownMenu/DropdownMenu.jsx"
 import { useEffect, useState } from "react"
 import { Form, FormControl } from "react-bootstrap"
 
-const DataKaryawan = (props) => {
+const   DataKaryawan = (props) => {
     const itemsJabatan = ["-"]
     const [jabatan, setJabatan] = useState("Pilih")
     const itemsProject = ["-"]
@@ -91,7 +91,7 @@ const DataKaryawan = (props) => {
                         <p>Jabatan <span style={{ color: 'red' }}>*</span></p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={jabatan} onDropdownChange={handleJabatan} itemsJabatan={createJabatanItems(props.dataJabatan)} onFormData={props.onFormData}/>    
+                        <DropdownMenu title={jabatan} onJabatanChange={handleJabatan} itemsJabatan={createJabatanItems(props.dataJabatan)} onFormData={props.onFormData} onSys={props.onSys}/>    
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@ const DataKaryawan = (props) => {
                         <p>Project</p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={project} onDropdownChange={handleProject} items={itemsProject}  itemsProject={createProjectItems(props.dataProject)} onFormData={props.onFormData}/>    
+                        <DropdownMenu title={project} onProjectChange={handleProject} items={itemsProject}  itemsProject={createProjectItems(props.dataProject)} onFormData={props.onFormData}/>    
                     </div>
                 </div>
 

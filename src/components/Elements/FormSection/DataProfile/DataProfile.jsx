@@ -205,7 +205,7 @@ const DataProfile = (props) => {
                         <p>Agama</p>
                     </div>         
                     <div className="form__row__right">
-                        <DropdownMenu title={agama} onDropdownChange={handleAgama} itemsAgama={itemsAgama} onFormData={props.onFormData}/>    
+                        <DropdownMenu title={agama} onAgamaChange={handleAgama} itemsAgama={itemsAgama} onFormData={props.onFormData}/>    
                     </div>
                 </div>
 

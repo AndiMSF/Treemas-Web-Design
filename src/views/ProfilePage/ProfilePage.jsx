@@ -12,7 +12,7 @@ import axios from "axios";
 import Alert from 'react-bootstrap/Alert';
 
 
-const ProfilePage = () => { z
+const ProfilePage = () => { 
     const itemsAgama = ["Islam","Kristen","Katolik","Buddha","Hindu","Konghucu"]
     const [agama, setAgama] = useState("Pilih")
 

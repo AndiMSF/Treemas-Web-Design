@@ -33,6 +33,7 @@ const MasterDataKaryawan = () => {
             const data = await response.json();
             if (data.status === 'Success') {
               setApiData(data.data);
+              console.log(data);
               
             } else {
               setError('Failed to fetch data');
