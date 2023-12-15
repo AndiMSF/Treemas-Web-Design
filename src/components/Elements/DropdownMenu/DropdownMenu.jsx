@@ -47,7 +47,7 @@ const DropdownMenu = (props) => {
   {props.itemsProject && (
     <Dropdown onSelect={handleDropdownProject}>
       <Dropdown.Toggle variant="primary" id="dropdown-basic">
-      {(selectedProject !== null && selectedProject) || (props.onFormData.projectId.namaProject) || props.title}
+      {(selectedProject !== null && selectedProject) || (props.onFormData?.projectId?.namaProject) || props.title}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

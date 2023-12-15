@@ -329,7 +329,6 @@ const FormPages = (props) => {
       
     // Edit Karyawan
     useEffect(() => {
-      console.log("INI SELECTED NIK "+selectedNik.nama);
       // Cek jika props.isEdit bernilai true
       if (props.isEdit) {
         // Lakukan logika untuk mode edit di sini
