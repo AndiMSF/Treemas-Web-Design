@@ -55,7 +55,7 @@ const Navbar = (props) => {
         useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/data-kehadiran', {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/navbar', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ const Navbar = (props) => {
             if (data.status === 'Success') {
               setApiData(data.data);
               // Simpan nama pengguna di localStorage
-              localStorage.setItem('userName', data.data.nama);
+              localStorage.setItem('karyawanImg', data.data.nama);
             } else {
               setError('Failed to fetch data');
             }
