@@ -65,9 +65,10 @@ const Navbar = (props) => {
           });
             const data = await response.json();
             if (data.status === 'Success') {
-              setFotoProfile(data.data);
+              setFotoProfile(data.data.data);
+              console.log("INI GAMBAR "+data.data);
               // Simpan nama pengguna di localStorage
-              localStorage.setItem('karyawanImg', data.data.nama);
+              localStorage.setItem('karyawanImg', data.data);
             } else {
               setError('Failed to fetch data');
             }
