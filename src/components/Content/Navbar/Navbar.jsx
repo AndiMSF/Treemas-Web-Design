@@ -16,6 +16,7 @@ const Navbar = (props) => {
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [fotoProfile, setFotoProfile] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -64,7 +65,7 @@ const Navbar = (props) => {
           });
             const data = await response.json();
             if (data.status === 'Success') {
-              setApiData(data.data);
+              setFotoProfile(data.data);
               // Simpan nama pengguna di localStorage
               localStorage.setItem('karyawanImg', data.data.nama);
             } else {
