@@ -79,11 +79,13 @@ const ParameterGeneral = () => {
               <i
                 key={`edit-${d.id}`}
                 onClick={() => handleClick(d.id)}
+                style={{cursor: 'pointer' }}
                 className="first fas fa-pen"
               ></i>
               <i
                 key={`delete-${d.id}`}
                 onClick={() => handleDelete(d.id)}
+                style={{cursor: 'pointer' }}
                 className="fas fa-trash-alt"
               ></i>
             </>
