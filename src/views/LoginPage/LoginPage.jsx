@@ -45,6 +45,7 @@ const LoginPage = () => {
               console.log(bearerToken);
 
               localStorage.setItem("authToken", bearerToken);
+              localStorage.setItem("karyawanImg", response.data.data.karyawanImg)
               window.location.href = '/dashboard';    
 
         } else {
