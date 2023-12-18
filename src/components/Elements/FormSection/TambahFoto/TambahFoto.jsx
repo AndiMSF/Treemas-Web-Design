@@ -89,27 +89,27 @@ const TambahFoto = (props) => {
             <div className="tambah__foto__children">
                 <Form.Group controlId="formFile">
                     <Form.Label>Foto</Form.Label>
-                    <Form.Control type="file" onChange={handleFotoUpload}/>
+                    <Form.Control className="tambah_foto" type="file" onChange={handleFotoUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
                     <Form.Label>Foto KTP</Form.Label>
-                    <Form.Control type="file" onChange={handleFotoKtpUpload}/>
+                    <Form.Control className="tambah_foto" type="file" onChange={handleFotoKtpUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
                     <Form.Label>Foto NPWP </Form.Label>
-                    <Form.Control type="file" onChange={handleFotoNpwpUpload}/>
+                    <Form.Control className="tambah_foto" type="file" onChange={handleFotoNpwpUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
                     <Form.Label>Foto KK</Form.Label>
-                    <Form.Control type="file" onChange={handleFotoKkUpload}/>
+                    <Form.Control className="tambah_foto" type="file" onChange={handleFotoKkUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
                     <Form.Label>Foto asuransi</Form.Label>
-                    <Form.Control type="file" onChange={handleFotoAsuransiUpload}/>
+                    <Form.Control className="tambah_foto" type="file" onChange={handleFotoAsuransiUpload}/>
                 </Form.Group>
                 
             </div>
