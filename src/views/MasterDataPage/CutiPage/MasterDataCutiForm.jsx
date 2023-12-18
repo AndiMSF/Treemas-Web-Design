@@ -79,7 +79,6 @@ const MasterDataCutiForm = () => {
       }
 
       return (
-        <div className="claim__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -127,7 +126,6 @@ const MasterDataCutiForm = () => {
                     </form>
                 </div>
             </div>
-        </div>
       )
 
 }

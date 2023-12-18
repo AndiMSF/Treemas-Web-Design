@@ -76,8 +76,7 @@ const ParameterReimburseEdit = () => {
     const initialFormData = selectedReimburse || { reimburseId: '', nama: '', nominal: '', note: ''};
     const [formData, setFormData] = useState(initialFormData);
 
-    return <div className="reimburseedit__container">
-          <div className="content__container">
+    return <div className="content__container">
                     <div className="form__container">
                         <div className="form__container__top">
                             <h1>Reimburse Edit</h1>
@@ -124,8 +123,7 @@ const ParameterReimburseEdit = () => {
                 </div>
                         </form>
                     </div>
-                </div>
-            </div>
+                </div>         
 }
 
 export default ParameterReimburseEdit

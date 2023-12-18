@@ -74,7 +74,6 @@ const MasterDataLiburEdit = () => {
       const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="libur__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -105,9 +104,7 @@ const MasterDataLiburEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
-      )
-
+    )
 }
 
 export default MasterDataLiburEdit

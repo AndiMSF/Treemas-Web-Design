@@ -76,8 +76,7 @@ const ParameterGeneralEdit = () => {
     const initialFormData = selectedGeneral || { id: '', paramDesc: '', dataType: '', val: ''};
     const [formData, setFormData] = useState(initialFormData);
 
-        return (
-            <div className="general__container">
+        return (        
                 <div className="content__container">
                     <div className="form__container">
                         <div className="form__container__top">
@@ -146,7 +145,6 @@ const ParameterGeneralEdit = () => {
                         </form>
                     </div>
                 </div>
-            </div>
         )
     }
     

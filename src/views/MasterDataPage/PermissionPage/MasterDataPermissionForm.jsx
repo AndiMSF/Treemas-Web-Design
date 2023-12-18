@@ -76,7 +76,6 @@ const MasterDataPermissionForm = () => {
       }
       
       return (
-        <div className="claim__container">
             <div className="content__container">
               {/* Display the alert if showAlert is true */}
               {showAlert && (
@@ -105,7 +104,6 @@ const MasterDataPermissionForm = () => {
                     </form>
                 </div>
             </div>
-        </div>
       )
 
 }

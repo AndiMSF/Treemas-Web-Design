@@ -78,7 +78,6 @@ const MasterDataPermissionEdit = () => {
       const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="permission__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -101,8 +100,7 @@ const MasterDataPermissionEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
-      )
+    )
 
 }
 

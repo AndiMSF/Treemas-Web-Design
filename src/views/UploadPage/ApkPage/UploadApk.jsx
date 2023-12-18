@@ -5,8 +5,7 @@ import Button from "../../../components/Elements/Buttons/Button"
 //*import Form from 'react-bootstrap/Form';
 
 const UploadApk = () => {
-    return <div className="apk__container">
-        <div className="content__container">            
+    return <div className="content__container">            
             <Navbar navbarText="Upload / Apk" />
                 <div className="container__ap">
                     <div className="input__container">
@@ -18,7 +17,7 @@ const UploadApk = () => {
                     </div>
                 </div>   
         </div>
-    </div>
+   
 }
 
 export default UploadApk

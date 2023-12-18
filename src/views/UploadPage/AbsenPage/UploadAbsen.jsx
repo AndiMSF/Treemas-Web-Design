@@ -9,8 +9,7 @@ import Form from 'react-bootstrap/Form';
 const UploadAbsen = () => {
     const infoTopFields = ["NIK", "Nama Lengkap", "Tanggal", "Project", "Status"]
 
-    return <div className="absen__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Upload / Absen" />
                 <div className="input__container">
                     <div className="left__container__input__absen">
@@ -33,7 +32,7 @@ const UploadAbsen = () => {
                 </div>
             <Information informationText="Absen" showDropdown={false} fields={infoTopFields}/>
         </div>
-    </div>
+
 }
 
 export default UploadAbsen

@@ -80,7 +80,6 @@ const MasterDataJabatanEdit = () => {
       const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="jabatan__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -111,8 +110,7 @@ const MasterDataJabatanEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
-      )
+    )
 
 }
 

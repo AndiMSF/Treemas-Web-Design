@@ -79,7 +79,6 @@ const MasterDataCutiEdit = () => {
       const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="cuti__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -127,8 +126,7 @@ const MasterDataCutiEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
-      )
+    )
 
 }
 

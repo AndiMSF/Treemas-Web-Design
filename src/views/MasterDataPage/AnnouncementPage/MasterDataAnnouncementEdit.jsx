@@ -134,7 +134,6 @@ const MasterDataAnnouncementEdit = () => {
   const [formData, setFormData] = useState(initialFormData);
 
       return (
-        <div className="announcementform__container">
           <div className="content__container">
             <div className="form__container">
               {/* Form Container Top */}
@@ -193,7 +192,6 @@ const MasterDataAnnouncementEdit = () => {
               
             </div>
           </div>
-        </div>
       );
     };    
 

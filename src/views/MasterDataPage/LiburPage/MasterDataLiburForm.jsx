@@ -67,8 +67,7 @@ const MasterDataLiburForm = () => {
         }
       }
 
-      return (
-        <div className="libur__container">
+      return (     
             <div className="content__container">
                {/* Display the alert if showAlert is true */}
                {showAlert && (
@@ -117,7 +116,6 @@ const MasterDataLiburForm = () => {
                     </form>
                 </div>
             </div>
-        </div>
       )
 
 }

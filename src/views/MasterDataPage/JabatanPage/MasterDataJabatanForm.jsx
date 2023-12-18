@@ -78,8 +78,7 @@ const MasterDataJabatanForm = () => {
         }
       }
 
-      return (
-        <div className="claim__container">
+      return (       
             <div className="content__container">
               {/* Display the alert if showAlert is true */}
               {showAlert && (
@@ -115,8 +114,7 @@ const MasterDataJabatanForm = () => {
             </div>
                     </form>
                 </div>
-            </div>
-        </div>
+            </div>  
       )
 
 }

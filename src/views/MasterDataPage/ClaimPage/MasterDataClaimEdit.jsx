@@ -83,7 +83,6 @@ const MasterDataClaimEdit = () => {
 
 
       return (
-        <div className="claim__container">
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
@@ -131,9 +130,7 @@ const MasterDataClaimEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
-      )
-
+    )
 }
 
 export default MasterDataClaimEdit

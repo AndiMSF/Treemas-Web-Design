@@ -201,8 +201,7 @@ const MasterDataProject = () => {
             dense
             />
             </DataTableExtensions>
-        </div>
-        
+        </div>        
     </div>
 )
 }

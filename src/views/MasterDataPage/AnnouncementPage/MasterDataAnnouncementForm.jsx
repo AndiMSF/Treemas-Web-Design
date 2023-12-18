@@ -101,7 +101,6 @@ const MasterDataAnnouncementForm = () => {
   }
 
   return (
-    <div className="announcementform__container">
       <div className="content__container"> 
         <div className="form__container">
           {/* Form Container Top */}
@@ -163,7 +162,6 @@ const MasterDataAnnouncementForm = () => {
           
         </div>
       </div>
-    </div>
   );
 };
 

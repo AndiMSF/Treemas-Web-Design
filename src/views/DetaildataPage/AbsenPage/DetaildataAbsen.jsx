@@ -173,10 +173,7 @@ const DetaildataAbsen = () => {
                         <DropdownMenu title="Pilih Project"/>
                         
                     </div>
-                    
-                   <div className="right__container__input">
-                        <Button text="Tambah" className="add__button" />
-                    </div>
+                                    
                   </div>
                 <div className="table__container">
                     <DataTableExtensions {...dataTable}>
