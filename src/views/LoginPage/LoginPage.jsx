@@ -37,13 +37,13 @@ const LoginPage = () => {
             },
           });
           
-          if (response.status === 200) {
-              
+          if (response.data.success === true) {
+            
               // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
               console.log('Berhasil masuk:', response);
               const bearerToken = response.data.data.token;
               console.log(bearerToken);
-             
+
               localStorage.setItem("authToken", bearerToken);
               window.location.href = '/dashboard';    
 

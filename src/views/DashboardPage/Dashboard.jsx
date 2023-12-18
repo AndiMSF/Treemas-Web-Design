@@ -40,6 +40,8 @@ const Dashboard = () => {
           const data = await response.json();
           if (data.status === 'Success') {
             setApiData(data.data);
+            console.log(data);
+            
             
           } else {
             setError('Failed to fetch data');
@@ -63,6 +65,7 @@ const Dashboard = () => {
         return <div>Error: {error}</div>;
       }
     
+      
 
     const data = [
       {
@@ -101,7 +104,7 @@ const Dashboard = () => {
     };
 
     return <div className="dashboard__container">
-        <Navbar navbarText="Overview" nama = {apiData.nama}/>
+        <Navbar navbarText="Overview"/>
                
         <div className="grafik__data__kehadiran">
             {/* yg atas */}

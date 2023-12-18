@@ -17,9 +17,9 @@ const TambahFoto = (props) => {
             
             // Mendapatkan data setelah koma (',')
       const base64Data = event.target.result.split(',')[1];
-      
       // Konversi gambar ke base64 dan simpan dalam state formData
       props.onFotoChange(base64Data, file.name);
+      localStorage.setItem('karyawanImg', event.target.result);
         };
           reader.readAsDataURL(file);
 
@@ -32,8 +32,10 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            // Mendapatkan data setelah koma (',')
+            const base64Data = event.target.result.split(',')[1];
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoKtpChange(event.target.result, file.name)
+            props.onFotoKtpChange(base64Data, file.name)
           };
           reader.readAsDataURL(file);
         }
@@ -45,8 +47,10 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            // Mendapatkan data setelah koma (',')
+            const base64Data = event.target.result.split(',')[1];
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoNpwpChange(event.target.result, file.name)
+            props.onFotoNpwpChange(base64Data, file.name)
           };
           reader.readAsDataURL(file);
         }
@@ -58,8 +62,10 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            // Mendapatkan data setelah koma (',')
+            const base64Data = event.target.result.split(',')[1];
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoKkChange(event.target.result, file.name)
+            props.onFotoKkChange(base64Data, file.name)
           };
           reader.readAsDataURL(file);
         }
@@ -71,8 +77,10 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            // Mendapatkan data setelah koma (',')
+            const base64Data = event.target.result.split(',')[1];
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoAsuransiChange(event.target.result, file.name)
+            props.onFotoAsuransiChange(base64Data, file.name)
           };
           reader.readAsDataURL(file);
         }
