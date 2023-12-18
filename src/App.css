@@ -26,8 +26,7 @@
   }
 
   main {
-    min-width: 15vw;
-    max-width: 85vw;
+    width: 100%;
   }
 
   .parent__container {
@@ -37,6 +36,10 @@
     overflow:hidden;
 }
 
+.table__container{
+  width: 100%;
+  overflow: visible;
+}
 
   .content__container {
     display: flex;

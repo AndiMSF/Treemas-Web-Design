@@ -69,6 +69,7 @@ const MasterDataAnnouncementForm = () => {
         note: formData.note,
         image64: formData.image64, // Gunakan data base64 yang telah diambil dari input file
         image: formData.image,
+        footer: formData.footer
       }
 
       const response = await axios.post(

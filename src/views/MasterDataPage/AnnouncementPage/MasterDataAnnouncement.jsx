@@ -99,12 +99,12 @@ const MasterDataAnnouncement = () => {
           cell: (d) => (
             <>
               <i
-                key={`edit-${d.title}`}
+                key={`edit-${d.id}`}
                 onClick={() => handleClick(d.id)}
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.jabatanId}`}
+                key={`delete-${d.id}`}
                 onClick={() => handleDelete(d.id)}
                 className="fas fa-trash-alt"
               ></i>
@@ -120,8 +120,9 @@ const MasterDataAnnouncement = () => {
     
     
       const handleClick = (id) => {
+        const selectedAnnouncement = apiData.find((ann) => ann.id === id);
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/announcement-edit/${id}`);
+        navigate(`/master-data/announcement-edit/${id}`, {state: {selectedAnnouncement}});
       };
     
       const handleDelete = (id) => {
