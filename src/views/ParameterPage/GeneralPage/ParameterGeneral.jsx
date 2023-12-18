@@ -13,7 +13,6 @@ const ParameterGeneral = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -35,8 +34,6 @@ const ParameterGeneral = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -48,12 +45,7 @@ const ParameterGeneral = () => {
           navigate("/login");
         }
       }, [navigate]);
-      
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
-    
+
       if (error) {
         return <div>Error: {error}</div>;
       }
@@ -170,8 +162,7 @@ const ParameterGeneral = () => {
         });
       };
 
-    return <div className="general__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Parameter / General" />          
             <div className="table__container">
             <DataTableExtensions {...dataTable}>
@@ -189,7 +180,6 @@ const ParameterGeneral = () => {
             </DataTableExtensions>
           </div>
       </div>
-  </div>
 }
 
 export default ParameterGeneral

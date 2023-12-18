@@ -184,8 +184,7 @@ const ManagementUserAccess = () => {
         });
       };
 
-    return <div className="useraccess__container">
-        <div className="content__container">
+    return <div className="content__container">
         <Navbar navbarText="Management / Data User Access" />            
             <div className="table__container">
               <DataTableExtensions {...dataTable}>
@@ -205,7 +204,6 @@ const ManagementUserAccess = () => {
             </div>
 
         </div>
-    </div>
 }
 
 export default ManagementUserAccess

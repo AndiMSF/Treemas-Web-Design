@@ -16,7 +16,6 @@ const MasterDataProject = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -38,8 +37,6 @@ const MasterDataProject = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -52,10 +49,6 @@ const MasterDataProject = () => {
           navigate("/login");
         }
       }, [navigate]);
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -191,7 +184,6 @@ const MasterDataProject = () => {
 
 
     return(
- <div className="project__container">
     <div className="content__container">
         <Navbar navbarText="Master Data / Project" />
         <Link to="/master-data/project-form/add" text="Tambah" className="add__button">Tambah</Link>
@@ -212,7 +204,6 @@ const MasterDataProject = () => {
         </div>
         
     </div>
-</div>
 )
 }
 

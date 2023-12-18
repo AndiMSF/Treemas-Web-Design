@@ -55,13 +55,11 @@ const DetaildataReimburse = () => {
         )
     }
 
-    return <div className="reimburse__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Detail Data / Reimburse" />
                 {boxInputComponent}
             <Information onDropdownChange={handleDropdownChange} informationText={informationText} showDropdown={true} dropdownTitle={informationText} items={dropdownItems} fields={infoTopFields}/>
         </div>
-    </div>
 }
 
 export default DetaildataReimburse

@@ -163,7 +163,7 @@ const DetaildataAbsen = () => {
     
 
 
-    return (<div className="absen__container">
+    return (
         <div className="content__container">
             <Navbar navbarText="Detail Data / Absen" />
                 <div className="input__container">
@@ -195,7 +195,6 @@ const DetaildataAbsen = () => {
 
                 </div>
         </div>
-    </div>
     )
 }
 

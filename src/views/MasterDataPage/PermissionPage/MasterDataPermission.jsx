@@ -16,7 +16,6 @@ const MasterDataPermission = () =>{
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -38,8 +37,6 @@ const MasterDataPermission = () =>{
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -52,10 +49,6 @@ const MasterDataPermission = () =>{
           navigate("/login");
         }
       }, [navigate]);
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -171,7 +164,6 @@ const MasterDataPermission = () =>{
 
 
     return (
-        <div className="permission__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Permission" />
             <Link to="/master-data/permission-form/add" className="add__button">Tambah</Link>
@@ -192,7 +184,6 @@ const MasterDataPermission = () =>{
             </div>
 
             </div>
-    </div>
     )
 }
 

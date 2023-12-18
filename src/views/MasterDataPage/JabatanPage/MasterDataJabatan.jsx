@@ -18,7 +18,6 @@ const MasterDataJabatan = () => {
   const navigate = useNavigate();
   const [isToken, setIstoken] = useState('');
   const [apiData, setApiData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
   useEffect(() => {
@@ -40,8 +39,6 @@ const MasterDataJabatan = () => {
         }
       } catch (error) {
         setError(`Error fetching data: ${error.message}`);
-      } finally {
-        setIsLoading(false);
       }
     };
 
@@ -53,11 +50,6 @@ const MasterDataJabatan = () => {
       navigate("/login");
     }
   }, [navigate]);
-  
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -167,7 +159,6 @@ const MasterDataJabatan = () => {
   };
 
   return (
-    <div className="jabatan__container">
       <div className="content__container">
         <Navbar navbarText="Master Data / Jabatan" />
         <Link to="/master-data/jabatan-form/add" className="add__button">Tambah</Link>
@@ -189,7 +180,6 @@ const MasterDataJabatan = () => {
         </div>
 
       </div>
-    </div>
   );
 };
 

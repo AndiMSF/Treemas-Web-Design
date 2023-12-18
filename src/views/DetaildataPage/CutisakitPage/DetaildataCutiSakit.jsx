@@ -181,7 +181,6 @@ const DetaildataCutiSakit = (props) => {
   };
 
   return (
-    <div className="cutisakit__container">
       <div className="content__container">
         <Navbar navbarText="Detail Data / Cuti Sakit" />
         <div className="input__container">
@@ -218,7 +217,6 @@ const DetaildataCutiSakit = (props) => {
           </DataTableExtensions>
         </div>
       </div>
-    </div>
   );
 };
 

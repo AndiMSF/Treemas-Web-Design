@@ -51,13 +51,11 @@ const DetaildataTimesheet = () => {
             </div>
         )
     }
-    return <div className="timesheet__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Detail Data / Timesheet" />
                 {boxInputComponent}
             <Information onDropdownChange={handleDropdownChange} informationText={informationText} showDropdown={true} dropdownTitle={informationText} items={dropdownItems} fields={infoTopFields}/>
         </div>
-    </div>
 }
 
 export default DetaildataTimesheet

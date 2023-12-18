@@ -7,8 +7,7 @@ import Button from "../../../components/Elements/Buttons/Button"
 const ReportDataDetail = () => {
     const infoTopFields = ["NIK", "Nama Karyawan", "Tanggal", "Jam Masuk", "Jam Keluar", "Total Jam Keluar", "Transport", "Uang Makan", "Overtime", "Catatan"]
 
-    return <div className="detail__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Report Data / Detail" />
                 <div className="input__container">
                     <div className="left__container__input">
@@ -22,7 +21,6 @@ const ReportDataDetail = () => {
                 </div>
             <Information informationText="Detail" showDropdown={false} fields={infoTopFields}/>
         </div>
-    </div>
 }
 
 export default ReportDataDetail

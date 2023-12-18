@@ -1,16 +1,4 @@
 
-.sidebar__container {
-    min-width: 15vw;
-    max-width: 85vw;
-    background-color: var(--almost-black);
-    color: var(--unselected-icon);
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
-    height: 100%;
-}
 
 .sidebar__container::-webkit-scrollbar {
     width: 0;
@@ -139,17 +127,4 @@ ul .non_color:hover {
 }
 
 
-/* Media query untuk ukuran layar max hp (smartphone) */
-@media (max-width: 800px) {
-    /* Gaya CSS khusus untuk ukuran layar max hp */
-    /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
-    .sidebar__container {
-        display: none;
-    }
 
-    main {
-        min-width: none;
-        max-width: none;
-        width: 100vw;
-    }
-}
