@@ -14,7 +14,6 @@ const ReportDataClaim = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -36,9 +35,7 @@ const ReportDataClaim = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
-          }
+          } 
         };
     
         const token = localStorage.getItem("authToken");
@@ -49,11 +46,6 @@ const ReportDataClaim = () => {
           navigate("/login");
         }
       }, [navigate]);
-      
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -164,8 +156,7 @@ const ReportDataClaim = () => {
         });
       };
 
-    return <div className="claim__container">
-       <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Report Data / Claim" />          
             <div className="table__container">
             <DataTableExtensions {...dataTable}>
@@ -183,8 +174,7 @@ const ReportDataClaim = () => {
             </DataTableExtensions>
 
         </div>
-        </div>
-    </div>
+      </div>
 }
 
 export default ReportDataClaim

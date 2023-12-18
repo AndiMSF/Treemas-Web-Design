@@ -175,8 +175,7 @@ const MasterDataKaryawan = () => {
         });
       };
 
-    return <div className="karyawan__container">
-        <div className="content__container">
+    return <div className="content__container">
         <Navbar navbarText="Master Data / Karyawan" />
         <Link to="/master-data/karyawan-form/add" className="add__button">Tambah</Link>
         <div className="table__container">
@@ -197,7 +196,6 @@ const MasterDataKaryawan = () => {
         </div>
 
       </div>
-    </div>
 }
 
 export default MasterDataKaryawan

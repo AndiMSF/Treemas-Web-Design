@@ -16,7 +16,6 @@ const MasterDataLibur = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -38,9 +37,7 @@ const MasterDataLibur = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
-          }
+          } 
         };
     
         const token = localStorage.getItem("authToken");
@@ -52,10 +49,6 @@ const MasterDataLibur = () => {
           navigate("/login");
         }
       }, [navigate]);
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -170,7 +163,6 @@ const MasterDataLibur = () => {
   };
 
     return (
-    <div className="libur__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Libur" />
             <Link to="/master-data/libur-form/add" text="Tambah" className="add__button">Tambah</Link>
@@ -191,7 +183,6 @@ const MasterDataLibur = () => {
             </div>
             
         </div>
-    </div>
     )
 }
 

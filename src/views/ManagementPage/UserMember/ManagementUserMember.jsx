@@ -14,8 +14,7 @@ const ManagementUserMember = () => {
     const handleUserData = (selectedItem) => {
         setUserData(selectedItem)
     }
-    return <div className="usermember__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Management / User Member" />
                 <div className="input__container">
                     <div className="left__container__input">
@@ -26,7 +25,6 @@ const ManagementUserMember = () => {
                 </div>
             <Information informationText="Data User Member" showDropdown={false} fields={infoTopFields}/>
         </div>
-    </div>
 }
 
 export default ManagementUserMember

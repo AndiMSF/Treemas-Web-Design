@@ -102,13 +102,13 @@ const ManagementUser = () => {
                   <i
                     key={`logged-in-${d.isLogin}`}
                     className="fa-solid fa-circle-xmark"
-                    style={{  fontSize: '1.75em', textAlign: 'center' }}
+                    style={{ color: '#ff0000',  fontSize: '1.5em', textAlign: 'center' }}
                   ></i>
                 ) : (
                   <i
                     key={`logged-in-${d.isLogin}`}
                     className="fa-solid fa-circle-check"
-                    style={{ color: '#11ff00', fontSize: '1.75em', textAlign: 'center' }}
+                    style={{ color: '#00a92b', fontSize: '1.5em', textAlign: 'center' }}
                   ></i>
                 )}
               </div>
@@ -123,14 +123,14 @@ const ManagementUser = () => {
                   <i
                     key={`unlock-${d.isLocked}`}
                     className="fa fa-unlock-alt"
-                    style={{  fontSize: '1.75em', textAlign: 'center' }}
+                    style={{ color: '#00a92b', fontSize: '1.5em', textAlign: 'center' }}
                     onClick={() => handleClick(d.userId, "Lock")}
                   ></i>
                 ) : (
                   <i
                     key={`lock-${d.isLocked}`}
                     className="fa fa-lock"
-                    style={{ color: '#11ff00', fontSize: '1.75em', textAlign: 'center' }}
+                    style={{ color: '#ff0000', fontSize: '1.5em', textAlign: 'center' }}
                     onClick={() => handleClick(d.userId, "Unlock")}
                   ></i>
                 )}
@@ -231,8 +231,7 @@ const ManagementUser = () => {
       };
   
 
-    return <div className="userpage__container">
-        <div className="content__container">
+    return <div className="content__container">
         <Navbar navbarText="Management / Data User Access" />            
             <div className="table__container">
               <DataTableExtensions {...dataTable}>
@@ -252,7 +251,6 @@ const ManagementUser = () => {
             </div>
                
         </div>
-    </div>
 }
 
 export default ManagementUser

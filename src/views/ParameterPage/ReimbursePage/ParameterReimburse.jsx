@@ -13,7 +13,6 @@ const ParameterReimburse = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -35,8 +34,6 @@ const ParameterReimburse = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
 
@@ -48,11 +45,6 @@ const ParameterReimburse = () => {
           navigate("/login");
         }
       }, [navigate]);
-      
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -172,8 +164,7 @@ const ParameterReimburse = () => {
       };
 
 
-    return <div className="reimburse__container">
-        <div className="content__container">
+    return <div className="content__container">
             <Navbar navbarText="Parameter / Reimburse" />          
           <div className="table__container">
                 <DataTableExtensions {...dataTable}>
@@ -191,7 +182,6 @@ const ParameterReimburse = () => {
                 </DataTableExtensions>
           </div>
         </div>
-    </div>
 }
 
 export default ParameterReimburse

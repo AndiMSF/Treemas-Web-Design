@@ -16,7 +16,6 @@ const MasterDataCuti = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
 
@@ -39,8 +38,6 @@ const MasterDataCuti = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -53,10 +50,6 @@ const MasterDataCuti = () => {
           navigate("/login");
         }
       }, [navigate]);
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -170,7 +163,6 @@ const MasterDataCuti = () => {
       };
 
     return (
-      <div className="cuti__container">
         <div className="content__container">
             <Navbar navbarText="Master Data / Cuti" />
             <Link to="/master-data/cuti-form/add" className="add__button">Tambah</Link>
@@ -191,7 +183,6 @@ const MasterDataCuti = () => {
             </div>
 
             </div>
-    </div>
     )
 }
 export default MasterDataCuti

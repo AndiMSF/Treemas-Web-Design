@@ -25,10 +25,6 @@
     color: #535bf2;
   }
 
-  main {
-    width: 100%;
-  }
-
   .parent__container {
     display: flex;
     height: 100vh;
@@ -36,15 +32,26 @@
     overflow:hidden;
 }
 
-.table__container{
-  width: 100%;
-  overflow: visible;
+
+.sidebar__container {
+  min-width: 12vw;
+  background-color: var(--almost-black);
+  color: var(--unselected-icon);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+  height: 100%;
+}
+
+main {
+  min-width: 88vw;
 }
 
   .content__container {
     display: flex;
     flex-direction: column;
-    width: 100%;
     padding: 3rem 2rem;
     gap: 2rem;
     background-color: #53A8B6;
@@ -94,4 +101,17 @@ div .dropdown {
 
 .section__header__top h1 {
   margin: 0;
+}
+
+/* Media query untuk ukuran layar max hp (smartphone) */
+@media (max-width: 1500px) {
+  /* Gaya CSS khusus untuk ukuran layar max hp */
+  /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
+  .sidebar__container {
+      display: none;
+  }
+
+  main {
+      width: 100vw;
+  }
 }
