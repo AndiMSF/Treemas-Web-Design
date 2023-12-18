@@ -16,7 +16,6 @@ const MasterDataClaim = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -38,8 +37,6 @@ const MasterDataClaim = () => {
             }
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
-          } finally {
-            setIsLoading(false);
           }
         };
     
@@ -52,10 +49,6 @@ const MasterDataClaim = () => {
           navigate("/login");
         }
       }, [navigate]);
-    
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;

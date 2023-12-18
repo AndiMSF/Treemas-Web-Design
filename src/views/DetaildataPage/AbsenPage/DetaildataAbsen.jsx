@@ -120,7 +120,7 @@ const DetaildataAbsen = () => {
         },
         {
           name: "Project",
-          selector: (row) => row.projectId   || '-',
+          selector: (row) => row.projectId?.namaProject   || '-',
           sortable: true
         },
         {

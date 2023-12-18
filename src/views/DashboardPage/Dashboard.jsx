@@ -26,7 +26,6 @@ const Dashboard = () => {
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -47,9 +46,7 @@ const Dashboard = () => {
           }
         } catch (error) {
           setError(`Error fetching data: ${error.message}`);
-        } finally {
-          setIsLoading(false);
-        }
+        } 
       };
       
         const token = localStorage.getItem("authToken")
@@ -61,10 +58,6 @@ const Dashboard = () => {
           navigate("/login");
         }
       }, [navigate])
-
-      if (isLoading) {
-        return <div>Loading...</div>;
-      }
     
       if (error) {
         return <div>Error: {error}</div>;

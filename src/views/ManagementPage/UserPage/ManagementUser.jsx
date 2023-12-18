@@ -66,7 +66,7 @@ const ManagementUser = () => {
         } else {
           navigate("/login");
         }
-      }, [navigate]);
+      }, [navigate, apiData.isLocked]);
       
       if (error) {
         return <div>Error: {error}</div>;
@@ -113,6 +113,29 @@ const ManagementUser = () => {
                 )}
               </div>
             )
+          },
+          {
+            name: "Terkunci",
+            sortable: false,
+            cell: (d) => (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {d.isLocked === '0' || d.isLocked === null ? (
+                  <i
+                    key={`unlock-${d.isLocked}`}
+                    className="fa fa-unlock-alt"
+                    style={{  fontSize: '1.75em', textAlign: 'center' }}
+                    onClick={() => handleClick(d.userId, "Lock")}
+                  ></i>
+                ) : (
+                  <i
+                    key={`lock-${d.isLocked}`}
+                    className="fa fa-lock"
+                    style={{ color: '#11ff00', fontSize: '1.75em', textAlign: 'center' }}
+                    onClick={() => handleClick(d.userId, "Unlock")}
+                  ></i>
+                )}
+              </div>
+            )
           }
 
           
@@ -125,22 +148,17 @@ const ManagementUser = () => {
       };
     
     
-      const handleClick = (id) => {
-        console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/announcement-edit/${id}`);
-      };
-    
-      const handleDelete = (id) => {
-          console.log(`Delete button clicked for ID: ${id}`);
-          // Tambahkan logika penghapusan data di sini, atau panggil API delete jika diperlukan
-          Swal.fire({
+      const handleClick = (userId, message) => {
+        console.log(`Edit button clicked for nik: ${userId}`);
+        
+        Swal.fire({
           title: "Are you sure?",
           text: "You won't be able to revert this!",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+          confirmButtonText: message
           }).then(async (result) => {
             if (result.isConfirmed) {
               // Jika yes akan
@@ -151,8 +169,8 @@ const ManagementUser = () => {
           }
     
           try {
-            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/management/user/delete/${id}`, {
-              method: 'DELETE',
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/management/unlock-account/${userId}`, {
+              method: 'PUT',
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -161,14 +179,24 @@ const ManagementUser = () => {
     
             const data = await response.json();
             if (response.ok) {
-              // Berhasil dihapus
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-              // Perbarui state lokal setelah penghapusan
-              setApiData((prevData) => prevData.filter(item => item.id !== id));
+              // Fetch updated data after successful API call
+            const updatedDataResponse = await fetch('https://treemas-api-405402.et.r.appspot.com/api/management/user-view', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+            });
+
+            const updatedData = await updatedDataResponse.json();
+                // Update state with the new data
+                setApiData(updatedData.data);
+                Swal.fire({
+                  title: "Success!",
+                  text: data.message,
+                  icon: "success"
+                });
+
             } else {
               // Gagal dihapus
               Swal.fire({
@@ -178,17 +206,30 @@ const ManagementUser = () => {
               });
             }
           } catch (error) {
-            // Error selama proses penghapusan
-            console.error('Error deleting data:', error);
+            // Tangani kesalahan jaringan atau kesalahan server
+            // Jika tidak berhasil, tampilkan pesan error
+            console.error('Failed to fetch data:', error);
+           
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            console.error('Server responded with non-2xx status:', error.response.data);
             Swal.fire({
-              title: "Error!",
-              text: "An error occurred while deleting the data.",
-              icon: "error"
+              title: 'Error!',
+              text:  error.response.data.message, // Display the backend error message
+              icon: 'error',
             });
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.error('No response received:', error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error('Error during request setup:', error.message);
+          }
           }
             }
         });
       };
+  
 
     return <div className="userpage__container">
         <div className="content__container">

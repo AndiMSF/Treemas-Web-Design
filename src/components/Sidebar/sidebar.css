@@ -1,11 +1,7 @@
-.parent__container {
-    display: flex;
-    height: 100vh;
-}
 
 .sidebar__container {
-    min-width: 220px;
-    max-width: 15%;
+    min-width: 15vw;
+    max-width: 85vw;
     background-color: var(--almost-black);
     color: var(--unselected-icon);
     display: flex;
@@ -149,5 +145,11 @@ ul .non_color:hover {
     /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
     .sidebar__container {
         display: none;
+    }
+
+    main {
+        min-width: none;
+        max-width: none;
+        width: 100vw;
     }
 }

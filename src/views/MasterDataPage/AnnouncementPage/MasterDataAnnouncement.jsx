@@ -185,7 +185,6 @@ const MasterDataAnnouncement = () => {
       };
     
       return (
-        <div className="announcement__container">
           <div className="content__container">
             <Navbar navbarText="Master Data / Announcement" />
             <Link to="/master-data/announcement-form/add" className="add__button">Tambah</Link>
@@ -207,7 +206,6 @@ const MasterDataAnnouncement = () => {
             </div>
     
           </div>
-        </div>
       );
     };
 export default MasterDataAnnouncement
