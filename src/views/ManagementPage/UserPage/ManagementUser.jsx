@@ -123,14 +123,14 @@ const ManagementUser = () => {
                   <i
                     key={`unlock-${d.isLocked}`}
                     className="fa fa-unlock-alt"
-                    style={{ color: '#00a92b', fontSize: '1.5em', textAlign: 'center' }}
+                    style={{ color: '#00a92b', fontSize: '1.5em', textAlign: 'center', cursor: 'pointer' }}
                     onClick={() => handleClick(d.userId, "Lock")}
                   ></i>
                 ) : (
                   <i
                     key={`lock-${d.isLocked}`}
                     className="fa fa-lock"
-                    style={{ color: '#ff0000', fontSize: '1.5em', textAlign: 'center' }}
+                    style={{ color: '#ff0000', fontSize: '1.5em', textAlign: 'center', cursor: 'pointer' }}
                     onClick={() => handleClick(d.userId, "Unlock")}
                   ></i>
                 )}

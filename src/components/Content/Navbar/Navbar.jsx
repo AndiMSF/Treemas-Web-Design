@@ -18,6 +18,11 @@ const Navbar = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [fotoProfile, setFotoProfile] = useState('');
 
+    const handleProfileClick = () => {
+      // Navigasi ke halaman profile
+      navigate('/users/profile');
+    };
+
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -66,7 +71,6 @@ const Navbar = (props) => {
             const data = await response.json();
             if (data.status === 'Success') {
               setFotoProfile(data.data.data);
-              console.log("INI GAMBAR "+data.data);
               // Simpan nama pengguna di localStorage
               localStorage.setItem('karyawanImg', data.data);
             } else {
@@ -107,7 +111,7 @@ const Navbar = (props) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu style={{backgroundColor: "black"}}>
-                    <Dropdown.Item id="dropdown__item__navbar" href="/users/profile">Profile</Dropdown.Item>
+                    <Dropdown.Item id="dropdown__item__navbar" onClick={handleProfileClick}>Profile</Dropdown.Item>
                     <Dropdown.Item id="dropdown__item__navbar" href="#/action-2">Logout</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
