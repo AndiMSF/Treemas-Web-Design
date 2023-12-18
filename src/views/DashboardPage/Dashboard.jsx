@@ -103,7 +103,7 @@ const Dashboard = () => {
       return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
     };
 
-    return <div className="dashboard__container">
+    return <div className="content__container">
         <Navbar navbarText="Overview"/>
                
         <div className="grafik__data__kehadiran">
