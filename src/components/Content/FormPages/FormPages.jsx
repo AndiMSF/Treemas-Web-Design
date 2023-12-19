@@ -22,6 +22,7 @@ import Swal from 'sweetalert2'
 const FormPages = (props) => {
 
   const { id } = useParams();
+  const [apiDataKaryawan, setApiDataKaryawan] = useState([])
   const [apiDataSys, setApiDataSys] = useState([]);
   const [apiDataImg, setApiDataImg] = useState([]);
 
@@ -343,10 +344,56 @@ const FormPages = (props) => {
           });
             const data = await response.json();
             if (data.status === 'Success') {
-              console.log("Hai");
+              setApiDataKaryawan(data.data.karyawan)
               setApiDataSys(data.data.sysUser);
               setApiDataImg(data.data.karyawanImage)
+              console.log(data);
+              // Update the initialFormData with the jabatanId
+            setFormData({
+              ...initialFormData,
+              selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
+              selectedProject: data.data.karyawan.projectId.projectId
+            });
+              
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          }
+        };
 
+      const token = localStorage.getItem("authToken")
+      if (token) {
+        setIstoken(token)
+        fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
+        // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
+      //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
+
+      //   // Bersihkan interval saat komponen di-unmount
+      //   return () => {
+      //     clearInterval(intervalId);
+      //   };
+      }else{
+        navigate("/login");
+      }
+      } else if (props.isProfile) {
+        // Lakukan logika untuk mode edit di sini
+        const fetchDataProject = async () => {
+          try {
+            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${id}`, {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              setApiDataKaryawan(data.data.karyawan)
+              setApiDataSys(data.data.sysUser);
+              setApiDataImg(data.data.karyawanImage)
+              console.log(data);
               // Update the initialFormData with the jabatanId
             setFormData({
               ...initialFormData,
@@ -378,7 +425,7 @@ const FormPages = (props) => {
       }
         // ...
       }
-    }, [props.isEdit, navigate]); // Pastikan untuk menyertakan props.isEdit di dalam dependencies
+    }, [props.isEdit, props.isProfile ,navigate]); // Pastikan untuk menyertakan props.isEdit di dalam dependencies
 
     // Handle API GET and POST
     useEffect(() => {

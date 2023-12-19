@@ -2,18 +2,38 @@
 /* eslint-disable no-unused-vars */
 import "./sidebar.css"
 import Logo from "../../images/logo-treemas.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import DropdownMenu from "./DropdownMenu/DropdownMenu"
+import axios from "axios"
 
 const Sidebar = ({children}) => {
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async (e) => {
+    const token = localStorage.getItem("authToken");
+    
+      if (!token) {
+        console.error('Token is not available');
+        return navigate("/login");
+      }
+
     // Hapus token dari localStorage atau melakukan tindakan logout yang diperlukan
-    localStorage.removeItem("authToken");
+    
+    const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/auth/logout`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+            });
 
+    console.log(response);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("karyawanImg");
+    localStorage.removeItem("userName");
     // Redirect ke halaman login setelah logout
-    window.location.href = '/login';
+    navigate("/login");
   };
 
     const [itemsState, setItemsState] = useState({
@@ -225,7 +245,7 @@ const Sidebar = ({children}) => {
                     )}
 
                     <div className="line"></div>
-                    <DropdownMenu onClick={handleLogout} link="/logout" text="Logout" isActive={itemsState.logout}/>
+                    <DropdownMenu onClick={handleLogout} text="Logout" isActive={itemsState.logout}/>
                 </ul>
             </nav>
 

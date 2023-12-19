@@ -73,66 +73,55 @@ function App() {
   return (
     <>
     <BrowserRouter >
-    
-      
-      {isPath === '/login' || isPath === '/logout' || isPath === '/forgot-password' ? (
+       
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPass/>} />
+          <Route path="/" element= {<Sidebar> {<Dashboard />} </Sidebar> }/>
+          <Route path="/dashboard" element= {<Sidebar> {<Dashboard />} </Sidebar> }/>
+          <Route path="/detail-data/absen-view" element= {<Sidebar> {<DetaildataAbsen />} </Sidebar> }/>
+          <Route path="/detail-data/cutisakit-view" element={<Sidebar>{<DetaildataCutiSakit />}</Sidebar>} />
+          <Route path="/detail-data/reimburse-view" element={<Sidebar>{<DetaildataReimburse />}</Sidebar>} />
+          <Route path="/detail-data/timesheet-view" element={<Sidebar>{<DetaildataTimesheet />}</Sidebar>} />
+          <Route path="/detail-data/tracking-view" element={<Sidebar>{<DetaildataTracking />}</Sidebar>} />
+          <Route path="/management/user-view" element={<Sidebar>{<ManagementUser />}</Sidebar>} />
+          <Route path="/management/user-access-view" element={<Sidebar>{<ManagementUserAccess />}</Sidebar>} />
+          <Route path="/management/user-member-view" element={<Sidebar>{<ManagementUserMember />}</Sidebar>} />
+          <Route path="/manual-service" element={<Sidebar>{<ManualService />}</Sidebar>} />
+          <Route path="/master-data/announcement-view" element={<Sidebar>{<MasterDataAnnouncement />}</Sidebar>} />
+          <Route path="/master-data/announcement-form/add" element={<Sidebar>{<MasterDataAnnouncementForm />}</Sidebar>} />
+          <Route path="/master-data/announcement-edit/:id" element={<Sidebar>{<MasterDataAnnouncementEdit />}</Sidebar>} />
+          <Route path="/master-data/claim-view" element={<Sidebar>{<MasterDataClaim />}</Sidebar>} />
+          <Route path="/master-data/claim-form/add" element={<Sidebar>{<MasterDataClaimForm />}</Sidebar>} />
+          <Route path="/master-data/claim-edit/:id" element={<Sidebar>{<MasterDataClaimEdit />}</Sidebar>} />
+          <Route path="/master-data/cuti-view" element={<Sidebar>{<MasterDataCuti />}</Sidebar>} />
+          <Route path="/master-data/cuti-form/add" element={<Sidebar>{<MasterDataCutiForm />}</Sidebar>} />
+          <Route path="/master-data/cuti-edit/:id" element={<Sidebar>{<MasterDataCutiEdit />}</Sidebar>} />
+          <Route path="/master-data/jabatan-view" element={<Sidebar>{<MasterDataJabatan />}</Sidebar>} />
+          <Route path="/master-data/jabatan-form/add" element={<Sidebar>{<MasterDataJabatanForm />}</Sidebar>} />
+          <Route path="/master-data/jabatan-edit/:id" element={<Sidebar>{<MasterDataJabatanEdit />}</Sidebar>} />
+          <Route path="/master-data/karyawan-view" element={<Sidebar>{<MasterDataKaryawan />}</Sidebar>} />
+          <Route path="/master-data/karyawan-form/edit/:id" element={<Sidebar>{<MasterDataKaryawanEdit />}</Sidebar>} />
+          <Route path="/master-data/karyawan-form/add" element={<Sidebar>{<MasterDataKaryawanForm />}</Sidebar>} />
+          <Route path="/master-data/libur-view" element={<Sidebar>{<MasterDataLibur />}</Sidebar>} />
+          <Route path="/master-data/libur-form/add" element={<Sidebar>{<MasterDataLiburForm />}</Sidebar>} />
+          <Route path="/master-data/libur-edit/:id" element={<Sidebar>{<MasterDataLiburEdit />}</Sidebar>} />
+          <Route path="/master-data/permission-view" element={<Sidebar>{<MasterDataPermission />}</Sidebar>} />
+          <Route path="/master-data/permission-form/add" element={<Sidebar>{<MasterDataPermissionForm />}</Sidebar>} />
+          <Route path="/master-data/permission-edit/:id" element={<Sidebar>{<MasterDataPermissionEdit />}</Sidebar>} />
+          <Route path="/master-data/project-view" element={<Sidebar>{<MasterDataProject />}</Sidebar>} />
+          <Route path="/master-data/project-form/add" element={<Sidebar>{<MasterDataProjectForm />}</Sidebar>} />
+          <Route path="/parameter/general-view" element={<Sidebar>{<ParameterGeneral />}</Sidebar>} />
+          <Route path="/parameter/general-form/edit/:id" element={<Sidebar>{<ParameterGeneralEdit />}</Sidebar>} />
+          <Route path="/parameter/reimburse-view" element={<Sidebar>{<ParameterReimburse />}</Sidebar>} />
+          <Route path="/parameter/reimburse-form/edit/:id" element={<Sidebar>{<ParameterReimburseEdit />}</Sidebar>} />
+          <Route path="/report-data/claim" element={<Sidebar>{<ReportDataClaim />}</Sidebar>} />
+          <Route path="/report-data/detail" element={<Sidebar>{<ReportDataDetail />}</Sidebar>} />
+          <Route path="/report-data/summary" element={<Sidebar>{<ReportDataSummary />}</Sidebar>} />
+          <Route path="/upload/absen" element={<Sidebar>{<UploadAbsen />}</Sidebar>} />
+          <Route path="/upload/apk" element={<Sidebar>{<UploadApk />}</Sidebar>} />
+          <Route path="/users/profile" element={<Sidebar>{<ProfilePage />}</Sidebar>} />          
         </Routes>
-      ):(
-        <Sidebar>
-
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/detail-data/absen-view" element={<DetaildataAbsen />} />
-          <Route path="/detail-data/cutisakit-view" element={<DetaildataCutiSakit />} />
-          <Route path="/detail-data/reimburse-view" element={<DetaildataReimburse />} />
-          <Route path="/detail-data/timesheet-view" element={<DetaildataTimesheet />} />
-          <Route path="/detail-data/tracking-view" element={<DetaildataTracking />} />
-          <Route path="/management/user-view" element={<ManagementUser />} />
-          <Route path="/management/user-access-view" element={<ManagementUserAccess />} />
-          <Route path="/management/user-member-view" element={<ManagementUserMember />} />
-          <Route path="/manual-service" element={<ManualService />} />
-          <Route path="/master-data/announcement-view" element={<MasterDataAnnouncement />} />
-          <Route path="/master-data/announcement-form/add" element={<MasterDataAnnouncementForm />} />
-          <Route path="/master-data/announcement-edit/:id" element={<MasterDataAnnouncementEdit />} />
-          <Route path="/master-data/claim-view" element={<MasterDataClaim />} />
-          <Route path="/master-data/claim-form/add" element={<MasterDataClaimForm />} />
-          <Route path="/master-data/claim-edit/:id" element={<MasterDataClaimEdit/>}/>
-          <Route path="/master-data/cuti-view" element={<MasterDataCuti />} />
-          <Route path="/master-data/cuti-form/add" element={<MasterDataCutiForm />} />
-          <Route path="/master-data/cuti-edit/:id" element={<MasterDataCutiEdit />} />
-          <Route path="/master-data/jabatan-view" element={<MasterDataJabatan />} />
-          <Route path="/master-data/jabatan-form/add" element={<MasterDataJabatanForm />} />
-          <Route path="/master-data/jabatan-edit/:id" element={<MasterDataJabatanEdit />} />
-          <Route path="/master-data/karyawan-view" element={<MasterDataKaryawan />} />
-          <Route path="/master-data/karyawan-form/edit/:id" element={<MasterDataKaryawanEdit />}/>
-          <Route path="/master-data/karyawan-form/add" element={<MasterDataKaryawanForm />} />
-          <Route path="/master-data/libur-view" element={<MasterDataLibur />} />
-          <Route path="/master-data/libur-form/add" element={<MasterDataLiburForm />} />
-          <Route path="/master-data/libur-edit/:id" element={<MasterDataLiburEdit />} />
-          <Route path="/master-data/permission-view" element={<MasterDataPermission />} />
-          <Route path="/master-data/permission-form/add" element={<MasterDataPermissionForm />} />
-          <Route path="/master-data/permission-edit/:id" element={<MasterDataPermissionEdit />} />
-          <Route path="/master-data/project-view" element={<MasterDataProject/>} />
-          <Route path="/master-data/project-form/add" element={<MasterDataProjectForm />} />
-          <Route path="/parameter/general-view" element={<ParameterGeneral />} />
-          <Route path="/parameter/general-form/edit/:id" element={<ParameterGeneralEdit />} />
-          <Route path="/parameter/reimburse-view" element={<ParameterReimburse />} />
-          <Route path="/parameter/reimburse-form/edit/:id" element={<ParameterReimburseEdit />} />
-          <Route path="/report-data/claim" element={<ReportDataClaim />} />
-          <Route path="/report-data/detail" element={<ReportDataDetail />} />
-          <Route path="/report-data/summary" element={<ReportDataSummary />} />
-          <Route path="/upload/absen" element={<UploadAbsen />} />
-          <Route path="/upload/apk" element={<UploadApk />} />
-          <Route path="/users/profile" element={<ProfilePage />} />          
-
-        </Routes>
-      </Sidebar>
-      )}
-      
     </BrowserRouter>
     </>
   )

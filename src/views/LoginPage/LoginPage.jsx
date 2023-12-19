@@ -11,6 +11,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Swal from "sweetalert2"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -19,6 +20,15 @@ const LoginPage = () => {
     const [password, setPassword] = useState(''); // State untuk nilai password
     const [passwordError, setPasswordError] = useState(''); // State for password error
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const token = localStorage.getItem("authToken");
+      
+      if(token) {
+        navigate("/")
+      }
+    },[])
 
     const handleLogin = async () => {
         const loginData = {
@@ -26,7 +36,7 @@ const LoginPage = () => {
           password: password,
           isWebAccess: "1"
         };
-    
+        
         
         try {
           const response = await axios.post('https://treemas-api-405402.et.r.appspot.com/api/auth/login', 
@@ -43,9 +53,12 @@ const LoginPage = () => {
               console.log('Berhasil masuk:', response);
               const bearerToken = response.data.data.token;
               console.log(bearerToken);
+              let nik = response.data.data.user.nik
+              console.log(nik);
+              nik = localStorage.setItem("nik", nik)
 
               localStorage.setItem("authToken", bearerToken);
-              window.location.href = '/dashboard';    
+              navigate("/")   
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
