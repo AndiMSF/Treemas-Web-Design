@@ -57,18 +57,10 @@ import ChangePassword from "./views/ChangePassword/ChangePassword"
 import ForgotPass from "./views/LoginPage/ForgetPass"
 // 
 import "./App.css"
-import { useEffect, useState } from "react"
 
 function App() {
-  const [isPath, setIsPath] = useState("")
-  
 
-  useEffect(() => {
-    const currentPath = window.location.pathname;
-    setIsPath(currentPath)
-    console.log(isPath);
-  }, [setIsPath])
-
+    // Set interval untuk is locked agar hit berkali kali biar selalu check isLock ke local storage
 
   return (
     <>

@@ -113,6 +113,7 @@ const MasterDataKaryawan = () => {
     
       const handleClick = (id) => {
         const selectedNik = apiData.find((nik) => nik.nik === id);
+        console.log("selected Nik "+JSON.stringify(selectedNik, null, 2));
         console.log(`Edit button clicked for NIK: ${id}`);
         navigate(`/master-data/karyawan-form/edit/${id}`,{state: {selectedNik}});
       };

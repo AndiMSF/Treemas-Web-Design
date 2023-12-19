@@ -14,14 +14,46 @@ const Navbar = (props) => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
+    const [profileData, setProfileData] = useState([])
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [fotoProfile, setFotoProfile] = useState('');
-
-    const handleProfileClick = () => {
-      // Navigasi ke halaman profile
-      navigate('/users/profile');
-    };
+    const nik = localStorage.getItem("nik")
+    const userName = localStorage.getItem('userName');
+    const karyawanImg = localStorage.getItem('karyawanImg');
+    
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${nik}`, {
+          method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Sertakan token di sini
+          },
+        });
+          const data = await response.json();
+          if (data.status === 'Success') {
+            setProfileData(data.data.karyawan);
+            console.log(data);
+            
+          } else {
+            setError('Failed to fetch data');
+          }
+        } catch (error) {
+          setError(`Error fetching data: ${error.message}`);
+        }
+      };
+  
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        setIstoken(token);
+        fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+        console.log('Token: ' + token);
+      } else {
+        navigate("/login");
+      }
+    }, [navigate, nik]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -93,8 +125,17 @@ const Navbar = (props) => {
           }
         }, [navigate])
 
-        const userName = localStorage.getItem('userName');
-        const karyawanImg = localStorage.getItem('karyawanImg');
+        const handleProfileClick = () => {
+          const profileNik = profileData
+          console.log("profile Data = "+JSON.stringify(profileNik, null, 2));
+          console.log("NAVBAR NIK" + nik);
+            navigate(`/users/profile`,{state: {profileNik}});
+          // Navigasi ke halaman profile
+      
+        };
+
+
+        
 
     return <div className="navbar__container">
         <div className="left__container__navbar">

@@ -269,10 +269,11 @@ const FormPages = (props) => {
     })))
   }
 
-  // Data sebelumnya
+  // Data sebelumnya untuk profile dan edit
   const location = useLocation();
   const selectedNik = location.state ? location.state.selectedNik : null;
-  const initialFormData = selectedNik || { // Data Profile
+  const profileNik = location.state ? location.state.profileNik : null
+  const initialFormData = props.isProfile ? profileNik || { // untuk profile
    nama: '',
    nomorKtp: '',
    noNpwp: '',
@@ -319,8 +320,59 @@ const FormPages = (props) => {
    fotoKk: '',
    fotoKkPath: '',
    fotoAsuransi: '',
-   fotoAsuransiPath: '', };
+   fotoAsuransiPath: '',
+  } : selectedNik || { // Data Edit
+   nama: '',
+   nomorKtp: '',
+   noNpwp: '',
+   noHp: '',
+   email: '',
+   tempatLahir: '',
+   tanggalLahir: '',
+   jenisKelamin: '',
+   golonganDarah: '',
+   statusPerkawinan: '',
+   agama: '',
+   jenjangPendidikan: '',
+   noRek: '',
+   kewarganegaraan: '',
+
+   // Data Alamat
+   alamatKtp: '',
+   alamatSekarang: '',
+   kodePos: '',
+
+   // Data Lain-Lain
+   emergencyContact: '',
+   statusEmergency: '',
+   alamatEmergency: '',
+   telpEmergency: '',
+
+   // Data Karyawan
+   nik: '',
+   handsetImei: '',
+   selectedRole: '',
+   selectedProject: '',
+   tanggalBergabung: '',
+   hakCuti: '',
+   isLeader: '',
+   isKaryawan: '',
+   
+   // Tambah Foto
+   foto: '',
+   fotoPath: '',
+   fotoKtp: '',
+   fotoKtpPath: '',
+   fotoNpwp: '',
+   fotoNpwpPath: '',
+   fotoKk: '',
+   fotoKkPath: '',
+   fotoAsuransi: '',
+   fotoAsuransiPath: '',
+   };
   const [formData, setFormData] = useState(initialFormData);
+
+    // 
       
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
@@ -328,7 +380,9 @@ const FormPages = (props) => {
       const [apiDataProject, setApiDataProject] = useState([]);
       const [error, setError] = useState(null);
       
-    // Edit Karyawan
+      const nik = localStorage.getItem("nik")
+
+    // GET Karyawan, Karyawan/id and Profile Karyawan
     useEffect(() => {
       // Cek jika props.isEdit bernilai true
       if (props.isEdit) {
@@ -349,7 +403,7 @@ const FormPages = (props) => {
               setApiDataImg(data.data.karyawanImage)
               console.log(data);
               // Update the initialFormData with the jabatanId
-            setFormData({
+             setFormData({
               ...initialFormData,
               selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
               selectedProject: data.data.karyawan.projectId.projectId
@@ -363,69 +417,69 @@ const FormPages = (props) => {
           }
         };
 
-      const token = localStorage.getItem("authToken")
-      if (token) {
-        setIstoken(token)
-        fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
-        // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
-      //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
+        const token = localStorage.getItem("authToken")
+        if (token) {
+          setIstoken(token)
+          fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
+          // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
+        //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
 
-      //   // Bersihkan interval saat komponen di-unmount
-      //   return () => {
-      //     clearInterval(intervalId);
-      //   };
-      }else{
-        navigate("/login");
-      }
+        //   // Bersihkan interval saat komponen di-unmount
+        //   return () => {
+        //     clearInterval(intervalId);
+        //   };
+        }else{
+          navigate("/login");
+        }
       } else if (props.isProfile) {
-        // Lakukan logika untuk mode edit di sini
-        const fetchDataProject = async () => {
-          try {
-            const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${id}`, {
-            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`, // Sertakan token di sini
-            },
-          });
-            const data = await response.json();
-            if (data.status === 'Success') {
-              setApiDataKaryawan(data.data.karyawan)
-              setApiDataSys(data.data.sysUser);
-              setApiDataImg(data.data.karyawanImage)
-              console.log(data);
-              // Update the initialFormData with the jabatanId
-            setFormData({
-              ...initialFormData,
-              selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
-              selectedProject: data.data.karyawan.projectId.projectId
+          // Lakukan logika untuk mode edit di sini
+          const fetchDataProject = async () => {
+            try {
+              const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${nik}`, {
+              method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Sertakan token di sini
+              },
             });
-              
-            } else {
-              setError('Failed to fetch data');
+              const data = await response.json();
+              if (data.status === 'Success') {
+                setApiDataKaryawan(data.data.karyawan)
+                setApiDataSys(data.data.sysUser);
+                setApiDataImg(data.data.karyawanImage)
+                console.log(data);
+                // Update the initialFormData with the jabatanId
+               setFormData({
+                ...initialFormData,
+                selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
+                selectedProject: data.data.karyawan.projectId.projectId
+              });
+                
+              } else {
+                setError('Failed to fetch data');
+              }
+            } catch (error) {
+              setError(`Error fetching data: ${error.message}`);
             }
-          } catch (error) {
-            setError(`Error fetching data: ${error.message}`);
+          };
+  
+          const token = localStorage.getItem("authToken")
+          if (token) {
+            setIstoken(token)
+            fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
+            // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
+          //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
+  
+          //   // Bersihkan interval saat komponen di-unmount
+          //   return () => {
+          //     clearInterval(intervalId);
+          //   };
+          }else{
+            navigate("/login");
           }
-        };
+        }
+    }, [navigate]); // Pastikan untuk menyertakan props.isEdit di dalam dependencies
 
-      const token = localStorage.getItem("authToken")
-      if (token) {
-        setIstoken(token)
-        fetchDataProject(); // Panggil fungsi fetchData setelah mendapatkan token
-        // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
-      //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
-
-      //   // Bersihkan interval saat komponen di-unmount
-      //   return () => {
-      //     clearInterval(intervalId);
-      //   };
-      }else{
-        navigate("/login");
-      }
-        // ...
-      }
-    }, [props.isEdit, props.isProfile ,navigate]); // Pastikan untuk menyertakan props.isEdit di dalam dependencies
 
     // Handle API GET and POST
     useEffect(() => {
@@ -508,7 +562,9 @@ const FormPages = (props) => {
         }
       }, [navigate])
 
+      
 
+      // Edit Karyawan and Profile Karyawan
       const handleSubmit = async (e) => {
         e.preventDefault()
         const token = localStorage.getItem("authToken");
@@ -591,7 +647,7 @@ const FormPages = (props) => {
                 });
                 navigate("/master-data/karyawan-view");
                 console.log('Response from API:', response.data);
-              } else {
+              } else if(props.isKaryawanForm) {
                 console.log("ini Add");
 
                 const response = await axios.post(
@@ -609,6 +665,28 @@ const FormPages = (props) => {
                   icon: "success"
                 });
                 navigate("/master-data/karyawan-view");
+                console.log('Response from API:', response.data);
+              } else if(props.isProfile) {
+                console.log("ini Profile");
+
+                const response = await axios.put(
+                  props.apiProfile,
+                  requestData,
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${token}`
+                    },
+                  });
+                  localStorage.setItem("foto", formData.foto);
+                  localStorage.removeItem("nik")
+                  localStorage.setItem("nik", formData.nik);
+                Swal.fire({
+                  title: "Success!",
+                  text: "Profile Updated.",
+                  icon: "success"
+                });
+                navigate("/dashboard");
                 console.log('Response from API:', response.data);
               }
 
