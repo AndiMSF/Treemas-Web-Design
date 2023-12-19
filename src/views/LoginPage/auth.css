@@ -122,8 +122,8 @@ input {
     align-items: center;
     gap: 10px;
     border-radius: 12px;
-    background-color: #53a8b6;
-    border: 1px solid #53a8b6 ;
+    background-color: var(--button-purple);
+    border: 1px solid var(--button-purple) ;
     height: 3em;
 }
 
@@ -140,7 +140,7 @@ input {
 .right__container {
     width: 60%;
     border-radius: 0px 8px 8px 0px;
-    background-color: #53a8b6;
+    background-color: var(--button-purple);
     position: relative;
     display: flex;
     height: 100%;
@@ -149,7 +149,7 @@ input {
 }
 
 .right__container path {
-    fill: #53a8b6 ;
+    fill: var(--button-purple) ;
 }
 
 .login__image__description {

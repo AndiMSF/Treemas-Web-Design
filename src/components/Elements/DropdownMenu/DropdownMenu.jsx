@@ -50,7 +50,7 @@ const DropdownMenu = (props) => {
       {(selectedProject !== null && selectedProject) || (props.onFormData?.projectId?.namaProject) || props.title}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu className="karyawan__dropdown">
         {props.itemsProject.map((item, index) => (
           <Dropdown.Item key={index} eventKey={item.label}>
             {item.label}
@@ -67,7 +67,7 @@ const DropdownMenu = (props) => {
       {(selectedJabatan !== null && selectedJabatan) || (props.onSys?.role?.namaJabatan) || props.title}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu id="karyawan__dropdown">
         {props.itemsJabatan.map((item, index) => (
           <Dropdown.Item key={index} eventKey={item.label}>
             {item.label}
@@ -84,7 +84,7 @@ const DropdownMenu = (props) => {
       {(selectedAgama !== null && selectedAgama) || (props.onFormData?.agama) || props.title}
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu id="karyawan__dropdown">
         {props.itemsAgama.map((item, index) => (
           <Dropdown.Item key={index} eventKey={item}>
             {item}
@@ -97,7 +97,7 @@ const DropdownMenu = (props) => {
   {/* Default Dropdown */}
   {!props.itemsProject && !props.itemsJabatan && !props.itemsAgama && (
     <Dropdown onSelect={handleDropdownSelect}>
-      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+      <Dropdown.Toggle variant="primary" id="standard__dropdown">
       {props.title}
       </Dropdown.Toggle>
 
