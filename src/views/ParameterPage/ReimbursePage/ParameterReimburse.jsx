@@ -77,13 +77,13 @@ const ParameterReimburse = () => {
           cell: (d) => (
             <>
               <i
-                key={`edit-${d.id}`}
-                onClick={() => handleClick(d.id)}
+                key={`edit-${d.reimburseId}`}
+                onClick={() => handleClick(d.reimburseId)}
                 className="first fas fa-pen"
               ></i>
               <i
-                key={`delete-${d.id}`}
-                onClick={() => handleDelete(d.id)}
+                key={`delete-${d.reimburseId}`}
+                onClick={() => handleDelete(d.reimburseId)}
                 className="fas fa-trash-alt"
               ></i>
             </>
@@ -98,7 +98,7 @@ const ParameterReimburse = () => {
     
     
       const handleClick = (id) => {
-        const selectedReimburse = apiData.find((reimburse) => reimburse.id === id);
+        const selectedReimburse = apiData.find((reimburse) => reimburse.reimburseId === id);
         console.log(`Edit button clicked for ID: ${id}`);
         navigate(`/parameter/reimburse-form/edit/${id}`, {state: {selectedReimburse}});
       };

@@ -131,6 +131,11 @@ input#formFile.tambah_foto.form-control {
     border-left: 1px solid #dee2e6;
 }
 
+div.section__header {
+    cursor: grab;
+}
+
 div.section__header__top i {
     color: black;
 }
+

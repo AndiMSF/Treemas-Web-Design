@@ -106,7 +106,7 @@ const Navbar = (props) => {
             <p>{userName}</p>
             
             <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle id="profile__dropdown">
                     <img className="profile" src={karyawanImg} alt=""/>                
                 </Dropdown.Toggle>
 

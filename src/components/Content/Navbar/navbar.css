@@ -54,7 +54,7 @@
     border: transparent;
 }
 
-.right__container__navbar #dropdown-basic {
+#profile__dropdown {
     background-color: transparent;
     border: transparent;
 }
@@ -69,4 +69,8 @@
 
 #dropdown__item__navbar {
     color: white;
+}
+
+img.profile:hover {
+    
 }

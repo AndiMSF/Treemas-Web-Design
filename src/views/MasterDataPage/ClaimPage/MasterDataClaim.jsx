@@ -67,7 +67,7 @@ const MasterDataClaim = () => {
         },
         {
             name: "Nominal",
-            selector: (row) => row.valueClaim || '-',
+            selector: (row) => 'Rp. '+row.valueClaim || '-',
             sortable: true
         },
         {
