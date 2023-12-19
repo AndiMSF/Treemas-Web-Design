@@ -107,16 +107,16 @@ const MasterDataLiburForm = () => {
                 <TextArea placeholder="Keterangan" value={formData.keterangan} onChange={(e) => handleInputChange(e, 'keterangan')}/>
               </div>
             </div>
-            <div className="form__row">
-              <div className="form__row__left">
-                <p>Cuti Bersama</p>
-              </div>
+            <div className="form__row">     
+            <div className="form__row__left">
+            </div>     
               <div className="form__row__right">
-                <input
+                <input                
                   type="checkbox"
                   checked={cutiBersama}
                   onChange={(e) => setCutiBersama(e.target.checked)}
                 />
+                  <label htmlFor="cutiBersama">Cuti Bersama</label>
               </div>
             </div>
             <div className="form__row__bottom">
