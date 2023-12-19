@@ -9,6 +9,7 @@ const UploadApk = () => {
             <Navbar navbarText="Upload / Apk" />
                 <div className="container__ap">
                     <div className="input__container">
+                        
                         <div className="left__container__input__apk">
                                 <input className="form__control" type="file"></input>
                                 <Button text="Submit" className="add__button" />                      

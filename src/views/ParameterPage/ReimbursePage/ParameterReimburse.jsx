@@ -63,7 +63,7 @@ const ParameterReimburse = () => {
         },
         {
           name: "Nominal",
-          selector: (row) => row.nominal || '-',
+          selector: (row) => 'Rp. ' + row.nominal || '-',
           sortable: true
         },
         {

@@ -62,12 +62,12 @@ const MasterDataClaim = () => {
         },
         {
           name: "Keterangan",
-          selector: (row) => row.keterangan || '-',
+          selector: (row) =>  row.keterangan || '-',
           sortable: true
         },
         {
             name: "Nominal",
-            selector: (row) => row.valueClaim || '-',
+            selector: (row) => 'Rp.' + row.valueClaim || '-',
             sortable: true
         },
         {

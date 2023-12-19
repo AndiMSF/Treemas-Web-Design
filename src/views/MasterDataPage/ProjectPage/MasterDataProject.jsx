@@ -77,12 +77,12 @@ const MasterDataProject = () => {
         },  
         {
             name: "Reimburse",
-            selector: (row) => row.biayaReimburse || '-',
+            selector: (row) => 'Rp. ' + row.biayaReimburse || '-',
             sortable: true
         },  
         {
             name: "Jarak",
-            selector: (row) => row.jrkMax || '-',
+            selector: (row) => row.jrkMax + ' m' || '-',
             sortable: true
         },      
         {

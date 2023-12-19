@@ -67,9 +67,9 @@ const MasterDataCuti = () => {
           sortable: true
         },
         {
-            name: "Jumlah",
-            selector: (row) => row.value || '-',
-            sortable: true
+          name: "Jumlah",
+          selector: (row) => row.value  + ' hari' || '-',
+          sortable: true
         },
         {
           name: "Action",
