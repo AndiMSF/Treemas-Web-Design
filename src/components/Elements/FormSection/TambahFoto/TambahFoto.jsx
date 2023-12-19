@@ -15,8 +15,15 @@ const TambahFoto = (props) => {
           const reader = new FileReader();
           reader.onload = (event) => {
       
-      // Konversi gambar ke base64 dan simpan dalam state formData
-      props.onFotoChange(event.target.result, file.name);
+            const imageData = event.target.result;
+            const commaIndex = imageData.indexOf(",");
+            const base64Data = imageData.slice(commaIndex + 1);
+
+            console.log(imageData);
+            console.log("BASE 64 INI "+base64Data);
+      
+            // Konversi gambar ke base64 dan simpan dalam state formData
+            props.onFotoChange(base64Data, file.name);
         };
           reader.readAsDataURL(file);
         }

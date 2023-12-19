@@ -671,14 +671,16 @@ const FormPages = (props) => {
 
                 const response = await axios.put(
                   props.apiProfile,
-                  requestData,
+                  requestData,  
                   {
                     headers: {
                       'Content-Type': 'application/json',
                       'Authorization': `Bearer ${token}`
                     },
                   });
+                  
                   localStorage.setItem("foto", formData.foto);
+                  console.log(formData.foto);
                   localStorage.removeItem("nik")
                   localStorage.setItem("nik", formData.nik);
                 Swal.fire({

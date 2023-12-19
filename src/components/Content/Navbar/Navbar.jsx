@@ -102,9 +102,18 @@ const Navbar = (props) => {
           });
             const data = await response.json();
             if (data.status === 'Success') {
-              setFotoProfile(data.data.data);
+              console.log(data.data);
+              let base64ImageData = '';
+                if (data.data != null) {
+                  base64ImageData =
+                    "data:image/jpeg;base64,"+data.data ||
+                    "data:image/png;base64,"+data.data;
+                } else {
+                  console.log("imageData tidak ada atau tidak memiliki properti 'base64'");
+                }
               // Simpan nama pengguna di localStorage
-              localStorage.setItem('karyawanImg', data.data);
+              setFotoProfile(data.data);
+              localStorage.setItem('karyawanImg', base64ImageData);
             } else {
               setError('Failed to fetch data');
             }
