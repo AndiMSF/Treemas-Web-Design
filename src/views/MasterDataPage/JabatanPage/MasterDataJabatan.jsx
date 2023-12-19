@@ -74,11 +74,13 @@ const MasterDataJabatan = () => {
           <i
             key={`edit-${d.jabatanId}`}
             onClick={() => handleClick(d.jabatanId)}
+            style={{cursor: 'pointer' }}
             className="first fas fa-pen"
           ></i>
           <i
             key={`delete-${d.jabatanId}`}
             onClick={() => handleDelete(d.jabatanId)}
+            style={{cursor: 'pointer' }}
             className="fas fa-trash-alt"
           ></i>
         </>

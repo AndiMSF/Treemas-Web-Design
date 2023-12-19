@@ -86,7 +86,7 @@ const MasterDataClaimEdit = () => {
             <div className="content__container">
                 <div className="form__container">
                     <div className="form__container__top">
-                        <h1>Claim Form</h1>
+                        <h1>Claim Edit</h1>
                         <div className="horizontal__line"></div>
                     </div>
                     <form>

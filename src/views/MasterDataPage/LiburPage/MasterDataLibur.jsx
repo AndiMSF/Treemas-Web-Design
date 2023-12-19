@@ -73,11 +73,13 @@ const MasterDataLibur = () => {
               <i
                 key={`edit-${d.liburId}`}
                 onClick={() => handleClick(d.liburId)}
+                style={{cursor: 'pointer' }}
                 className="first fas fa-pen"
               ></i>
               <i
                 key={`delete-${d.liburId}`}
                 onClick={() => handleDelete(d.liburId)}
+                style={{cursor: 'pointer' }}
                 className="fas fa-trash-alt"
               ></i>
             </>

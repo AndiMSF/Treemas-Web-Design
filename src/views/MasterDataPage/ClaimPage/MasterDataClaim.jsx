@@ -78,11 +78,13 @@ const MasterDataClaim = () => {
               <i
                 key={`edit-${d.idClaim}`}
                 onClick={() => handleClick(d.idClaim)}
+                style={{cursor: 'pointer' }}
                 className="first fas fa-pen"
               ></i>
               <i
                 key={`delete-${d.idClaim}`}
                 onClick={() => handleDelete(d.idClaim)}
+                style={{cursor: 'pointer' }}
                 className="fas fa-trash-alt"
               ></i>
             </>

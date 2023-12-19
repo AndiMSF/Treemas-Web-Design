@@ -1,17 +1,18 @@
 import "./liburform.css"
-import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import TextArea from "../../../components/Elements/TextArea/TextArea"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom/dist";
 import axios from "axios";
 import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
         
+
 const MasterDataLiburForm = () => {
   const [showAlert, setShowAlert] = useState(false);
     const [formData, setFormData] = useState({
-        tglLibur: '',
+        tglLibur: new Date(),
         keterangan: ''
       })
       const [cutiBersama, setCutiBersama] = useState(false); // State untuk checkbox Cuti Bersama  
@@ -30,6 +31,10 @@ const MasterDataLiburForm = () => {
         }
       }, [navigate])
     
+      const handleDateChange = (date) => {
+        setFormData({ ...formData, tglLibur: date });
+      };
+
       const handleInputChange = (event, field) => {
         const {value} = event.target
         setFormData({...formData, [field]: value})
@@ -83,12 +88,17 @@ const MasterDataLiburForm = () => {
                     <form>
                     <div className="form__row">
               <div className="form__row__left">
-                <p>Tanggal Libur<span style={{ color: 'red' }}>*</span></p>
+                <p>Tanggal Libur <span style={{ color: 'red' }}>*</span></p>
               </div>
               <div className="form__row__right">
-              <BoxInput placeholder="Tanggal Libur" value={formData.idLibur} onChange={(e) => handleInputChange(e, 'idLibur')}/>
-              </div>
+              <DatePicker
+                showIcon
+                selected={formData.tglLibur}
+                onChange={handleDateChange}
+                dateFormat="MMMM d, yyyy"
+              />
             </div>
+          </div>
             <div className="form__row">
               <div className="form__row__left">
                 <p>Keterangan</p>
@@ -116,6 +126,7 @@ const MasterDataLiburForm = () => {
                     </form>
                 </div>
             </div>
+
       )
 
 }
