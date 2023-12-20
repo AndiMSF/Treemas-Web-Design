@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
 import "./password.css"
 import BoxInput from "../../BoxInput/BoxInput"
+import { useState } from "react"
+import { FormControl } from "react-bootstrap"
 
 const Password = (props) => {
+    const [oldPassword, setOldPassword] = useState('')
+    const [newPassword, setNewPassword] = useState('')
+    const [confPassword, setConfPassword] = useState('')
 
   return (
     <div className="password__container">
         <div onClick={props.onClickPassword} className="section__header">
             <div className="section__header__top">
-                <h1>Password</h1>
+                <h1>Ganti Password</h1>
                 <i className={props.showChildrenPassword ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
             </div>
             <div className="section__bottom">
@@ -23,7 +28,11 @@ const Password = (props) => {
                         <p>Old Password</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Old Password" />    
+                    <FormControl type="text" placeholder="Old Password" value={props.onFormData.sqlPassword}
+                    onChange={(e) => {
+                        setOldPassword(e.target.value)
+                        props.onOldPasswordChange(e.target.value)
+                    } }/>       
                     </div>
                 </div>
 
@@ -32,7 +41,11 @@ const Password = (props) => {
                         <p>New Password</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="New Password" />    
+                    <FormControl type="text" placeholder="New Password" value={props.onFormData.newPassword}
+                    onChange={(e) => {
+                        setNewPassword(e.target.value)
+                        props.onNewPasswordChange(e.target.value)
+                    } }/>
                     </div>
                 </div>
 
@@ -42,7 +55,11 @@ const Password = (props) => {
                         <p>Confirm Password</p>
                     </div>          
                     <div className="form__row__right">
-                        <BoxInput placeholder="Confirm Password" />    
+                    <FormControl type="text" placeholder="Confirm Password" value={props.onFormData.confPassword}
+                    onChange={(e) => {
+                        setConfPassword(e.target.value)
+                        props.onConfPasswordChange(e.target.value)
+                    } }/>
                     </div>
                 </div>
 

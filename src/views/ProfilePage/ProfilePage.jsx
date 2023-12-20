@@ -12,6 +12,7 @@ const ProfilePage = () => {
     const [isEnabledKaryawan, setIsEnabledKaryawan] = useState(false);
     const [isEnabledAlamat, setIsEnabledAlamat] = useState(false);
     const [isEnabledLain, setIsEnabledLain] = useState(false);
+    const [isEnabledPassword, setIsEnabledPassword] = useState(false)
     const [apiProfile, setApiProfile] = useState(`https://treemas-api-405402.et.r.appspot.com/api/users/update-profile`);
     const [isKaryawanForm, setIsKaryawanForm] = useState(true);
     const [isProfile, setIsProfile] = useState(true);
@@ -36,9 +37,13 @@ const ProfilePage = () => {
         setIsEnabledLain(!isEnabledLain)
     }
 
+    const handleChildrenPassword = () => {
+        setIsEnabledPassword(!isEnabledPassword)
+    }
+
 
     return <div className="karyawanform__container">
-        <FormPages formTitle="Edit Profile" to="/master-data/karyawan-view" isProfile={isProfile} showDataProfile={true} showDataKaryawan={true} showTambahFoto={true} showDataAlamat={true} showDataLain={true} showChildrenFoto={isEnabledFoto} showChildrenProfile={isEnabledProfile} showChildrenAlamat={isEnabledAlamat} showChildrenKaryawan={isEnabledKaryawan} showChildrenLain={isEnabledLain} onClickFoto={handleChildrenFoto} onClickProfile={handleChildrenProfile} onClickAlamat={handleChildrenAlamat} onClickKaryawan={handleChildrenKaryawan} onClickLain={handleChildrenLain} apiProfile={apiProfile}/>
+        <FormPages formTitle="Edit Profile" to="/master-data/karyawan-view" isProfile={isProfile} showDataProfile={true} showDataKaryawan={true} showTambahFoto={true} showDataAlamat={true} showDataLain={true} showPassword={true} showChildrenFoto={isEnabledFoto} showChildrenProfile={isEnabledProfile} showChildrenAlamat={isEnabledAlamat} showChildrenKaryawan={isEnabledKaryawan} showChildrenLain={isEnabledLain} showChildrenPassword={isEnabledPassword} onClickFoto={handleChildrenFoto} onClickProfile={handleChildrenProfile} onClickAlamat={handleChildrenAlamat} onClickKaryawan={handleChildrenKaryawan} onClickLain={handleChildrenLain} onClickPassword={handleChildrenPassword} apiProfile={apiProfile}/>
     </div>
 }  
 

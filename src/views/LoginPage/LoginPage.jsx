@@ -66,7 +66,7 @@ const LoginPage = () => {
             console.log(response.data);
             Swal.fire({
               title: "Error!",
-              text: "Failed to login." + response.data.message,
+              text: "Failed to login." + response.data.error,
               icon: "error"
             });
           }

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./tambahfoto.css"
 import Form from 'react-bootstrap/Form';
 
@@ -80,6 +80,10 @@ const TambahFoto = (props) => {
           reader.readAsDataURL(file);
         }
       }
+
+      useEffect(() => {
+        console.log("Tambah Foto "+JSON.stringify(props.onFormData, null, 2));
+      }, [props.onFormData])
   return (
     <div className="tambah__foto__container">
         <div onClick={props.onClickFoto} className="section__header">
@@ -95,7 +99,7 @@ const TambahFoto = (props) => {
         {props.showChildrenFoto && (
             <div className="tambah__foto__children">
                 <Form.Group controlId="formFile">
-                    <Form.Label>Foto</Form.Label>
+                    <Form.Label>Foto : <span style={{ color: 'green' }}> {props.onFormData.fotoPath != null && props.onFormData.fotoPath}</span></Form.Label>
                     <Form.Control className="tambah_foto" type="file" onChange={handleFotoUpload}/>
                 </Form.Group>
 

@@ -269,6 +269,27 @@ const FormPages = (props) => {
     })))
   }
 
+  const handleOldPassword = (newOldPassword) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      sqlPassword: newOldPassword,
+    })))
+  }
+
+  const handleNewPassword = (newNewPassword) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      newPassword: newNewPassword,
+    })))
+  }
+
+  const handleConfPassword = (newConfPassword) => {
+    setFormData(((prevFormData) => ({
+      ...prevFormData,
+      confPassword: newConfPassword,
+    })))
+  }
+
   // Data sebelumnya untuk profile dan edit
   const location = useLocation();
   const selectedNik = location.state ? location.state.selectedNik : null;
@@ -321,6 +342,12 @@ const FormPages = (props) => {
    fotoKkPath: '',
    fotoAsuransi: '',
    fotoAsuransiPath: '',
+
+   // Ganti Password
+   sqlPassword: '',
+   newPassword: '',
+   confPassword: '',
+   
   } : selectedNik || { // Data Edit
    nama: '',
    nomorKtp: '',
@@ -369,6 +396,11 @@ const FormPages = (props) => {
    fotoKkPath: '',
    fotoAsuransi: '',
    fotoAsuransiPath: '',
+
+    // Ganti Password
+    sqlPassword: '',
+    newPassword: '',
+    confPassword: '',
    };
   const [formData, setFormData] = useState(initialFormData);
 
@@ -406,7 +438,17 @@ const FormPages = (props) => {
              setFormData({
               ...initialFormData,
               selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
-              selectedProject: data.data.karyawan.projectId.projectId
+              selectedProject: data.data.karyawan.projectId.projectId,
+              foto: data.data.karyawanImage.foto,
+              fotoPath: data.data.karyawanImage.fotoPath,
+              fotoKtp: data.data.karyawanImage.fotoKtp,
+              fotoKtpPath: data.data.karyawanImage.fotoKtpPath,
+              fotoNpwp: data.data.karyawanImage.fotoNpwp,
+              fotoNpwpPath: data.data.karyawanImage.fotoNpwpPath,
+              fotoKk: data.data.karyawanImage.fotoKk,
+              fotoKkPath: data.data.karyawanImage.fotoKkPath,
+              fotoAsuransi: data.data.karyawanImage.fotoAsuransi,
+              fotoAsuransiPath: data.data.karyawanImage.fotoAsuransiPath
             });
               
             } else {
@@ -452,7 +494,17 @@ const FormPages = (props) => {
                setFormData({
                 ...initialFormData,
                 selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
-                selectedProject: data.data.karyawan.projectId.projectId
+                selectedProject: data.data.karyawan.projectId.projectId,
+                foto: data.data.karyawanImage.foto,
+                fotoPath: data.data.karyawanImage.fotoPath,
+                fotoKtp: data.data.karyawanImage.fotoKtp,
+                fotoKtpPath: data.data.karyawanImage.fotoKtpPath,
+                fotoNpwp: data.data.karyawanImage.fotoNpwp,
+                fotoNpwpPath: data.data.karyawanImage.fotoNpwpPath,
+                fotoKk: data.data.karyawanImage.fotoKk,
+                fotoKkPath: data.data.karyawanImage.fotoKkPath,
+                fotoAsuransi: data.data.karyawanImage.fotoAsuransi,
+                fotoAsuransiPath: data.data.karyawanImage.fotoAsuransiPath
               });
                 
               } else {
@@ -624,6 +676,11 @@ const FormPages = (props) => {
                 fotoKkPath: formData.fotoKkPath,
                 fotoAsuransi: formData.fotoAsuransi,
                 fotoAsuransiPath: formData.fotoAsuransiPath,
+
+                // Ganti Password
+                oldPassword: formData.sqlPassword,
+                newPassword: formData.newPassword,
+                confPassword: formData.confPassword
                 
               };
               
@@ -683,12 +740,22 @@ const FormPages = (props) => {
                   console.log(formData.foto);
                   localStorage.removeItem("nik")
                   localStorage.setItem("nik", formData.nik);
-                Swal.fire({
-                  title: "Success!",
-                  text: "Profile Updated.",
-                  icon: "success"
-                });
-                navigate("/dashboard");
+                  if(response.data.status == 'success') {
+                    Swal.fire({
+                      title: "Success!",
+                      text: "Profile Updated.",
+                      icon: "success"
+                    });
+                    navigate("/dashboard");
+                  } else {
+                    Swal.fire({
+                      title: "Failed!",
+                      text: response.data.message,
+                      icon: "error"
+                    });
+                  }
+                
+                
                 console.log('Response from API:', response.data);
               }
 
@@ -699,7 +766,7 @@ const FormPages = (props) => {
           console.error('Failed to fetch data:', error);
           Swal.fire({
             title: "Error!",
-            text: "Failed",
+            text: error.response.data.message,
             icon: "error"
           });
         }
@@ -778,10 +845,10 @@ const FormPages = (props) => {
                     {props.showDataKaryawan && <DataKaryawan showChildrenKaryawan={props.showChildrenKaryawan} onClickKaryawan={props.onClickKaryawan} dataJabatan={apiDataJabatan} dataProject={apiDataProject} onNikChange={handleNik} onAndroidIdChange={handleAndroidId} onTanggalBergabungChange={handleTanggalBergabung} onHakCutiChange={handleHakCuti} onJabatanChange={handleJabatan} onProjectChange={handleProject} onIsLeaderChange={handleIsLeader} onIsKaryawanChange={handleIsKaryawan} onFormData={formData} onSys={apiDataSys} onKaryawanImage={apiDataImg}/>}
 
                 {/* Kalau Show Data Tambah Foto true */}
-                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} onFotoChange={handleFoto} onFotoKtpChange={handleFotoKtp} onFotoNpwpChange={handleFotoNpwp} onFotoKkChange={handleFotoKk} onFotoAsuransiChange={handleFotoAsuransi} onFormData={formData}/>}
+                {props.showTambahFoto && <TambahFoto showChildrenFoto={props.showChildrenFoto} onClickFoto={props.onClickFoto} onFotoChange={handleFoto} onFotoKtpChange={handleFotoKtp} onFotoNpwpChange={handleFotoNpwp} onFotoKkChange={handleFotoKk} onFotoAsuransiChange={handleFotoAsuransi} onFormData={apiDataImg}/>}
 
                 {/* Kalau Show Data Password true */}
-                {props.showPassword && <Password showChildrenPassword={props.showChildrenPassword} onClickPassword={props.onClickPassword} onFormData={formData}/>}
+                {props.showPassword && <Password showChildrenPassword={props.showChildrenPassword} onClickPassword={props.onClickPassword} onFormData={formData} onOldPasswordChange={handleOldPassword} onNewPasswordChange={handleNewPassword} onConfPasswordChange={handleConfPassword} />}
                 </div>
                 
             </div>
