@@ -79,11 +79,13 @@ const ParameterReimburse = () => {
               <i
                 key={`edit-${d.reimburseId}`}
                 onClick={() => handleClick(d.reimburseId)}
+                style={{cursor: 'pointer' }}
                 className="first fas fa-pen"
               ></i>
               <i
                 key={`delete-${d.reimburseId}`}
                 onClick={() => handleDelete(d.reimburseId)}
+                style={{cursor: 'pointer' }}
                 className="fas fa-trash-alt"
               ></i>
             </>

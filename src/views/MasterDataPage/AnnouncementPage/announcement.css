@@ -8,4 +8,10 @@
     color: #fff;
 }
 
- 
+.first:hover {
+    color: black;
+  }
+
+  .fa-trash-alt:hover {
+  color: black;
+}

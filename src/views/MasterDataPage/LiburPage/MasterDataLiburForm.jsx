@@ -95,7 +95,7 @@ const MasterDataLiburForm = () => {
                 showIcon
                 selected={formData.tglLibur}
                 onChange={handleDateChange}
-                dateFormat="MMMM d, yyyy"
+                dateFormat=" d MMMM yyyy"
               />
             </div>
           </div>

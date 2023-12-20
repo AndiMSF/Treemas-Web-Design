@@ -46,3 +46,10 @@ input.filter-text {
   height: 0;
 }
 
+.first:hover {
+  color: black;
+}
+
+.fa-trash-alt:hover {
+  color: black;
+}

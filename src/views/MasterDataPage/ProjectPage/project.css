@@ -4,3 +4,10 @@
     height: 100%;
 }
 
+.first:hover {
+    color: black;
+  }
+
+  .fa-trash-alt:hover {
+    color: black;
+  }
