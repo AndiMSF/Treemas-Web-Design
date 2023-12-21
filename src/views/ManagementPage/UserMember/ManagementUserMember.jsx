@@ -1,30 +1,67 @@
 import "./usermember.css"
-import DropdownMenu from "../../../components/Elements/DropdownMenu/DropdownMenu"
 import Navbar from "../../../components/Content/Navbar/Navbar"
-import Information from "../../../components/Content/Information/Information"
-import { useState } from "react"
+import DataTable from "react-data-table-component";
+import SortIcon from "@material-ui/icons/ArrowDownward";
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
 
 
 const ManagementUserMember = () => {
-    const dropdownItems = ["110621 - WIRA HADINATA"]
-    const [ userData, setUserData ] = useState("Pilih User")
-    const infoTopFields = ["Button", "NIK", "Nama Karyawan"]
 
+    
+      const columns = [
+        {
+            name: "Action",
+            sortable: false,
+            cell: (d) => (
+              <>
+                <i
+                  key={`edit-${d.title}`}
+                  className="first fas fa-pen"
+                ></i>                
+              </>
+            )
+        },
+        {
+          name: "NIK",
+          selector: (row) => row.userId,
+          sortable: true
+        },
+        {
+            name: "Nama Karyawan",
+            selector: (row) => row.fullName,
+            sortable: true
+          },
+    ];
+       
+    
+      const dataTable = {
+        columns,
+        data: ''
+      };
+    
+    
+        
 
-    const handleUserData = (selectedItem) => {
-        setUserData(selectedItem)
-    }
     return <div className="content__container">
             <Navbar navbarText="Management / User Member" />
-                <div className="input__container">
-                    <div className="left__container__input">
-                        <DropdownMenu title={userData} onDropdownChange={handleUserData} items={dropdownItems} />
-                    </div>
-                    <div className="right__container__input">
-                    </div>
-                </div>
-            <Information informationText="Data User Member" showDropdown={false} fields={infoTopFields}/>
-        </div>
-}
+            <div className="table__container">
+              <DataTableExtensions {...dataTable}>
+                <DataTable
+                  columns={columns}
+                  noHeader
+                  defaultSortField="title"
+                  sortIcon={<SortIcon />}
+                  defaultSortAsc={true}
+                  pagination
+                  highlightOnHover
+                  dense
+                />
+              </DataTableExtensions>
+    
+            </div>
 
+        </div>
+
+}
 export default ManagementUserMember

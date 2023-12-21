@@ -228,6 +228,7 @@ input {
     justify-content: center;
 }
 
+
 /* Media query untuk ukuran layar max hp (smartphone) */
 @media (max-width: 767px) {
     /* Gaya CSS khusus untuk ukuran layar max hp */

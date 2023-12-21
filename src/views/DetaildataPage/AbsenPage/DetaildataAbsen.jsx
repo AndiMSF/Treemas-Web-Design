@@ -170,8 +170,7 @@ const DetaildataAbsen = () => {
                     <div className="left__container__input">
                         <DropdownMenu onDropdownChange={handleStatus} items={["Cuti", "Other", "Sakit", "WFH"]} title={status} />
                         <DropdownMenu onDropdownChange={handleJam} items={["Lembur", "Tidak Lembur"]} title={jam}/>
-                        <DropdownMenu title="Pilih Project"/>
-                        
+                        <DropdownMenu title="Pilih Project"/>                        
                     </div>
                                     
                   </div>

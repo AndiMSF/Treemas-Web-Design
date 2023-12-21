@@ -14,7 +14,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom"
 
 
-
 const LoginPage = () => {
     const [username, setUsername] = useState(''); // State untuk nilai NIK
     const [password, setPassword] = useState(''); // State untuk nilai password
