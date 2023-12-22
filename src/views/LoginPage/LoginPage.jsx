@@ -29,6 +29,10 @@ const LoginPage = () => {
       }
     })
 
+    const handleForgotPassword = () => {
+      navigate("/forgot-password")
+    }
+
     const handleLogin = async () => {
         const loginData = {
           nik: username,
@@ -57,7 +61,12 @@ const LoginPage = () => {
               nik = localStorage.setItem("nik", nik)
 
               localStorage.setItem("authToken", bearerToken);
-              navigate("/")   
+              if(response.data.data.user.is_pass_chg === '0') {
+                navigate("/change-password")
+              } else {
+                navigate("/") 
+              }
+               
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
@@ -150,7 +159,7 @@ const LoginPage = () => {
                 </InputGroup>            
                      {/* Display the error message if it exists */}
                         {passwordError && <div className="error-message">{passwordError}</div>}                
-                        <p><a href="/forgot-password">Forgot Password?</a></p>
+                        <p><a onClick={handleForgotPassword}>Forgot Password?</a></p>
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Login
                         </button>                        

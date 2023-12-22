@@ -8,9 +8,11 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios"
 import Treemas from "../../images/logo-treemas.png"
 import "./auth.css"
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPass = () => {
     const [email, setEmail] = useState(''); // State untuk nilai NIK
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         const forgotData = {
@@ -79,7 +81,7 @@ const ForgotPass = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     />
                     </InputGroup>                
-                    <p><a href="/login">Back to Login?</a></p>                                             
+                    <p><a onClick={() => navigate("/login")}>Back to Login?</a></p>                                             
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Submit
                         </button>                        

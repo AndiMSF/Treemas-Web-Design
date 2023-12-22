@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom"
 
-
 const ChangePassword = () => {    
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,27 +22,30 @@ const ChangePassword = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
-        const forgotData = {
+    const handleChangePassword = async () => {
+      const token = localStorage.getItem("authToken");
+        const changeData = {
 
           newPassword : newPassword,
-          confirmPassword : confirmPassword
+          confPassword : confirmPassword
         };
             
         try {
+          if (token) {
           const response = await axios.put('https://treemas-api-405402.et.r.appspot.com/api/auth/change-password', 
           changeData,
           {
             headers : {
                 'Content-Type' : 'application/json',
+                'Authorization': 'Bearer '+token
             },
           });
           
-          if (response.status === 200) {
+          if (response.data.success === true) {
               
               // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
               console.log('Berhasil masuk:', response);
-            window.location.href = '/login';    
+            navigate('/login');    
 
         } else {
             // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
@@ -51,19 +53,22 @@ const ChangePassword = () => {
 
             Swal.fire({
               title: "Error!",
-              text: "Failed to change.",
+              text: response.data.message,
               icon: "error"
             });
 
             console.log(response.data.message);
           }
+        } else {
+          navigate("/")
+        }
         } catch (error) {
           // Tangani kesalahan jaringan atau kesalahan server
           // Jika tidak berhasil, tampilkan pesan error
           console.error('Failed to fetch data:');
           Swal.fire({
             title: "Error!",
-            text: "Failed to change.",
+            text: error.response.data.message,
             icon: "error"
           });
         }   
@@ -126,12 +131,12 @@ const ChangePassword = () => {
                 </InputGroup.Text>
                     </InputGroup>                                 
               <p>
-                <a href="/login">Back to Login?</a>
+                <a onClick={() => navigate('/login')}>Back to Login?</a>
               </p>
               <button
                 className="login__button"
                 type="button"
-                onClick={handleLogin}
+                onClick={handleChangePassword}
               >
                 Submit
               </button>
