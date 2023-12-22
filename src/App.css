@@ -54,7 +54,7 @@ main {
     flex-direction: column;
     padding: 3rem 2rem;
     gap: 2rem;
-    background-color: #5F8670;
+    background-color: var(--button-purple);
     height: 100%;
     overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
     scrollbar-width: none; /* Firefox */

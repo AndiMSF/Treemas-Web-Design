@@ -39,8 +39,6 @@ const DropdownMenu = (props) => {
     setSelectedProject(selectedAgama)
   }
 
-
-
   return (
     <div>
   {/* Project */}
