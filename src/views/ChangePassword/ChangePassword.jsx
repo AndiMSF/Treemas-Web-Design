@@ -1,28 +1,38 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 import Container from "react-bootstrap/Container"
 import Treemas from "../../images/logo-treemas.png"
 import { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Swal from "sweetalert2"
 import Form from 'react-bootstrap/Form';
 import axios from "axios"
 import "./changepassword.css"
+import Swal from "sweetalert2"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom"
 
-const ChangePassword = () => {
-    const [currentPassword, setCurrentPassword] = useState(''); // State untuk nilai NIK
+
+const ChangePassword = () => {    
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState(''); // State for password error
+    const [showNewPassword, setShowNewPassword] = useState(false);
+    const [showConfPassword, setShowConfPassword] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         const forgotData = {
-          currentPassword : currentPassword,
+
           newPassword : newPassword,
           confirmPassword : confirmPassword
         };
             
         try {
           const response = await axios.put('https://treemas-api-405402.et.r.appspot.com/api/auth/change-password', 
-          forgotData,
+          changeData,
           {
             headers : {
                 'Content-Type' : 'application/json',
@@ -71,49 +81,50 @@ const ChangePassword = () => {
                         <h1>Change Password</h1>
                         <p>Enter your password</p>                        
                     </div>
-                    <form>
-              <InputGroup className={`mb-3`}>
-                <InputGroup.Text id="basic-addon1">
-                  <i className="fas fa-lock"></i>
+                    <form>                        
+                <InputGroup className={`mb-3`}>
+                  <InputGroup.Text id="basic-addon2">
+                    <i className="fas fa-lock"></i>
+                  </InputGroup.Text>
+                  <Form.Control
+                    type={showNewPassword ? 'text' : 'password'}
+                    placeholder="New Password"
+                    aria-label="New Password"
+                    aria-describedby="basic-addon2"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}          
+                  />
+                  {/* Add a button/icon to toggle password visibility */}
+                <InputGroup.Text
+                    id="toggle-password"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <FontAwesomeIcon icon={showNewPassword ? faEye : faEyeSlash} />
                 </InputGroup.Text>
-                <Form.Control
-                  type="password"
-                  placeholder="Current Password"
-                  aria-label="Current Password"
-                  aria-describedby="basic-addon1"
-                  value={currentPassword} 
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  required
-                />
-              </InputGroup>
-              <InputGroup className={`mb-3`}>
-                <InputGroup.Text id="basic-addon2">
-                  <i className="fas fa-lock"></i>
+                    </InputGroup>                  
+                <InputGroup className={`mb-3`}>
+                  <InputGroup.Text id="basic-addon3">
+                    <i className="fas fa-lock"></i>
+                  </InputGroup.Text>
+                  <Form.Control
+                    type={showConfPassword ? 'text' : 'password'}
+                    placeholder="Confirm Password"
+                    aria-label="Confirm Password"
+                    aria-describedby="basic-addon3"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                  {/* Add a button/icon to toggle password visibility */}
+                <InputGroup.Text
+                    id="toggle-password"
+                    onClick={() => setShowConfPassword(!showConfPassword)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <FontAwesomeIcon icon={showConfPassword ? faEye : faEyeSlash} />
                 </InputGroup.Text>
-                <Form.Control
-                  type="password"
-                  placeholder="New Password"
-                  aria-label="New Password"
-                  aria-describedby="basic-addon2"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  required
-                />
-              </InputGroup>
-              <InputGroup className={`mb-3`}>
-                <InputGroup.Text id="basic-addon3">
-                  <i className="fas fa-lock"></i>
-                </InputGroup.Text>
-                <Form.Control
-                  type="password"
-                  placeholder="Confirm Password"
-                  aria-label="Confirm Password"
-                  aria-describedby="basic-addon3"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
-              </InputGroup>
+                    </InputGroup>                                 
               <p>
                 <a href="/login">Back to Login?</a>
               </p>

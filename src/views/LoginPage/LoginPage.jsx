@@ -125,7 +125,8 @@ const LoginPage = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     />
-                    </InputGroup>                                        
+                    </InputGroup>        
+                                                    
                     <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon2">
                     <i className="fas fa-lock"></i>
