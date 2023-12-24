@@ -1,8 +1,7 @@
 .data__karyawan__container {
     display: flex;
     flex: 1;
-    flex-direction: column;
-    
+    flex-direction: column;  
 }
 
 .data__karyawan__container h1 {

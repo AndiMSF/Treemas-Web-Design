@@ -75,3 +75,7 @@ img.profile:hover {
     transform: translateY(-3px);
     transition: transform 0.1s ease-out;
 }
+
+.profile {
+    border: 1px solid #FFF;
+}

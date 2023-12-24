@@ -95,7 +95,7 @@ div .dropdown {
 
 .section__header__top {
   display: flex;
-  padding: 0.375rem 0;
+  padding: 10px 0;
   justify-content: space-between;
 }
 
@@ -107,8 +107,6 @@ div.jJhCqB div:first-child {
   white-space:inherit;
   padding: 10px 0;
 }
-
-
 
 /* Media query untuk ukuran layar max hp (smartphone) */
 @media (max-width: 1500px) {

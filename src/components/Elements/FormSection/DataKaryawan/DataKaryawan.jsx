@@ -54,7 +54,6 @@ const   DataKaryawan = (props) => {
                 <i className={props.showChildrenKaryawan ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
             </div>
             <div className="section__bottom">
-                <div className="horizontal__line"></div>
             </div>
         </div>
 
@@ -65,7 +64,7 @@ const   DataKaryawan = (props) => {
                         <p>NIK <span style={{ color: 'red' }}>*</span></p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="NIK" value={props.onFormData.nik}
+                    <FormControl disabled={true} type="text" placeholder="NIK" value={props.onFormData.nik}
                     onChange={(e) => {
                         setNik(e.target.value)
                         props.onNikChange(e.target.value)

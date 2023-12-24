@@ -766,7 +766,7 @@ const FormPages = (props) => {
           console.error('Failed to fetch data:', error);
           Swal.fire({
             title: "Error!",
-            text: error.response.data.message,
+            text: error.response.data.error,
             icon: "error"
           });
         }

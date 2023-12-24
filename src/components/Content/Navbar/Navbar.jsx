@@ -112,7 +112,7 @@ const Navbar = (props) => {
                   console.log("imageData tidak ada atau tidak memiliki properti 'base64'");
                 }
               // Simpan nama pengguna di localStorage
-              setFotoProfile(data.data);
+              setFotoProfile(data.data  );
               localStorage.setItem('karyawanImg', base64ImageData);
             } else {
               setError('Failed to fetch data');

@@ -92,7 +92,6 @@ const TambahFoto = (props) => {
                 <i className={props.showChildrenFoto ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
             </div>
             <div className="section__bottom">
-                <div className="horizontal__line"></div>
             </div>
         </div>
 

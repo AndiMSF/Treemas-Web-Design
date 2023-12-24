@@ -15,3 +15,7 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.form__row__right div {
+    width: 100%;
+}

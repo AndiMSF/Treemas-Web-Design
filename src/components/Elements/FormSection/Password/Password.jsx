@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import "./password.css"
-import BoxInput from "../../BoxInput/BoxInput"
 import { useState } from "react"
 import { FormControl } from "react-bootstrap"
 
@@ -17,7 +17,6 @@ const Password = (props) => {
                 <i className={props.showChildrenPassword ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/>
             </div>
             <div className="section__bottom">
-                <div className="horizontal__line"></div>
             </div>
         </div>
 
