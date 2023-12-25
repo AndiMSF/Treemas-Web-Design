@@ -16,6 +16,8 @@ const ManagementUserMember = () => {
   const [dropdownData, setDropdownData] = useState([])
   const [error, setError] = useState(null);
   const [dropdownItems, setDropdownItems] = useState("Pilih User");
+  const [isAll, setIsAll] = useState(false)
+  const [isSingleClick, setIsSingleClick] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,17 +133,27 @@ const ManagementUserMember = () => {
     setDropdownItems(selectedItem);
   };
 
+  const handleAll = () => {
+    setIsAll(!isAll)
+    console.log("Kepencet");
+  }
+
+  const handleSingleClick = () => {
+    setIsSingleClick(!isSingleClick)
+  }
+
     
       const columns = [
         {
-            name: "Action",
+            name: <i onClick={handleAll} style={{fontSize: '1.6em', cursor: 'pointer'}} className={isAll ? "fa fa-toggle-off" : "fa fa-toggle-on"}></i>,
             sortable: false,
             cell: (d) => (
               <>
                 <i
                   key={`edit-${d.title}`}
-                  className="fa fa-toggle-off"
-                  style={{ fontSize: '1.5em', textAlign: 'center' }}
+                  onClick={handleSingleClick}
+                  className={isAll  ? "fa fa-toggle-off" : "fa fa-toggle-on"}
+                  style={{fontSize: '1.5em', cursor: 'pointer'}}
                 ></i>                
               </>
             )
