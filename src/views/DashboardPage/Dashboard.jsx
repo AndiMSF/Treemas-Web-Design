@@ -59,7 +59,7 @@ const Dashboard = () => {
         }else{
           navigate("/login");
         }
-      }, [navigate])
+      }, [navigate, isToken])
     
       if (error) {
         return <div>Error: {error}</div>;

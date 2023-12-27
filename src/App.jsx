@@ -57,8 +57,45 @@ import ChangePassword from "./views/ChangePassword/ChangePassword"
 import ForgotPass from "./views/LoginPage/ForgetPass"
 // 
 import "./App.css"
+import { useEffect } from "react"
 
 function App() {
+
+  // useEffect(() => {
+  //   let inactivityTimeout;
+
+  //   // Fungsi untuk menghapus token
+  //   const removeToken = () => {
+  //     localStorage.removeItem('authToken');
+  //     console.log('Token dihapus karena tidak ada aktivitas.');
+  //   };
+
+  //   // Fungsi untuk mereset timeout jika ada aktivitas
+  //   const resetInactivityTimeout = () => {
+  //     clearTimeout(inactivityTimeout);
+  //     inactivityTimeout = setTimeout(removeToken, 1 * 60 * 1000); // Atur timeout ke 10 menit (dalam milidetik)
+  //   };
+
+  //   // Event listener untuk mendeteksi gerakan mouse
+  //   document.addEventListener('mousemove', resetInactivityTimeout);
+
+  //   // Event listener untuk mendeteksi klik
+  //   document.addEventListener('click', resetInactivityTimeout);
+
+  //   // Event listener untuk mendeteksi aktivitas keyboard
+  //   document.addEventListener('keydown', resetInactivityTimeout);
+
+  //   // Membersihkan event listener ketika komponen di-unmount
+  //   return () => {
+  //     document.removeEventListener('mousemove', resetInactivityTimeout);
+  //     document.removeEventListener('click', resetInactivityTimeout);
+  //     document.removeEventListener('keydown', resetInactivityTimeout);
+  //   };
+  // }, []); // Dependensi kosong agar useEffect dijalankan sekali saat komponen di-mount
+
+
+
+
 
     // Set interval untuk is locked agar hit berkali kali biar selalu check isLock ke local storage
 

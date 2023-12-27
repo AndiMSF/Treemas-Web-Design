@@ -8,6 +8,8 @@ import DropdownMenu from "../../../components/Elements/DropdownMenu/DropdownMenu
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom/dist";
 import { Dropdown } from "react-bootstrap";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const ManagementUserMember = () => {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const ManagementUserMember = () => {
   const [dropdownItems, setDropdownItems] = useState("Pilih User");
   const [isAll, setIsAll] = useState(false)
   const [isSingleClick, setIsSingleClick] = useState(false)
+  const [clickedRows, setClickedRows] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,7 +95,6 @@ const ManagementUserMember = () => {
         const data = await response.json();
         if (data.status === 'Success') {
           setDropdownData(data.data);
-          console.log("Dropdown Data "+JSON.stringify(dropdownData, null, 2));
         } else {
           setError('Failed to fetch data');
         }
@@ -131,6 +134,7 @@ const ManagementUserMember = () => {
 
   const handleDropdownSelect = (selectedItem) => {
     setDropdownItems(selectedItem);
+    console.log(selectedItem);
   };
 
   const handleAll = () => {
@@ -138,22 +142,92 @@ const ManagementUserMember = () => {
     console.log("Kepencet");
   }
 
-  const handleSingleClick = () => {
-    setIsSingleClick(!isSingleClick)
-  }
+  const token = localStorage.getItem("authToken");
+
+
+        const handleSingleClick = async (userId) => {
+        
+          setIsSingleClick(!isSingleClick)
+
+          console.log("Drop down Data : "+ JSON.stringify(dropdownItems, null, 2));
+
+          console.log(`Edit button clicked for userId: ${userId}`);
+          const requestData = {
+            nikLeader : dropdownItems,
+            nikUser : userId
+          }
+              // Jika yes akan   
+              try {
+                if (token) {
+                  console.log("ADA TOKEN ");
+                  const response = await axios.post("https://treemas-api-405402.et.r.appspot.com/api/management/user-member-view/add", 
+                  requestData,
+                  {
+                    headers : {
+                        'Content-Type' : 'application/json',
+                        'Authorization': 'Bearer '+isToken
+                    },
+                  });
+                  
+                  console.log("SBLM MASUK IF "+JSON.stringify(response, null, 2));
+                  if (response.data.status === "Success") {
+
+                    const updatedClickedRows = [...clickedRows];
+                    if (updatedClickedRows.includes(userId)) {
+                      // Jika sudah ada, hapus dari state
+                      const index = updatedClickedRows.indexOf(userId);
+                      updatedClickedRows.splice(index, 1);
+                    } else {
+                      // Jika belum ada, tambahkan ke state
+                      updatedClickedRows.push(userId);
+                    }
+                    setClickedRows(updatedClickedRows);
+
+                      
+                      // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
+                      console.log('Response : ', response);
+                      Swal.fire({
+                        title: "Success!",
+                        text: response.data.message + " For Nik "+userId,
+                        icon: "success"
+                      });
+        
+                } else {
+                    // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
+                    // Jika tidak berhasil, tampilkan pesan error
+        
+                    Swal.fire({
+                      title: "Error!",
+                      text: response.data.message,
+                      icon: "error"
+                    });
+        
+                    console.log(response.data.message);
+                  }
+                } else {
+                  navigate("/")
+                }
+              } catch (error) {
+                console.log(error.response);
+              }
+            }
 
     
       const columns = [
         {
-            name: <i onClick={handleAll} style={{fontSize: '1.6em', cursor: 'pointer'}} className={isAll ? "fa fa-toggle-off" : "fa fa-toggle-on"}></i>,
+            name: <i onClick={handleAll} style={{fontSize: '1.8em', cursor: 'pointer'}} className={isAll ? "fa fa-toggle-off" : "fa fa-toggle-on"}></i>,
             sortable: false,
             cell: (d) => (
               <>
                 <i
-                  key={`edit-${d.title}`}
-                  onClick={handleSingleClick}
-                  className={isAll  ? "fa fa-toggle-off" : "fa fa-toggle-on"}
-                  style={{fontSize: '1.5em', cursor: 'pointer'}}
+                  key={`edit-${d.userId}`}
+                  onClick={() => handleSingleClick(d.userId)}
+                  className={
+                    clickedRows.includes(d.userId)
+                      ? 'fa fa-toggle-on'
+                      : 'fa fa-toggle-off'
+                  }
+                  style={{fontSize: '1.7em', cursor: 'pointer'}}
                 ></i>                
               </>
             )

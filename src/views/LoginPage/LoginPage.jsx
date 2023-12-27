@@ -23,7 +23,6 @@ const LoginPage = () => {
 
     useEffect(() => {
       const token = localStorage.getItem("authToken");
-      
       if(token) {
         navigate("/")
       }
@@ -32,6 +31,7 @@ const LoginPage = () => {
     const handleForgotPassword = () => {
       navigate("/forgot-password")
     }
+
 
     const handleLogin = async () => {
         const loginData = {
@@ -49,6 +49,7 @@ const LoginPage = () => {
                 'Content-Type' : 'application/json',
             },
           });
+
           
           if (response.data.success === true) {
             
@@ -59,8 +60,8 @@ const LoginPage = () => {
               let nik = response.data.data.user.nik
               console.log(nik);
               nik = localStorage.setItem("nik", nik)
-
               localStorage.setItem("authToken", bearerToken);
+
               if(response.data.data.user.is_pass_chg === '0') {
                 navigate("/change-password")
               } else {
@@ -68,36 +69,35 @@ const LoginPage = () => {
               }
                
 
-        } else {
-            // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
-            // Jika tidak berhasil, tampilkan pesan error
-            console.log(response.data);
-            Swal.fire({
-              title: "Error!",
-              text: "Failed to login." + response.data.error,
-              icon: "error"
-            });
-          }
+        }
         } catch (error) {
           // Tangani kesalahan jaringan atau kesalahan server
           // Jika tidak berhasil, tampilkan pesan error
-          console.error('Failed to fetch data:', error);
-           
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            console.error('Server responded with non-2xx status:', error.response.data);
+
+          if (error.response.data.error === "Bad credentials") {
+            console.log("Ini Buat Apa yak " +JSON.stringify(error.response.data,null,2));
             Swal.fire({
-              title: 'Error!',
-              text:  error.response.data.message, // Display the backend error message
-              icon: 'error',
+              title: "Error!",
+              text: error.response.data.error,
+              icon: "error"
             });
-          } else if (error.request) {
-            // The request was made but no response was received
-            console.error('No response received:', error.request);
+          } else if (error.response.data.message === "Account is Locked!") {
+            console.log("Ini Buat Account is Locked " +JSON.stringify(error.response.data,null,2));
+            Swal.fire({
+              title: "Error!",
+              text:  error.response.data.message,
+              icon: "error"
+            });
           } else {
-            // Something happened in setting up the request that triggered an Error
-            console.error('Error during request setup:', error.message);
+            console.error('Ini buat user not found:', error.response);
+          Swal.fire({
+            title: "Error!",
+            text: error.response.data,
+            icon: "error"
+          });
           }
+          
+           
         }
 
         if (password.length < 6) {
