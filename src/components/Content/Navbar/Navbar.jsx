@@ -49,7 +49,6 @@ const Navbar = (props) => {
       if (token) {
         setIstoken(token);
         fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
-        console.log('Token: ' + token);
       } else {
         navigate("/login");
       }

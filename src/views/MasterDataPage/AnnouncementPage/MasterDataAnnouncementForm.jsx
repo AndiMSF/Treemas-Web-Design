@@ -91,7 +91,6 @@ const MasterDataAnnouncementForm = () => {
       console.log('Response from API:', response.data);
     } catch (error) {
       // Jika tidak berhasil, tampilkan pesan error
-      console.error('Failed to fetch data:', error.message);
       Swal.fire({
         title: "Error!",
         text: "Failed to add announcement.",
