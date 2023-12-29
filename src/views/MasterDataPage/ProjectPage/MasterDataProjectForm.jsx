@@ -13,6 +13,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import TextArea from "../../../components/Elements/TextArea/TextArea";
 import Information from "../../../components/Content/Information/Information"
+import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -40,7 +41,7 @@ const MasterDataProjectForm = () => {
     
       const handleInputChange = (event, field) => {
         const {value} = event.target
-        setFormData({...formData, [field]: value})
+        setSelectedMap({...formData, [field]: value})
       }
     
       const handleSubmit = async (e) => {
@@ -54,7 +55,7 @@ const MasterDataProjectForm = () => {
           }
     
           const response = await axios.post(
-            'https://treemas-api-405402.et.r.appspot.com/api/master-data/claim-form/add',
+            'https://treemas-api-405402.et.r.appspot.com/api/master-data/project-form/add',
             requestData,
             {
               headers: {
@@ -79,24 +80,79 @@ const MasterDataProjectForm = () => {
         }
       }
 
-        return (
-            <div className="projectform__container">
-                <div className="content__container">    
-                 {/* Display the alert if showAlert is true */}
-               {showAlert && (
-                      <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-                        <Alert.Heading>Project Created</Alert.Heading>
-                      </Alert>
-                    )}
+        const libraries = ['places'];
+        const mapContainerStyle = {
+            width: "100%", // Lebar peta
+            height: "100%", // Tinggi peta
+        };
 
-            <div className="form__container">
-                <div className="form__container__top">
+        const [ selectedMap, setSelectedMap ] = useState({
+            lat: -6.245112751100955, // default latitude
+            lng: 106.67130365294516, // default longitude, 
+            address: 'Jl. Boulevard Graha Raya No.9, Pd. Jagung, Kec. Serpong Utara, Kota Tangerang Selatan, Banten 15326, Indonesia'
+        })
+        const infoMiddleStyles = {
+            position: "relative",
+            width: "100%", // Lebar information__middle
+            height: "700px", // Tinggi information__middle
+          };
+
+          const { isLoaded, loadError } = useLoadScript({
+            googleMapsApiKey: "AIzaSyBF6HLnBEPixHrgDUsq8p90K3rVZYgiN_I",
+            libraries,
+          });
+        
+          if (loadError) {
+            return <div>Error loading maps</div>;
+          }
+        
+          if (!isLoaded) {
+            return <div>Loading maps</div>;
+          }
+
+          const handleMapClick = (e) => {
+            const lat = e.latLng.lat();
+            const lng = e.latLng.lng();
+
+              // Buat URL Geocoding API dengan kunci API dan koordinat latitude-longitude
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyA1tH4Nq364y6knELo5DwSWIwyvxNRF2b8`;
+
+
+              // Lakukan permintaan ke API Geocoding
+            fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === "OK" && data.results.length > 0) {
+                const address = data.results[0].formatted_address;
+                setSelectedMap({
+                    lat,
+                    lng,
+                    address,
+                });
+
+                console.log("CLICK MAP:", {
+                    lat,
+                    lng,
+                    address,
+                });
+                } else {
+                console.error("Failed to retrieve address from Geocoding API");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching Geocoding API:", error);
+            });
+          }
+
+        return (
+        <div className="content__container project__container">    
+            <div className="form__container project_form__container">
+                <div className="form__container__top form__container__top__project">
                         <h1>Project Form</h1>
                         <div className="horizontal__line"></div>        
                 </div>
 
-                    <form>
-
+                <div className="form__container__middle">
                         <div className="form__row">
                             <div className="form__row__left">
                                 <p>ID <span style={{ color: 'red' }}>*</span></p>
@@ -104,154 +160,163 @@ const MasterDataProjectForm = () => {
                             <div className="form__row__right">
                             <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'namaClaim')}/>
                         </div>
-                     </div>
-                    
-                        <div className="form__row">
-                            <div className="form__row__left">
-                                <p>Nama Project <span style={{ color: 'red' }}>*</span></p>
-                            </div>
-                            <div className="form__row__right">
-                            <BoxInput placeholder="Nama Project" value={formData.namaProject} onChange={(e) => handleInputChange(e, 'namaProject')}/>
                         </div>
-                     </div>
+                        
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>Nama Project <span style={{ color: 'red' }}>*</span></p>
+                                </div>
+                                <div className="form__row__right">
+                                <BoxInput placeholder="Nama Project" value={formData.namaProject} onChange={(e) => handleInputChange(e, 'namaProject')}/>
+                            </div>
+                        </div>
+
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>No Telepon</p>
+                                </div>
+                                <div className="form__row__right">
+                                <BoxInput placeholder="No Telepon" value={formData.noTelepon} onChange={(e) => handleInputChange(e, 'noTelepon')}/>
+                            </div>
+                        </div> 
+
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>Kota</p>
+                                </div>
+                                <div className="form__row__right">
+                                <BoxInput placeholder="Kota" value={formData.kota} onChange={(e) => handleInputChange(e, 'kota')}/>
+                            </div>
+                        </div> 
+
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>Alamat <span style={{ color: 'red' }}>*</span></p>
+                                </div>
+                                <div className="form__row__right">
+                                <TextArea placeholder="Alamat" value={selectedMap.address} onChange={(e) => handleInputChange(e, 'address')}/>
+                            </div>
+                        </div> 
+
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>Latitude <span style={{ color: 'red' }}>*</span></p>
+                                </div>
+                                <div className="form__row__right">
+                                <BoxInput placeholder="Latitude" value={selectedMap.lat} onChange={(e) => handleInputChange(e, 'lat')}/>
+                            </div>
+                        </div> 
+
+                            <div className="form__row">
+                                <div className="form__row__left">
+                                    <p>Longitude <span style={{ color: 'red' }}>*</span></p>
+                                </div>
+                                <div className="form__row__right">
+                                <BoxInput placeholder="Longitude" value={selectedMap.lng} onChange={(e) => handleInputChange(e, 'lng')}/>
+                            </div>
+                        </div> 
 
                         <div className="form__row">
                             <div className="form__row__left">
-                                <p>No Telepon</p>
+                                <p>Biaya Reimburse  <span style={{ color: 'red' }}>*</span></p>
                             </div>
                             <div className="form__row__right">
-                            <BoxInput placeholder="No Telepon" value={formData.noTelepon} onChange={(e) => handleInputChange(e, 'noTelepon')}/>
-                        </div>
-                    </div> 
+                            <InputGroup className="mb-3">
+                            <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
+                            <Form.Control
+                                placeholder="Jumlah"
+                                aria-label="Jumlah"
+                                aria-describedby="basic-addon1"
+                            />
+                            </InputGroup>
+                            </div>
+                        </div> 
 
                         <div className="form__row">
                             <div className="form__row__left">
-                                <p>Kota</p>
+                                <p>Jarak Maksimal</p>
                             </div>
                             <div className="form__row__right">
-                            <BoxInput placeholder="Kota" value={formData.kota} onChange={(e) => handleInputChange(e, 'kota')}/>
-                        </div>
-                    </div> 
+                            <InputGroup className="mb-3">
+                            <Form.Control
+                                placeholder="Jumlah"
+                                aria-label="Jumlah"
+                                aria-describedby="basic-addon2"
+                            />
+                            <InputGroup.Text id="basic-addon2">Meter</InputGroup.Text>
+                            </InputGroup>
+                            </div>
+                        </div> 
 
                         <div className="form__row">
                             <div className="form__row__left">
-                                <p>Alamat <span style={{ color: 'red' }}>*</span></p>
+                                <p>Total Jam Kerja</p>
                             </div>
                             <div className="form__row__right">
-                            <TextArea placeholder="Alamat" value={formData.alamat} onChange={(e) => handleInputChange(e, 'alamat')}/>
-                        </div>
-                    </div> 
+                            <InputGroup className="mb-3">
+                            <Form.Control
+                                placeholder="Jumlah"
+                                aria-label="Jumlah"
+                                aria-describedby="basic-addon2"
+                            />
+                            <InputGroup.Text id="basic-addon2">Jam/Hari</InputGroup.Text>
+                            </InputGroup>
+                            </div>
+                        </div> 
 
                         <div className="form__row">
                             <div className="form__row__left">
-                                <p>Latitude <span style={{ color: 'red' }}>*</span></p>
+                                <p>Jam Masuk</p>
                             </div>
                             <div className="form__row__right">
-                            <BoxInput placeholder="Latitude" value={formData.latitude} onChange={(e) => handleInputChange(e, 'latitude')}/>
-                        </div>
-                    </div> 
-
-                        <div className="form__row">
-                            <div className="form__row__left">
-                                <p>Longitude <span style={{ color: 'red' }}>*</span></p>
-                            </div>
-                            <div className="form__row__right">
-                            <BoxInput placeholder="Longitude" value={formData.longitude} onChange={(e) => handleInputChange(e, 'longitude')}/>
-                        </div>
-                    </div> 
-
-                    <div className="form__row">
-                        <div className="form__row__left">
-                            <p>Biaya Reimburse  <span style={{ color: 'red' }}>*</span></p>
-                        </div>
-                        <div className="form__row__right">
-                        <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
                         <Form.Control
-                            placeholder="Jumlah"
-                            aria-label="Jumlah"
-                            aria-describedby="basic-addon1"
+                            type="time"
+                            placeholder="Jam Masuk"
+                            value={formData.jamMasuk}
+                            onChange={(e) => handleInputChange(e, 'jamMasuk')}
                         />
-                        </InputGroup>
-                        </div>
-                    </div> 
+                        </div>                        
+                        </div> 
 
-                    <div className="form__row">
-                        <div className="form__row__left">
-                            <p>Jarak Maksimal</p>
-                        </div>
-                        <div className="form__row__right">
-                        <InputGroup className="mb-3">
+                        <div className="form__row">
+                            <div className="form__row__left">
+                                <p>Jam Keluar</p>
+                            </div>
+                            <div className="form__row__right">
                         <Form.Control
-                            placeholder="Jumlah"
-                            aria-label="Jumlah"
-                            aria-describedby="basic-addon2"
+                            type="time"
+                            placeholder="Jam Keluar"
+                            value={formData.jamKeluar}
+                            onChange={(e) => handleInputChange(e, 'jamKeluar')}
                         />
-                        <InputGroup.Text id="basic-addon2">Meter</InputGroup.Text>
-                        </InputGroup>
+                    </div>
                         </div>
-                    </div> 
+                </div>             
 
-                    <div className="form__row">
-                        <div className="form__row__left">
-                            <p>Total Jam Kerja</p>
-                        </div>
-                        <div className="form__row__right">
-                        <InputGroup className="mb-3">
-                        <Form.Control
-                            placeholder="Jumlah"
-                            aria-label="Jumlah"
-                            aria-describedby="basic-addon2"
-                        />
-                        <InputGroup.Text id="basic-addon2">Jam/Hari</InputGroup.Text>
-                        </InputGroup>
-                        </div>
-                    </div> 
-
-                    <div className="form__row">
-                        <div className="form__row__left">
-                            <p>Jam Masuk</p>
-                        </div>
-                        <div className="form__row__right">
-                    <Form.Control
-                        type="time"
-                        placeholder="Jam Masuk"
-                        value={formData.jamMasuk}
-                        onChange={(e) => handleInputChange(e, 'jamMasuk')}
-                    />
-                    </div>                        
-                    </div> 
-
-                    <div className="form__row">
-                        <div className="form__row__left">
-                            <p>Jam Keluar</p>
-                        </div>
-                        <div className="form__row__right">
-                    <Form.Control
-                        type="time"
-                        placeholder="Jam Keluar"
-                        value={formData.jamKeluar}
-                        onChange={(e) => handleInputChange(e, 'jamKeluar')}
-                    />
-                  </div>
-                    </div>             
-
-                        <div className="form__row__bottom">
+                <div className="form__row__bottom">
                             <Link to="/master-data/claim-view" className="cancel__button" text="Cancel">Cancel</Link>
                             <Button className="submit__button" text="Submit" onClick={handleSubmit}/>                           
-                        </div>
-
-                        <Information
-                        informationText="Set Location"
-                        showDropdown={false}
-                        showMaps={true}
-                        showInformationBottom={false}
-                    />
-                    </form>
                 </div>
-                  
-                </div>        
             </div>
+            <div className="map__container" style={infoMiddleStyles}>
+                <div className="map__container__top">
+                    <h1>Set Location</h1>
+                    <div className="horizontal__line"></div>
+                </div>
+                    {isLoaded && (
+                        <GoogleMap
+                        mapContainerStyle={mapContainerStyle}
+                        zoom={10}
+                        center={selectedMap}
+                        onClick={(e) => handleMapClick(e)}
+                        >
+                        <MarkerF position={selectedMap} onClick={(e) => handleMapClick(e)}/>
+                        </GoogleMap>
+                    )}
+                
+            </div>          
+        </div>        
+            
         );
     }
 
