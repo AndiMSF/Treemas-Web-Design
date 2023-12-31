@@ -91,14 +91,14 @@ const MasterDataProject = () => {
             cell: (d) => (
                 <>
                 <i
-                    key={`edit-${d.id}`}
-                    onClick={() => handleClick(d.id)}
+                    key={`edit-${d.projectId}`}
+                    onClick={() => handleClick(d.projectId)}
                     style={{cursor: 'pointer' }}
                     className="first fas fa-pen"
                 ></i>
                 <i
-                    key={`delete-${d.id}`}
-                    onClick={() => handleDelete(d.id)}
+                    key={`delete-${d.projectId}`}
+                    onClick={() => handleDelete(d.projectId)}
                     style={{cursor: 'pointer' }}
                     className="fas fa-trash-alt"
                 ></i>
@@ -153,11 +153,11 @@ const MasterDataProject = () => {
               // Berhasil dihapus
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Project has been deleted.",
                 icon: "success"
               });
 
-              setApiData((prevData) => prevData.filter(item => item.id !== id));
+              setApiData((prevData) => prevData.filter(item => item.projectId !== id));
             } else {
               // Gagal dihapus
               Swal.fire({

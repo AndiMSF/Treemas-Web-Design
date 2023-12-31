@@ -117,6 +117,7 @@ input.form-control {
     border-top: 0;
     border-right: 0;
     border-left: 0;
+    cursor: auto;
 }
 
 input[type="radio"] {

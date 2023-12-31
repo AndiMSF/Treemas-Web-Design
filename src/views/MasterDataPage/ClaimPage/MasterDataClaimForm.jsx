@@ -73,7 +73,7 @@ const MasterDataClaimForm = () => {
           console.error('Failed to fetch data:', data.message);
           Swal.fire({
             title: "Error!",
-            text: "Failed to add claim.",
+            text: "Failed To Add Claim.",
             icon: "error"
           });
         }

@@ -14,17 +14,25 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import TextArea from "../../../components/Elements/TextArea/TextArea";
 import Information from "../../../components/Content/Information/Information"
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
-
-
-// eslint-disable-next-line react-refresh/only-export-components
+import { TimePicker } from 'react-ios-time-picker';// eslint-disable-next-line react-refresh/only-export-components
+import Swal from "sweetalert2";
 const MasterDataProjectForm = () => {
 
     const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
     const [formData, setFormData] = useState({
-        namaClaim: '',
-        valueClaim: '',
-        keterangan: ''
+        projectId: '',
+        namaProject: '',
+        noTlpn: '',
+        kota: '',
+        biayaReimburse: '',
+        jrkMax: '',
+        jamKerja: '',
+        
       })
+
+      const [jamMasuk, setJamMasuk] = useState('10:00')
+      const [jamKeluar, setJamKeluar] = useState('10:00')
+      
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
      
@@ -39,19 +47,46 @@ const MasterDataProjectForm = () => {
         }
       }, [navigate])
     
+      const handleInputChangeMap = (event, field) => {
+        const {value} = event.target
+        setSelectedMap({...selectedMap, [field]: value})
+      }
+
       const handleInputChange = (event, field) => {
         const {value} = event.target
-        setSelectedMap({...formData, [field]: value})
+        setFormData({...formData, [field]: value})
       }
+
+      const handleJamMasukChange = (timeValue) => {
+        setJamMasuk(timeValue);        
+      }
+      
+
+      const handleJamKeluarChange = (timeValue) => {
+        setJamKeluar(timeValue);
+      }
+
+      useEffect(() => {
+        console.log(jamMasuk);
+      }, [jamMasuk]);
     
       const handleSubmit = async (e) => {
         e.preventDefault()
     
         try {
           const requestData = {
-            namaClaim: formData.namaClaim,
-            valueClaim: formData.valueClaim,
-            keterangan: formData.keterangan
+            projectId: formData.projectId,
+            namaProject: formData.namaProject,
+            noTlpn: formData.noTlpn,
+            kota: formData.kota,
+            biayaReimburse: formData.biayaReimburse,
+            jrkMax: formData.jrkMax,
+            jamKerja: formData.jamKerja,
+            jamMasuk: jamMasuk,
+            jamKeluar: jamKeluar,
+            lokasi: selectedMap.address,
+            gpsLatitude: selectedMap.lat,
+            gpsLongitude: selectedMap.lng
           }
     
           const response = await axios.post(
@@ -64,19 +99,22 @@ const MasterDataProjectForm = () => {
               }
             }
           )
+          console.log("REQUEST DATA : "+requestData);
           console.log('Response from API:', response.data);
           // Display the alert
-          setShowAlert(true);
-
-          // Hide the alert after a few seconds (adjust the timeout as needed)
-          setTimeout(() => {
-            setShowAlert(false);
-            navigate("/master-data/claim-view", { state: { showAlert } });
-
-          }, 3000);
-          
+          Swal.fire({
+            title: "Success!",
+            text: "Project Added.",
+            icon: "success"
+          });
+          navigate("/master-data/project-view");
         } catch (error) {
-          console.log("Failed To Create Announcement "+error);
+          console.log("Failed To Create Project "+error);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed To Add Project.",
+            icon: "error"
+          });
         }
       }
 
@@ -91,11 +129,6 @@ const MasterDataProjectForm = () => {
             lng: 106.67130365294516, // default longitude, 
             address: 'Jl. Boulevard Graha Raya No.9, Pd. Jagung, Kec. Serpong Utara, Kota Tangerang Selatan, Banten 15326, Indonesia'
         })
-        const infoMiddleStyles = {
-            position: "relative",
-            width: "100%", // Lebar information__middle
-            height: "700px", // Tinggi information__middle
-          };
 
           const { isLoaded, loadError } = useLoadScript({
             googleMapsApiKey: "AIzaSyBF6HLnBEPixHrgDUsq8p90K3rVZYgiN_I",
@@ -158,7 +191,7 @@ const MasterDataProjectForm = () => {
                                 <p>ID <span style={{ color: 'red' }}>*</span></p>
                             </div>
                             <div className="form__row__right">
-                            <BoxInput placeholder="ID" value={formData.id} onChange={(e) => handleInputChange(e, 'namaClaim')}/>
+                            <BoxInput placeholder="ID" value={formData.projectId} onChange={(e) => handleInputChange(e, 'projectId')}/>
                         </div>
                         </div>
                         
@@ -176,7 +209,7 @@ const MasterDataProjectForm = () => {
                                     <p>No Telepon</p>
                                 </div>
                                 <div className="form__row__right">
-                                <BoxInput placeholder="No Telepon" value={formData.noTelepon} onChange={(e) => handleInputChange(e, 'noTelepon')}/>
+                                <BoxInput placeholder="No Telepon" value={formData.noTlpn} onChange={(e) => handleInputChange(e, 'noTlpn')}/>
                             </div>
                         </div> 
 
@@ -194,7 +227,7 @@ const MasterDataProjectForm = () => {
                                     <p>Alamat <span style={{ color: 'red' }}>*</span></p>
                                 </div>
                                 <div className="form__row__right">
-                                <TextArea placeholder="Alamat" value={selectedMap.address} onChange={(e) => handleInputChange(e, 'address')}/>
+                                <TextArea placeholder="Alamat" value={selectedMap.address} onChange={(e) => handleInputChangeMap(e, 'address')}/>
                             </div>
                         </div> 
 
@@ -203,7 +236,7 @@ const MasterDataProjectForm = () => {
                                     <p>Latitude <span style={{ color: 'red' }}>*</span></p>
                                 </div>
                                 <div className="form__row__right">
-                                <BoxInput placeholder="Latitude" value={selectedMap.lat} onChange={(e) => handleInputChange(e, 'lat')}/>
+                                <BoxInput placeholder="Latitude" value={selectedMap.lat} onChange={(e) => handleInputChangeMap(e, 'lat')}/>
                             </div>
                         </div> 
 
@@ -212,7 +245,7 @@ const MasterDataProjectForm = () => {
                                     <p>Longitude <span style={{ color: 'red' }}>*</span></p>
                                 </div>
                                 <div className="form__row__right">
-                                <BoxInput placeholder="Longitude" value={selectedMap.lng} onChange={(e) => handleInputChange(e, 'lng')}/>
+                                <BoxInput placeholder="Longitude" value={selectedMap.lng} onChange={(e) => handleInputChangeMap(e, 'lng')}/>
                             </div>
                         </div> 
 
@@ -221,12 +254,15 @@ const MasterDataProjectForm = () => {
                                 <p>Biaya Reimburse  <span style={{ color: 'red' }}>*</span></p>
                             </div>
                             <div className="form__row__right">
-                            <InputGroup className="mb-3">
+                            <InputGroup>
                             <InputGroup.Text id="basic-addon1">Rp.</InputGroup.Text>
                             <Form.Control
+                                className="project__input"
                                 placeholder="Jumlah"
                                 aria-label="Jumlah"
                                 aria-describedby="basic-addon1"
+                                value={formData.biayaReimburse}
+                                onChange={(e) => handleInputChange(e, 'biayaReimburse')}
                             />
                             </InputGroup>
                             </div>
@@ -237,11 +273,14 @@ const MasterDataProjectForm = () => {
                                 <p>Jarak Maksimal</p>
                             </div>
                             <div className="form__row__right">
-                            <InputGroup className="mb-3">
+                            <InputGroup>
                             <Form.Control
-                                placeholder="Jumlah"
-                                aria-label="Jumlah"
+                                className="project__input"
+                                placeholder="Jarak Maksimal"
+                                aria-label="Jarak Maksimal"
                                 aria-describedby="basic-addon2"
+                                value={formData.jrkMax}
+                                onChange={(e) => handleInputChange(e, 'jrkMax')}
                             />
                             <InputGroup.Text id="basic-addon2">Meter</InputGroup.Text>
                             </InputGroup>
@@ -253,11 +292,14 @@ const MasterDataProjectForm = () => {
                                 <p>Total Jam Kerja</p>
                             </div>
                             <div className="form__row__right">
-                            <InputGroup className="mb-3">
+                            <InputGroup>
                             <Form.Control
-                                placeholder="Jumlah"
-                                aria-label="Jumlah"
+                                className="project__input"
+                                placeholder="Total Jam Kerja"
+                                aria-label="Total Jam Kerja"
                                 aria-describedby="basic-addon2"
+                                value={formData.jamKerja}
+                                onChange={(e) => handleInputChange(e, 'jamKerja')}
                             />
                             <InputGroup.Text id="basic-addon2">Jam/Hari</InputGroup.Text>
                             </InputGroup>
@@ -269,11 +311,9 @@ const MasterDataProjectForm = () => {
                                 <p>Jam Masuk</p>
                             </div>
                             <div className="form__row__right">
-                        <Form.Control
-                            type="time"
-                            placeholder="Jam Masuk"
-                            value={formData.jamMasuk}
-                            onChange={(e) => handleInputChange(e, 'jamMasuk')}
+                        <TimePicker
+                            value={jamMasuk}
+                            onChange={handleJamMasukChange}
                         />
                         </div>                        
                         </div> 
@@ -283,22 +323,20 @@ const MasterDataProjectForm = () => {
                                 <p>Jam Keluar</p>
                             </div>
                             <div className="form__row__right">
-                        <Form.Control
-                            type="time"
-                            placeholder="Jam Keluar"
-                            value={formData.jamKeluar}
-                            onChange={(e) => handleInputChange(e, 'jamKeluar')}
+                        <TimePicker
+                            value={jamKeluar}
+                            onChange={handleJamKeluarChange}
                         />
                     </div>
                         </div>
                 </div>             
 
                 <div className="form__row__bottom">
-                            <Link to="/master-data/claim-view" className="cancel__button" text="Cancel">Cancel</Link>
+                            <Link to="/master-data/project-view" className="cancel__button" text="Cancel">Cancel</Link>
                             <Button className="submit__button" text="Submit" onClick={handleSubmit}/>                           
                 </div>
             </div>
-            <div className="map__container" style={infoMiddleStyles}>
+            <div className="map__container">
                 <div className="map__container__top">
                     <h1>Set Location</h1>
                     <div className="horizontal__line"></div>
@@ -306,7 +344,7 @@ const MasterDataProjectForm = () => {
                     {isLoaded && (
                         <GoogleMap
                         mapContainerStyle={mapContainerStyle}
-                        zoom={10}
+                        zoom={14}
                         center={selectedMap}
                         onClick={(e) => handleMapClick(e)}
                         >
