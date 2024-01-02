@@ -74,7 +74,7 @@ const MasterDataProjectForm = () => {
         e.preventDefault()
     
         try {
-          const requestData = {
+          const requestData = { 
             projectId: formData.projectId,
             namaProject: formData.namaProject,
             noTlpn: formData.noTlpn,

@@ -138,13 +138,10 @@ const Navbar = (props) => {
           console.log("profile Data = "+JSON.stringify(profileNik, null, 2));
           console.log("NAVBAR NIK" + nik);
             navigate(`/users/profile`,{state: {profileNik}});
-          // Navigasi ke halaman profile
-      
+          // Navigasi ke halaman profile      
         };
 
-
         
-
     return <div className="navbar__container">
         <div className="left__container__navbar">
             <h1>{props.navbarText}</h1>
@@ -164,8 +161,7 @@ const Navbar = (props) => {
                     <Dropdown.Item id="dropdown__item__navbar" href="#/action-2">Logout</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            {/* {
-                
+            {/* {                
                 openProfile && (
                     <DropdownProfile />
                 )

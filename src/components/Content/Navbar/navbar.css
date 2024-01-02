@@ -72,10 +72,13 @@
 }
 
 img.profile:hover {
-    transform: translateY(-3px);
-    transition: transform 0.1s ease-out;
+    transform: none;
+    transition: none;
 }
 
-.profile {
-    border: 1px solid #FFF;
-}
+.profile:hover {
+    border: 5px solid #FFFBF5; 
+    cursor: pointer; 
+    opacity: 1;
+  }
+  

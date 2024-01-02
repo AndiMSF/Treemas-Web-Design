@@ -11,9 +11,9 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import { useNavigate } from "react-router-dom/dist";
 import { useEffect, useState } from "react"
-
 // SweetAlert
 import Swal from 'sweetalert2'
+
 const MasterDataKaryawan = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');

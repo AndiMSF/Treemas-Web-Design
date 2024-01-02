@@ -57,7 +57,7 @@ const MasterDataPermissionEdit = () => {
 
             Swal.fire({
               title: "Success!",
-              text: "Jabatan Updated.",
+              text: "Permission Updated.",
               icon: "success"
             });
             navigate("/master-data/permission-view");
