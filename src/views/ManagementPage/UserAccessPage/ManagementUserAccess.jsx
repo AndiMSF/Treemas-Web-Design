@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import "./useraccess.css"
 import Navbar from "../../../components/Content/Navbar/Navbar"
@@ -324,6 +325,135 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch />}
                               label="Karyawan"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Libur"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Permission"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Project"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="access__row">
+                    <div className="access__row__left">
+                      <FormControlLabel
+                          control={<Android12Switch />}
+                          label="Parameter"
+                          checked={checked}
+                          onChange={handleChange}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    </div>
+                    <div className="access__row__right__parent">
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="General"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>                   
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Reimburse"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="access__row">
+                    <div className="access__row__left">
+                      <FormControlLabel
+                          control={<Android12Switch />}
+                          label="Report Data"
+                          checked={checked}
+                          onChange={handleChange}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    </div>
+                    <div className="access__row__right__parent">
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Claim"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>     
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Detail"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>                   
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Summary"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="access__row">
+                    <div className="access__row__left">
+                      <FormControlLabel
+                          control={<Android12Switch />}
+                          label="Upload"
+                          checked={checked}
+                          onChange={handleChange}
+                          inputProps={{ 'aria-label': 'controlled' }}
+                        />
+                    </div>
+                    <div className="access__row__right__parent">
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Absen"
+                              checked={checked}
+                              onChange={handleChange}
+                              inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                      </div>                   
+                      <div className="access__row__right">
+                        <FormControlLabel
+                              control={<Android12Switch />}
+                              label="Apk"
                               checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}

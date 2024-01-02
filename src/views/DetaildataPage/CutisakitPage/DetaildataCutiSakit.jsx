@@ -126,51 +126,61 @@ const DetaildataCutiSakit = (props) => {
     {
       name: "NIK",
       selector: (row) => row.nik  || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Nama Karyawan",
       selector: (row) => row.namaKaryawan || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Tgl. Pengajuan",
       selector: (row) => row.tglMulai  || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Tgl. Selesai",
       selector: (row) => row.tglSelesai || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Tgl. Masuk",
       selector: (row) => row.tglMasuk || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Jml. Cuti",
       selector: (row) => row.jmlCuti  || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Keperluan Cuti",
       selector: (row) => row.keperluanCuti || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Status",
       selector: (row) => row.status || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Status Oleh",
       selector: (row) => row.usrapp || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
     {
       name: "Tgl. Status",
       selector: (row) => row.dtmapp || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true,
     },
   ];

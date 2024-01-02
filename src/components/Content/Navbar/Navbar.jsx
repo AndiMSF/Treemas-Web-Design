@@ -115,6 +115,7 @@ const Navbar = (props) => {
             } else {
               setError('Failed to fetch data');
             }
+            
           } catch (error) {
             setError(`Error fetching data: ${error.message}`);
           } finally {
@@ -139,7 +140,7 @@ const Navbar = (props) => {
             navigate(`/users/profile`,{state: {profileNik}});
           // Navigasi ke halaman profile      
         };
-
+ 
         
     return <div className="navbar__container">
         <div className="left__container__navbar">
@@ -151,8 +152,10 @@ const Navbar = (props) => {
             <p>{userName}</p>
             
             <Dropdown>
-                <Dropdown.Toggle id="profile__dropdown">
-                    <img className="profile" src={karyawanImg} alt=""/>                
+                <Dropdown.Toggle id="profile__dropdown"> 
+                <div className="profile-container">                
+                    <img className="profile" src={karyawanImg} alt=""/>     
+                </div>           
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu style={{backgroundColor: "black"}}>

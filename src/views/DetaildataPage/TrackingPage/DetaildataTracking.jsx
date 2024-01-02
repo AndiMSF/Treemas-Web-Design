@@ -107,7 +107,7 @@ const DetaildataTracking = (props) => {
     height: "100%", // Tinggi peta
   };
 
-  const infoMiddleStyles = {
+  const infoMiddleStyles = {  
     position: "relative",
     width: "100%", // Lebar information__middle
     height: "700px", // Tinggi information__middle

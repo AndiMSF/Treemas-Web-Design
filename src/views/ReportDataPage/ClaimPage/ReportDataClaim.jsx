@@ -55,31 +55,37 @@ const ReportDataClaim = () => {
         {
           name: "NIK",
           selector: (row) => row.nik || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
           selector: (row) => row.nama || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Tanggal",
           selector: (row) => row.tanggal || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nominal",
           selector: (row) => 'Rp. ' + row.nominal || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) => row.keterangan || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Tipe",
           selector: (row) => row.tipeClaim || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
       ];

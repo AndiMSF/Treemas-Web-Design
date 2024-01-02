@@ -59,15 +59,18 @@ const MasterDataJabatan = () => {
     {
       name: "ID",
       selector: (row) => row.jabatanId || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true
     },
     {
       name: "Nama Jabatan",
       selector: (row) => row.namaJabatan || '-',
+      cellExport: (row) => row.title || '-',
       sortable: true
     },
     {
       name: "Action",
+      cellExport: (row) => row.title || '-',
       sortable: false,
       cell: (d) => (
         <>

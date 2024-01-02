@@ -58,20 +58,24 @@ const MasterDataClaim = () => {
         {
           name: "ID",
           selector: (row) => row.namaClaim || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) =>  row.keterangan || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Nominal",
             selector: (row) => 'Rp. '+row.valueClaim || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>

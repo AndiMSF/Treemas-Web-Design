@@ -58,15 +58,18 @@ const MasterDataPermission = () =>{
         {
           name: "ID",
           selector: (row) => row.id || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nama Permission",
           selector: (row) => row.namaPermission || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>

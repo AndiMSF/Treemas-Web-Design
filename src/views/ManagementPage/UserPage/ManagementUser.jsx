@@ -76,16 +76,19 @@ const ManagementUser = () => {
         {
           name: "ID Pengguna",
           selector: (row) => row.userId  || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
           selector: (row) => row.fullName  || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Terakhir Login",
             selector: (row) => row.lastLogin || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true,
             cell: (row) => (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>

@@ -111,46 +111,55 @@ const DetaildataAbsen = () => {
         {
           name: "NIK",
           selector: (row) => row.nik  || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
           selector: (row) => row.namaKaryawan  || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Project",
           selector: (row) => row.projectId?.namaProject   || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Lokasi Masuk",
             selector: (row) => row.lokasiMasuk  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Jam Masuk",
             selector: (row) => row.jamMasuk  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Lokasi Pulang",
             selector: (row) => row.lokasiPulang  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Jam Pulang",
             selector: (row) => row.jamPulang  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Catatan Terlambat",
             selector: (row) => row.catatanTerlambat  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Total Jam Kerja",
             selector: (row) => row.totalJamKerja  || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         }
       ];

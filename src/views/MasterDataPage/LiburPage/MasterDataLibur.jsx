@@ -58,15 +58,18 @@ const MasterDataLibur = () => {
         {
           name: "Tanggal",
           selector: (row) => row.tglLibur || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) => row.keterangan || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },    
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>

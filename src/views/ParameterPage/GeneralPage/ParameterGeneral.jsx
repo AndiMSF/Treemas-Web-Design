@@ -54,25 +54,30 @@ const ParameterGeneral = () => {
         {
           name: "ID",
           selector: (row) => row.id || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) => row.paramDesc || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Tipe Data",
           selector: (row) => row.dataType || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Value",
           selector: (row) => row.val || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>

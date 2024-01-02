@@ -59,20 +59,24 @@ const MasterDataCuti = () => {
         {
           name: "ID",
           selector: (row) => row.id || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) => row.cutiDesc || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Jumlah",
           selector: (row) => row.value  + ' hari' || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>

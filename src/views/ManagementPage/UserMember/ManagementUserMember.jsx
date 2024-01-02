@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import "./usermember.css"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import DataTable from "react-data-table-component";
@@ -165,7 +167,7 @@ const ManagementUserMember = () => {
                   {
                     headers : {
                         'Content-Type' : 'application/json',
-                        'Authorization': 'Bearer '+isToken
+                        'Aduthorization': 'Bearer '+isToken
                     },
                   });
                   
@@ -235,11 +237,13 @@ const ManagementUserMember = () => {
         {
           name: "NIK",
           selector: (row) => row.userId,
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Nama Karyawan",
             selector: (row) => row.fullName,
+            cellExport: (row) => row.title || '-',
             sortable: true
           },
     ];

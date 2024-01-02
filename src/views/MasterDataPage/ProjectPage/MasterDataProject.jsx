@@ -58,31 +58,37 @@ const MasterDataProject = () => {
         {
             name: "ID",
             selector: (row) => row.projectId || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Nama Project",
             selector: (row) => row.namaProject || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },
         {
             name: "Alamat",
             selector: (row) => row.lokasi || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },  
         {
             name: "No.Telepon",
             selector: (row) => row.noTlpn || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },  
         {
             name: "Reimburse",
             selector: (row) => 'Rp. ' + row.biayaReimburse || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },  
         {
             name: "Jarak",
             selector: (row) => row.jrkMax + ' m' || '-',
+            cellExport: (row) => row.title || '-',
             sortable: true
         },      
         {

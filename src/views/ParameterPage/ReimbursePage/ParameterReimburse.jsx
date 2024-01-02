@@ -54,25 +54,30 @@ const ParameterReimburse = () => {
         {
           name: "ID",
           selector: (row) => row.reimburseId || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nama",
           selector: (row) => row.nama || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Nominal",
           selector: (row) => 'Rp. ' + row.nominal || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Note",
           selector: (row) => row.note || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
           name: "Action",
+          cellExport: (row) => row.title || '-',
           sortable: false,
           cell: (d) => (
             <>
