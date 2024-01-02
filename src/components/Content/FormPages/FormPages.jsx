@@ -474,7 +474,6 @@ const FormPages = (props) => {
           navigate("/login");
         }
       } else if (props.isProfile) {
-          // Lakukan logika untuk mode edit di sini
           const fetchDataProject = async () => {
             try {
               const response = await fetch(`https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${nik}`, {
