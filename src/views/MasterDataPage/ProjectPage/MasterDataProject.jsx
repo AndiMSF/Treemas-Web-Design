@@ -120,9 +120,10 @@ const MasterDataProject = () => {
     
     
       const handleClick = (id) => {
-        const selectedProject = apiData.find((project) => project.id === id);
+        const selectedProject = apiData.find((project) => project.projectId === id);
         console.log(`Edit button clicked for ID: ${id}`);
-        navigate(`/master-data/project-edit/${id}`, {state: {selectedProject}});
+        navigate(`/master-data/project-form/edit/${id}`, {state: {selectedProject}});
+        console.log("Selected Project : "+JSON.stringify(selectedProject, null, 2));
       };
     
       const handleDelete = (id) => {
