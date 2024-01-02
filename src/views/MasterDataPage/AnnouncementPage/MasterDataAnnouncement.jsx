@@ -34,6 +34,7 @@ const MasterDataAnnouncement = () => {
             const data = await response.json();
             if (data.status === 'Success') {
               setApiData(data.data);
+              console.log(data);
               
             } else {
               setError('Failed to fetch data');
@@ -76,26 +77,31 @@ const MasterDataAnnouncement = () => {
         {
           name: "Title",
           selector: (row) => row.title || '-',
+          cellExport: (row) => row.title || '-',
           sortable: true
         },
         {
             name: "Header",
             selector: (row) => row.header || '-',
+            cellExport: (row) => row.header || '-',
             sortable: true
           },
           {
             name: "Body",
             selector: (row) => row.note || '-',
+            cellExport: (row) => row.note,
             sortable: true
           },
         {
           name: "Footer",
           selector: (row) => row.footer || '-',
+          cellExport: (row) => row.footer,
           sortable: true
         },
         {
           name: "Action",
           sortable: false,
+          cellExport:(row) => row.action || '-',
           cell: (d) => (
             <>
               <i
@@ -192,12 +198,12 @@ const MasterDataAnnouncement = () => {
             <Navbar navbarText="Master Data / Announcement" />
             <Link to="/master-data/announcement-form/add" className="add__button">Tambah</Link>
             <div className="table__container">
-              <DataTableExtensions {...dataTable}>
+              <DataTableExtensions {...dataTable} print={true} export={true}>
                 <DataTable
                   columns={columns}
                   data={apiData}
                   noHeader
-                  defaultSortField="title"
+                  defaultSortField="Title"
                   sortIcon={<SortIcon />}
                   defaultSortAsc={true}
                   pagination

@@ -61,31 +61,37 @@ const MasterDataKaryawan = () => {
         {
           name: "NIK",
           selector: (row) => row.nik || '-',
+          cellExport: (row) => row.nik || '-',
           sortable: true
         },
         {
           name: "Nama Karyawan",
           selector: (row) => row.nama || '-',
+          cellExport: (row) => row.nama || '-',
           sortable: true
         },
         {
             name: "Email",
             selector: (row) => row.email || '-',
+            cellExport: (row) => row.email || '-',
             sortable: true
         },
         {
             name: "No. Hp.",
             selector: (row) => row.noHp || '-',
+            cellExport: (row) => row.noHp || '-',
             sortable: true
         },
         {
             name: "No. Rekening",
             selector: (row) => row.noRek || '-',
+            cellExport: (row) => row.noRek || '-',
             sortable: true
         },
         {
           name: "Action",
           sortable: false,
+          cellExport: (row) => row.action || '-',
           cell: (d) => (
             <>
               <i

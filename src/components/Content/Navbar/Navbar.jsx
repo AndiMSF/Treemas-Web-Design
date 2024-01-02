@@ -35,7 +35,6 @@ const Navbar = (props) => {
           const data = await response.json();
           if (data.status === 'Success') {
             setProfileData(data.data.karyawan);
-            console.log(data);
             
           } else {
             setError('Failed to fetch data');
