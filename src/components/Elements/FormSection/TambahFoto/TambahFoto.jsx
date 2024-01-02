@@ -35,8 +35,15 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            const imageData = event.target.result;
+            const commaIndex = imageData.indexOf(",");
+            const base64Data = imageData.slice(commaIndex + 1);
+            
+            console.log(imageData);
+            console.log("BASE 64 INI "+base64Data);
+      
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoKtpChange(event.target.result, file.name)
+            props.onFotoKtpChange(base64Data, file.name);
           };
           reader.readAsDataURL(file);
         }
@@ -48,8 +55,15 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            const imageData = event.target.result;
+            const commaIndex = imageData.indexOf(",");
+            const base64Data = imageData.slice(commaIndex + 1);
+            
+            console.log(imageData);
+            console.log("BASE 64 INI "+base64Data);
+      
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoNpwpChange(event.target.result, file.name)
+            props.onFotoNpwpChange(base64Data, file.name);
           };
           reader.readAsDataURL(file);
         }
@@ -61,8 +75,15 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            const imageData = event.target.result;
+            const commaIndex = imageData.indexOf(",");
+            const base64Data = imageData.slice(commaIndex + 1);
+            
+            console.log(imageData);
+            console.log("BASE 64 INI "+base64Data);
+      
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoKkChange(event.target.result, file.name)
+            props.onFotoKkChange(base64Data, file.name);
           };
           reader.readAsDataURL(file);
         }
@@ -74,8 +95,15 @@ const TambahFoto = (props) => {
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
+            const imageData = event.target.result;
+            const commaIndex = imageData.indexOf(",");
+            const base64Data = imageData.slice(commaIndex + 1);
+            
+            console.log(imageData);
+            console.log("BASE 64 INI "+base64Data);
+            
             // Konversi gambar ke base64 dan simpan dalam state formData
-            props.onFotoAsuransiChange(event.target.result, file.name)
+            props.onFotoAsuransiChange(base64Data, file.name);
           };
           reader.readAsDataURL(file);
         }
@@ -103,22 +131,22 @@ const TambahFoto = (props) => {
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
-                    <Form.Label>Foto KTP</Form.Label>
+                    <Form.Label>Foto KTP : <span style={{ color: 'green' }}> {props.onFormData.fotoKtpPath != null && props.onFormData.fotoKtpPath}</span> </Form.Label>
                     <Form.Control className="tambah_foto" type="file" onChange={handleFotoKtpUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
-                    <Form.Label>Foto NPWP </Form.Label>
+                    <Form.Label>Foto NPWP : <span style={{ color: 'green' }}> {props.onFormData.fotoNpwpPath != null && props.onFormData.fotoNpwpPath}</span> </Form.Label>
                     <Form.Control className="tambah_foto" type="file" onChange={handleFotoNpwpUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
-                    <Form.Label>Foto KK</Form.Label>
+                    <Form.Label>Foto KK : <span style={{ color: 'green' }}> {props.onFormData.fotoKkPath != null && props.onFormData.fotoKkPath}</span></Form.Label>
                     <Form.Control className="tambah_foto" type="file" onChange={handleFotoKkUpload}/>
                 </Form.Group>
 
                 <Form.Group controlId="formFile">
-                    <Form.Label>Foto asuransi</Form.Label>
+                    <Form.Label>Foto asuransi : <span style={{ color: 'green' }}> {props.onFormData.fotoAsuransiPath != null && props.onFormData.fotoAsuransiPath}</span></Form.Label>
                     <Form.Control className="tambah_foto" type="file" onChange={handleFotoAsuransiUpload}/>
                 </Form.Group>
                 
