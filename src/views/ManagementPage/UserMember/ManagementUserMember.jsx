@@ -12,6 +12,14 @@ import { useNavigate } from "react-router-dom/dist";
 import { Dropdown } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axios from "axios";
+// Switch
+import { styled } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
 
 const ManagementUserMember = () => {
   const navigate = useNavigate();
@@ -21,10 +29,165 @@ const ManagementUserMember = () => {
   const [error, setError] = useState(null);
   const [dropdownItems, setDropdownItems] = useState("Pilih User");
   const [isAll, setIsAll] = useState(false)
-  const [isSingleClick, setIsSingleClick] = useState(false)
-  const [clickedRows, setClickedRows] = useState([]);
+  const [nikLeader, setNikLeader] = useState(null)
 
+  // Switch
+  const [checked, setChecked] = useState(true);
+  
+  const handleAllChange = (event) => {
+    setChecked(event.target.checked)
+  }
+  const handleChange = async (event, userId) => {
+    setChecked(event.target.checked);
+    console.log("CHECKED OR NO "+ event.target.checked);
+    const token = localStorage.getItem("authToken");
 
+    console.log(`Edit button clicked for userId: ${userId}`);
+
+        // Jika tidak checked
+        if(event.target.checked === false) {
+          const requestData = {
+            nikLeader : nikLeader,
+            nikUser : userId
+          }
+          try {
+            if (token) {
+              console.log("ADA TOKEN "+token);
+              const response = await axios.delete(`https://treemas-api-405402.et.r.appspot.com/api/management/user-member-view/delete?nikLeader=${nikLeader}&nikUser=${userId}`,              {
+                headers : {
+                    'Content-Type' : 'application/json',
+                    'Authorization': 'Bearer '+token
+                },
+              });
+              
+              console.log("SBLM MASUK IF "+JSON.stringify(response, null, 2));
+              if (response.data.status === "Success") {
+                  // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
+                  console.log('Response : ', response);
+                  Swal.fire({
+                    title: "Success!",
+                    text: response.data.message + " For Nik "+userId,
+                    icon: "success"
+                  });
+                  setChecked(false)
+    
+            } else {
+                // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
+                // Jika tidak berhasil, tampilkan pesan error
+    
+                Swal.fire({
+                  title: "Error!",
+                  text: response.data.message,
+                  icon: "error"
+                });    
+                console.log(response);
+                setChecked(true)
+              }
+            } else {
+              navigate("/")
+            }
+          } catch (error) {
+            setChecked(true)
+            console.log(error);
+            Swal.fire({
+              title: "Error!",
+              text: error.response.data.message,
+              icon: "error"
+            });
+          }
+        } else { // jika checked 
+          
+
+          const requestData = {
+            nikLeader : nikLeader,
+            nikUser : userId
+          }
+              // Jika yes akan   
+              try {
+                if (token) {
+                  console.log("ADA TOKEN ");
+                  const response = await axios.post("https://treemas-api-405402.et.r.appspot.com/api/management/user-member-view/add", 
+                  requestData,
+                  {
+                    headers : {
+                        'Content-Type' : 'application/json',
+                        'Authorization': 'Bearer '+token
+                    },
+                  });
+                  
+                  console.log("SBLM MASUK IF "+JSON.stringify(response, null, 2));
+                  if (response.data.status === "Success") {
+                      // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
+                      console.log('Response : ', response);
+                      Swal.fire({
+                        title: "Success!",
+                        text: response.data.message + " For Nik "+userId,
+                        icon: "success"
+                      });
+                      setChecked(true)
+                } else {
+                    // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
+                    // Jika tidak berhasil, tampilkan pesan error
+                    setChecked(false)
+                    Swal.fire({
+                      title: "Error!",
+                      text: response.data.message,
+                      icon: "error"
+                    });
+        
+                    console.log(response.data.message);
+                  }
+                } else {
+                  navigate("/")
+                }
+              } catch (error) {
+                setChecked(false)
+                console.log(error);
+                Swal.fire({
+                  title: "Error!",
+                  text: error.response.data.message,
+                  icon: "error"
+                });
+              }
+        } 
+          
+  };
+  const Android12Switch = styled(Switch)(({ theme }) => ({
+    padding: 8,
+    '& .MuiSwitch-track': {
+      borderRadius: 22 / 2,
+      '&::before, &::after': {
+        content: '""',
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: 16,
+        height: 16,
+      },
+      '&::before': {
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 24 24"><path fill="${encodeURIComponent(
+          theme.palette.getContrastText(theme.palette.primary.main),
+        )}" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>')`,
+        left: 12,
+      },
+      '&::after': {
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 24 24"><path fill="${encodeURIComponent(
+          theme.palette.getContrastText(theme.palette.primary.main),
+        )}" d="M19,13H5V11H19V13Z" /></svg>')`,
+        right: 12,
+      },
+    },
+    '& .MuiSwitch-thumb': {
+      boxShadow: 'none',
+      width: 16,
+      height: 16,
+      margin: 2,
+    },
+  }));
+
+  
+
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,7 +203,7 @@ const ManagementUserMember = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
         const data = await response.json();
-        console.log("Users Data : "+data);
+        console.log("Users Data : "+JSON.stringify(data, null,2));
         if (data.status === 'Success') {
           setApiData(data.data);
         } else {
@@ -134,9 +297,12 @@ const ManagementUserMember = () => {
     }
   }, [navigate]);
 
-  const handleDropdownSelect = (selectedItem) => {
-    setDropdownItems(selectedItem);
-    console.log(selectedItem);
+  const handleDropdownSelect = (selectedUser) => {
+    const selectedItem = dropdownData.find(user => user.fullName === selectedUser)
+
+    setDropdownItems(selectedUser);
+    setNikLeader(selectedItem.userId)
+    console.log(selectedItem.userId);
   };
 
   const handleAll = () => {
@@ -144,93 +310,26 @@ const ManagementUserMember = () => {
     console.log("Kepencet");
   }
 
-  const token = localStorage.getItem("authToken");
 
-
-        const handleSingleClick = async (userId) => {
-        
-          setIsSingleClick(!isSingleClick)
-
-          console.log("Drop down Data : "+ JSON.stringify(dropdownItems, null, 2));
-
-          console.log(`Edit button clicked for userId: ${userId}`);
-          const requestData = {
-            nikLeader : dropdownItems,
-            nikUser : userId
-          }
-              // Jika yes akan   
-              try {
-                if (token) {
-                  console.log("ADA TOKEN ");
-                  const response = await axios.post("https://treemas-api-405402.et.r.appspot.com/api/management/user-member-view/add", 
-                  requestData,
-                  {
-                    headers : {
-                        'Content-Type' : 'application/json',
-                        'Aduthorization': 'Bearer '+isToken
-                    },
-                  });
-                  
-                  console.log("SBLM MASUK IF "+JSON.stringify(response, null, 2));
-                  if (response.data.status === "Success") {
-
-                    const updatedClickedRows = [...clickedRows];
-                    if (updatedClickedRows.includes(userId)) {
-                      // Jika sudah ada, hapus dari state
-                      const index = updatedClickedRows.indexOf(userId);
-                      updatedClickedRows.splice(index, 1);
-                    } else {
-                      // Jika belum ada, tambahkan ke state
-                      updatedClickedRows.push(userId);
-                    }
-                    setClickedRows(updatedClickedRows);
-
-                      
-                      // Tangani login yang berhasil, misalnya, simpan token otentikasi di localStorage
-                      console.log('Response : ', response);
-                      Swal.fire({
-                        title: "Success!",
-                        text: response.data.message + " For Nik "+userId,
-                        icon: "success"
-                      });
-        
-                } else {
-                    // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
-                    // Jika tidak berhasil, tampilkan pesan error
-        
-                    Swal.fire({
-                      title: "Error!",
-                      text: response.data.message,
-                      icon: "error"
-                    });
-        
-                    console.log(response.data.message);
-                  }
-                } else {
-                  navigate("/")
-                }
-              } catch (error) {
-                console.log(error.response);
-              }
-            }
 
     
       const columns = [
         {
-            name: <i onClick={handleAll} style={{fontSize: '1.8em', cursor: 'pointer'}} className={isAll ? "fa fa-toggle-off" : "fa fa-toggle-on"}></i>,
+            name: <FormControlLabel
+            control={<Android12Switch />}
+            onChange={handleAllChange}
+            inputProps={{ 'aria-label': 'controlled' }}
+            style={{marginLeft: 0}}
+          />,
             sortable: false,
             cell: (d) => (
               <>
-                <i
-                  key={`edit-${d.userId}`}
-                  onClick={() => handleSingleClick(d.userId)}
-                  className={
-                    clickedRows.includes(d.userId)
-                      ? 'fa fa-toggle-on'
-                      : 'fa fa-toggle-off'
-                  }
-                  style={{fontSize: '1.7em', cursor: 'pointer'}}
-                ></i>                
+            <FormControlLabel
+            control={<Android12Switch />}
+            onChange={(event) => handleChange(event,d.userId)}
+            inputProps={{ 'aria-label': 'controlled' }}
+            style={{marginLeft: 0}}
+          />                
               </>
             )
         },
@@ -260,7 +359,7 @@ const ManagementUserMember = () => {
             <div className="left__container__input">
               <Dropdown onSelect={handleDropdownSelect}>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                  {dropdownItems}
+                  {(dropdownData.fullName) || (dropdownItems)}
                 </Dropdown.Toggle>
   
                 <Dropdown.Menu>
