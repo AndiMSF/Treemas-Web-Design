@@ -46,10 +46,6 @@ const ManagementUserMember = () => {
 
         // Jika tidak checked
         if(event.target.checked === false) {
-          const requestData = {
-            nikLeader : nikLeader,
-            nikUser : userId
-          }
           try {
             if (token) {
               console.log("ADA TOKEN "+token);
@@ -69,7 +65,6 @@ const ManagementUserMember = () => {
                     text: response.data.message + " For Nik "+userId,
                     icon: "success"
                   });
-                  setChecked(false)
     
             } else {
                 // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
@@ -81,13 +76,11 @@ const ManagementUserMember = () => {
                   icon: "error"
                 });    
                 console.log(response);
-                setChecked(true)
               }
             } else {
               navigate("/")
             }
           } catch (error) {
-            setChecked(true)
             console.log(error);
             Swal.fire({
               title: "Error!",
@@ -124,11 +117,9 @@ const ManagementUserMember = () => {
                         text: response.data.message + " For Nik "+userId,
                         icon: "success"
                       });
-                      setChecked(true)
                 } else {
                     // Tangani kesalahan login di sini, mungkin menampilkan pesan kesalahan
                     // Jika tidak berhasil, tampilkan pesan error
-                    setChecked(false)
                     Swal.fire({
                       title: "Error!",
                       text: response.data.message,
@@ -141,7 +132,6 @@ const ManagementUserMember = () => {
                   navigate("/")
                 }
               } catch (error) {
-                setChecked(false)
                 console.log(error);
                 Swal.fire({
                   title: "Error!",
