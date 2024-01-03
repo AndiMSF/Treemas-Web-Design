@@ -7,7 +7,7 @@
 input{
     display: flex;
     color: black;
-    border-radius: 8px;
+    border-radius: 10px;
     gap: 10px;
     border: 1px solid var(--gray-light);
     align-content: center;
@@ -18,19 +18,12 @@ svg.react-datepicker__calendar-icon {
 }
 
 .react-datepicker__input-container input {
-    background-color: ashgrey;
-}
-
-.react-datepicker-popper {
-    width: 50%;
-}
-
-.react-datepicker-wrapper {
- background-color: #E5E1DA;
+    background-color: #D71313;
 }
  
 .form__row__right{
     display: flex;
     align-content: center;
     gap : 1% ;
+    width: 50%;
 }

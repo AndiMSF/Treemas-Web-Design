@@ -45,7 +45,7 @@ const MasterDataLiburForm = () => {
     
         try {
           const requestData = {
-            tglLibur: formData.tanggalLibur,
+            tglLibur: formData.tglLibur,
             keterangan: formData.keterangan
           }
     
