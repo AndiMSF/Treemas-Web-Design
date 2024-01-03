@@ -282,7 +282,6 @@ const ManagementUserAccess = () => {
               <div className="user__access__top">
                 <h1>Data User Access</h1>
               </div>
-              <div className="horizontal__line"></div>
               <div className="user__access__middle">
                 <div className="user__access__middle__top">
                 <Dropdown onSelect={handleDropdownSelect} className="user__access__dropdown">
@@ -338,7 +337,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      detailDataSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={absenSwitch} onChange={handleAbsenSwitchChange} />}
@@ -385,6 +386,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
@@ -396,7 +400,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      managementSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={userSwitch} onChange={handleUserSwitchChange} />}
@@ -425,6 +431,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
@@ -447,7 +456,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      masterDataSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={announcementSwitch} onChange={handleAnnouncementSwitchChange} />}
@@ -521,6 +532,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
@@ -532,7 +546,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      parameterSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={generalSwitch} onChange={handleGeneralSwitchChange} />}
@@ -552,6 +568,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
@@ -563,7 +582,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      reportDataSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={claimReportSwitch} onChange={handleClaimReportSwitchChange} />}
@@ -592,6 +613,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
@@ -603,7 +627,9 @@ const ManagementUserAccess = () => {
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    <div className="access__row__right__parent">
+                    {
+                      uploadSwitch && (
+                        <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={absenUploadSwitch} onChange={handleAbsenUploadSwitchChange} />}
@@ -623,6 +649,9 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
+                      )
+                    }
+                    
                   </div>
                 </div>
               </div>

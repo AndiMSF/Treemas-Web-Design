@@ -60,3 +60,6 @@ span.MuiTypography-root {
     width: 20%;
 }
 
+.user__access__dropdown .dropdown-menu {
+    width: 100%;
+}
