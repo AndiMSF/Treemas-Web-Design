@@ -44,9 +44,7 @@ const DetaildataReimburse = () => {
                         <BoxInput placeholder="Nama Karyawan"/>
                         <DropdownMenu title={totalJamText} items={["Lembur", "Tidak Lembur"]} onDropdownChange={handleTotalJam}/>
                         <DropdownMenu title="Pilih Project" />
-
                         <Button text="Pencarian" className="search__button" />
-
                     </div>
                     <div className="right__container__input">
                     <Button text="Unduh" className="add__button" />

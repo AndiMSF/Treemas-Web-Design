@@ -65,8 +65,6 @@ const Dashboard = () => {
         return <div>Error: {error}</div>;
       }
     
-      
-
     const data = [
       {
         name: 'Masuk',

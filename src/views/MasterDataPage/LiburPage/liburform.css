@@ -14,12 +14,21 @@ input{
 }
 
 svg.react-datepicker__calendar-icon {
-    align-self: center;
-    
+    align-self: center;    
 }
 
+.react-datepicker__input-container input {
+    background-color: ashgrey;
+}
 
+.react-datepicker-popper {
+    width: 50%;
+}
 
+.react-datepicker-wrapper {
+ background-color: #E5E1DA;
+}
+ 
 .form__row__right{
     display: flex;
     align-content: center;

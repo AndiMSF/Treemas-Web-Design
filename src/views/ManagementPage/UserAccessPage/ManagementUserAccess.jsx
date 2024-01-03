@@ -27,6 +27,169 @@ const ManagementUserAccess = () => {
     const [dropdownTitle, setDropdownTitle] = useState("Pilih Jabatan");
     const [dropdownData, setDropdownData] = useState([])
 
+     // Switch states
+    const [menuSwitch, setMenuSwitch] = useState(true);
+    const [dashboardSwitch, setDashboardSwitch] = useState(true);
+    const [detailDataSwitch, setDetailDataSwitch] = useState(true);
+    const [absenSwitch, setAbsenSwitch] = useState(true);
+    const [cutiSakitSwitch, setCutiSakitSwitch] = useState(true);
+    const [reimburseSwitch, setReimburseSwitch] = useState(true);
+    const [timesheetSwitch, setTimesheetSwitch] = useState(true);
+    const [trackingSwitch, setTrackingSwitch] = useState(true);
+    const [managementSwitch, setManagementSwitch] = useState(true);
+    const [userSwitch, setUserSwitch] = useState(true);
+    const [userAccessSwitch, setUserAccessSwitch] = useState(true);
+    const [userMemberSwitch, setUserMemberSwitch] = useState(true);
+    const [manualServiceSwitch, setManualServiceSwitch] = useState(true);
+    const [masterDataSwitch, setMasterDataSwitch] = useState(true);
+    const [announcementSwitch, setAnnouncementSwitch] = useState(true);
+    const [claimSwitch, setClaimSwitch] = useState(true);
+    const [cutiSwitch, setCutiSwitch] = useState(true);
+    const [jabatanSwitch, setJabatanSwitch] = useState(true);
+    const [karyawanSwitch, setKaryawanSwitch] = useState(true);
+    const [liburSwitch, setLiburSwitch] = useState(true);
+    const [permissionSwitch, setPermissionSwitch] = useState(true);
+    const [projectSwitch, setProjectSwitch] = useState(true);
+    const [parameterSwitch, setParameterSwitch] = useState(true);
+    const [generalSwitch, setGeneralSwitch] = useState(true);
+    const [reimburseParamSwitch, setReimburseParamSwitch] = useState(true);
+    const [reportDataSwitch, setReportDataSwitch] = useState(true);
+    const [claimReportSwitch, setClaimReportSwitch] = useState(true);
+    const [detailSwitch, setDetailSwitch] = useState(true);
+    const [summarySwitch, setSummarySwitch] = useState(true);
+    const [uploadSwitch, setUploadSwitch] = useState(true);
+    const [absenUploadSwitch, setAbsenUploadSwitch] = useState(true);
+    const [apkSwitch, setApkSwitch] = useState(true);
+
+    // Switch change handlers
+    const handleMenuSwitchChange = () => {
+      setMenuSwitch(!menuSwitch);
+    };
+
+    const handleDashboardSwitchChange = () => {
+      setDashboardSwitch(!dashboardSwitch);
+    };
+
+    const handleDetailDataSwitchChange = () => {
+      setDetailDataSwitch(!detailDataSwitch);
+    };
+
+    const handleAbsenSwitchChange = () => {
+      setAbsenSwitch(!absenSwitch);
+    };
+
+    const handleCutiSakitSwitchChange = () => {
+      setCutiSakitSwitch(!cutiSakitSwitch);
+    };
+
+    const handleReimburseSwitchChange = () => {
+      setReimburseSwitch(!reimburseSwitch);
+    };
+
+    const handleTimesheetSwitchChange = () => {
+      setTimesheetSwitch(!timesheetSwitch);
+    };
+
+    const handleTrackingSwitchChange = () => {
+      setTrackingSwitch(!trackingSwitch);
+    };
+
+    const handleManagementSwitchChange = () => {
+      setManagementSwitch(!managementSwitch);
+    };
+
+    const handleUserSwitchChange = () => {
+      setUserSwitch(!userSwitch);
+    };
+
+    const handleUserAccessSwitchChange = () => {
+      setUserAccessSwitch(!userAccessSwitch);
+    };
+    
+    const handleUserMemberSwitchChange = () => {
+      setUserMemberSwitch(!userMemberSwitch);
+    };
+
+    const handleManualServiceSwitchChange = () => {
+      setManualServiceSwitch(!manualServiceSwitch);
+    };
+    
+    const handleMasterDataSwitchChange = () => {
+      setMasterDataSwitch(!masterDataSwitch);
+    };
+
+    const handleAnnouncementSwitchChange = () => {
+      setAnnouncementSwitch(!announcementSwitch);
+    };
+
+    const handleClaimSwitchChange = () => {
+      setClaimSwitch(!claimSwitch);
+    };
+
+    const handleCutiSwitchChange = () => {
+      setCutiSwitch(!cutiSwitch);
+    };
+
+    const handleJabatanSwitchChange = () => {
+      setJabatanSwitch(!jabatanSwitch);
+    };
+
+    const handleKaryawanSwitchChange = () => {
+      setKaryawanSwitch(!karyawanSwitch);
+    };
+
+    const handleLiburSwitchChange = () => {
+      setLiburSwitch(!liburSwitch);
+    };
+
+    const handlePermissionSwitchChange = () => {
+      setPermissionSwitch(!permissionSwitch);
+    };
+
+    const handleProjectSwitchChange = () => {
+      setProjectSwitch(!projectSwitch);
+    };
+
+    const handleParameterSwitchChange = () => {
+      setParameterSwitch(!parameterSwitch);
+    };
+
+    const handleGeneralSwitchChange = () => {
+      setGeneralSwitch(!generalSwitch);
+    };
+
+    const handleReimburseParamSwitchChange = () => {
+      setReimburseParamSwitch(!reimburseParamSwitch);
+    };
+
+    const handleReportDataSwitchChange = () => {
+      setReportDataSwitch(!reportDataSwitch);
+    };
+
+    const handleClaimReportSwitchChange = () => {
+      setClaimReportSwitch(!claimReportSwitch);
+    };
+
+    const handleDetailSwitchChange = () => {
+      setDetailSwitch(!detailSwitch);
+    };
+
+    const handleSummarySwitchChange = () => {
+      setSummarySwitch(!summarySwitch);
+    };  
+    
+    const handleUploadSwitchChange = () => {
+      setUploadSwitch(!uploadSwitch);
+    };    
+
+    const handleAbsenUploadSwitchChange = () => {
+      setAbsenUploadSwitch(!absenUploadSwitch);
+    };  
+
+    const handleApkSwitchChange = () => {
+      setApkSwitch(!apkSwitch);
+    };  
+
     useEffect(() => {
       const fetchData = async () => {
           try {
@@ -140,7 +303,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                     <FormControlLabel
-                      control={<Android12Switch />}
+                      control={<Android12Switch checked={menuSwitch} onChange={handleMenuSwitchChange} />}
                       label="Menu"
                       checked={checked}
                       onChange={handleChange}
@@ -154,7 +317,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                        control={<Android12Switch />}
+                        control={<Android12Switch checked={dashboardSwitch} onChange={handleDashboardSwitchChange} />}
                         label="Dashboard"
                         checked={checked}
                         onChange={handleChange}
@@ -168,7 +331,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={detailDataSwitch} onChange={handleDetailDataSwitchChange} />}
                           label="Detail Data"
                           checked={checked}
                           onChange={handleChange}
@@ -178,7 +341,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={absenSwitch} onChange={handleAbsenSwitchChange} />}
                               label="Absen"
                               checked={checked}
                               onChange={handleChange}
@@ -187,7 +350,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={cutiSakitSwitch} onChange={handleCutiSakitSwitchChange} />}
                               label="Cuti/Sakit"
                               checked={checked}
                               onChange={handleChange}
@@ -196,7 +359,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={reimburseSwitch} onChange={handleReimburseSwitchChange} />}
                               label="Reimburse"
                               checked={checked}
                               onChange={handleChange}
@@ -205,7 +368,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={timesheetSwitch} onChange={handleTimesheetSwitchChange} />}
                               label="Timesheet"
                               checked={checked}
                               onChange={handleChange}
@@ -214,7 +377,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={trackingSwitch} onChange={handleTrackingSwitchChange} />}
                               label="Tracking"
                               checked={checked}
                               onChange={handleChange}
@@ -226,7 +389,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={managementSwitch} onChange={handleManagementSwitchChange} />}
                           label="Management"
                           checked={checked}
                           onChange={handleChange}
@@ -236,7 +399,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={userSwitch} onChange={handleUserSwitchChange} />}
                               label="User"
                               checked={checked}
                               onChange={handleChange}
@@ -245,7 +408,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={userAccessSwitch} onChange={handleUserAccessSwitchChange} />}
                               label="User Access"
                               checked={checked}
                               onChange={handleChange}
@@ -254,7 +417,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={userMemberSwitch} onChange={handleUserMemberSwitchChange} />}
                               label="User Member"
                               checked={checked}
                               onChange={handleChange}
@@ -266,7 +429,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={manualServiceSwitch} onChange={handleManualServiceSwitchChange} />}
                           label="Manual Service"
                           checked={checked}
                           onChange={handleChange}
@@ -277,7 +440,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={masterDataSwitch} onChange={handleMasterDataSwitchChange} />}
                           label="Master Data"
                           checked={checked}
                           onChange={handleChange}
@@ -287,7 +450,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={announcementSwitch} onChange={handleAnnouncementSwitchChange} />}
                               label="Announcement"
                               checked={checked}
                               onChange={handleChange}
@@ -296,7 +459,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={claimSwitch} onChange={handleClaimSwitchChange} />}
                               label="Claim"
                               checked={checked}
                               onChange={handleChange}
@@ -305,7 +468,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={cutiSwitch} onChange={handleCutiSwitchChange} />}
                               label="Cuti"
                               checked={checked}
                               onChange={handleChange}
@@ -314,7 +477,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={jabatanSwitch} onChange={handleJabatanSwitchChange} />}
                               label="Jabatan"
                               checked={checked}
                               onChange={handleChange}
@@ -323,7 +486,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={karyawanSwitch} onChange={handleKaryawanSwitchChange} />}
                               label="Karyawan"
                               checked={checked}
                               onChange={handleChange}
@@ -332,7 +495,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={liburSwitch} onChange={handleLiburSwitchChange} />}
                               label="Libur"
                               checked={checked}
                               onChange={handleChange}
@@ -341,7 +504,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={permissionSwitch} onChange={handlePermissionSwitchChange} />}
                               label="Permission"
                               checked={checked}
                               onChange={handleChange}
@@ -350,7 +513,7 @@ const ManagementUserAccess = () => {
                       </div>
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={projectSwitch} onChange={handleProjectSwitchChange} />}
                               label="Project"
                               checked={checked}
                               onChange={handleChange}
@@ -362,7 +525,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={parameterSwitch} onChange={handleParameterSwitchChange} />}
                           label="Parameter"
                           checked={checked}
                           onChange={handleChange}
@@ -372,7 +535,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={generalSwitch} onChange={handleGeneralSwitchChange} />}
                               label="General"
                               checked={checked}
                               onChange={handleChange}
@@ -381,7 +544,7 @@ const ManagementUserAccess = () => {
                       </div>                   
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={reimburseParamSwitch} onChange={handleReimburseParamSwitchChange} />}
                               label="Reimburse"
                               checked={checked}
                               onChange={handleChange}
@@ -393,7 +556,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={reportDataSwitch} onChange={handleReportDataSwitchChange} />}
                           label="Report Data"
                           checked={checked}
                           onChange={handleChange}
@@ -403,7 +566,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={claimReportSwitch} onChange={handleClaimReportSwitchChange} />}
                               label="Claim"
                               checked={checked}
                               onChange={handleChange}
@@ -412,7 +575,7 @@ const ManagementUserAccess = () => {
                       </div>     
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={detailSwitch} onChange={handleDetailSwitchChange} />}
                               label="Detail"
                               checked={checked}
                               onChange={handleChange}
@@ -421,7 +584,7 @@ const ManagementUserAccess = () => {
                       </div>                   
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={summarySwitch} onChange={handleSummarySwitchChange} />}
                               label="Summary"
                               checked={checked}
                               onChange={handleChange}
@@ -433,7 +596,7 @@ const ManagementUserAccess = () => {
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
-                          control={<Android12Switch />}
+                          control={<Android12Switch checked={uploadSwitch} onChange={handleUploadSwitchChange} />}
                           label="Upload"
                           checked={checked}
                           onChange={handleChange}
@@ -443,7 +606,7 @@ const ManagementUserAccess = () => {
                     <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={absenUploadSwitch} onChange={handleAbsenUploadSwitchChange} />}
                               label="Absen"
                               checked={checked}
                               onChange={handleChange}
@@ -452,7 +615,7 @@ const ManagementUserAccess = () => {
                       </div>                   
                       <div className="access__row__right">
                         <FormControlLabel
-                              control={<Android12Switch />}
+                              control={<Android12Switch checked={apkSwitch} onChange={handleApkSwitchChange} />}
                               label="Apk"
                               checked={checked}
                               onChange={handleChange}

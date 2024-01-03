@@ -43,6 +43,7 @@ const ManagementUserMember = () => {
         console.log("Users Data : "+data);
         if (data.status === 'Success') {
           setApiData(data.data);
+          console.log(data.data);
         } else {
           setError('Failed to fetch data');
         }
@@ -96,7 +97,7 @@ const ManagementUserMember = () => {
       }
         const data = await response.json();
         if (data.status === 'Success') {
-          setDropdownData(data.data);
+          setDropdownData(data.data);          
         } else {
           setError('Failed to fetch data');
         }
