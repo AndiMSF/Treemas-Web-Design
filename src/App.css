@@ -112,6 +112,10 @@ div.lmTzXr div:first-child {
   height: 0;
 }
 
+input.filter-text {
+  cursor: auto;
+}
+
 
 /* Media query untuk ukuran layar max hp (smartphone) */
 @media (max-width: 1500px) {

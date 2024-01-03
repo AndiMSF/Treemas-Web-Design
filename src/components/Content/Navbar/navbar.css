@@ -76,9 +76,17 @@ img.profile:hover {
     transition: none;
 }
 
-.profile:hover {
-    border: 5px solid #FFFBF5; 
+div.profile-container:hover {
+    border: 2px solid transparent; 
     cursor: pointer; 
-    opacity: 1;
+    border-radius: 50%;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px 6px #FFF;
+  }
+
+  div.profile-container {
+    border: 2px solid transparent; 
+    cursor: pointer; 
+    border-radius: 50%;
   }
   
