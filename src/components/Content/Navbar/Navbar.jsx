@@ -117,6 +117,7 @@ const Navbar = (props) => {
             }
             
           } catch (error) {
+            console.log(error);
             setError(`Error fetching data: ${error.message}`);
           } finally {
             setIsLoading(false);
