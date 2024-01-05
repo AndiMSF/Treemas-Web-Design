@@ -17,6 +17,20 @@ const ManagementUser = () => {
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
 
+    const formatTimestamp = (timestamp) => {
+      //Format Tanggal
+      const date = new Date(timestamp);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+      const year = date.getFullYear();
+      // Format Jam
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      const seconds = date.getSeconds().toString().padStart(2, '0');
+    
+      return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    };
+
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -92,7 +106,7 @@ const ManagementUser = () => {
             sortable: true,
             cell: (row) => (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-                {row.lastLogin || '-'}
+                {formatTimestamp (row.lastLogin) || '-'}
               </div>
             )
           },

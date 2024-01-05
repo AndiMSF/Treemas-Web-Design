@@ -24,6 +24,27 @@ const DetaildataCutiSakit = (props) => {
     setDropdownItems(selectedItem);
   };
 
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+    const year = date.getFullYear();
+  
+    return `${day}-${month}-${year}`;
+  };
+
+  const getRowColor = (row) => {
+    switch (row.status) {
+      case "DISETUJUI":
+        return { backgroundColor: '#AAD9BB', color: '0000', borderRadius: '5px', padding: '5px', width: '85%', textAlign: 'center', fontWeight: '600' };
+      case "DITOLAK":
+        return { backgroundColor: '#E74646', color: '0000', borderRadius: '5px', padding: '5px', width: '85%', textAlign: 'center', fontWeight: '600'};
+      case "MENUNGGU":
+        return { backgroundColor: '#FAEF9B', color: '0000', borderRadius: '5px', padding: '5px', width: '85%', textAlign: 'center', fontWeight: '600'};
+      default:
+        return {}; // Default style
+    }
+  };
   
   useEffect(() => {
     const fetchData = async () => {
@@ -69,7 +90,7 @@ const DetaildataCutiSakit = (props) => {
                 // Mengganti nilai isApproved menjadi string yang sesuai
                 combinedData = combinedData.map(item => ({
                     ...item,
-                    status: item.isApproved === "1" ? "Disetujui" : item.isApproved === "0" ? "Ditolak" : "Menunggu",
+                    status: item.isApproved === "1" ? "DISETUJUI" : item.isApproved === "0" ? "DITOLAK" : "MENUNGGU",
                 }));
 
               setApiData(combinedData);
@@ -80,7 +101,7 @@ const DetaildataCutiSakit = (props) => {
               // Mengganti nilai isApproved menjadi string yang sesuai
               combinedData = combinedData.map(item => ({
                   ...item,
-                  status: item.isApproved === "1" ? "Disetujui" : item.isApproved === "0" ? "Ditolak" : "Menunggu",
+                  status: item.isApproved === "1" ? "DISETUJUI" : item.isApproved === "0" ? "DITOLAK" : "MENUNGGU",
               }));
 
               setApiData(combinedData);
@@ -122,6 +143,8 @@ const DetaildataCutiSakit = (props) => {
     return <div>Error: {error}</div>;
   }
 
+
+
   const columns = [
     {
       name: "NIK",
@@ -137,20 +160,20 @@ const DetaildataCutiSakit = (props) => {
     },
     {
       name: "Tgl. Pengajuan",
-      selector: (row) => row.tglMulai  || '-',
-      cellExport: (row) => row.title || '-',
+      selector: (row) => formatTimestamp (row.tglMulai)  || '-',
+      cellExport: (row) => formatTimestamp (row.title) || '-',
       sortable: true,
     },
     {
       name: "Tgl. Selesai",
-      selector: (row) => row.tglSelesai || '-',
-      cellExport: (row) => row.title || '-',
+      selector: (row) => formatTimestamp (row.tglSelesai) || '-',
+      cellExport: (row) => formatTimestamp (row.title) || '-',
       sortable: true,
     },
     {
       name: "Tgl. Masuk",
-      selector: (row) => row.tglMasuk || '-',
-      cellExport: (row) => row.title || '-',
+      selector: (row) => formatTimestamp (row.tglMasuk) || '-',
+      cellExport: (row) => formatTimestamp (row.title) || '-',
       sortable: true,
     },
     {
@@ -170,17 +193,17 @@ const DetaildataCutiSakit = (props) => {
       selector: (row) => row.status || '-',
       cellExport: (row) => row.title || '-',
       sortable: true,
+      cell: (row) => <div style={getRowColor(row)}>{row.status}</div>,
     },
     {
       name: "Status Oleh",
       selector: (row) => row.usrapp || '-',
       cellExport: (row) => row.title || '-',
-      sortable: true,
-    },
-    {
+      sorable: true,
+    },   {
       name: "Tgl. Status",
-      selector: (row) => row.dtmapp || '-',
-      cellExport: (row) => row.title || '-',
+      selector: (row) => formatTimestamp (row.dtmapp) || '-',
+      cellExport: (row) => formatTimestamp (row.dtampp) || '-',
       sortable: true,
     },
   ];
@@ -222,7 +245,7 @@ const DetaildataCutiSakit = (props) => {
               defaultSortAsc={true}
               pagination
               highlightOnHover
-              dense
+              dense              
             />
           </DataTableExtensions>
         </div>

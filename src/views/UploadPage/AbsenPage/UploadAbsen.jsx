@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./absen.css"
 import Information from "../../../components/Content/Information/Information"
 import Navbar from "../../../components/Content/Navbar/Navbar"
