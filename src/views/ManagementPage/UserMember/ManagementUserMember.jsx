@@ -30,7 +30,7 @@ const ManagementUserMember = () => {
   const [dropdownItems, setDropdownItems] = useState("Pilih User");
   const [isAll, setIsAll] = useState(false)
   const [nikLeader, setNikLeader] = useState(null)
-
+  const [checkedState, setCheckedState] = useState({});
   // Switch
   const [checked, setChecked] = useState(true);
   
@@ -38,14 +38,20 @@ const ManagementUserMember = () => {
     setChecked(event.target.checked)
   }
   const handleChange = async (event, userId) => {
-    setChecked(event.target.checked);
+    const isChecked = event.target.checked;
+
+  setCheckedState(prevState => ({
+    ...prevState,
+    [userId]: isChecked,
+  }));
+
     console.log("CHECKED OR NO "+ event.target.checked);
     const token = localStorage.getItem("authToken");
 
     console.log(`Edit button clicked for userId: ${userId}`);
 
         // Jika tidak checked
-        if(event.target.checked === false) {
+        if(!isChecked) {
           try {
             if (token) {
               console.log("ADA TOKEN "+token);
@@ -315,9 +321,10 @@ const ManagementUserMember = () => {
             sortable: false,
             cell: (d) => (
               <>
-            <FormControlLabel
+            <FormControlLabel key={d.userId}
             control={<Android12Switch />}
             onChange={(event) => handleChange(event,d.userId)}
+            checked={checkedState[d.userId]}
             inputProps={{ 'aria-label': 'controlled' }}
             style={{marginLeft: 0}}
           />                

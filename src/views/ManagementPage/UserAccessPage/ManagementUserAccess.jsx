@@ -71,8 +71,30 @@ const ManagementUserAccess = () => {
     };
 
     const handleDetailDataSwitchChange = () => {
-      setDetailDataSwitch(!detailDataSwitch);
+      
+      setDetailDataSwitch(!detailDataSwitch)
+
+      if(detailDataSwitch) {
+        setAbsenSwitch(false)
+        setCutiSakitSwitch(false)
+        setReimburseSwitch(false)
+        setTimesheetSwitch(false)
+        setTrackingSwitch(false)
+      } else {
+        setAbsenSwitch(true)
+        setCutiSakitSwitch(true)
+        setReimburseSwitch(true)
+        setTimesheetSwitch(true)
+        setTrackingSwitch(true)
+      }
+
     };
+
+    useEffect(() => {
+      console.log("DETAIL DATA "+detailDataSwitch);
+      console.log("ABSEN "+absenSwitch);
+      console.log("REIMBURSE "+reimburseSwitch);
+    }, [detailDataSwitch,absenSwitch,reimburseSwitch])
 
     const handleAbsenSwitchChange = () => {
       setAbsenSwitch(!absenSwitch);
@@ -96,6 +118,16 @@ const ManagementUserAccess = () => {
 
     const handleManagementSwitchChange = () => {
       setManagementSwitch(!managementSwitch);
+
+      if(managementSwitch) {
+        setUserSwitch(false)
+        setUserAccessSwitch(false)
+        setUserMemberSwitch(false)
+      } else {
+        setUserSwitch(true)
+        setUserAccessSwitch(true)
+        setUserMemberSwitch(true)
+      }
     };
 
     const handleUserSwitchChange = () => {
@@ -116,6 +148,26 @@ const ManagementUserAccess = () => {
     
     const handleMasterDataSwitchChange = () => {
       setMasterDataSwitch(!masterDataSwitch);
+
+      if(masterDataSwitch) {
+        setAnnouncementSwitch(false)
+        setClaimSwitch(false)
+        setCutiSwitch(false)
+        setJabatanSwitch(false)
+        setKaryawanSwitch(false)
+        setLiburSwitch(false)
+        setPermissionSwitch(false)
+        setProjectSwitch(false)
+      } else {
+        setAnnouncementSwitch(true)
+        setClaimSwitch(true)
+        setCutiSwitch(true)
+        setJabatanSwitch(true)
+        setKaryawanSwitch(true)
+        setLiburSwitch(true)
+        setPermissionSwitch(true)
+        setProjectSwitch(true)
+      }
     };
 
     const handleAnnouncementSwitchChange = () => {
@@ -152,6 +204,14 @@ const ManagementUserAccess = () => {
 
     const handleParameterSwitchChange = () => {
       setParameterSwitch(!parameterSwitch);
+
+      if(parameterSwitch) {
+        setGeneralSwitch(false)
+        setReimburseParamSwitch(false)
+      } else {
+        setGeneralSwitch(true)
+        setReimburseParamSwitch(true)
+      }
     };
 
     const handleGeneralSwitchChange = () => {
@@ -164,6 +224,16 @@ const ManagementUserAccess = () => {
 
     const handleReportDataSwitchChange = () => {
       setReportDataSwitch(!reportDataSwitch);
+
+      if(reportDataSwitch) {
+        setClaimReportSwitch(false)
+        setDetailSwitch(false)
+        setSummarySwitch(false)
+      } else {
+        setClaimReportSwitch(true)
+        setDetailSwitch(true)
+        setSummarySwitch(true)
+      }
     };
 
     const handleClaimReportSwitchChange = () => {
@@ -180,6 +250,14 @@ const ManagementUserAccess = () => {
     
     const handleUploadSwitchChange = () => {
       setUploadSwitch(!uploadSwitch);
+
+      if(uploadSwitch) {
+        setAbsenUploadSwitch(false)
+        setApkSwitch(false)
+      } else {
+        setAbsenUploadSwitch(true)
+        setApkSwitch(true)
+      }
     };    
 
     const handleAbsenUploadSwitchChange = () => {
@@ -304,7 +382,6 @@ const ManagementUserAccess = () => {
                     <FormControlLabel
                       control={<Android12Switch checked={menuSwitch} onChange={handleMenuSwitchChange} />}
                       label="Menu"
-                      checked={checked}
                       onChange={handleChange}
                       inputProps={{ 'aria-label': 'controlled' }}
                     />
@@ -318,7 +395,6 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                         control={<Android12Switch checked={dashboardSwitch} onChange={handleDashboardSwitchChange} />}
                         label="Dashboard"
-                        checked={checked}
                         onChange={handleChange}
                         inputProps={{ 'aria-label': 'controlled' }}
                       />
@@ -332,19 +408,15 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={detailDataSwitch} onChange={handleDetailDataSwitchChange} />}
                           label="Detail Data"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      detailDataSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={absenSwitch} onChange={handleAbsenSwitchChange} />}
                               label="Absen"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -353,7 +425,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={cutiSakitSwitch} onChange={handleCutiSakitSwitchChange} />}
                               label="Cuti/Sakit"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -362,7 +433,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={reimburseSwitch} onChange={handleReimburseSwitchChange} />}
                               label="Reimburse"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -371,7 +441,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={timesheetSwitch} onChange={handleTimesheetSwitchChange} />}
                               label="Timesheet"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -380,14 +449,11 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={trackingSwitch} onChange={handleTrackingSwitchChange} />}
                               label="Tracking"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
                       </div>
                     </div>
-                      )
-                    }
                     
                   </div>
                   <div className="access__row">
@@ -395,13 +461,10 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={managementSwitch} onChange={handleManagementSwitchChange} />}
                           label="Management"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      managementSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
@@ -431,8 +494,7 @@ const ManagementUserAccess = () => {
                             />
                       </div>
                     </div>
-                      )
-                    }
+
                     
                   </div>
                   <div className="access__row">
@@ -440,7 +502,6 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={manualServiceSwitch} onChange={handleManualServiceSwitchChange} />}
                           label="Manual Service"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
@@ -451,19 +512,15 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={masterDataSwitch} onChange={handleMasterDataSwitchChange} />}
                           label="Master Data"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      masterDataSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={announcementSwitch} onChange={handleAnnouncementSwitchChange} />}
                               label="Announcement"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -472,7 +529,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={claimSwitch} onChange={handleClaimSwitchChange} />}
                               label="Claim"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -481,7 +537,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={cutiSwitch} onChange={handleCutiSwitchChange} />}
                               label="Cuti"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -490,7 +545,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={jabatanSwitch} onChange={handleJabatanSwitchChange} />}
                               label="Jabatan"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -499,7 +553,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={karyawanSwitch} onChange={handleKaryawanSwitchChange} />}
                               label="Karyawan"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -508,7 +561,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={liburSwitch} onChange={handleLiburSwitchChange} />}
                               label="Libur"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -517,7 +569,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={permissionSwitch} onChange={handlePermissionSwitchChange} />}
                               label="Permission"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -526,34 +577,27 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={projectSwitch} onChange={handleProjectSwitchChange} />}
                               label="Project"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
                       </div>
                     </div>
-                      )
-                    }
-                    
+
                   </div>
                   <div className="access__row">
                     <div className="access__row__left">
                       <FormControlLabel
                           control={<Android12Switch checked={parameterSwitch} onChange={handleParameterSwitchChange} />}
                           label="Parameter"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      parameterSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={generalSwitch} onChange={handleGeneralSwitchChange} />}
                               label="General"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -562,14 +606,11 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={reimburseParamSwitch} onChange={handleReimburseParamSwitchChange} />}
                               label="Reimburse"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
                       </div>
                     </div>
-                      )
-                    }
                     
                   </div>
                   <div className="access__row">
@@ -577,19 +618,15 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={reportDataSwitch} onChange={handleReportDataSwitchChange} />}
                           label="Report Data"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      reportDataSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={claimReportSwitch} onChange={handleClaimReportSwitchChange} />}
                               label="Claim"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -598,7 +635,6 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={detailSwitch} onChange={handleDetailSwitchChange} />}
                               label="Detail"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -607,14 +643,11 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={summarySwitch} onChange={handleSummarySwitchChange} />}
                               label="Summary"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
                       </div>
                     </div>
-                      )
-                    }
                     
                   </div>
                   <div className="access__row">
@@ -622,19 +655,15 @@ const ManagementUserAccess = () => {
                       <FormControlLabel
                           control={<Android12Switch checked={uploadSwitch} onChange={handleUploadSwitchChange} />}
                           label="Upload"
-                          checked={checked}
                           onChange={handleChange}
                           inputProps={{ 'aria-label': 'controlled' }}
                         />
                     </div>
-                    {
-                      uploadSwitch && (
                         <div className="access__row__right__parent">
                       <div className="access__row__right">
                         <FormControlLabel
                               control={<Android12Switch checked={absenUploadSwitch} onChange={handleAbsenUploadSwitchChange} />}
                               label="Absen"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
@@ -643,14 +672,11 @@ const ManagementUserAccess = () => {
                         <FormControlLabel
                               control={<Android12Switch checked={apkSwitch} onChange={handleApkSwitchChange} />}
                               label="Apk"
-                              checked={checked}
                               onChange={handleChange}
                               inputProps={{ 'aria-label': 'controlled' }}
                             />
                       </div>
                     </div>
-                      )
-                    }
                     
                   </div>
                 </div>
