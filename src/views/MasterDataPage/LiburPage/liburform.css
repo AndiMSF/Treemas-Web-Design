@@ -25,5 +25,5 @@ svg.react-datepicker__calendar-icon {
     display: flex;
     align-content: center;
     gap : 1% ;
-    width: 50%;
+    width: 100%;
 }

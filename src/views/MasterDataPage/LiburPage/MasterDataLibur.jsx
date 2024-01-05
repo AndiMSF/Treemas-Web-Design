@@ -140,7 +140,7 @@ const MasterDataLibur = () => {
                 icon: "success"
               });
 
-              setApiData((prevData) => prevData.filter(item => item.liburId !== liburId));
+              setApiData((prevData) => prevData.filter(item => item.liburId !== id));
             } else {
               // Gagal dihapus
               Swal.fire({

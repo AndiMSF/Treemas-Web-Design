@@ -4,19 +4,22 @@ import Navbar from "../../../components/Content/Navbar/Navbar"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Button from "../../../components/Elements/Buttons/Button"
 import Form from 'react-bootstrap/Form';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { EXCEL_FILE_BASE64 } from "../../../../constants"
 import FileSaver from "file-saver"
+import { useNavigate } from "react-router-dom"
+import { ExportToExcel } from "../../../../ExportToExcel"
 
 const UploadAbsen = () => {
+  const navigate = useNavigate();
     const infoTopFields = ["NIK", "Nama Lengkap", "Tanggal", "Project", "Status"]
     const [selectedFile, setSelectedFile] = useState(null);
+    const [apiData, setApiData] = useState([])
     // on change states
     const [excelFile, setExcelFile]=useState(null);
     const [excelFileError, setExcelFileError]=useState(null);  
     
     // submit
-    const [excelData, setExcelData]=useState(null);
 
     const fileType=['application/vnd.ms-excel'];
     const handleFileChange = (e) => {
@@ -94,6 +97,36 @@ const UploadAbsen = () => {
         );
       };
 
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view', {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+            
+              setApiData(data.data);
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          }
+        };
+    
+        const token = localStorage.getItem("authToken");
+        if (token) {
+          fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+        } else {
+          navigate("/login");
+        }
+      }, [navigate]);
+
       
     return <div className="content__container">
             <Navbar navbarText="Upload / Absen" />
@@ -111,6 +144,7 @@ const UploadAbsen = () => {
                             <div className="top__container__input__right">
                                 <Button text="Submit" className="unggah__button" onClick={handleFileUpload}/>
                                 <Button text="Unggah Template" className="unggah__button" onClick={handleDownload}/>
+                                {/* <ExportToExcel apiData={apiData} fileName={"Template_Absent_Treemas"}/> */}
                             </div>
                             
                         </div>

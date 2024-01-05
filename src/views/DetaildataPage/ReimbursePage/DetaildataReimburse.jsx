@@ -4,14 +4,52 @@ import Information from "../../../components/Content/Information/Information"
 import BoxInput from "../../../components/Elements/BoxInput/BoxInput"
 import Navbar from "../../../components/Content/Navbar/Navbar"
 import Button from "../../../components/Elements/Buttons/Button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DropdownMenu from "../../../components/Elements/DropdownMenu/DropdownMenu"
+import { useNavigate } from "react-router-dom"
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
+import DataTable from "react-data-table-component"
+import SortIcon from "@material-ui/icons/ArrowDownward";
 
 const DetaildataReimburse = () => {
     const dropdownItems = ["Data Diri", "Data Member"];
     const infoTopFields = ["NIK", "Nama Karyawan", "Hari", "Tanggal", "Project", "Jam Masuk", "Jam Pulang", "Uang Makan", "Transport"]
     const [ informationText, setInformationText] = useState("Data Diri");
     const [totalJamText, setTotalJamText] = useState("Pilih Total Jam")
+    const navigate = useNavigate();
+    const [apiData, setApiData] = useState([])
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/rekap/get-rekap-reimburse', {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              setApiData(data.data);
+
+            } else {
+              setError('Failed to fetch data');
+            }
+          } catch (error) {
+            setError(`Error fetching data: ${error.message}`);
+          }
+        };
+    
+        const token = localStorage.getItem("authToken");
+        if (token) {
+          fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+        } else {
+          navigate("/login");
+        }
+      }, [navigate]);
 
     const handleDropdownChange = (selectedItem) => {
         setInformationText(selectedItem);
@@ -53,11 +91,90 @@ const DetaildataReimburse = () => {
         )
     }
 
-    return <div className="content__container">
-            <Navbar navbarText="Detail Data / Reimburse" />
-                {boxInputComponent}
-            <Information onDropdownChange={handleDropdownChange} informationText={informationText} showDropdown={true} dropdownTitle={informationText} items={dropdownItems} fields={infoTopFields}/>
-        </div>
+    const columns = [
+        {
+            name: "ID",
+            selector: (row) => row.projectId || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },
+        {
+            name: "Nama Project",
+            selector: (row) => row.namaProject || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },
+        {
+            name: "Alamat",
+            selector: (row) => row.lokasi || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },  
+        {
+            name: "No.Telepon",
+            selector: (row) => row.noTlpn || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },  
+        {
+            name: "Reimburse",
+            selector: (row) => 'Rp. ' + row.biayaReimburse || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },  
+        {
+            name: "Jarak",
+            selector: (row) => row.jrkMax + ' m' || '-',
+            cellExport: (row) => row.title || '-',
+            sortable: true
+        },      
+        {
+            name: "Action",
+            sortable: false,
+            cell: (d) => (
+                <>
+                <i
+                    key={`edit-${d.projectId}`}
+                    onClick={() => handleClick(d.projectId)}
+                    style={{cursor: 'pointer' }}
+                    className="first fas fa-pen"
+                ></i>
+                <i
+                    key={`delete-${d.projectId}`}
+                    onClick={() => handleDelete(d.projectId)}
+                    style={{cursor: 'pointer' }}
+                    className="fas fa-trash-alt"
+                ></i>
+                </>
+          )
+        }
+      ];
+    
+      const dataTable = {
+        columns,
+        data: apiData
+      };
+
+    return(
+    <div className="content__container">
+        <Navbar navbarText="Detail Data / Reimburse" />
+        <div className="table__container">
+            <DataTableExtensions {...dataTable}>
+            <DataTable
+            columns={columns}
+            data={apiData}
+            noHeader
+            defaultSortField="id"
+            sortIcon={<SortIcon />}
+            defaultSortAsc={true}
+            pagination
+            highlightOnHover
+            dense
+            />
+            </DataTableExtensions>
+        </div>        
+    </div>
+)
 }
 
 export default DetaildataReimburse

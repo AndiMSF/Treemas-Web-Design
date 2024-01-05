@@ -48,8 +48,7 @@ const DetaildataTracking = (props) => {
   const handleClick = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("authToken");
-    // Default tracking page with user logged in
-    const nik = localStorage.getItem("nik");
+
     if (!token) {
       return navigate("/login");
     }
