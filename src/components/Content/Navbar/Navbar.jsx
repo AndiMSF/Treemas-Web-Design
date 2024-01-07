@@ -100,7 +100,6 @@ const Navbar = (props) => {
           });
             const data = await response.json();
             if (data.status === 'Success') {
-              console.log(data.data);
               let base64ImageData = '';
                 if (data.data != null) {
                   base64ImageData =

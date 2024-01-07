@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import "./reimburse.css"
 import Information from "../../../components/Content/Information/Information"
@@ -127,26 +128,6 @@ const DetaildataReimburse = () => {
             selector: (row) => row.jrkMax + ' m' || '-',
             cellExport: (row) => row.title || '-',
             sortable: true
-        },      
-        {
-            name: "Action",
-            sortable: false,
-            cell: (d) => (
-                <>
-                <i
-                    key={`edit-${d.projectId}`}
-                    onClick={() => handleClick(d.projectId)}
-                    style={{cursor: 'pointer' }}
-                    className="first fas fa-pen"
-                ></i>
-                <i
-                    key={`delete-${d.projectId}`}
-                    onClick={() => handleDelete(d.projectId)}
-                    style={{cursor: 'pointer' }}
-                    className="fas fa-trash-alt"
-                ></i>
-                </>
-          )
         }
       ];
     
