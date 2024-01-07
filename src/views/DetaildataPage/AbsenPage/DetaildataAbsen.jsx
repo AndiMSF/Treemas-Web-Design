@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import "./absen.css"
 import Information from "../../../components/Content/Information/Information"
@@ -11,6 +12,7 @@ import SortIcon from "@material-ui/icons/ArrowDownward";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import { useNavigate } from "react-router-dom/dist";
+import { Dropdown } from "react-bootstrap"
 
 const DetaildataAbsen = () => {
     const navigate = useNavigate();
@@ -20,19 +22,31 @@ const DetaildataAbsen = () => {
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
     const [filteredData, setFilteredData] = useState([]);
+    const [dropdownTitle, setDropdownTitle] = useState("Pilih Jabatan")
+    const [jabatan, setJabatan]  = useState('');
+    const [dropdownDataJabatan, setDropdownDataJabatan] = useState([])
+    const handleDropdownSelect = (selectedJabatan) => {
+      const selectedItem = dropdownDataJabatan.find(jabatan => jabatan.namaJabatan === selectedJabatan)
+
+      setDropdownTitle(selectedJabatan);
+      setJabatan(selectedItem.jabatanId)
+      console.log(selectedItem);
+      filterData(status, jam, selectedItem.jabatanId);
+    };
 
     const handleStatus = (selectedItem) => {
         setStatus(selectedItem)
-        filterData(selectedItem, jam);
+        filterData(selectedItem, jam, selectedItem.jabatanId);
     }
 
     const handleJam = (selectedItem) => {
         setJam(selectedItem)
-        filterData(status, selectedItem);
+        filterData(status, selectedItem, selectedItem.jabatanId);
     }
 
     const filterData = (status, jam) => {
       const filtered = apiData.filter(item => {
+        console.log("ini item "+ JSON.stringify(item, null, 2));
         return (
           // Filter berdasarkan kondisi status
           (status === "Pilih Status" || 
@@ -44,13 +58,16 @@ const DetaildataAbsen = () => {
           // Filter berdasarkan kondisi jam
           (jam === "Pilih Total Jam" || (jam === "Lembur" && item.isLembur === "1") || (jam === "Tidak Lembur" && (item.isLembur === null || item.isLembur === "0")))
           // Tambahkan kondisi lain jika diperlukan
+          &&
+          // Filter berdasarkan kondisi jabatanId
+          (dropdownTitle === "Pilih Jabatan" || (item.role && jabatan === item.role.jabatanId))
         );
       });
     
       setFilteredData(filtered);
     }
 
-
+    // Absen Data
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -106,6 +123,47 @@ const DetaildataAbsen = () => {
       if (error) {
         return <div>Error: {error}</div>;
       }
+
+      // Jabatan
+      useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/jabatan-view', {
+              method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Sertakan token di sini
+              },
+            });
+              const data = await response.json();
+              if (data.status === 'Success') {
+                setDropdownDataJabatan(data.data);
+                console.log(data);
+                
+              } else {
+                setError('Failed to fetch data');
+              }
+            } catch (error) {
+              setError(`Error fetching data: ${error.message}`);
+            } 
+          };
+  
+        const token = localStorage.getItem("authToken")
+        if (token) {
+          setIstoken(token)
+          fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+  
+          // request ke server setiap 5detik untuk memperbarui data secara otomatis tapi bisa memperlambat server?
+        //   const intervalId = setInterval(fetchData, 5000); // Polling setiap 5 detik (5000 milidetik)
+  
+        //   // Bersihkan interval saat komponen di-unmount
+        //   return () => {
+        //     clearInterval(intervalId);
+        //   };
+        }else{
+          navigate("/login");
+        }
+      }, [navigate])
     
       const columns = [
         {
@@ -179,7 +237,19 @@ const DetaildataAbsen = () => {
                     <div className="left__container__input">
                         <DropdownMenu onDropdownChange={handleStatus} items={["Cuti", "Other", "Sakit", "WFH"]} title={status} />
                         <DropdownMenu onDropdownChange={handleJam} items={["Lembur", "Tidak Lembur"]} title={jam}/>
-                        <DropdownMenu title="Pilih Project"/>                        
+                        <Dropdown onSelect={handleDropdownSelect} className="user__access__dropdown" style={{width: '100%'}}>
+                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                        {(dropdownDataJabatan.namaJabatan) || (dropdownTitle)}
+                        </Dropdown.Toggle>
+          
+                        <Dropdown.Menu>
+                          {dropdownDataJabatan.map((item, index) => (
+                            <Dropdown.Item key={index} eventKey={item.namaJabatan}>
+                              {item.namaJabatan}
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Menu>
+                      </Dropdown>                        
                     </div>
                                     
                   </div>
