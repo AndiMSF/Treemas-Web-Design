@@ -14,7 +14,7 @@ const DataKaryawan = (props) => {
     const [project, setProject] = useState("Pilih")
 
     const [nik, setNik] = useState('')
-    const [androidId, setAndroidId] = useState('')
+    const [handsetImei, setHandsetImei] = useState('')
     const [tanggalBergabung, setTanggalBergabung] = useState('')
     const [hakCuti, setHakCuti] = useState('')
     const [isLeader, setIsLeader] = useState('')
@@ -77,10 +77,10 @@ const DataKaryawan = (props) => {
                         <p>Android ID</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="Android ID" value={props.onFormData.androidId}
+                    <FormControl type="text" placeholder="Android ID" value={props.onFormData.handsetImei}
                     onChange={(e) => {
-                        setAndroidId(e.target.value)
-                        props.onAndroidIdChange(e.target.value)
+                        setHandsetImei(e.target.value)
+                        props.onHandsetImeiChange(e.target.value)
                     } }/>     
                     </div>
                 </div>

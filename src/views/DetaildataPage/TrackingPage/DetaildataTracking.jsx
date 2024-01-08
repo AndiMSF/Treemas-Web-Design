@@ -73,7 +73,18 @@ const DetaildataTracking = (props) => {
         }
       );
 
+      
+
+      if(response.data.success === false) {
+      Swal.fire({
+        title: "Error!",
+        text: response.data.message,
+        icon: "error",
+      });
+    } else {
       setMapPositionData(response.data.data);
+      console.log("RESPONSE "+JSON.stringify(response.data, null, 2));
+    }
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -119,10 +130,6 @@ const DetaildataTracking = (props) => {
 
   if (loadError) {
     return <div>Error loading maps</div>;
-  }
-
-  if (!isLoaded) {
-    return <div>Loading maps</div>;
   }
 
   const userPhotoUrl = localStorage.getItem("foto");

@@ -198,10 +198,10 @@ const FormPages = (props) => {
     }));
   };
 
-  const handleAndroidId = (newAndroidId) => {
+  const handleHandsetImei = (newHandsetImei) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      androidId: newAndroidId,
+      handsetImei: newHandsetImei,
     }));
   };
 
@@ -428,8 +428,9 @@ const FormPages = (props) => {
       // Lakukan logika untuk mode edit di sini
       const fetchDataProject = async () => {
         try {
+          console.log("MASUK EDIT");
           const response = await fetch(
-            `http://localhost:8081/api/master-data/karyawan-view/${id}`,
+            `https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${id}`,
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -439,12 +440,14 @@ const FormPages = (props) => {
             }
           );
           const data = await response.json();
+          console.log(data);
           if (data.status === "Success") {
             setApiDataKaryawan(data.data.karyawan);
             setApiDataSys(data.data.sysUser);
             setApiDataImg(data.data.karyawanImage);
-            console.log(data);
+            console.log("DATA KARYAWAN EDIT "+data);
             // Update the initialFormData with the jabatanId
+            console.log("INI DATA EDIT JABATAN KARYAWAN EDIT "+data.data.sysUser.role.jabatanId);
             setFormData({
               ...initialFormData,
               selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
@@ -485,6 +488,7 @@ const FormPages = (props) => {
     } else if (props.isProfile) {
       const fetchDataProject = async () => {
         try {
+          console.log("Masuk Profile");
           const response = await fetch(
             `https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${nik}`,
             {
@@ -668,7 +672,7 @@ const FormPages = (props) => {
 
         // Data Karyawan
         nik: formData.nik,
-        handsetImei: formData.handsetImei,
+        handsetImei: formData.handsetImei === "" ? null : formData.handsetImei,
         selectedRole: formData.selectedRole,
         selectedProject: formData.selectedProject,
         tanggalBergabung: formData.tanggalBergabung,
@@ -897,7 +901,7 @@ const FormPages = (props) => {
                 dataJabatan={apiDataJabatan}
                 dataProject={apiDataProject}
                 onNikChange={handleNik}
-                onAndroidIdChange={handleAndroidId}
+                onHandsetImeiChange={handleHandsetImei}
                 onTanggalBergabungChange={handleTanggalBergabung}
                 onHakCutiChange={handleHakCuti}
                 onJabatanChange={handleJabatan}
