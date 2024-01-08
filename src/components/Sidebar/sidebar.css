@@ -1,3 +1,27 @@
+/* Add these styles to your existing CSS file */
+.parent__container.sidebar-open {
+    display: flex;
+    overflow: hidden; /* Hide the sidebar when it's closed */
+    padding-left: 15px;
+  }
+  
+.sidebar__container {
+    width: 250px; /* Adjust the width of the sidebar */
+    transition: margin-left 0.3s ease;
+    width: 100%;
+    overflow: hidden; 
+}
+  
+  
+  .hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: auto; /* Pushes the button to the right */
+    margin-right: 10px; /* Adjust the spacing */
+    color: #FFFFFF;
+}
 
 
 .sidebar__container::-webkit-scrollbar {
@@ -125,6 +149,3 @@ ul .color:hover {
 ul .non_color:hover {
     background-color: var(--selected-box);
 }
-
-
-

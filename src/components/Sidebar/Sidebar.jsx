@@ -8,6 +8,7 @@ import DropdownMenu from "./DropdownMenu/DropdownMenu"
 import axios from "axios"
 
 const Sidebar = ({children}) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = async (e) => {
@@ -172,13 +173,23 @@ const Sidebar = ({children}) => {
         });
       };
 
-    return <div className="parent__container">
-        <div className="sidebar__container">
+      const handleSidebarToggle = () => {
+        setIsSidebarOpen((prevIsOpen) => !prevIsOpen);
+      };
+
+    return   <div className={`parent__container`}>
+          <div className={`sidebar__container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+          <button className="hamburger-button" onClick={handleSidebarToggle}>
+            ☰ {/* You can replace this with your hamburger icon */}
+            </button>
+      
             <div className="logo">
                 <Link to='/dashboard'>
                     <img src={Logo} alt="Logo Treemas" />
                 </Link>  
             </div>
+           
+
             
             <nav>
                 <ul>
@@ -248,9 +259,7 @@ const Sidebar = ({children}) => {
                     <DropdownMenu onClick={handleLogout} text="Logout" isActive={itemsState.logout}/>
                 </ul>
             </nav>
-
-        </div>
-
+          </div>
         <main>{children}</main>
     </div>
 }

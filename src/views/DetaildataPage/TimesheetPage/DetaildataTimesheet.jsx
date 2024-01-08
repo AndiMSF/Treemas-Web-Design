@@ -12,6 +12,7 @@ import DataTable from "react-data-table-component"
 import SortIcon from "@material-ui/icons/ArrowDownward";
 import { useNavigate } from "react-router-dom"
 import { Dropdown } from "react-bootstrap";
+
 const DetaildataTimesheet = () => {
     const navigate = useNavigate();
     const dropdownItems = ["Data Diri", "Data Member"];
@@ -19,9 +20,19 @@ const DetaildataTimesheet = () => {
     const [totalJamText, setTotalJamText] = useState("Pilih Total Jam");
     const infoTopFields = ["NIK", "Nama Karyawan", "Hari", "Tanggal", "Project", "Jam Masuk", "Jam Pulang", "Total Jam Kerja", "Overtime", "Catatan"];
     const [apiData, setApiData] = useState([])
+
     const handleDropdownChange = (selectedItem) => {
         setInformationText(selectedItem);
     }
+
+    const formatTimestamp = (timestamp) => {
+      const date = new Date(timestamp);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+      const year = date.getFullYear();
+    
+      return `${day}-${month}-${year}`;
+    };
 
     const handleTotalJam = (selectedItem) => {
         setTotalJamText(selectedItem)
@@ -104,8 +115,8 @@ const DetaildataTimesheet = () => {
         },  
         {
             name: "Tanggal",
-            selector: (row) => row.tglMsk || '-',
-            cellExport: (row) => row.tglMsk || '-',
+            selector: (row) =>  formatTimestamp (row.tglMsk) || '-',
+            cellExport: (row) =>  formatTimestamp (row.tglMsk) || '-',
             sortable: true
         },  
         {
@@ -178,8 +189,8 @@ const DetaildataTimesheet = () => {
             },  
             {
                 name: "Tanggal",
-                selector: (row) => row.tglMsk || '-',
-                cellExport: (row) => row.tglMsk || '-',
+                selector: (row) =>  formatTimestamp (row.tglMsk) || '-',
+                cellExport: (row) =>  formatTimestamp (row.tglMsk) || '-',
                 sortable: true
             },  
             {
@@ -249,8 +260,8 @@ const DetaildataTimesheet = () => {
             },  
             {
                 name: "Tanggal",
-                selector: (row) => row.tglMsk || '-',
-                cellExport: (row) => row.tglMsk || '-',
+                selector: (row) =>  formatTimestamp (row.tglMsk) || '-',
+                cellExport: (row) =>  formatTimestamp (row.tglMsk) || '-',
                 sortable: true
             },  
             {
