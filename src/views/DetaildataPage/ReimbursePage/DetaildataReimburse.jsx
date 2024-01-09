@@ -83,9 +83,11 @@ const DetaildataReimburse = () => {
   let dataTable;
 
   if( informationText === "Data Diri") {
-      api = ' '
+      api = 'https://treemas-api-405402.et.r.appspot.com/api/rekap/get-rekap-reimburse'
       console.log("INI DATA DIRI");
   // Data
+    const nik = localStorage.getItem("nik")
+    const userName = localStorage.getItem("userName")
 
     columns = [
         {
@@ -152,10 +154,26 @@ const DetaildataReimburse = () => {
     return(
     <div className="content__container">
         <Navbar navbarText="Detail Data / Reimburse" />
+        <div className="input__container">
+            <Dropdown onSelect={handleDropdownChange}>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                  {(informationText) || (dropdownItems)}
+                </Dropdown.Toggle>
+  
+                <Dropdown.Menu>
+                  {dropdownItems.map((item, index) => (
+                    <Dropdown.Item key={index} eventKey={item}>
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>       
+
         <div className="table__container">
             <DataTableExtensions {...dataTable}>
             <DataTable
-            columns={columns}
+           columns={columns}
             data={apiData}
             noHeader
             defaultSortField="nik"

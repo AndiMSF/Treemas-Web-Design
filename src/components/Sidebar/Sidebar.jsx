@@ -11,6 +11,22 @@ const Sidebar = ({children}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
+  const handleDropdownToggle = (itemName) => {
+    setIsParent((prevState) => ({
+      ...Object.keys(prevState).reduce((acc, key) => {
+        acc[key] = key === itemName ? !prevState[key] : false;
+        return acc;
+      }, {}),
+    }));
+
+    setItemsState((prevState) => ({
+      ...Object.keys(prevState).reduce((acc, key) => {
+        acc[key] = key === itemName ? !prevState[key] : {};
+        return acc;
+      }, {}),
+    }));
+  };
+
   const handleLogout = async (e) => {
     const token = localStorage.getItem("authToken");
     
@@ -177,7 +193,7 @@ const Sidebar = ({children}) => {
         setIsSidebarOpen((prevIsOpen) => !prevIsOpen);
       };
 
-    return   <div className={`parent__container`}>
+    return  <div className={`parent__container`}>
           <div className={`sidebar__container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
           <button className="hamburger-button" onClick={handleSidebarToggle}>
             ☰ {/* You can replace this with your hamburger icon */}
@@ -189,16 +205,15 @@ const Sidebar = ({children}) => {
                 </Link>  
             </div>
            
-
             
             <nav>
-                <ul>
+                <ul>                
                     <li className={isParent.detailData ? "color" : "non_color"} onClick={() => handleDropdown("detailData")}><div className={isParent.detailData ? "active" : "non_active"}></div><p>Detail Data</p><i className={isParent.detailData? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/></li>
                     {isParent.detailData && (
                         <>
                             <DropdownMenu onClick={() => handleClick("detailData", "absen")} link="/detail-data/absen-view" text="Absen" isActive={itemsState.detailData.absen}/>
                             <DropdownMenu onClick={() => handleClick("detailData", "cutiSakit")} link="/detail-data/cutisakit-view" text="Cuti/Sakit" isActive={itemsState.detailData.cutiSakit}/>
-                            <DropdownMenu onClick={() => handleClick("detailData", "reimburse")} link="/detail-data/reimburse-view" text="Reimburse" isActive={itemsState.detailData.reimburse}/>
+                            <DropdownMenu onClick={() => handleClick("detailData", "reimburse")} link="/detail-data/reimburse-view" text="Reimburse" isActive={itemsState.detailData.reimburse}/> 
                             <DropdownMenu onClick={() => handleClick("detailData", "timesheet")} link="/detail-data/timesheet-view" text="Timesheet" isActive={itemsState.detailData.timesheet}/>
                             <DropdownMenu onClick={() => handleClick("detailData", "tracking")} link="/detail-data/tracking-view" text="Tracking" isActive={itemsState.detailData.tracking}/>
                         </>

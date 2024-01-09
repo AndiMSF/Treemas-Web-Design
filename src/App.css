@@ -49,7 +49,7 @@ main {
   min-width: 88vw;
 }
 
-  .content__container {
+.content__container {
     display: flex;
     flex-direction: column;
     padding: 3rem 2rem;

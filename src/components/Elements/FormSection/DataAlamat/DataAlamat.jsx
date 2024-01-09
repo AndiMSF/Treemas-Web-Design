@@ -63,7 +63,7 @@ const DataAlamat = (props) => {
                         <p>Kode Pos</p>
                     </div>          
                     <div className="form__row__right">
-                    <FormControl type="text" placeholder="No KTP" value={props.onFormData.kodePos}
+                    <FormControl type="text" placeholder="Kode Pos" value={props.onFormData.kodePos}
                     onChange={(e) => {
                         setKodePos(e.target.value)
                         props.onKodePosChange(e.target.value)

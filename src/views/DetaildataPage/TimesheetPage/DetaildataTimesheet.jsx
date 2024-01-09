@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import "./timesheet.css"
 import Information from "../../../components/Content/Information/Information"

@@ -13,24 +13,33 @@ const UploadApk = () => {
 
     return <div className="content__container">            
             <Navbar navbarText="Upload / Apk" />
-                <div className="container__ap">
-                    <div className="input__container">
-                        
-                        <div className="left__container__input__apk">
-                            <p>Upload .Apk</p>                      
-                            <Form.Group controlId="formFile">                              
-                            <Form.Control type="file" />
-                            </Form.Group>            
-                        </div>
-    
-                        <div className="form__row__bottom">                
-                        <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
-                        </div>   
+            <div className="form__container__apk">
+                    <div className="form__container__top__apk">
+                        <h1>File .apk</h1>
+                        <div className="horizontal__line"></div>
+                    </div> 
+                       
+                <form>
+                <div className="form__row">
+                <div className="form__row__left">
+                    <p>File .apk</p>
+                </div>
 
-                    </div>
-                </div>   
-        </div>
-   
+                <div className="form__row__right">
+                <Form.Group controlId="formFile">                              
+                <Form.Control type="file" />
+                </Form.Group>   
+                </div>
+                </div>
+
+                <div className="form__row__bottom">
+                    <Button className="submit__button" text="Submit" onClick={handleSubmit}/>
+                 </div>
+                </form>
+                
+            </div>  
+        </div>          
+        
 }
 
 export default UploadApk

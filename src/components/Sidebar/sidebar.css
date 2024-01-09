@@ -3,7 +3,7 @@
     display: flex;
     overflow: hidden; /* Hide the sidebar when it's closed */
     padding-left: 15px;
-  }
+}
   
 .sidebar__container {
     width: 250px; /* Adjust the width of the sidebar */
@@ -12,8 +12,7 @@
     overflow: hidden; 
 }
   
-  
-  .hamburger-button {
+.hamburger-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -22,7 +21,6 @@
     margin-right: 10px; /* Adjust the spacing */
     color: #FFFFFF;
 }
-
 
 .sidebar__container::-webkit-scrollbar {
     width: 0;
@@ -36,7 +34,6 @@
 .sidebar__container::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
-
 
 .logo {
     height: 20vh;
@@ -112,7 +109,7 @@ i {
     cursor: grab;
 }
 
-.active{
+.active {
     position: absolute;
     width: 3px;
     left: -2px;

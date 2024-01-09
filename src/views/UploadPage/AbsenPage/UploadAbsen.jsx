@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import "./absen.css"
 import Information from "../../../components/Content/Information/Information"
@@ -10,6 +11,10 @@ import { EXCEL_FILE_BASE64 } from "../../../../constants"
 import FileSaver from "file-saver"
 import { useNavigate } from "react-router-dom"
 import { ExportToExcel } from "../../../../ExportToExcel"
+import DataTable from "react-data-table-component"
+import SortIcon from "@material-ui/icons/ArrowDownward";
+import DataTableExtensions from "react-data-table-component-extensions";
+import "react-data-table-component-extensions/dist/index.css";
 
 const UploadAbsen = () => {
   const navigate = useNavigate();
@@ -101,7 +106,7 @@ const UploadAbsen = () => {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view', {
+            const response = await fetch('', {
             method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
               'Content-Type': 'application/json',
@@ -129,6 +134,45 @@ const UploadAbsen = () => {
       }, [navigate]);
 
       
+
+     const columns = [
+        {
+            name: "NIK",
+            // selector: (row) => nik || '-',
+            // cellExport: (row) => nik || '-',
+            sortable: true
+        },
+        {
+            name: "Nama Lengkap",
+            // selector: (row) => userName || '-',
+            // cellExport: (row) => userName|| '-',
+            sortable: true
+        },        
+        {
+            name: "Tanggal",
+            // selector: (row) => row.tanggal || '-',
+            // cellExport: (row) => row.tanggal || '-',
+            sortable: true
+        },  
+        {
+            name: "Project",
+            // selector: (row) => row.namaProject || '-',
+            // cellExport: (row) => row.namaProject || '-',
+            sortable: true
+        },  
+        {
+            name: "Status",
+            // selector: (row) => row.jamMsk || '-',
+            // cellExport: (row) => row.jamMsk || '-',
+            sortable: true
+        },
+      ];
+    
+      const dataTable = {
+        columns,
+        data: apiData
+      };
+      
     return <div className="content__container">
             <Navbar navbarText="Upload / Absen" />
                 <div className="input__container">
@@ -139,29 +183,34 @@ const UploadAbsen = () => {
                                 <Form.Label>File Xlsx {excelFileError&&<div className='text-danger'
                                 style={{marginTop:5+'px'}}>{excelFileError}</div>}</Form.Label>
                                 <Form.Control type="file" onChange={handleFileChange}/>
-                            </Form.Group>
-                                
-                                </div>
+                            </Form.Group>                              
+                              </div>
+
                             <div className="top__container__input__right">
                                 <Button text="Submit" className="unggah__button" onClick={handleFileUpload}/>
                                 <Button text="Unggah Template" className="unggah__button" onClick={handleDownload}/>
                                 {/* <ExportToExcel apiData={apiData} fileName={"Template_Absent_Treemas"}/> */}
-                            </div>
-                            
-                        </div>
-                        <div className="bottom__container__input__absen">
-                            <BoxInput placeholder="Nama" />
-                            <BoxInput placeholder="Tanggal" />
-                            <Button text="Pencarian" className="search__button" />
-                        </div>
-                        
-                    </div>
-                    <div className="right__container__input">
-                       
-                    </div>
-                </div>
-            <Information informationText="Absen" showDropdown={false} fields={infoTopFields}/>
-        </div>
+                            </div>                            
+                        </div>                                               
+                    </div> 
+                    
+            </div> 
+            <div className="table__container">
+                    <DataTableExtensions {...dataTable}>
+                    <DataTable
+                    columns={columns}
+                    data={apiData}
+                    noHeader
+                    defaultSortField="nik"
+                    sortIcon={<SortIcon />}
+                    defaultSortAsc={true}
+                    pagination
+                    highlightOnHover
+                    dense
+                    />
+                    </DataTableExtensions>
+              </div>             
+    </div>
 
 }
 
