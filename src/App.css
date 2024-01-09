@@ -116,6 +116,20 @@ input.filter-text {
   cursor: auto;
 }
 
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Make sure the loading overlay is above other elements */
+}
+
+
 
 /* Media query untuk ukuran layar max hp (smartphone) */
 @media (max-width: 1500px) {

@@ -45,9 +45,12 @@ const Dashboard = () => {
             
           } else {
             setError('Failed to fetch data');
+            
           }
         } catch (error) {
-          setError(`Error fetching data: ${error.message}`);
+          console.log("ERROR "+error);
+          setError(`Error fetching data: ${error}`);
+          
         } 
       };
       
