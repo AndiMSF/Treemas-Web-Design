@@ -81,7 +81,7 @@ const ForgotPass = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     />
                     </InputGroup>                
-                    <p><a onClick={() => navigate("/login")}>Back to Login?</a></p>                                             
+                    <p><a onClick={() => navigate("/login")} className='forgot__password'>Back to Login?</a></p>                                             
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Submit
                         </button>                        

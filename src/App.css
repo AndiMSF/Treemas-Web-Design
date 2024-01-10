@@ -45,6 +45,71 @@
   height: 100%;
 }
 
+.sidebar__container__close {
+  width: 4vw;
+  background-color: var(--almost-black);
+  color: var(--unselected-icon);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+  height: 100%;
+}
+
+.main__container__close {
+  width: 98vw;
+}
+
+.nav__container__close {
+  display: none;
+}
+
+.logo__close {
+  display: none;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: auto; /* Pushes the button to the right */
+    margin-right: 20px; /* Adjust the spacing */
+    margin-top: 20px;
+    color: #FFFFFF;
+    padding: 0.25rem;
+    border: 1px solid transparent; 
+
+}
+
+.hamburger-button__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  align-self: center;
+  margin-top: 20px;
+  padding: 0.25rem;
+  color: #FFFFFF;
+  border: 1px solid transparent; 
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.hamburger-button:hover,
+.hamburger-button__close:hover {
+    border: 1px solid transparent; 
+    cursor: pointer; 
+    transition: all 0.3s;
+    transform: translateY(-3px); /* Move the button up by 3 pixels on hover */
+}
+
+.hamburger-button__close:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+
 main {
   min-width: 88vw;
 }
@@ -138,6 +203,10 @@ input.filter-text {
   .sidebar__container {
       display: none;
   }
+
+  .sidebar__container__close {
+    display: none;
+}
 
   main {
       width: 100vw;

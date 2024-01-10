@@ -8,7 +8,7 @@ import DropdownMenu from "./DropdownMenu/DropdownMenu"
 import axios from "axios"
 
 const Sidebar = ({children}) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const navigate = useNavigate();
 
   const handleDropdownToggle = (itemName) => {
@@ -190,23 +190,23 @@ const Sidebar = ({children}) => {
       };
 
       const handleSidebarToggle = () => {
-        setIsSidebarOpen((prevIsOpen) => !prevIsOpen);
+        setIsSidebarOpen(!isSidebarOpen);
       };
 
     return  <div className={`parent__container`}>
-          <div className={`sidebar__container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
-          <button className="hamburger-button" onClick={handleSidebarToggle}>
-            ☰ {/* You can replace this with your hamburger icon */}
+          <div className={`${isSidebarOpen ? 'sidebar__container' : 'sidebar__container__close'}`}>
+            <button className={`${isSidebarOpen ? 'hamburger-button' : 'hamburger-button__close'}`} onClick={handleSidebarToggle}>
+              ☰ {/* You can replace this with your hamburger icon */}
             </button>
       
-            <div className="logo">
+            <div className={`${isSidebarOpen ? 'logo__sidebar' : 'logo__close'}`}>
                 <Link to='/dashboard'>
                     <img src={Logo} alt="Logo Treemas" />
                 </Link>  
             </div>
            
             
-            <nav>
+            <nav className={`${isSidebarOpen ? 'nav__container' : 'nav__container__close'}`}>
                 <ul>                
                     <li className={isParent.detailData ? "color" : "non_color"} onClick={() => handleDropdown("detailData")}><div className={isParent.detailData ? "active" : "non_active"}></div><p>Detail Data</p><i className={isParent.detailData? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}/></li>
                     {isParent.detailData && (
@@ -275,7 +275,7 @@ const Sidebar = ({children}) => {
                 </ul>
             </nav>
           </div>
-        <main>{children}</main>
+        <main className={`${isSidebarOpen ? 'main__container' : 'main__container__close'}`}>{children}</main>
     </div>
 }
 

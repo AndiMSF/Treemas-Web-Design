@@ -1,26 +1,12 @@
+
+
+
 /* Add these styles to your existing CSS file */
-.parent__container.sidebar-open {
-    display: flex;
-    overflow: hidden; /* Hide the sidebar when it's closed */
-    padding-left: 15px;
+.parent__container.sidebar-close {
+    background-color: red;
 }
   
-.sidebar__container {
-    width: 250px; /* Adjust the width of the sidebar */
-    transition: margin-left 0.3s ease;
-    width: 100%;
-    overflow: hidden; 
-}
-  
-.hamburger-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    margin-left: auto; /* Pushes the button to the right */
-    margin-right: 10px; /* Adjust the spacing */
-    color: #FFFFFF;
-}
+
 
 .sidebar__container::-webkit-scrollbar {
     width: 0;
@@ -35,13 +21,27 @@
     background-color: transparent;
 }
 
-.logo {
+.sidebar__container__close::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+}
+
+.sidebar__container__close::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.sidebar__container__close::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.logo__sidebar {
     height: 20vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 1.25rem;
-    flex: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .logo img {
@@ -106,7 +106,7 @@ i {
 
 .dropdown__item a:hover {
     color: var(--selected-text);
-    cursor: grab;
+    cursor: pointer;
 }
 
 .active {

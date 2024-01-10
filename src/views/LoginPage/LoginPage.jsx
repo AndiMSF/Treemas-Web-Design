@@ -159,7 +159,7 @@ const LoginPage = () => {
                 </InputGroup>            
                      {/* Display the error message if it exists */}
                         {passwordError && <div className="error-message">{passwordError}</div>}                
-                        <p><a onClick={handleForgotPassword}>Forgot Password?</a></p>
+                        <p><a className="forgot__password" onClick={handleForgotPassword}>Forgot Password?</a></p>
                         <button className="login__button" type="button" onClick={handleLogin}>
                             Login
                         </button>                        

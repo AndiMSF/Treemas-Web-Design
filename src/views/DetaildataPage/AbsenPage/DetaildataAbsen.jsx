@@ -139,7 +139,8 @@ const DetaildataAbsen = () => {
               if (data.status === 'Success') {
                 setDropdownDataJabatan(data.data);
                 console.log(data);
-                
+                // Filter data immediately after fetching jabatan data
+              
               } else {
                 setError('Failed to fetch data');
               }

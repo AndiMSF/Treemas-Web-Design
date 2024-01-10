@@ -184,6 +184,21 @@
     width: 100%;
 }
 
+.data__member {
+    height: auto;
+}
+
+.data__member h1 {
+    color: #1C1D21;
+    margin-left: 1rem;
+    font-size: 1.15rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.3px;
+    font-family: 'Mulish', sans-serif;
+}
+
 
 /* Media query untuk ukuran layar max hp (smartphone) */
 @media (max-width: 767px) {

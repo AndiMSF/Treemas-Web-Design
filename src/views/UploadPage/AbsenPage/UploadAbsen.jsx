@@ -23,6 +23,52 @@ const UploadAbsen = () => {
     const infoTopFields = ["NIK", "Nama Lengkap", "Tanggal", "Project", "Status"]
     const [selectedFile, setSelectedFile] = useState(null);
     const [apiData, setApiData] = useState([])
+
+    // Get Data Absen
+    useEffect(() => {
+      const fetchData = async () => {
+        console.log("MASUK USE EPEK");
+        try {
+          const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/upload/get-absen', {
+          method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Sertakan token di sini
+          },
+        });
+        // Tambahkan penanganan kesalahan di sini
+          const data = await response.json();
+          if (data.success === true) {
+            setApiData(data.data);
+            console.log(data);
+            
+          }
+        } catch (error) {
+          if (error.message.includes('HTTP error!')) {
+            const statusCode = parseInt(error.message.split(' ').pop());
+            console.log("Status Code:", statusCode);
+        
+            if (statusCode === 401) {
+              console.log("Masuk 401");
+              // Token expired, remove token from local storage and redirect to login
+              localStorage.removeItem("authToken");
+            } else {
+              console.log("Gak Masuk 401");
+            }
+          } else {
+            console.log("Gak Masuk 401");
+          }
+        }
+      };
+  
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        fetchData(); // Panggil fungsi fetchData setelah mendapatkan token
+      } else {
+        navigate("/login");
+      }
+    }, [navigate]);
+
     // submit
     const [excelData, setExcelData]=useState({
       nik: '',
@@ -266,34 +312,50 @@ const UploadAbsen = () => {
      const columns = [
         {
             name: "NIK",
-            // selector: (row) => nik || '-',
-            // cellExport: (row) => nik || '-',
+            selector: (row) => row.nik || '-',
+            cellExport: (row) => row.nik || '-',
             sortable: true
         },
         {
             name: "Nama Lengkap",
-            // selector: (row) => userName || '-',
-            // cellExport: (row) => userName|| '-',
+            selector: (row) => row.nama || '-',
+            cellExport: (row) => row.nama|| '-',
             sortable: true
         },        
         {
             name: "Tanggal",
-            // selector: (row) => row.tanggal || '-',
-            // cellExport: (row) => row.tanggal || '-',
+            selector: (row) => row.tglAbsen || '-',
+            cellExport: (row) => row.tglAbsen || '-',
             sortable: true
         },  
-        {
+        { 
             name: "Project",
-            // selector: (row) => row.namaProject || '-',
-            // cellExport: (row) => row.namaProject || '-',
+            selector: (row) => row.projectId.namaProject || '-',
+            cellExport: (row) => row.projectId.namaProject || '-',
             sortable: true
         },  
         {
-            name: "Status",
-            // selector: (row) => row.jamMsk || '-',
-            // cellExport: (row) => row.jamMsk || '-',
-            sortable: true
-        },
+          name: "Status",
+          selector: (row) => {
+            if (row.isApprove === "1") {
+              return "Disetujui";
+            } else if (row.isApprove === "0") {
+              return "Ditolak";
+            } else {
+              return "Menunggu";
+            }
+          },
+          cellExport: (row) => {
+            if (row.isApprove === "1") {
+              return "Disetujui";
+            } else if (row.isApprove === "0") {
+              return "Ditolak";
+            } else {
+              return "-";
+            }
+          },
+          sortable: true
+        }
       ];
     
       const dataTable = {

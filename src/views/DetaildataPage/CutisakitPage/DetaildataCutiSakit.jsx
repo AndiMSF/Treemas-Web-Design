@@ -82,33 +82,28 @@ const DetaildataCutiSakit = (props) => {
         }
         const data = await response.json();
         if (data.status === 'Success') {
-          // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
-            if (dropdownItems === "Cuti") {
-               // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
-                let combinedData = data.data.setujuAtauTolak.concat(data.data.menunggu);
-                console.log(combinedData);
-                // Mengganti nilai isApproved menjadi string yang sesuai
-                combinedData = combinedData.map(item => ({
-                    ...item,
-                    status: item.isApproved === "1" ? "DISETUJUI" : item.isApproved === "0" ? "DITOLAK" : "MENUNGGU",
-                }));
-
-              setApiData(combinedData);
-              } else if (dropdownItems === "Sakit") {
-              // Menggabungkan data setujuAtauTolak dan menunggu ke dalam satu variabel
-              let combinedData = data.data.setujuAtauTolak.concat(data.data.menunggu);
-                console.log(combinedData);              
-              // Mengganti nilai isApproved menjadi string yang sesuai
-              combinedData = combinedData.map(item => ({
-                  ...item,
-                  status: item.isApproved === "1" ? "DISETUJUI" : item.isApproved === "0" ? "DITOLAK" : "MENUNGGU",
-              }));
-
-              setApiData(combinedData);
-              }
-            } else {
-              setError("Failed to fetch data");
-            }
+          let combinedData = [];
+        
+          // Handle data.data.setujuAtauTolak
+          if (dropdownItems === "Sakit") {
+            combinedData = data.data.setujuAtauTolak.map(item => ({
+              ...item,
+              status: item.isApproved === "1" ? "DISETUJUI" : item.isApproved === "0" ? "DITOLAK" : "",
+            }));
+          }
+        
+          // Handle data.data.menunggu
+          const menungguData = data.data.menunggu.map(item => ({
+            ...item,
+            status: item.isApproved == null ? "MENUNGGU" : "",
+          }));
+        
+          combinedData = combinedData.concat(menungguData);
+        
+          setApiData(combinedData);
+        } else {
+          setError("Failed to fetch data");
+        }
       } catch (error) {
         if (error.message.includes('HTTP error!')) {
           const statusCode = parseInt(error.message.split(' ').pop());

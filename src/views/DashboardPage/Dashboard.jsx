@@ -8,6 +8,10 @@ import Information from "../../components/Content/Information/Information"
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from "react";
 import { useNavigate  } from "react-router-dom";
+import DataTable from "react-data-table-component";
+import SortIcon from "@material-ui/icons/ArrowDownward";
+import DataTableExtensions from "react-data-table-component-extensions";
+
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 
@@ -25,8 +29,11 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [isToken, setIstoken] = useState('');
     const [apiData, setApiData] = useState([]);
+    const [apiDataMemberHari, setApiDataMemberHari] = useState([]);
+    const [apiDataMemberTahun, setApiDataMemberTahun] = useState([]);
     const [error, setError] = useState(null);
 
+    // Diri Sendiri Tahunan
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -63,6 +70,82 @@ const Dashboard = () => {
           navigate("/login");
         }
       }, [navigate, isToken])
+
+      // Member Harian
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/data-kehadiran-member-hari', {
+            method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // Sertakan token di sini
+            },
+          });
+            const data = await response.json();
+            if (data.status === 'Success') {
+              setApiDataMemberHari(data.data);
+              console.log(data);
+              
+              
+            } else {
+              setError('Failed to fetch data');
+              
+            }
+          } catch (error) {
+            console.log("ERROR "+error);
+            setError(`Error fetching data: ${error}`);
+            
+          } 
+        };
+        
+          const token = localStorage.getItem("authToken")
+          if (token) {
+            setIstoken(token)
+            fetchData();
+            console.log('login sukses');
+          }else{
+            navigate("/login");
+          }
+        }, [navigate, isToken])
+
+        // Member Tahun
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const response = await fetch('https://treemas-api-405402.et.r.appspot.com/api/dashboard/data-kehadiran-member', {
+              method: 'GET', // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`, // Sertakan token di sini
+              },
+            });
+              const data = await response.json();
+              if (data.status === 'Success') {
+                setApiDataMemberTahun(data.data);
+                console.log(data);
+                
+                
+              } else {
+                setError('Failed to fetch data');
+                
+              }
+            } catch (error) {
+              console.log("ERROR "+error);
+              setError(`Error fetching data: ${error}`);
+              
+            } 
+          };
+          
+            const token = localStorage.getItem("authToken")
+            if (token) {
+              setIstoken(token)
+              fetchData();
+              console.log('login sukses');
+            }else{
+              navigate("/login");
+            }
+          }, [navigate, isToken])
     
       if (error) {
         return <div>Error: {error}</div>;
@@ -104,6 +187,64 @@ const Dashboard = () => {
       return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
     };
 
+    // Data Member Tahunan
+    
+    const columns = [
+      {
+        name: "NIK",
+        selector: (row) => row.nik  || '-',
+        cellExport: (row) => row.nik || '-',
+        sortable: true
+      },
+      {
+        name: "Nama Karyawan",
+        selector: (row) => row.nama  || '-',
+        cellExport: (row) => row.nama || '-',
+        sortable: true
+      },
+      {
+        name: "Masuk",
+        selector: (row) => row.totalMasuk   || '-',
+        cellExport: (row) => row.totalMasuk || '-',
+        sortable: true
+      },
+      {
+          name: "Terlambat",
+          selector: (row) => row.totalTelatMasuk  || '-',
+          cellExport: (row) => row.totalTelatMasuk || '-',
+          sortable: true
+      },
+      {
+          name: "Tidak Masuk",
+          selector: (row) => row.totalTidakMasuk  || '-',
+          cellExport: (row) => row.totalTidakMasuk || '-',
+          sortable: true
+      },
+      {
+          name: "Cuti",
+          selector: (row) => row.totalCuti  || '-',
+          cellExport: (row) => row.totalCuti || '-',
+          sortable: true
+      },
+      {
+          name: "Sakit",
+          selector: (row) => row.totalSakit  || '-',
+          cellExport: (row) => row.totalSakit || '-',
+          sortable: true
+      },
+      {
+          name: "Pulang Cepat",
+          selector: (row) => row.pulangCepat  || '-',
+          cellExport: (row) => row.pulangCepat || '-',
+          sortable: true
+      }
+    ];
+  
+    const dataTable = {
+      columns,
+      data: apiDataMemberTahun
+    };
+
     return <div className="content__container">
         <Navbar navbarText="Overview"/>
                
@@ -113,7 +254,7 @@ const Dashboard = () => {
             <div className="keterangan">
                 <div className="box"><h1>Masuk</h1><h2>{apiData.totalMasuk}</h2></div>
                 <div className="box"><h1>Terlambat</h1><h2>{apiData.totalTelatMasuk}</h2></div>
-                <div className="box"><h1>Absen</h1><h2>{apiData.totalTidakMasuk}</h2></div>
+                <div className="box"><h1>Tidak Masuk</h1><h2>{apiData.totalTidakMasuk}</h2></div>
                 <div className="box"><h1>Cuti</h1><h2>{apiData.totalCuti}</h2></div>
                 <div className="box"><h1>Sakit</h1><h2>{apiData.totalSakit}</h2></div>
             </div>                
@@ -156,19 +297,37 @@ const Dashboard = () => {
 
 
             <div className="right__container__dashboard">                
-                <div className="box1"><h1>Masuk</h1><h2></h2></div>
+                <div className="box1"><h1>Masuk</h1><h2>{apiDataMemberHari.totalMasuk}</h2></div>
                 <div className="horizontal_line"></div>
-                <div className="box1"><h1>Terlambat</h1><h2>2</h2></div>
+                <div className="box1"><h1>Terlambat</h1><h2>{apiDataMemberHari.totalTelatMasuk}</h2></div>
                 <div className="horizontal_line"></div>
-                <div className="box1"><h1>Absen</h1><h2>3</h2></div>
+                <div className="box1"><h1>Tidak Masuk</h1><h2>{apiDataMemberHari.totalTidakMasuk}</h2></div>
                 <div className="horizontal_line"></div>
-                <div className="box1"><h1>Cuti</h1><h2>4</h2></div>
+                <div className="box1"><h1>Cuti</h1><h2>{apiDataMemberHari.totalCuti}</h2></div>
                 <div className="horizontal_line"></div>
-                <div className="box1"><h1>Sakit</h1><h2>5</h2></div>                
+                <div className="box1"><h1>Sakit</h1><h2>{apiDataMemberHari.totalSakit}</h2></div>                
             </div>
         </div>
+                  <div className="table__container">
+                    <div className="data__member">
+                      <h1>Data Member / {currentYear}</h1>
+                    </div>
+                    <DataTableExtensions {...dataTable}>
+                        <DataTable
+                        columns={columns}
+                        data={apiDataMemberTahun}
+                        noHeader
+                        defaultSortField="NIK"
+                        sortIcon={<SortIcon />}
+                        defaultSortAsc={true}
+                        pagination
+                        highlightOnHover
+                        dense
+                        />                        
+                    </DataTableExtensions>
 
-        <Information informationText="Data Member" fields={infoTopFields}/>       
+                </div>
+      
     </div> 
 }
 

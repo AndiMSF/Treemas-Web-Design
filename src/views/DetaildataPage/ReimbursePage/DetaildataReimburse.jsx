@@ -134,7 +134,7 @@ const DetaildataReimburse = () => {
         },
         {
           name: "Uang Makan",
-          selector: (row) => row.uangMakan + ' m' || '-',
+          selector: (row) => row.uangMakan || '-',
           cellExport: (row) => row.uangMakan || '-',
           sortable: true
         },
