@@ -91,7 +91,7 @@ const DetaildataReimburse = () => {
   let dataTable;
 
   if (informationText === "Data Diri") {
-    api = "http://localhost:8081/api/rekap/get-rekap-reimburse";
+    api = "http://192.168.2.55:8081/api/rekap/get-rekap-reimburse";
     console.log("INI DATA DIRI");
     // Data
     const nik = localStorage.getItem("nik");

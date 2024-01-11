@@ -101,7 +101,7 @@ const DetaildataTimesheet = () => {
   let dataTable;
 
   if (informationText === "Data Diri") {
-    api = "http://localhost:8081/api/rekap/get-rekap-timesheet";
+    api = "http://192.168.2.55:8081/api/rekap/get-rekap-timesheet";
     console.log("INI DATA DIRI");
     // Data
     columns = [
@@ -179,7 +179,7 @@ const DetaildataTimesheet = () => {
     };
   } else if (informationText === "Data Member") {
     api =
-      "http://localhost:8081/api/detail-data/get-rekap-timesheet/data-member";
+      "http://192.168.2.55:8081/api/detail-data/get-rekap-timesheet/data-member";
     console.log("INI DATA MEMBER");
     // Data
 
@@ -257,7 +257,7 @@ const DetaildataTimesheet = () => {
       data: apiData,
     };
   } else {
-    api = "http://localhost:8081/api/rekap/get-rekap-timesheet";
+    api = "http://192.168.2.55:8081/api/rekap/get-rekap-timesheet";
     console.log("INI DEFAULT DATA DIRI");
     columns = [
       {

@@ -12,7 +12,7 @@ const MasterDataKaryawanEdit = () => {
   const [isEnabledAlamat, setIsEnabledAlamat] = useState(false);
   const [isEnabledLain, setIsEnabledLain] = useState(false);
   const [apiEdit, setApiEdit] = useState(
-    `http://localhost:8081/api/master-data/karyawan-form/edit/${id}`
+    `http://192.168.2.55:8081/api/master-data/karyawan-form/edit/${id}`
   );
   const [isKaryawanForm, setIsKaryawanForm] = useState(true);
   const [isEdit, setIsEdit] = useState(true);

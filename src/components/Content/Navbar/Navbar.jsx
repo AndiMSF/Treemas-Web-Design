@@ -26,7 +26,7 @@ const Navbar = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8081/api/master-data/karyawan-view/${nik}`,
+          `http://192.168.2.55:8081/api/master-data/karyawan-view/${nik}`,
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -59,7 +59,7 @@ const Navbar = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/dashboard/data-kehadiran",
+          "http://192.168.2.55:8081/api/dashboard/data-kehadiran",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -97,7 +97,7 @@ const Navbar = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/dashboard/navbar",
+          "http://192.168.2.55:8081/api/dashboard/navbar",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {

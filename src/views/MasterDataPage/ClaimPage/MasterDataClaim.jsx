@@ -22,7 +22,7 @@ const MasterDataClaim = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/claim-view",
+          "http://192.168.2.55:8081/api/master-data/claim-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -131,7 +131,7 @@ const MasterDataClaim = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/master-data/claim-form/delete/${id}`,
+            `http://192.168.2.55:8081/api/master-data/claim-form/delete/${id}`,
             {
               method: "DELETE",
               headers: {

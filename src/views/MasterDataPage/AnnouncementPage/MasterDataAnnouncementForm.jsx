@@ -77,7 +77,7 @@ const MasterDataAnnouncementForm = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8081/api/master-data/announcement-form/add",
+        "http://192.168.2.55:8081/api/master-data/announcement-form/add",
         requestData,
         {
           headers: {

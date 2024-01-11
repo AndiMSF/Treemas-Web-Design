@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const [isEnabledLain, setIsEnabledLain] = useState(false);
   const [isEnabledPassword, setIsEnabledPassword] = useState(false);
   const [apiProfile, setApiProfile] = useState(
-    `http://localhost:8081/api/users/update-profile`
+    `http://192.168.2.55:8081/api/users/update-profile`
   );
   const [isKaryawanForm, setIsKaryawanForm] = useState(true);
   const [isProfile, setIsProfile] = useState(true);

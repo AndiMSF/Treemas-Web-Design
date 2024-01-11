@@ -63,7 +63,7 @@ const DetaildataTracking = (props) => {
     console.log("Token " + token);
     try {
       const response = await axios.get(
-        "http://localhost:8081/api/detail-data/tracking-view",
+        "http://192.168.2.55:8081/api/detail-data/tracking-view",
         {
           params: requestParam,
           headers: {

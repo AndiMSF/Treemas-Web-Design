@@ -37,7 +37,7 @@ const Sidebar = ({ children }) => {
 
     // Hapus token dari localStorage atau melakukan tindakan logout yang diperlukan
 
-    const response = await fetch(`http://localhost:8081/api/auth/logout`, {
+    const response = await fetch(`http://192.168.2.55:8081/api/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

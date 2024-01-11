@@ -20,7 +20,7 @@ const ReportDataClaim = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/report-data/claim-view",
+          "http://192.168.2.55:8081/api/report-data/claim-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -126,7 +126,7 @@ const ReportDataClaim = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/report-data/claim-view/${id}`,
+            `http://192.168.2.55:8081/api/report-data/claim-view/${id}`,
             {
               method: "DELETE",
               headers: {

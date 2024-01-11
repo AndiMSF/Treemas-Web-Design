@@ -19,7 +19,7 @@ const ParameterReimburse = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/parameter/reimburse-view",
+          "http://192.168.2.55:8081/api/parameter/reimburse-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -137,7 +137,7 @@ const ParameterReimburse = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/parameter/reimburse-form/edit/${id}`,
+            `http://192.168.2.55:8081/parameter/reimburse-form/edit/${id}`,
             {
               method: "DELETE",
               headers: {

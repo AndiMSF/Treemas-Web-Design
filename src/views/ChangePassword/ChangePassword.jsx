@@ -32,7 +32,7 @@ const ChangePassword = () => {
     try {
       if (token) {
         const response = await axios.put(
-          "http://localhost:8081/api/auth/change-password",
+          "http://192.168.2.55:8081/api/auth/change-password",
           changeData,
           {
             headers: {

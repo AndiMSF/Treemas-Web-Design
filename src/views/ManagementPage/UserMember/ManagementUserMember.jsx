@@ -55,7 +55,7 @@ const ManagementUserMember = () => {
         if (token) {
           console.log("ADA TOKEN " + token);
           const response = await axios.delete(
-            `http://localhost:8081/api/management/user-member-view/delete?nikLeader=${nikLeader}&nikUser=${userId}`,
+            `http://192.168.2.55:8081/api/management/user-member-view/delete?nikLeader=${nikLeader}&nikUser=${userId}`,
             {
               headers: {
                 "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const ManagementUserMember = () => {
         if (token) {
           console.log("ADA TOKEN ");
           const response = await axios.post(
-            "http://localhost:8081/api/management/user-member-view/add",
+            "http://192.168.2.55:8081/api/management/user-member-view/add",
             requestData,
             {
               headers: {
@@ -187,7 +187,7 @@ const ManagementUserMember = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/management/user-member-view",
+          "http://192.168.2.55:8081/api/management/user-member-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -246,7 +246,7 @@ const ManagementUserMember = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/management/user-member-view/dropdown",
+          "http://192.168.2.55:8081/api/management/user-member-view/dropdown",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {

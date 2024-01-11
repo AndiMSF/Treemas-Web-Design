@@ -430,7 +430,7 @@ const FormPages = (props) => {
         try {
           console.log("MASUK EDIT");
           const response = await fetch(
-            `http://localhost:8081/api/master-data/karyawan-view/${id}`,
+            `http://192.168.2.55:8081/api/master-data/karyawan-view/${id}`,
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -493,7 +493,7 @@ const FormPages = (props) => {
         try {
           console.log("Masuk Profile");
           const response = await fetch(
-            `http://localhost:8081/api/master-data/karyawan-view/${nik}`,
+            `http://192.168.2.55:8081/api/master-data/karyawan-view/${nik}`,
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -554,7 +554,7 @@ const FormPages = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/jabatan-view",
+          "http://192.168.2.55:8081/api/master-data/jabatan-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -596,7 +596,7 @@ const FormPages = (props) => {
     const fetchDataProject = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/project-view",
+          "http://192.168.2.55:8081/api/master-data/project-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {

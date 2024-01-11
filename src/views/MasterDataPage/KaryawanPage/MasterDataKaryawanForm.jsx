@@ -10,7 +10,7 @@ const MasterDataKaryawanForm = () => {
   const [isEnabledAlamat, setIsEnabledAlamat] = useState(false);
   const [isEnabledLain, setIsEnabledLain] = useState(false);
   const [api, setApi] = useState(
-    "http://localhost:8081/api/master-data/karyawan-form/add"
+    "http://192.168.2.55:8081/api/master-data/karyawan-form/add"
   );
   const [isKaryawanForm, setIsKaryawanForm] = useState(true);
 

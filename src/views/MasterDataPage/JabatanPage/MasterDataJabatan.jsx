@@ -23,7 +23,7 @@ const MasterDataJabatan = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/jabatan-view",
+          "http://192.168.2.55:8081/api/master-data/jabatan-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -125,7 +125,7 @@ const MasterDataJabatan = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/master-data/jabatan-form/delete/${id}`,
+            `http://192.168.2.55:8081/api/master-data/jabatan-form/delete/${id}`,
             {
               method: "DELETE",
               headers: {

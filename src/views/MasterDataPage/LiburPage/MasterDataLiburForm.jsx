@@ -49,7 +49,7 @@ const MasterDataLiburForm = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8081/api/master-data/libur-form/add",
+        "http://192.168.2.55:8081/api/master-data/libur-form/add",
         requestData,
         {
           headers: {

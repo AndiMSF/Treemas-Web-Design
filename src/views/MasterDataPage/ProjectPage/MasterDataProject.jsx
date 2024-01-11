@@ -21,7 +21,7 @@ const MasterDataProject = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/project-view",
+          "http://192.168.2.55:8081/api/master-data/project-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -152,7 +152,7 @@ const MasterDataProject = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/master-data/project-form/delete/${id}`,
+            `http://192.168.2.55:8081/api/master-data/project-form/delete/${id}`,
             {
               method: "DELETE",
               headers: {

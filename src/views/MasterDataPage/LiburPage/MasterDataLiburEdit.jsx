@@ -48,7 +48,7 @@ const MasterDataLiburEdit = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:8081/api/master-data/libur-form/edit/${id}`,
+        `http://192.168.2.55:8081/api/master-data/libur-form/edit/${id}`,
         requestData,
         {
           headers: {

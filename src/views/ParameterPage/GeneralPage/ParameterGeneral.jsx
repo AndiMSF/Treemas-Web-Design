@@ -19,7 +19,7 @@ const ParameterGeneral = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/parameter/general-view",
+          "http://192.168.2.55:8081/api/parameter/general-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -135,7 +135,7 @@ const ParameterGeneral = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/parameter/general-form/edit/${id}`,
+            `http://192.168.2.55:8081/parameter/general-form/edit/${id}`,
             {
               method: "DELETE",
               headers: {

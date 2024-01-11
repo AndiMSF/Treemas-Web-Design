@@ -61,7 +61,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/dashboard/data-kehadiran",
+          "http://192.168.2.55:8081/api/dashboard/data-kehadiran",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -98,7 +98,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/dashboard/data-kehadiran-member-hari",
+          "http://192.168.2.55:8081/api/dashboard/data-kehadiran-member-hari",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -135,7 +135,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/dashboard/data-kehadiran-member",
+          "http://192.168.2.55:8081/api/dashboard/data-kehadiran-member",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {

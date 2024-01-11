@@ -35,7 +35,7 @@ const ManagementUser = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/management/user-view",
+          "http://192.168.2.55:8081/api/management/user-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -223,7 +223,7 @@ const ManagementUser = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/management/unlock-account/${userId}`,
+            `http://192.168.2.55:8081/api/management/unlock-account/${userId}`,
             {
               method: "PUT",
               headers: {
@@ -237,7 +237,7 @@ const ManagementUser = () => {
           if (response.ok) {
             // Fetch updated data after successful API call
             const updatedDataResponse = await fetch(
-              "http://localhost:8081/api/management/user-view",
+              "http://192.168.2.55:8081/api/management/user-view",
               {
                 method: "GET",
                 headers: {

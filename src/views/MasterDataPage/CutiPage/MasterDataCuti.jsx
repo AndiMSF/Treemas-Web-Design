@@ -22,7 +22,7 @@ const MasterDataCuti = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/cuti-view",
+          "http://192.168.2.55:8081/api/master-data/cuti-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -131,7 +131,7 @@ const MasterDataCuti = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/master-data/cuti-form/delete/${id}`,
+            `http://192.168.2.55:8081/api/master-data/cuti-form/delete/${id}`,
             {
               method: "DELETE",
               headers: {

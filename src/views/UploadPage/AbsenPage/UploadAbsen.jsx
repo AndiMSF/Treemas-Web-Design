@@ -68,7 +68,7 @@ const UploadAbsen = () => {
       console.log("MASUK USE EPEK");
       try {
         const response = await fetch(
-          "http://localhost:8081/api/upload/get-absen",
+          "http://192.168.2.55:8081/api/upload/get-absen",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -284,7 +284,7 @@ const UploadAbsen = () => {
         console.log("MASUK " + token);
         console.log("REQUEST DATA " + JSON.stringify(requestData, null, 2));
         const response = await axios.post(
-          "http://localhost:8081/api/upload/add-absen",
+          "http://192.168.2.55:8081/api/upload/add-absen",
           requestData,
           {
             headers: {

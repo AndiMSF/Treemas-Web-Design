@@ -38,7 +38,7 @@ const MasterDataAnnouncementEdit = () => {
     const fetchAnnouncementData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/api/master-data/announcement-form/${id}`,
+          `http://192.168.2.55:8081/api/master-data/announcement-form/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -108,7 +108,7 @@ const MasterDataAnnouncementEdit = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:8081/api/master-data/announcement-form/edit/${id}`,
+        `http://192.168.2.55:8081/api/master-data/announcement-form/edit/${id}`,
         requestData,
         {
           headers: {

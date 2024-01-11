@@ -21,7 +21,7 @@ const MasterDataAnnouncement = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8081/api/master-data/announcement-view",
+          "http://192.168.2.55:8081/api/master-data/announcement-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -158,7 +158,7 @@ const MasterDataAnnouncement = () => {
 
         try {
           const response = await fetch(
-            `http://localhost:8081/api/master-data/announcement-form/delete/${id}`,
+            `http://192.168.2.55:8081/api/master-data/announcement-form/delete/${id}`,
             {
               method: "DELETE",
               headers: {

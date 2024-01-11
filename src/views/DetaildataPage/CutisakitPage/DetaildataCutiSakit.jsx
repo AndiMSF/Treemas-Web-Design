@@ -77,7 +77,7 @@ const DetaildataCutiSakit = (props) => {
         let response;
         if (dropdownItems === "Cuti") {
           response = await fetch(
-            "http://localhost:8081/api/detail-data/cuti-view",
+            "http://192.168.2.55:8081/api/detail-data/cuti-view",
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -88,7 +88,7 @@ const DetaildataCutiSakit = (props) => {
           );
         } else if (dropdownItems === "Sakit") {
           response = await fetch(
-            "http://localhost:8081/api/detail-data/sakit-view",
+            "http://192.168.2.55:8081/api/detail-data/sakit-view",
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -99,7 +99,7 @@ const DetaildataCutiSakit = (props) => {
           );
         } else {
           response = await fetch(
-            "http://localhost:8081/api/detail-data/cuti-view",
+            "http://192.168.2.55:8081/api/detail-data/cuti-view",
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {

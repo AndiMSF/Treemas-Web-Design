@@ -41,7 +41,7 @@ const UploadApk = () => {
       formData.append("file", file);
 
       const response = await axios.post(
-        "http://localhost:8081/api/upload/apk",
+        "http://192.168.2.55:8081/api/upload/apk",
         formData,
         {
           headers: {
