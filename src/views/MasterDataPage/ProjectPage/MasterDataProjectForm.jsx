@@ -16,8 +16,9 @@ import Information from "../../../components/Content/Information/Information"
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api';
 import { TimePicker } from 'react-ios-time-picker';// eslint-disable-next-line react-refresh/only-export-components
 import Swal from "sweetalert2";
-const MasterDataProjectForm = () => {
+import HashLoader from "react-spinners/HashLoader";
 
+const MasterDataProjectForm = () => {
     const [showAlert, setShowAlert] = useState(false); // State to manage alert visibility
     const [formData, setFormData] = useState({
         projectId: '',
@@ -35,7 +36,21 @@ const MasterDataProjectForm = () => {
       
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
-     
+      const [loading, setLoading] = useState(false);
+
+      // Check local storage for the loading state when the component mounts
+      useEffect(() => {
+        const storedLoadingState = localStorage.getItem("loadingState");
+        if (storedLoadingState) {
+            setLoading(JSON.parse(storedLoadingState));
+        }
+      }, []);
+
+      // Save the loading state to local storage whenever it changes
+      useEffect(() => {
+        localStorage.setItem("loadingState", JSON.stringify(loading));
+      }, [loading]);
+
       // Check siapa yang akses
       useEffect(() => {
         const token = localStorage.getItem("authToken")
@@ -72,7 +87,8 @@ const MasterDataProjectForm = () => {
     
       const handleSubmit = async (e) => {
         e.preventDefault()
-    
+        setLoading(true);
+
         try {
           const requestData = { 
             projectId: formData.projectId,
@@ -179,6 +195,11 @@ const MasterDataProjectForm = () => {
 
         return (
         <div className="content__container project__container">    
+            {loading && (
+            <div className="loading-overlay">
+                <HashLoader loading={loading} size={90} color="#d6e0de"/>
+            </div>
+        )}
             <div className="form__container project_form__container">
                 <div className="form__container__top form__container__top__project">
                         <h1>Project Form</h1>

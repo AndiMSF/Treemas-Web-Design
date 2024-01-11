@@ -22,6 +22,15 @@ const DetaildataReimburse = () => {
     const [totalJamText, setTotalJamText] = useState("Pilih Total Jam")   
     const [apiData, setApiData] = useState([])    
 
+    const formatTimestamp = (timestamp) => {
+      const date = new Date(timestamp);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+      const year = date.getFullYear();
+    
+      return `${day}-${month}-${year}`;
+    };
+    
     const handleDropdownChange = (selectedItem) => {
       setInformationText(selectedItem);
   }
@@ -110,8 +119,8 @@ const DetaildataReimburse = () => {
         },  
         {
             name: "Tanggal",
-            selector: (row) => row.tanggal || '-',
-            cellExport: (row) => row.tanggal || '-',
+            selector: (row) => formatTimestamp (row.tanggal) || '-',
+            cellExport: (row) => formatTimestamp (row.tanggal) || '-',
             sortable: true
         },  
         {

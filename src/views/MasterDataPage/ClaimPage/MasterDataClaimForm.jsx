@@ -13,6 +13,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 // SweetAlert
 import Swal from 'sweetalert2'
+import HashLoader from "react-spinners/HashLoader";
 
 const MasterDataClaimForm = () => {
     const [formData, setFormData] = useState({
@@ -22,7 +23,21 @@ const MasterDataClaimForm = () => {
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
-    
+      const [loading, setLoading] = useState(false);
+
+    // Check local storage for the loading state when the component mounts
+      useEffect(() => {
+        const storedLoadingState = localStorage.getItem("loadingState");
+        if (storedLoadingState) {
+            setLoading(JSON.parse(storedLoadingState));
+        }
+      }, []);
+
+      // Save the loading state to local storage whenever it changes
+      useEffect(() => {
+        localStorage.setItem("loadingState", JSON.stringify(loading));
+      }, [loading]);
+
       // Check siapa yang akses
       useEffect(() => {
         const token = localStorage.getItem("authToken")
@@ -42,7 +57,7 @@ const MasterDataClaimForm = () => {
       const handleSubmit = async (e) => {
         e.preventDefault()
         const token = localStorage.getItem("authToken");
-
+        setLoading(true);
 
         try {
           const requestData = {
@@ -81,13 +96,18 @@ const MasterDataClaimForm = () => {
 
       return (        
             <div className="content__container">
-                <div className="form__container">
-                    <div className="form__container__top">
-                        <h1>Claim Form</h1>
-                        <div className="horizontal__line"></div>
-                    </div>
-                    <form>
-                    <div className="form__row">
+              {loading && (
+              <div className="loading-overlay">
+                  <HashLoader loading={loading} size={90} color="#d6e0de"/>
+              </div>
+            )}
+          <div className="form__container">
+              <div className="form__container__top">
+                  <h1>Claim Form</h1>
+                  <div className="horizontal__line"></div>
+              </div>
+              <form>
+              <div className="form__row">
               <div className="form__row__left">
               <p>ID <span style={{ color: 'red' }}>*</span></p>
               </div>

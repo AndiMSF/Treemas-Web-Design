@@ -10,6 +10,7 @@ import Button from "../../../components/Elements/Buttons/Button";
 import Alert from 'react-bootstrap/Alert';
 // SweetAlert
 import Swal from 'sweetalert2'
+import HashLoader from "react-spinners/HashLoader";
 
 const MasterDataJabatanForm = () => {
   const [showAlert, setShowAlert] = useState(false); 
@@ -19,7 +20,21 @@ const MasterDataJabatanForm = () => {
       })
       const navigate = useNavigate();
       const [isToken, setIstoken] = useState('')
-    
+      const [loading, setLoading] = useState(false);
+
+      // Check local storage for the loading state when the component mounts
+      useEffect(() => {
+        const storedLoadingState = localStorage.getItem("loadingState");
+        if (storedLoadingState) {
+            setLoading(JSON.parse(storedLoadingState));
+        }
+      }, []);
+
+      // Save the loading state to local storage whenever it changes
+      useEffect(() => {
+        localStorage.setItem("loadingState", JSON.stringify(loading));
+      }, [loading]);
+
       // Check siapa yang akses
       useEffect(() => {
         const token = localStorage.getItem("authToken")
@@ -39,7 +54,8 @@ const MasterDataJabatanForm = () => {
       const handleSubmit = async (e) => {
         e.preventDefault()
         const token = localStorage.getItem("authToken");
-    
+        setLoading(true);
+
           if (!token) {
             console.error('Token is not available');
             return navigate("/login");
@@ -80,6 +96,11 @@ const MasterDataJabatanForm = () => {
 
       return (       
             <div className="content__container">
+              {loading && (
+              <div className="loading-overlay">
+                  <HashLoader loading={loading} size={90} color="#d6e0de"/>
+              </div>
+          )}
               {/* Display the alert if showAlert is true */}
               {showAlert && (
                       <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>

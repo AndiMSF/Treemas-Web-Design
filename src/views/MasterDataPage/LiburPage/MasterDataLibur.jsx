@@ -18,6 +18,15 @@ const MasterDataLibur = () => {
     const [apiData, setApiData] = useState([]);
     const [error, setError] = useState(null);
 
+    const formatTimestamp = (timestamp) => {
+      const date = new Date(timestamp);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Perlu ditambah 1 karena indeks bulan dimulai dari 0
+      const year = date.getFullYear();
+    
+      return `${day}-${month}-${year}`;
+    };
+  
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -57,14 +66,14 @@ const MasterDataLibur = () => {
       const columns = [
         {
           name: "Tanggal",
-          selector: (row) => row.tglLibur || '-',
-          cellExport: (row) => row.title || '-',
+          selector: (row) => formatTimestamp  (row.tglLibur) || '-',
+          cellExport: (row) => formatTimestamp (row.tglLibur) || '-',
           sortable: true
         },
         {
           name: "Keterangan",
           selector: (row) => row.keterangan || '-',
-          cellExport: (row) => row.title || '-',
+          cellExport: (row) => row.keterangan || '-',
           sortable: true
         },    
         {
