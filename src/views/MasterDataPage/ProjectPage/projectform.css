@@ -1,0 +1,65 @@
+div.project__container{
+    display: flex;
+    flex-direction: column;
+}
+
+div.project_form__container {
+    order: 2;
+    flex-shrink: 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+}
+
+.form__container__top__project {
+
+}
+
+.form__container__middle {
+    
+}
+
+.form__container__middle .form__row .project__input{
+    border: 1px solid #dee2e6;
+}
+
+.form__row__bottom {
+
+}
+
+input.react-ios-time-picker-input {
+    width: 100%;
+    border: 1px solid #dee2e6;
+    color: #212529;
+    cursor: pointer;
+}
+
+.map__container {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 2rem;
+    border-radius: 10px;
+    gap: 30px;
+    min-height: 50%;
+}
+
+.map__container__top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.map__container__top h1 {
+    font-size: 2rem;
+}
+
+/* Media query untuk ukuran layar max hp (smartphone) */
+@media (max-width: 1350px) {
+    /* Gaya CSS khusus untuk ukuran layar max hp */
+    /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
+    div.project_form__container {
+        overflow-y: scroll;
+    }
+    
+  }

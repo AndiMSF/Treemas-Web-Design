@@ -1,0 +1,17 @@
+.usermember__container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+i.fa.fa-toggle-on, i.fa.fa-toggle-on {
+    text-align: 'center';
+}
+
+i.fa.fa-toggle-on {
+    color: black;
+}
+
+i.fa.fa-toggle-off {
+    color: black;
+}   

@@ -1,0 +1,25 @@
+.top__container__input {
+    display: flex;
+    gap: 20px;
+}
+
+.top__container__input__right {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.left__container__input__absen {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bottom__container__input__absen {
+    display: flex;
+    gap: 10px;
+}
+
+.bottom__container__input__absen > button {
+    justify-self: flex-end;
+}

@@ -1,0 +1,29 @@
+.liburform__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+input{
+    display: flex;
+    color: black;
+    border-radius: 10px;
+    gap: 10px;
+    border: 1px solid var(--gray-light);
+    align-content: center;
+}
+
+svg.react-datepicker__calendar-icon {
+    align-self: center;    
+}
+
+.react-datepicker__input-container input {
+    background-color: #D71313;
+}
+ 
+.form__row__right{
+    display: flex;
+    align-content: center;
+    gap : 1% ;
+    width: 100%;
+}

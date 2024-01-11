@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.login__container {
+    display: flex;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 8px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.forgot__password {
+    cursor: pointer;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+/* Left Container */
+.left__container {
+    background-color: var(--almost-black);
+    border-radius: 8px 0px 0px 8px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: 2rem;
+    
+}
+
+.logo {
+    justify-self: flex-start;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 100%;
+    padding: 2rem;
+    flex: 2;
+}
+
+.login__form__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.login__form__header h1 {
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.login__form__header p {
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+label {
+    color: var(--unselected-icon);
+}
+
+input {
+    border : 0px solid rgba(255, 255, 255, 0.40);
+    border-bottom-width : 1px;
+    background-color : transparent;
+    color: #FFFFFF;
+}
+
+.error-message{
+    color: red;
+}
+p a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.50);
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+::placeholder {
+    font-size: 0.8rem;
+}
+
+p a:hover {
+    color: #FFFFFF;
+}
+
+input {
+    padding: 0;
+}
+
+.login__button {
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: var(--button-purple);
+    border: 1px solid var(--button-purple) ;
+    height: 3em;
+}
+
+.login__button:hover {
+    transition: all 400ms ease;
+    background-color: transparent;
+}
+
+.login__bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.right__container {
+    width: 60%;
+    border-radius: 0px 8px 8px 0px;
+    background-color: var(--button-purple);
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    flex-direction: column; /* Mengatur child menjadi kolom */
+}
+
+.right__container path {
+    fill: var(--button-purple) ;
+}
+
+.login__image__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 999;
+    flex: 1; /* Mengambil seluruh tinggi parent */
+    width: 100%; 
+    padding: 4rem 4rem;
+}
+
+.login__image__description h1 {
+    color: #EEE;
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2; /* 87.5% */ 
+    width: 100%;
+}
+
+.treemas {
+    color: #EEE;
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.svg1 {
+    width: 79.952rem;
+    height: 59.185rem;
+    transform: rotate(-26.479deg);
+    flex-shrink: 0; 
+}
+
+.svg2 {
+    position: absolute; 
+    top:-80px; 
+    left: -80px; 
+    transform: rotate(-26.479deg);
+    width: 20.324rem;
+    height: 17.313rem;
+    flex-shrink: 0; fill: #9C6FE4; 
+    z-index: 1; 
+}
+
+.svg3 {
+    position: absolute; 
+    top:-80px; 
+    right: 80px; 
+    width: 16.932rem;
+    height: 18.972rem;
+    transform: rotate(-49.894deg);
+    flex-shrink: 0;  
+    fill: rgba(156, 111, 228, 0.60);
+}
+
+.svg4 {
+    position: absolute; 
+    bottom:-80px; 
+    left: 90px; 
+    fill: rgba(156, 111, 228, 0.60); 
+    width: 13.563rem;
+    height: 12.526rem;
+    flex-shrink: 0;
+    transform: rotate(100.894deg);
+}
+
+.forgotpass__container{
+    display: flex;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 8px 8px 8px 8px;
+    overflow: hidden;
+    justify-content: center;
+}
+
+
+/* Media query untuk ukuran layar max hp (smartphone) */
+@media (max-width: 767px) {
+    /* Gaya CSS khusus untuk ukuran layar max hp */
+    /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
+    .login__container {
+        width: 80vw;
+        height: 80vh;
+    }
+}
+  
+  @media (max-width: 1300px) {
+    .login__container {
+        width: 80vw;
+        height: 80vh;
+    }
+  }

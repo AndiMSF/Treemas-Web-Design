@@ -1,0 +1,18 @@
+.data__karyawan__container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;  
+}
+
+.data__karyawan__container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.data__karyawan__children{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}   

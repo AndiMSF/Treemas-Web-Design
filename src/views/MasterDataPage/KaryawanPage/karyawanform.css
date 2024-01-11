@@ -1,0 +1,16 @@
+.karyawanform__container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--button-purple)   ;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.form__container{
+    display : flex;
+    height: auto;
+}

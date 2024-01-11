@@ -1,0 +1,40 @@
+#dropdown-basic {
+    color: black;
+    background-color: #FFF;
+    border: #FFF;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#dropdown-basic:hover {
+    background-color: rgb(236, 229, 229);
+}
+
+
+a.dropdown-item:hover {
+    background-color: rgb(236, 229, 229);
+}
+
+#karyawan__dropdown {
+    width: 100%;
+}
+
+#standard__dropdown {
+    color: black;
+    background-color: #FFF;
+    border: #FFF;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#standard__dropdown:hover {
+    background-color: rgb(236, 229, 229);
+}

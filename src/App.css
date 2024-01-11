@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  :root {
+    --almost-black: #1C1D21; 
+    --teal: #53a8b6;
+    --button-purple:#9C6FE4; 
+    --selected-icon: #DDE2FF;
+    --selected-text: #DDE2FF;
+    --selected-box: #9fa2b447;
+    --unselected-icon: #9FA2B4;
+    --unselected-text: #a4a6b383;
+    --gray-light: #C5C7CD;
+  }
+  
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+  
+  a:hover {
+    color: #535bf2;
+  }
+
+  .parent__container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow:hidden;
+}
+
+
+.sidebar__container {
+  min-width: 12vw;
+  background-color: var(--almost-black);
+  color: var(--unselected-icon);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+  height: 100%;
+}
+
+.sidebar__container__close {
+  width: 4vw;
+  background-color: var(--almost-black);
+  color: var(--unselected-icon);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+  height: 100%;
+}
+
+.main__container__close {
+  width: 98vw;
+}
+
+.nav__container__close {
+  display: none;
+}
+
+.logo__close {
+  display: none;
+}
+
+.hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: auto; /* Pushes the button to the right */
+    margin-right: 20px; /* Adjust the spacing */
+    margin-top: 20px;
+    color: #FFFFFF;
+    padding: 0.25rem;
+    border: 1px solid transparent; 
+
+}
+
+.hamburger-button__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  align-self: center;
+  margin-top: 20px;
+  padding: 0.25rem;
+  color: #FFFFFF;
+  border: 1px solid transparent; 
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.hamburger-button:hover,
+.hamburger-button__close:hover {
+    border: 1px solid transparent; 
+    cursor: pointer; 
+    transition: all 0.3s;
+    transform: translateY(-3px); /* Move the button up by 3 pixels on hover */
+}
+
+.hamburger-button__close:hover {
+  border-bottom: 1px solid #FFFFFF;
+}
+
+
+main {
+  min-width: 88vw;
+}
+
+.content__container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    gap: 2rem;
+    background-color: var(--button-purple);
+    height: 100%;
+    overflow-y: scroll; /* Mengaktifkan scroll, tetapi sembunyikan scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer dan Microsoft Edge */
+    
+}
+
+.input__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.left__container__input {
+  display: flex;
+  gap: 20px;
+}
+
+.right__container__input {
+  display: flex;
+  gap: 20px;  
+}
+
+div .dropdown {
+  height: 100%;
+}
+
+.right__container__input button {
+  margin: 0;
+  height: 40px;
+}
+
+.section__header {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__header__top {
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
+}
+
+.section__header__top h1 {
+  margin: 0;
+}
+
+div.lmTzXr div:first-child {
+  white-space:inherit;
+  padding: 10px 0;
+}
+
+.sc-iJnacD {
+  height: 0;
+}
+
+input.filter-text {
+  cursor: auto;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Make sure the loading overlay is above other elements */
+}
+
+
+
+/* Media query untuk ukuran layar max hp (smartphone) */
+@media (max-width: 1500px) {
+  /* Gaya CSS khusus untuk ukuran layar max hp */
+  /* Misalnya, mengubah ukuran font atau mengubah tata letak untuk ukuran layar kecil */
+  .sidebar__container {
+      display: none;
+  }
+
+  .sidebar__container__close {
+    display: none;
+}
+
+  main {
+      width: 100vw;
+  }
+}

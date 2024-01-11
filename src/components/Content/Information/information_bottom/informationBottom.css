@@ -1,0 +1,17 @@
+.information__bottom h1, .information__bottom p {
+    font-family: 'Mulish', sans-serif;
+    color: #4B506D;
+    margin: 0;
+
+}
+
+.information__bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.pages {
+    display: flex;
+    gap: 20px;
+}

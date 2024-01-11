@@ -1,0 +1,15 @@
+.form__container__apk{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 2rem;
+    border-radius: 10px;
+    height: 30%;
+    width: 60%;
+    gap: 30px;
+
+}
+
+.form__container__top__apk h1 {
+    font-size: 1.5rem;
+}

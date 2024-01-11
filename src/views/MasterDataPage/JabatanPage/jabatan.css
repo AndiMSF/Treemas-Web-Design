@@ -1,0 +1,55 @@
+.jabatan__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.table__container {
+  background-color: #FFF;
+  border-radius: 10px;
+  padding: 0.7rem;
+  position: relative;
+}
+
+.dlink {
+  text-decoration: none !important;
+  color: #03a9f3 !important;
+}
+
+.data-table-extensions-filter {
+  border: 1px solid lightgray;
+  border-radius: 50px;
+  padding: 3px 5px;
+  width: 70%;
+}
+
+.first {
+  padding-right: 10px !important;
+}
+
+.filter-text {
+  border: none !important;
+  width: 80%;
+}
+
+.data-table-extensions-filter {
+  display: flex;
+  align-items: center;
+  
+}
+
+input.filter-text {
+  color: black;
+}
+
+.cxFtRn {
+  height: 0;
+}
+
+.first:hover {
+  color: black;
+}
+
+.fa-trash-alt:hover {
+  color: black;
+}

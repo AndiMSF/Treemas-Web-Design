@@ -1,0 +1,10 @@
+.information__middle h1, .information__middle p {
+    font-family: 'Mulish', sans-serif;
+}
+
+.information__middle {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
