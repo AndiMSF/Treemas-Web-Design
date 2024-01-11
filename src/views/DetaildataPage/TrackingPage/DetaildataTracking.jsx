@@ -63,7 +63,7 @@ const DetaildataTracking = (props) => {
     console.log("Token " + token);
     try {
       const response = await axios.get(
-        "https://treemas-api-405402.et.r.appspot.com/api/detail-data/tracking-view",
+        "http://localhost:8081/api/detail-data/tracking-view",
         {
           params: requestParam,
           headers: {
@@ -73,18 +73,16 @@ const DetaildataTracking = (props) => {
         }
       );
 
-      
-
-      if(response.data.success === false) {
-      Swal.fire({
-        title: "Error!",
-        text: response.data.message,
-        icon: "error",
-      });
-    } else {
-      setMapPositionData(response.data.data);
-      console.log("RESPONSE "+JSON.stringify(response.data, null, 2));
-    }
+      if (response.data.success === false) {
+        Swal.fire({
+          title: "Error!",
+          text: response.data.message,
+          icon: "error",
+        });
+      } else {
+        setMapPositionData(response.data.data);
+        console.log("RESPONSE " + JSON.stringify(response.data, null, 2));
+      }
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -117,7 +115,7 @@ const DetaildataTracking = (props) => {
     height: "100%", // Tinggi peta
   };
 
-  const infoMiddleStyles = {  
+  const infoMiddleStyles = {
     position: "relative",
     width: "100%", // Lebar information__middle
     height: "700px", // Tinggi information__middle
@@ -133,7 +131,7 @@ const DetaildataTracking = (props) => {
   }
 
   const userPhotoUrl = localStorage.getItem("foto");
-  
+
   return (
     <div className="content__container">
       <Navbar navbarText="Detail Data / Tracking" />
@@ -174,26 +172,29 @@ const DetaildataTracking = (props) => {
             center={initialCenter}
           >
             {mapPositionData.map((position, index) => (
-      <React.Fragment key={index}>
-        <MarkerF
-          position={{ lat: position.latitude, lng: position.longitude }}
-          title={`Marker ${index + 1}`}  // Tambahkan properti title dengan nilai urutan marker
-        />
-        {index > 0 && (
-          <Polyline
-            path={[
-              { lat: mapPositionData[index - 1].latitude, lng: mapPositionData[index - 1].longitude },
-              { lat: position.latitude, lng: position.longitude },
-            ]}
-            options={{
-              strokeColor: 'blue', // Warna garis
-              strokeOpacity: 1, // Opasitas garis
-              strokeWeight: 2, // Ketebalan garis
-            }}
-          />
-        )}
-      </React.Fragment>
-    ))}
+              <React.Fragment key={index}>
+                <MarkerF
+                  position={{ lat: position.latitude, lng: position.longitude }}
+                  title={`Marker ${index + 1}`} // Tambahkan properti title dengan nilai urutan marker
+                />
+                {index > 0 && (
+                  <Polyline
+                    path={[
+                      {
+                        lat: mapPositionData[index - 1].latitude,
+                        lng: mapPositionData[index - 1].longitude,
+                      },
+                      { lat: position.latitude, lng: position.longitude },
+                    ]}
+                    options={{
+                      strokeColor: "blue", // Warna garis
+                      strokeOpacity: 1, // Opasitas garis
+                      strokeWeight: 2, // Ketebalan garis
+                    }}
+                  />
+                )}
+              </React.Fragment>
+            ))}
           </GoogleMap>
         )}
       </div>

@@ -430,7 +430,7 @@ const FormPages = (props) => {
         try {
           console.log("MASUK EDIT");
           const response = await fetch(
-            `https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${id}`,
+            `http://localhost:8081/api/master-data/karyawan-view/${id}`,
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -445,9 +445,12 @@ const FormPages = (props) => {
             setApiDataKaryawan(data.data.karyawan);
             setApiDataSys(data.data.sysUser);
             setApiDataImg(data.data.karyawanImage);
-            console.log("DATA KARYAWAN EDIT "+data);
+            console.log("DATA KARYAWAN EDIT " + data);
             // Update the initialFormData with the jabatanId
-            console.log("INI DATA EDIT JABATAN KARYAWAN EDIT "+data.data.sysUser.role.jabatanId);
+            console.log(
+              "INI DATA EDIT JABATAN KARYAWAN EDIT " +
+                data.data.sysUser.role.jabatanId
+            );
             setFormData({
               ...initialFormData,
               selectedRole: data.data.sysUser.role.jabatanId, // Assuming your role object has a property "jabatanId"
@@ -490,7 +493,7 @@ const FormPages = (props) => {
         try {
           console.log("Masuk Profile");
           const response = await fetch(
-            `https://treemas-api-405402.et.r.appspot.com/api/master-data/karyawan-view/${nik}`,
+            `http://localhost:8081/api/master-data/karyawan-view/${nik}`,
             {
               method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
               headers: {
@@ -551,7 +554,7 @@ const FormPages = (props) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://treemas-api-405402.et.r.appspot.com/api/master-data/jabatan-view",
+          "http://localhost:8081/api/master-data/jabatan-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
@@ -593,7 +596,7 @@ const FormPages = (props) => {
     const fetchDataProject = async () => {
       try {
         const response = await fetch(
-          "https://treemas-api-405402.et.r.appspot.com/api/master-data/project-view",
+          "http://localhost:8081/api/master-data/project-view",
           {
             method: "GET", // Sesuaikan metode sesuai kebutuhan (GET, POST, dll.)
             headers: {
